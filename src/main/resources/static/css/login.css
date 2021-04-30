@@ -1,0 +1,146 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:500&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Cinzel&display=swap');
+body{
+    margin: 0;
+    padding: 0;
+      font-family: 'Cinzel', serif;
+     /*background: #ffffff;*/
+    background-image: url("static/images/timetable.png");
+}
+.box{
+    width: 500px;
+    padding: 50px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background: #191919;
+    text-align: center;
+}
+.box h1{
+    color: white;
+    text-transform:  capitalize;
+    font-height: 600;
+}
+.box input[type ="text"], .box input[type="password"]
+{
+    border: 0;
+    background: none;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    border: 2px solid palegreen;
+    padding: 14px 10px;
+    width: 200px;
+    color: white;
+    border-radius: 24px;
+    transition: 0.25s;
+    
+}
+     
+.box input[type ="text"]:focus, .box input[type="password"]:focus
+ {
+    width: 200px;
+    border-color: #55efc4;
+    
+}
+
+.box input[ type="submit"]{
+     border: 0;
+    background: none;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    border: 2px solid palegreen;
+    padding: 14px 4px;
+    width: 100px;
+    color: white;
+    border-radius: 24px;
+    transition: 0.25s;
+   cursor: pointer;
+   
+}
+
+.box input[ type="submit"]:hover{
+  background: palegreen;  
+}
+
+
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    background-color:#24252A;  /* major color*/
+    
+}
+
+.header {
+    
+    border-style: solid;
+    padding: auto;
+    margin-left:auto;
+   
+} 
+
+
+h1.header1{
+   
+    color: #f9f9f9;
+    text-align: center;
+      border-style: solid;
+  border-width: 2px 1px 4px 2px;
+}
+body{
+    background-image: url('pic2.JPG');
+    
+}
+
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+li {
+  float: left;
+}
+
+li a {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    color: #edf0f1;
+    text-decoration: none;
+        
+  display: inline-block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: #55efc4 ;
+}
+
+.nav_link{
+    list-style: none;
+    
+       
+}
+
+.nav_link li{
+    display: inline-block;
+    padding: 0px 20px;
+}
+.nav_link li a{
+    transition: all 0.3s ease 0s;
+}
+
+.nav_link li a:hover{
+    transition: all 0.3s ease 0s;
+}
