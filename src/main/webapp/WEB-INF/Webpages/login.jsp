@@ -41,10 +41,10 @@
 
 </ul>
 
-<form  action="loginservelet" class="box" method="POST" onsubmit=" return Validate()" >
+<form  action="${pageContext.request.contextPath}/loginservelet" class="box" method="POST" onsubmit=" return Validate()" >
     <h1> Login </h1>
 
-    <input type="text" id="email" name="email" placeholder="email"  >
+    <input type="text" id="username" name="username" placeholder="email"  >
     <input type="password" id="password" name="password" placeholder="password" >
 
     <input type="hidden" name="role" value="User"/>

@@ -46,11 +46,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers(
                 "/home**","/resources/**","/static/**",
                 "/css/**",
-                "/images/**","/webjars/**","/js/**","/fonts/**","/add","/admin","/home").permitAll()
+                "/images/**","/webjars/**","/js/**","/fonts/**","/add","/admin","/home", "/registration").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
                 .loginPage("/login")
+                .defaultSuccessUrl("/afterlogin")
+                .loginProcessingUrl("/loginservelet")
+                .usernameParameter("username")
+                .passwordParameter("password")
                 .permitAll()
 //                .and()
 //                .logout()

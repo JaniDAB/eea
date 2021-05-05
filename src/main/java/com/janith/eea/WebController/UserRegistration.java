@@ -2,6 +2,7 @@ package com.janith.eea.WebController;
 
 
 import com.janith.eea.Dto.UserDto;
+import com.janith.eea.Model.User;
 import com.janith.eea.Service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,8 +23,16 @@ public class UserRegistration {
     }
 
     @PostMapping
-    public  String registerUser(@ModelAttribute("user")UserDto registerdto){
-        userService.save(registerdto);
-        return "redirect:/login";
+    public  String registerUser(@ModelAttribute("user")UserDto registerdto) {
+
+
+        final User save = userService.save(registerdto);
+        if (save == null) {
+/// redirect to already registered page
+            return "/alreadyRegistered";
+        }
+            return "redirect:/login";
+
+
     }
 }

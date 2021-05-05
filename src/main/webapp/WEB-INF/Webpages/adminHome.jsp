@@ -28,26 +28,27 @@
 
 <section class="hero-section">
     <div class="card-grid">
-        <a class="card" href="${pageContext.request.contextPath}/add">
+        <a class="card" href="${pageContext.request.contextPath}/addModule">
             <div class="card__background" style="background-image: url(https://i.ibb.co/dfk8FVr/M.jpg)"></div>
             <div class="card__content">
 <%--                <p class="card__category">Category</p>--%>
-                <h3 class="card__heading">Add Modules</h3>
+                <h3 class="card__heading">Module Operations</h3>
             </div>
         </a>
-        <a class="card" href="${pageContext.request.contextPath}/add">
+        <a class="card" href="${pageContext.request.contextPath}/addBatch">
             <div class="card__background" style="background-image: url(https://i.ibb.co/FY5LqBc/image.png)"></div>
             <div class="card__content">
 <%--                <p class="card__category">Category</p>--%>
-                <h3 class="card__heading">Add Batch</h3>
+                <h3 class="card__heading">Batch Operation's</h3>
             </div>
         </a>
         <a class="card" href="${pageContext.request.contextPath}/add">
             <div class="card__background" style="background-image: url(https://i.ibb.co/hFvmzXt/image.png)"></div>
             <div class="card__content">
 <%--                <p class="card__category">Category</p>--%>
-                <h3 class="card__heading">Add Academic Users</h3>
+                <h3 class="card__heading">Academic Users  Operation's</h3>
             </div>
+        </a>
             </li>
 <%--            <a class="card" href="#">--%>
 <%--                <div class="card__background" style="background-image: url(https://images.unsplash.com/photo-1557004396-66e4174d7bf6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60)"></div>--%>

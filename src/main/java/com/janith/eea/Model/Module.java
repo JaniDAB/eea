@@ -1,0 +1,51 @@
+package com.janith.eea.Model;
+
+import javax.persistence.*;
+import java.util.List;
+
+@Entity
+@Table(name = "Module")
+public class Module {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer module_id;
+
+    @Column(name = "module_Name")
+    private  String moduleName;
+
+    @ManyToMany
+    @JoinTable(name = "module_batch",
+            joinColumns = @JoinColumn(name = "module_id"),
+            inverseJoinColumns = @JoinColumn(name = "batch_id"))
+    private List<Batch> batchList;
+
+
+
+    public List<Batch> getBatchList() {
+        return batchList;
+    }
+
+    public void setBatchList(List<Batch> batchList) {
+        this.batchList = batchList;
+    }
+
+    public Module() {
+    }
+
+    public Integer getModule_id() {
+        return module_id;
+    }
+
+    public void setModule_id(Integer module_id) {
+        this.module_id = module_id;
+    }
+
+    public String getModuleName() {
+        return moduleName;
+    }
+
+    public void setModuleName(String moduleName) {
+        this.moduleName = moduleName;
+    }
+}
