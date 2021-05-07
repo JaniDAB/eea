@@ -50,8 +50,11 @@
             <td>${tempUser.dateOfBirth}</td>
             <td>${tempUser.username}</td>
             <td>${tempUser.mobile}</td>
-            <td><button><a href="${Remove}">Remove</a></button></td>
 
+            <td>
+                <button><a href="${pageContext.request.contextPath}/showFormUpdate/${tempUser.userId}">Edit</a>
+                </button>
+            </td>
         </tr>
 
     </c:forEach>

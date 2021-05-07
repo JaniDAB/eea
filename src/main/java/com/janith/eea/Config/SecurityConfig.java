@@ -46,7 +46,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers(
                 "/home**","/resources/**","/static/**",
                 "/css/**",
-                "/images/**","/webjars/**","/js/**","/fonts/**","/add","/admin","/home", "/registration").permitAll()
+                "/images/**","/webjars/**","/js/**","/fonts/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
@@ -56,8 +56,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .usernameParameter("username")
                 .passwordParameter("password")
                 .permitAll()
-//                .and()
-//                .logout()
+                .and()
+                .logout()
 //                .invalidateHttpSession(true)
 ////                .clearAuthentication(true)
 ////                .logoutRequestMatcher(new AntPathMatcher("/logout"))

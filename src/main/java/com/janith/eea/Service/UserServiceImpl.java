@@ -16,16 +16,17 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService {
-
+    @Autowired
     private final UserRepository userRepository;
 
     @Autowired
-    private BCryptPasswordEncoder  passwordEncoder;
+    private BCryptPasswordEncoder passwordEncoder;
 
-    public User getUser(String username){
+    public User getUser(String username) {
         return userRepository.findUsersByUsername(username);
     }
 
@@ -33,49 +34,63 @@ public class UserServiceImpl implements UserService {
         this.userRepository = userRepository;
     }
 
+    /*
+
+
+
+
+
+        CRITERIA - Performance
+        METRIC - Load Time
+            CUSTOMER MUST BE ABLE TO PERFORM THEIR TASKS QUICKLY AND THE SYSTEM WILL PROCESS REQUIREST IN UNDER 10 SECOND
+
+
+
+
+
+     */
 
     @Override
-    public User save (UserDto registerUser) {
-       User userdomain = new User();
-UserRole  userRole = new UserRole();
+    public User save(UserDto registerUser) {
+        User userdomain = new User();
+        UserRole userRole = new UserRole();
 
-if(userRepository.findUsersByUsername(registerUser.getUsername())!= null){
-    return null;
-}
-else {
-    if (registerUser != null) {
-        userdomain.setUsername(registerUser.getUsername());
-        userdomain.setFirstname(registerUser.getFirstname());
-        userdomain.setLastname(registerUser.getLastname());
-        userdomain.setEmail(registerUser.getEmail().toLowerCase(Locale.ROOT)); // validation
-        userdomain.setMobile(registerUser.getMobile());
-        userdomain.setPassword(passwordEncoder.encode(registerUser.getPassword()));
-        userRole.setRoleName(UserTypeUtil.fromText(registerUser.getRole()));
-        userdomain.setRole(userRole);
-        userdomain.setDateOfBirth(registerUser.getDateOfBirth());
-        userdomain.setGender(registerUser.getGender());
-        //Collection <com.janith.eea.Model.UserRole>
-    }
-    return userRepository.save(userdomain);
+        if (userRepository.findUsersByUsername(registerUser.getUsername()) != null) {
+            return null;
+        } else {
+            if (registerUser != null) {
+                userdomain.setUsername(registerUser.getUsername());
+                userdomain.setFirstname(registerUser.getFirstname());
+                userdomain.setLastname(registerUser.getLastname());
+                userdomain.setEmail(registerUser.getEmail().toLowerCase(Locale.ROOT)); // validation
+                userdomain.setMobile(registerUser.getMobile());
+                userdomain.setPassword(passwordEncoder.encode(registerUser.getPassword()));
+                userRole.setRoleName(UserTypeUtil.fromText(registerUser.getRole()));
+                userdomain.setRole(userRole);
+                userdomain.setDateOfBirth(registerUser.getDateOfBirth());
+                userdomain.setGender(registerUser.getGender());
+                //Collection <com.janith.eea.Model.UserRole>
+            }
+            return userRepository.save(userdomain);
 
-}
+        }
     }
 
     @Override
     public boolean passwordencoder(String Password, String pass) {
 
-return  passwordEncoder.matches(Password,pass);
+        return passwordEncoder.matches(Password, pass);
     }
 
     @Override
     public List<UserDto> getAllUsers() {
 
-        List<User> userDomain= userRepository.findAll();
+        List<User> userDomain = userRepository.findAll();
         List<UserDto> userDtoList = new ArrayList<>();
 
-        if (!userDomain.isEmpty()){
-            for (User user: userDomain){
-                UserDto userDto =  new UserDto();
+        if (!userDomain.isEmpty()) {
+            for (User user : userDomain) {
+                UserDto userDto = new UserDto();
 
                 userDto.setUserId(user.getUserId());
                 userDto.setUsername(user.getUsername());
@@ -90,16 +105,16 @@ return  passwordEncoder.matches(Password,pass);
                 userDtoList.add(userDto);
             }
         }
-        return  userDtoList;
+        return userDtoList;
     }
 
     @Override
     public List<UserDto> getAllStudets() {
-        List<User> userDomain= userRepository.findAll();
+        List<User> userDomain = userRepository.findAll();
         List<UserDto> userDtoList = new ArrayList<>();
 
-        if (!userDomain.isEmpty()){
-            for (User user: userDomain){
+        if (!userDomain.isEmpty()) {
+            for (User user : userDomain) {
                 if (user.getRole().getRoleName().equals(UserTypeUtil.STUDENT)) {
                     UserDto userDto = new UserDto();
 
@@ -118,15 +133,16 @@ return  passwordEncoder.matches(Password,pass);
             }
 
         }
-        return  userDtoList;    }
+        return userDtoList;
+    }
 
     @Override
     public List<UserDto> getAllLecturers() {
-        List<User> userDomain= userRepository.findAll();
+        List<User> userDomain = userRepository.findAll();
         List<UserDto> userDtoList = new ArrayList<>();
 
-        if (!userDomain.isEmpty()){
-            for (User user: userDomain){
+        if (!userDomain.isEmpty()) {
+            for (User user : userDomain) {
                 if (user.getRole().getRoleName().equals(UserTypeUtil.LECTURER)) {
                     UserDto userDto = new UserDto();
 
@@ -145,7 +161,66 @@ return  passwordEncoder.matches(Password,pass);
             }
 
         }
-        return  userDtoList;
+        return userDtoList;
+    }
+
+    @Override
+    public User editUser(UserDto userDto) {
+
+        Optional<User> userdomain = userRepository.findById(userDto.getUserId());
+
+        User user = userdomain.get();
+        UserRole userRole = new UserRole();
+
+
+            if (user != null) {
+
+//                user.setUserId(userDto.getUserId());
+                user.setUsername(userDto.getUsername());
+                user.setFirstname(userDto.getFirstname());
+                user.setLastname(userDto.getLastname());
+                user.setEmail(userDto.getEmail().toLowerCase(Locale.ROOT)); // validation
+                user.setMobile(userDto.getMobile());
+                user.setPassword(passwordEncoder.encode(userDto.getPassword()));
+//                userRole.setRole(UserTypeUtil.fromText(userDto.getRole()));
+//                user.setRole(userRole);
+//                user.setDateOfBirth(userDto.getDateOfBirth());
+//                user.setGender(userDto.getGender());
+
+            }
+            return userRepository.save(user);
+
+
+    }
+
+    @Override
+    public UserDto getUserById(int id) {
+        Optional<User> optionalUser = userRepository.findById(id);
+
+        UserDto userdom = new UserDto();
+        User userinfo = null;
+
+        UserRole userRole = new UserRole();
+        if(optionalUser.isPresent()){
+            userinfo = optionalUser.get();
+
+            userdom.setUserId(userinfo.getUserId());
+            userdom.setUsername(userinfo.getUsername());
+            userdom.setEmail(userinfo.getEmail());
+            userdom.setFirstname(userinfo.getFirstname());
+            userdom.setLastname(userinfo.getLastname());
+            userdom.setGender(userinfo.getGender());
+            userdom.setDateOfBirth(userinfo.getDateOfBirth());
+            userdom.setRole(userinfo.getRole().getRoleName().toString());
+            userdom.setMobile(userinfo.getMobile());
+            userdom.setPassword(userinfo.getPassword());
+
+        }
+        else {
+            throw new RuntimeException("No use Found" +id);
+        }
+        return userdom;
+
     }
 
     @Override
@@ -153,13 +228,12 @@ return  passwordEncoder.matches(Password,pass);
         User user = userRepository.findUsersByUsername(s);
         System.out.println(user.getPassword());
 
-        if (user ==null){
-            throw  new UsernameNotFoundException(String.format("%s not Found" , s));
-        }
-        else {
+        if (user == null) {
+            throw new UsernameNotFoundException(String.format("%s not Found", s));
+        } else {
             ArrayList<SimpleGrantedAuthority> grantedAuthorities = new ArrayList<>();
             grantedAuthorities.add(new SimpleGrantedAuthority(user.getRole().getRoleName().toString()));
-            Auth auth = new Auth(grantedAuthorities, user.getUsername(),user.getPassword(),true,true,true,true);
+            Auth auth = new Auth(grantedAuthorities, user.getUsername(), user.getPassword(), true, true, true, true);
             return auth;
         }
     }

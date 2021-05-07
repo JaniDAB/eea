@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class ModuleServiceImpl implements ModuleService{
@@ -30,4 +31,29 @@ modeldom.setBatchList(batchRepository.findAll());
         return moduleRepository.save(modeldom);
 
     }
+
+    @Override
+    public ModuleDto getModuleById(int id) {
+        return null;
+    }
+
+    @Override
+    public List<ModuleDto> getAllModules() {
+       List<Module> modeList = moduleRepository.findAll();
+
+       List<ModuleDto> moduleDtoList = new ArrayList<>();
+
+       if(modeList != null){
+           for( Module model :modeList){
+               ModuleDto moduleDto = new ModuleDto();
+
+               moduleDto.setModule_id(model.getModule_id());
+               moduleDto.setModuleName(model.getModuleName());
+
+               moduleDtoList.add(moduleDto);
+           }
+       }
+       return  moduleDtoList;
+    }
+
 }

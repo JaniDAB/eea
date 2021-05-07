@@ -20,7 +20,7 @@
     <h1 class="header1" > Timetable System </h1>
 </div>
 <ul class="nav_link" style="margin-bottom: 0">
-    <li><a href="">Home</a></li>
+    <li><a href="${pageContext.request.contextPath}/admin">Home</a></li>
 </ul>
 
 <!------ Include the above in your HEAD tag ---------->

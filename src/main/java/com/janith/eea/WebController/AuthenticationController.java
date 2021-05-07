@@ -46,7 +46,7 @@ public class AuthenticationController {
         }
 
         System.out.println("REACHED AFTER LOGIN");
-        return null;
+        return "/login";
 
     }
 
@@ -64,7 +64,7 @@ public class AuthenticationController {
 
     @GetMapping("/home")
     public String Home() {
-        return "home";
+        return "/login";
     }
 
 

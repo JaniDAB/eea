@@ -73,5 +73,6 @@ public class User {
 @Getter
     private UserRole role;
 
-
+    public User() {
+    }
 }

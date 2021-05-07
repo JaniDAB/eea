@@ -15,11 +15,14 @@
 <body>
 
 <div class="header">
-    <h1 >Time Table System</h1>
+    <h1>Time Table System</h1>
 </div>
 
 <ul>
-    <li><a  href="${pageContext.request.contextPath}/admin/users/allLectruer">View Lecturers</a></li>
+    <li><a href="${pageContext.request.contextPath}/admin/users/allLectruer">View Lecturers</a></li>
+
+    <li style="float:right"><a href="${pageContext.request.contextPath}/logout">Log out</a></li>
+
 
 </ul>
 
@@ -31,7 +34,6 @@
         <th>Email</th>
         <th>gender</th>
         <th>Date of Birth</th>
-        <th>role</th>
         <th> User Name</th>
         <th>phone Number</th>
         <th>Delete</th>
@@ -48,10 +50,12 @@
             <td>${tempUser.email}</td>
             <td>${tempUser.gender}</td>
             <td>${tempUser.dateOfBirth}</td>
-            <td>${tempUser.role}</td>
             <td>${tempUser.username}</td>
             <td>${tempUser.mobile}</td>
-            <td><button><a href="${Remove}">Remove</a></button></td>
+            <td>
+                <button><a href="${pageContext.request.contextPath}/showFormUpdate/${tempUser.userId}">Edit</a>
+                </button>
+            </td>
 
         </tr>
 
