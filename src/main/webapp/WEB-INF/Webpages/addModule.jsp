@@ -22,6 +22,7 @@
 </div>
 <ul class="nav_link" style="margin-bottom: 0">
     <li><a href="${pageContext.request.contextPath}/admin">Home</a></li>
+    <li><a href="${pageContext.request.contextPath}/admin/listModules">View Modules</a></li>
 </ul>
 
 <!------ Include the above in your HEAD tag ---------->

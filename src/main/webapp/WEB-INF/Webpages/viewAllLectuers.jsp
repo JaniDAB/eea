@@ -34,7 +34,7 @@
         <th>Date of Birth</th>
         <th> User Name</th>
         <th>phone Number</th>
-        <th>Delete</th>
+        <th>Update</th>
 
     </tr>
     </thead>

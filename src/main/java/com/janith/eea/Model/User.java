@@ -73,6 +73,12 @@ public class User {
 @Getter
     private UserRole role;
 
+@ManyToOne
+@JoinColumn(name = "batch_id")
+@Setter
+@Getter
+private Batch batch;
+
     public User() {
     }
 }

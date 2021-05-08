@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ModuleServiceImpl implements ModuleService{
@@ -24,6 +25,7 @@ public class ModuleServiceImpl implements ModuleService{
     @Override
     public Module save(ModuleDto moduleDto) {
         Module modeldom = new Module();
+
 modeldom.setBatchList(batchRepository.findAll());
         if(moduleDto != null){
             modeldom.setModuleName(moduleDto.getModuleName());
@@ -34,7 +36,24 @@ modeldom.setBatchList(batchRepository.findAll());
 
     @Override
     public ModuleDto getModuleById(int id) {
-        return null;
+
+        Optional<Module> optionalModule = moduleRepository.findById(id);
+
+        ModuleDto moduleDto = new ModuleDto();
+
+        Module moduleinfo =null;
+        if(optionalModule.isPresent()){
+            moduleinfo = optionalModule.get();
+
+            moduleDto.setModule_id(moduleinfo.getModule_id());
+            moduleDto.setModuleName(moduleinfo.getModuleName());
+        }
+
+        else {
+            throw new RuntimeException("No Module Found" +id);
+        }
+        return moduleDto;
+
     }
 
     @Override
@@ -48,12 +67,29 @@ modeldom.setBatchList(batchRepository.findAll());
                ModuleDto moduleDto = new ModuleDto();
 
                moduleDto.setModule_id(model.getModule_id());
+               System.out.println(model.getModule_id());
                moduleDto.setModuleName(model.getModuleName());
 
                moduleDtoList.add(moduleDto);
            }
        }
        return  moduleDtoList;
+    }
+
+    @Override
+    public Module editModule(ModuleDto moduleDto) {
+        Optional<Module> optionalModule = moduleRepository.findById(moduleDto.getModule_id());
+
+        Module module = optionalModule.get();
+
+        if( module !=null){
+            module.setModule_id(moduleDto.getModule_id());
+            module.setModuleName(moduleDto.getModuleName());
+
+        }
+
+        return moduleRepository.save(module);
+
     }
 
 }

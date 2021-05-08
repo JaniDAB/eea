@@ -34,21 +34,7 @@ public class UserServiceImpl implements UserService {
         this.userRepository = userRepository;
     }
 
-    /*
 
-
-
-
-
-        CRITERIA - Performance
-        METRIC - Load Time
-            CUSTOMER MUST BE ABLE TO PERFORM THEIR TASKS QUICKLY AND THE SYSTEM WILL PROCESS REQUIREST IN UNDER 10 SECOND
-
-
-
-
-
-     */
 
     @Override
     public User save(UserDto registerUser) {
@@ -128,6 +114,7 @@ public class UserServiceImpl implements UserService {
                     userDto.setDateOfBirth(user.getDateOfBirth());
                     userDto.setMobile(user.getMobile());
                     userDto.setPassword(user.getPassword());
+                    userDto.setBatch(user.getBatch());
                     userDtoList.add(userDto);
                 }
             }
@@ -175,17 +162,14 @@ public class UserServiceImpl implements UserService {
 
             if (user != null) {
 
-//                user.setUserId(userDto.getUserId());
                 user.setUsername(userDto.getUsername());
                 user.setFirstname(userDto.getFirstname());
                 user.setLastname(userDto.getLastname());
                 user.setEmail(userDto.getEmail().toLowerCase(Locale.ROOT)); // validation
                 user.setMobile(userDto.getMobile());
                 user.setPassword(passwordEncoder.encode(userDto.getPassword()));
-//                userRole.setRole(UserTypeUtil.fromText(userDto.getRole()));
-//                user.setRole(userRole);
-//                user.setDateOfBirth(userDto.getDateOfBirth());
-//                user.setGender(userDto.getGender());
+                user.setBatch(userDto.getBatch());
+
 
             }
             return userRepository.save(user);
@@ -200,7 +184,6 @@ public class UserServiceImpl implements UserService {
         UserDto userdom = new UserDto();
         User userinfo = null;
 
-        UserRole userRole = new UserRole();
         if(optionalUser.isPresent()){
             userinfo = optionalUser.get();
 
@@ -221,6 +204,20 @@ public class UserServiceImpl implements UserService {
         }
         return userdom;
 
+    }
+
+    @Override
+    public User assignBatch(UserDto userDto) {
+        Optional<User> userdomain = userRepository.findById(userDto.getUserId());
+
+        User user = userdomain.get();
+
+        if (user != null) {
+
+            user.setBatch(userDto.getBatch());
+
+        }
+        return userRepository.save(user);
     }
 
     @Override

@@ -31,8 +31,7 @@ public class UserRegistration {
 /// redirect to already registered page
             return "/alreadyRegistered";
         }
-            return "redirect:/login";
-
+            return "redirect:/adminHome";
 
     }
 }

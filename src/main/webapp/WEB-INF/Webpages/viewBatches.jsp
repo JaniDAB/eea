@@ -2,17 +2,18 @@
 <%--
   Created by IntelliJ IDEA.
   User: janithdabare
-  Date: 5/7/21
-  Time: 21:03
+  Date: 5/8/21
+  Time: 09:51
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>View All Modules</title>
+    <title>View Batches</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/viewModules.css">
 </head>
 <body>
+
 <div class="header">
     <h1 class="head" >Time Table System</h1>
 </div>
@@ -24,25 +25,32 @@
 <table class="content-table">
 
     <thead><tr>
-        <th>Module ID </th>
-        <th> Module Name </th>
+        <th>Batch ID </th>
+        <th> Batch Code </th>
+        <th> Batch Description </th>
 
 
     </tr>
     </thead>
     <tbody>
 
-    <c:forEach var="tempModules" items="${modules}">
+    <c:forEach var="tempBatch" items="${batches}">
 
         <tr>
-            <td>${tempModules.module_id}</td>
-            <td>${tempModules.moduleName}</td>
+            <td>${tempBatch.batchID}</td>
+            <td>${tempBatch.batchCode}</td>
+            <td>${tempBatch.description}</td>
+            <td>
+                <button><a href="${pageContext.request.contextPath}/directUpdateMBatchForm/${tempBatch.batchID}">Edit</a>
+                </button>
+            </td>
 
 
         </tr>
     </c:forEach>
     </tbody>
 </table>
+
 
 </body>
 </html>

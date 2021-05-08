@@ -22,5 +22,8 @@ public interface UserService extends UserDetailsService {
      User editUser(UserDto userDto);
 
      UserDto getUserById(int id);
+
+     User assignBatch(UserDto userDto);
+
 }
 

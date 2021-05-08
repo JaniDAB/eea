@@ -1,5 +1,6 @@
 package com.janith.eea.Dto;
 
+import com.janith.eea.Model.Batch;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -54,5 +55,8 @@ public class UserDto {
     @Setter
     private String gender;
 
+    @Getter
+    @Setter
+    private Batch batch;
 
 }

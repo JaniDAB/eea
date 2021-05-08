@@ -1,5 +1,6 @@
 package com.janith.eea.Service;
 
+
 import com.janith.eea.Dto.ModuleDto;
 import com.janith.eea.Model.Module;
 
@@ -11,4 +12,6 @@ public interface ModuleService {
     ModuleDto getModuleById(int id);
 
     List<ModuleDto> getAllModules();
+
+Module editModule(ModuleDto moduleDto);
 }

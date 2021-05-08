@@ -35,8 +35,10 @@
         <th>gender</th>
         <th>Date of Birth</th>
         <th> User Name</th>
+        <th>Batch</th>
         <th>phone Number</th>
-        <th>Delete</th>
+        <th>Edit</th>
+        <th>Assign Batch</th>
 
     </tr>
     </thead>
@@ -51,9 +53,14 @@
             <td>${tempUser.gender}</td>
             <td>${tempUser.dateOfBirth}</td>
             <td>${tempUser.username}</td>
+            <td>${tempUser.batch.batchCode}</td>
             <td>${tempUser.mobile}</td>
             <td>
                 <button><a href="${pageContext.request.contextPath}/showFormUpdate/${tempUser.userId}">Edit</a>
+                </button>
+            </td>
+            <td>
+                <button><a href="${pageContext.request.contextPath}/assignBatch/${tempUser.userId}">Assign</a>
                 </button>
             </td>
 

@@ -112,6 +112,8 @@
                                     <option value="LECTURER">Lecturer</option>
                                 </form:select>
                             </div>
+
+
                             <div class="form-group">
                                 <form:input type="text" path="username" cssClass="form-control"
                                             placeholder="User Name *" required="required"/>

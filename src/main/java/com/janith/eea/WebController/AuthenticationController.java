@@ -1,7 +1,9 @@
 package com.janith.eea.WebController;
 
+import com.janith.eea.Dto.BatchDto;
 import com.janith.eea.Dto.UserDto;
 import com.janith.eea.Model.User;
+import com.janith.eea.Service.BatchService;
 import com.janith.eea.Service.UserServiceImpl;
 import com.janith.eea.Util.UserTypeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,12 +17,16 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 
 import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @Controller
 public class AuthenticationController {
 
     @Autowired
     private UserServiceImpl userService;
+
+    @Autowired
+    private BatchService batchService;
 
 
     @GetMapping("/login")
@@ -53,7 +59,10 @@ public class AuthenticationController {
 
     @GetMapping("/add")
     public String adduser(Model m) {
+
+        List<BatchDto>  batchDtoList =  batchService.getAllBatches();
         m.addAttribute("user", new UserDto());
+        m.addAttribute("batchList" , batchDtoList);
         return "addUser";
     }
 
