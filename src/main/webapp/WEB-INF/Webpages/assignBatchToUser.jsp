@@ -33,7 +33,7 @@
 
             <img src="https://i.ibb.co/6bkWbL7/icons8-business-group-64.png" alt="icons8-business-group-64" border="0">
             <h3>Assign Batch To a Student</h3>
-            <p> Assigning a Batch to a User  can be done here</p>
+            <p> Assigning a Batch to a User can be done here</p>
             <input type="submit" name="" value="Login"/><br/>
         </div>
         <div class="col-md-9 register-right">
@@ -42,46 +42,42 @@
                 <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                     <h3 class="register-heading">Register User</h3>
 
-                    <form:form action="/assignStudentBatch" method="POST"  modelAttribute="user">
-
+                    <form:form action="/assignStudentBatch" method="POST" modelAttribute="user">
 
                     <div class="row register-form">
                         <div class="col-md-6">
                             <div class="form-group">
                                 <form:input type="text" path="firstname" cssClass="form-control"
-                                            value="${userinfos.firstname}"  placeholder="First Name *" required="required"/>
+                                            value="${userinfos.firstname}" placeholder="First Name *"
+                                            required="required"/>
                             </div>
                             <div class="form-group">
                                 <form:input type="text" path="lastname" cssClass="form-control"
-                                            value="${userinfos.lastname}"  placeholder="Last Name *" required="required"/>
-
-                            </div>
-
-                        </div>
-                        <div class="col-md-6">
-
-                            <div class="form-group">
-                                <form:input value="${userinfos.userId}" type="hidden" path="userId" cssClass="form-control" placeholder="Email *"
+                                            value="${userinfos.lastname}" placeholder="Last Name *"
                                             required="required"/>
 
                             </div>
+                        </div>
 
+                        <div class="col-md-6">
                             <div class="form-group">
                                 <form:input type="text" path="username" cssClass="form-control"
-                                            value="${userinfos.username}"     placeholder="User Name *" required="required"/>
+                                            value="${userinfos.username}" placeholder="User Name *"
+                                            required="required"/>
+
 
                             </div>
                             <div class="form-group">
-
                                 <form:select path="batch" cssClass="form-control" aria-required="true">
                                     <c:forEach var="batchlist" items="${batchlist}" >
-                                        <form:option value="${batchlist.batchID}">
-                                            ${batchlist.batchCode} ${batchlist.description}
-                                        </form:option>
-                                    </c:forEach>
+                                <form:option value="${batchlist.batchID}">
+                                    ${batchlist.batchCode} ${batchlist.description}
+                                </form:option>
+                                </c:forEach>
                                 </form:select>
                             </div>
-                            <input type="submit" class="btnRegister"  value="Register"/>
+
+                            <input type="submit" class="btnRegister"  value="Submit"/>
                         </div>
                     </div>
 

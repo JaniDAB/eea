@@ -28,6 +28,7 @@
         <th>Batch ID </th>
         <th> Batch Code </th>
         <th> Batch Description </th>
+        <th> Edit Batch </th>
 
 
     </tr>
