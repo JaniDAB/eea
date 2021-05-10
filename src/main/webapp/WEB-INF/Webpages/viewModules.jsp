@@ -26,6 +26,9 @@
     <thead><tr>
         <th>Module ID </th>
         <th> Module Name </th>
+        <th>  Module Lecturer </th>
+        <th>  Update </th>
+        <th>  Lecturer Assign </th>
 
 
     </tr>
@@ -37,7 +40,15 @@
         <tr>
             <td>${tempModules.module_id}</td>
             <td>${tempModules.moduleName}</td>
-
+            <td>${tempModules.lecUser.firstname}</td>
+            <td>
+                <button><a href="${pageContext.request.contextPath}/updateModuleForm/${tempModules.module_id}">Edit</a>
+                </button>
+            </td>
+            <td>
+                <button><a href="${pageContext.request.contextPath}/assignModuleForm/${tempModules.module_id}">Assign</a>
+                </button>
+            </td>
 
         </tr>
     </c:forEach>

@@ -37,7 +37,7 @@
     <h1 class="header1" > Timetable System </h1>
 </div>
 <ul class="nav_link">
-    <li><a href="${pageContext.request.contextPath}/add">Home</a></li>
+
 
 </ul>
 

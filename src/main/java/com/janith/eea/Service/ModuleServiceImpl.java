@@ -67,8 +67,8 @@ modeldom.setBatchList(batchRepository.findAll());
                ModuleDto moduleDto = new ModuleDto();
 
                moduleDto.setModule_id(model.getModule_id());
-               System.out.println(model.getModule_id());
                moduleDto.setModuleName(model.getModuleName());
+               moduleDto.setLecUser(model.getLecUser());
 
                moduleDtoList.add(moduleDto);
            }
@@ -83,13 +83,27 @@ modeldom.setBatchList(batchRepository.findAll());
         Module module = optionalModule.get();
 
         if( module !=null){
-            module.setModule_id(moduleDto.getModule_id());
+//            module.setModule_id(moduleDto.getModule_id());
             module.setModuleName(moduleDto.getModuleName());
 
         }
 
         return moduleRepository.save(module);
 
+    }
+
+    @Override
+    public Module assignLecturer(ModuleDto moduleDto) {
+
+        Optional<Module> optionalModule = moduleRepository.findById(moduleDto.getModule_id());
+
+        Module module = optionalModule.get();
+
+        if(module != null){
+            module.setLecUser(moduleDto.getLecUser());
+
+        }
+        return moduleRepository.save(module);
     }
 
 }

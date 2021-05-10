@@ -19,6 +19,7 @@
 </div>
 
 <ul>
+    <li><a  href="${pageContext.request.contextPath}/admin">Home</a></li>
     <li><a href="${pageContext.request.contextPath}/admin/users/allLectruer">View Lecturers</a></li>
 
     <li style="float:right"><a href="${pageContext.request.contextPath}/logout">Log out</a></li>

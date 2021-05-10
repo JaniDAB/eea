@@ -1,6 +1,7 @@
 package com.janith.eea.Model;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -10,41 +11,29 @@ import javax.persistence.*;
 public class Timetable {
     @Id
     @Column(name = "timetable_id")
+    @Getter
+    @Setter
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer timetableID;
 
     @Column(name = "start_time")
+    @Getter
+    @Setter
     private String startTime;
 
     @Column(name = "end_time")
+    @Getter
+    @Setter
     private String endTIme;
 
 
+@ManyToOne
+@JoinColumn(name = "room_id")
+@Getter
+@Setter
+private ClassRoom classRoom;
 
     public Timetable() {
     }
 
-    public Integer getTimetableID() {
-        return timetableID;
-    }
-
-    public void setTimetableID(Integer timetableID) {
-        this.timetableID = timetableID;
-    }
-
-    public String getStartTime() {
-        return startTime;
-    }
-
-    public void setStartTime(String startTime) {
-        this.startTime = startTime;
-    }
-
-    public String getEndTIme() {
-        return endTIme;
-    }
-
-    public void setEndTIme(String endTIme) {
-        this.endTIme = endTIme;
-    }
 }

@@ -12,7 +12,7 @@
     <title>View Batches</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/viewModules.css">
 </head>
-<body>
+<body style="background-image: url(/images/timetable.png)">
 
 <div class="header">
     <h1 class="head" >Time Table System</h1>
@@ -42,8 +42,8 @@
             <td>${tempBatch.batchCode}</td>
             <td>${tempBatch.description}</td>
             <td>
-                <button><a href="${pageContext.request.contextPath}/directUpdateMBatchForm/${tempBatch.batchID}">Edit</a>
-                </button>
+                <span><button><a href="${pageContext.request.contextPath}/directUpdateMBatchForm/${tempBatch.batchID}">Edit</a>
+                </button></span>
             </td>
 
 

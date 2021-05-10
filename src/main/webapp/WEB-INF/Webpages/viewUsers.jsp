@@ -12,16 +12,18 @@
     <title> View User</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/viewUsers.css">
 </head>
-<body>
+<body style="background-image: url(/images/timetable.png)">
 
 <div class="header">
     <h1 >Time Table System</h1>
 </div>
 
 <ul>
-    <li><a  href="${pageContext.request.contextPath}/admin/users/allStudents">View All Students</a></li>
+    <li><a  href="${pageContext.request.contextPath}/admin">Home</a></li>
+    <li><a  href="${pageContext.request.contextPath}/admin/users/allStudents">View Students & Assign Batches</a></li>
     <li><a  href="${pageContext.request.contextPath}/admin/users/allLectruer">View All Lecturers</a></li>
 
+    <li><a  class="fa fa-sign-out"  href="${pageContext.request.contextPath}/login">Log out</a></li>
 </ul>
 
 <table class="content-table">

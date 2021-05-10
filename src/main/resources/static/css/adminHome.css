@@ -1,5 +1,5 @@
 /*@import url('https://fonts.googleapis.com/css?family=Montserrat:500&display=swap');*/
-/*@import url('https://fonts.googleapis.com/css?family=Cinzel&display=swap');*/
+@import url('https://fonts.googleapis.com/css?family=Cinzel&display=swap');
 /*body{*/
 /*    margin: 0;*/
 /*    padding: 0;*/
@@ -97,6 +97,23 @@
 /*}*/
 
 
+.header {
+
+    border-style: solid;
+    /*padding: ;*/
+    margin-left:auto;
+    font-family: 'Cinzel', serif;
+
+}
+
+
+h1.header1{
+
+    color: #f9f9f9;
+    text-align: center;
+    border-style: solid;
+    border-width: 2px 1px 4px 2px;
+}
 ul {
     list-style-type: none;
     margin: 0;

@@ -1,10 +1,10 @@
 package com.janith.eea.WebController;
 
-import com.janith.eea.Dto.BatchDto;
+import com.janith.eea.Dto.ModuleDto;
 import com.janith.eea.Dto.UserDto;
-import com.janith.eea.Model.User;
-import com.janith.eea.Service.BatchService;
-import com.janith.eea.Service.UserService;
+import com.janith.eea.Model.Module;
+import com.janith.eea.Service.ModuleServiceImpl;
+import com.janith.eea.Service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,42 +18,82 @@ import java.util.List;
 @Controller
 public class moduleController {
 
-    @Autowired
-   private final  UserService service;
 
     @Autowired
-    private final BatchService batchService;
+    private final ModuleServiceImpl moduleService;
 
-    public moduleController(UserService service, BatchService batchService) {
-        this.service = service;
-        this.batchService = batchService;
+    @Autowired
+    private final UserServiceImpl userService;
+
+    public moduleController(ModuleServiceImpl moduleService, UserServiceImpl userService) {
+        this.moduleService = moduleService;
+        this.userService = userService;
     }
 
-
-    @GetMapping("/assignBatch/{userID}")
-    public String assignBatchform(@PathVariable(value = "userID") int id, Model m) {
+    @GetMapping("/updateModuleForm/{id}")
+    public String updateModuleDirectForm(@PathVariable(value = "id") int id, Model model) {
         try {
-            int userID = id;
-            UserDto userDto = new UserDto();
-            UserDto userinfo = service.getUserById(userID);
-            List<BatchDto> batchDtoList;
-            batchDtoList = batchService.getAllBatches();
-            m.addAttribute("userinfos", userinfo);
-            m.addAttribute("user", userDto);
-            m.addAttribute("batchlist", batchDtoList);
-            return "assignBatchToUser";
-        } catch (Exception ex) {
+            int moduleID = id;
 
-            System.out.println(ex);
-            m.addAttribute("user", new UserDto());
-            return "assignBatchToUser";
+            ModuleDto moduleDto = new ModuleDto();
+
+            ModuleDto modelInfo = moduleService.getModuleById(moduleID);
+
+            model.addAttribute("moduleInfo", modelInfo);
+
+            model.addAttribute("moduleupdate", moduleDto);
+
+            return "updateModule";
+        } catch (Exception ex) {
+            System.out.println("Module not found"+ex);
+            model.addAttribute("module" , new ModuleDto());
+            return "updateModule";
+        }
+
+    }
+
+    @PostMapping("/modifyModule")
+    public String modifyBatch(@ModelAttribute("moduleupdate") ModuleDto moduleDto) {
+       final Module update = moduleService.editModule(moduleDto);
+        return "redirect:/admin/listModules";
+    }
+
+    @GetMapping("/assignModuleForm/{id}")
+    public  String assignModuleForm(@PathVariable(name = "id") int id, Model u){
+        try {
+            int moduleID = id;
+
+            ModuleDto moduleDto = new ModuleDto();
+
+            ModuleDto modelInfo = moduleService.getModuleById(moduleID);
+
+
+            List<UserDto> lecturerList;
+            lecturerList = userService.getAllLecturers();
+
+            u.addAttribute("moduleInfos", modelInfo);
+
+            u.addAttribute("assignModule", moduleDto);
+
+            u.addAttribute("lecturerList" , lecturerList);
+
+            return "assignLecturerToModule";
+        } catch (Exception ex) {
+            System.out.println("Module not found"+ex);
+            u.addAttribute("assignModule" , new ModuleDto());
+            return "assignLecturerToModule";
         }
     }
 
-    @PostMapping("/assignStudentBatch")
-    public String modifyUser(@ModelAttribute("user") UserDto userDto) {
-        final User save = service.assignBatch(userDto);
-        return "/adminHome";
-    }
-}
+    @PostMapping("/assignLecturer")
+    public String assignModule(@ModelAttribute("assignModule") ModuleDto moduleDto){
 
+        final  Module assign = moduleService.assignLecturer(moduleDto);
+
+        return "redirect:/admin/listModules";
+
+    }
+
+
+
+}

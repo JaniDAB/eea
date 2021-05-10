@@ -1,6 +1,7 @@
 package com.janith.eea.Dto;
 
 
+import com.janith.eea.Model.User;
 
 public class ModuleDto {
     private Integer module_id;
@@ -8,9 +9,12 @@ public class ModuleDto {
 
     private  String moduleName;
 
-    public ModuleDto(Integer module_id, String moduleName) {
+    private User lecUser;
+
+    public ModuleDto(Integer module_id, String moduleName, User lecUser) {
         this.module_id = module_id;
         this.moduleName = moduleName;
+        this.lecUser = lecUser;
     }
 
     public ModuleDto() {
@@ -30,5 +34,13 @@ public class ModuleDto {
 
     public void setModuleName(String moduleName) {
         this.moduleName = moduleName;
+    }
+
+    public User getLecUser() {
+        return lecUser;
+    }
+
+    public void setLecUser(User lecUser) {
+        this.lecUser = lecUser;
     }
 }

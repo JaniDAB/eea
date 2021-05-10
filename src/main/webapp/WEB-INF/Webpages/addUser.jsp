@@ -33,7 +33,11 @@
     <h1 class="header1"> Timetable System </h1>
 </div>
 <ul class="nav_link" style="margin-bottom: 0">
+    <li><a href="${pageContext.request.contextPath}/admin">Home</a></li>
     <li><a href="${pageContext.request.contextPath}/admin/users">View All Users</a></li>
+    <li><a  href="${pageContext.request.contextPath}/admin/users/allStudents">View  Students & Assign Batch</a></li>
+    <li><a  href="${pageContext.request.contextPath}/admin/users/allLectruer">View  Lecturers</a></li>
+    <li style="float:right"><a href="${pageContext.request.contextPath}/logout">Log out</a></li>
 </ul>
 
 <!------ Include the above in your HEAD tag ---------->
@@ -48,7 +52,7 @@
             <img src="https://i.ibb.co/6bkWbL7/icons8-business-group-64.png" alt="icons8-business-group-64" border="0">
             <h3> Users Registration</h3>
             <p>Add Timetable System users here</p>
-            <input type="submit" name="" value="Login"/><br/>
+<%--            <input type="submit" name="" value="Login"/><br/>--%>
         </div>
         <div class="col-md-9 register-right">
 
@@ -73,7 +77,7 @@
                             <div class="form-group">
                                     <%----%>
                                 <form:input type="password" path="password" cssClass="form-control"
-                                            placeholder="Password *" id="pass1" required="required"/>
+                                         value="12345"   placeholder="Password *" id="pass1" required="required"/>
                             </div>
                             <div class="form-group">
                                 <input type="password" class="form-control" placeholder="Confirm Password *" id="pass2"

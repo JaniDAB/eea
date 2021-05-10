@@ -20,7 +20,9 @@
 </div>
 
 <ul>
-    <li><a  href="${pageContext.request.contextPath}/admin/users/allStudents">View  Students</a></li>
+    <li><a  href="${pageContext.request.contextPath}/admin">Home</a></li>
+    <li><a  href="${pageContext.request.contextPath}/admin/users/allStudents">View Students & Assign Batch</a></li>
+    <li style="float:right"><a href="${pageContext.request.contextPath}/logout">Log out</a></li>
 
 </ul>
 

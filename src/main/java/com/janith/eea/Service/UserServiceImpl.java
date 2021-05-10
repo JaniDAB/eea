@@ -192,6 +192,7 @@ public class UserServiceImpl implements UserService {
             userdom.setEmail(userinfo.getEmail());
             userdom.setFirstname(userinfo.getFirstname());
             userdom.setLastname(userinfo.getLastname());
+            userdom.setBatch(userinfo.getBatch());
             userdom.setGender(userinfo.getGender());
             userdom.setDateOfBirth(userinfo.getDateOfBirth());
             userdom.setRole(userinfo.getRole().getRoleName().toString());

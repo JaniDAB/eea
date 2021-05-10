@@ -105,12 +105,20 @@ public class AdminController {
     @GetMapping("/addBatch")
     public String AddBatch(Model a) {
         a.addAttribute("batch", new BatchDto());
+        a.addAttribute("success", "Batch Added Successfully");
         return "/addBatch";
     }
 
     @PostMapping("/admin/addBatch")
-    public String AddAABath(@ModelAttribute("batch") BatchDto batchDto) {
-        final Batch save = batchService.save(batchDto);
+    public String AddAABath(@ModelAttribute("batch") BatchDto batchDto , Model a) {
+        try {
+            final Batch save = batchService.save(batchDto);
+            a.addAttribute("successful", "Batch Added Successfully");
+        }
+        catch (Exception e){
+            a.addAttribute("fail", " Failed");
+        }
+
         return "/addBatch";
     }
 

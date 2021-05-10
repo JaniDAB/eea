@@ -47,15 +47,16 @@
             <%--            <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt=""/>--%>
             <%--    Add users--%>
             <img src="https://i.ibb.co/6bkWbL7/icons8-business-group-64.png" alt="icons8-business-group-64" border="0">
-            <h3> Update Registration</h3>
-            <p>Add Timetable System users here</p>
+            <h3>${userinfo.firstname} ${userinfo.lastname} </h3>
+                <p>Batch(If Assigned): ${userinfo.batch.batchCode} </p>
+<%--            <p>Add Timetable System users here</p>--%>
             <input type="submit" name="" value="Login"/><br/>
         </div>
         <div class="col-md-9 register-right">
 
             <div class="tab-content" id="myTabContent">
                 <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                    <h3 class="register-heading">Register User</h3>
+                    <h3 class="register-heading">Update User</h3>
 
                     <form:form action="/modifyUser" method="POST" onsubmit=" return Validate()" modelAttribute="user">
 

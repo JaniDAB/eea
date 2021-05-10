@@ -1,5 +1,8 @@
 package com.janith.eea.Model;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -20,7 +23,11 @@ public class Module {
             inverseJoinColumns = @JoinColumn(name = "batch_id"))
     private List<Batch> batchList;
 
-
+@ManyToOne
+@JoinColumn(name = "user_id")
+@Getter
+@Setter
+private User lecUser;
 
     public List<Batch> getBatchList() {
         return batchList;
