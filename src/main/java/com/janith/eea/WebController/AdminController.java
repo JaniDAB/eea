@@ -11,6 +11,7 @@ import com.janith.eea.Service.ModuleService;
 import com.janith.eea.Service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -85,6 +86,20 @@ public class AdminController {
             System.out.println(ex);
             model.addAttribute("user", new UserDto());
             return "updateUser";
+        }
+    }
+
+    @GetMapping("/deleteUser/{id}")
+    public String deleteUser(@PathVariable(value = "id")int ID, Model m)
+    {
+        try {
+            int userID = ID;
+            this.service.deleteUserByID(userID);
+m.addAttribute("deleted", "Record Deleted Successfully");
+            return "redirect:/admin/users";
+        }catch (Exception e){
+            m.addAttribute("error", "Record Deletion UnSuccessful");
+            return "viewUsers";
         }
     }
 

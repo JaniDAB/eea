@@ -9,6 +9,7 @@ import com.janith.eea.Service.BatchServiceImpl;
 import com.janith.eea.Service.ClassRoomServiceImpl;
 import com.janith.eea.Service.ModuleServiceImpl;
 import com.janith.eea.Service.TimeTableServiceImpl;
+import com.janith.eea.Validation.ClassRoomValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -35,11 +36,15 @@ public class TimetableController {
     @Autowired
     private final BatchServiceImpl batchService;
 
-    public TimetableController(TimeTableServiceImpl timeTableService, ClassRoomServiceImpl classRoomService, ModuleServiceImpl moduleService, BatchServiceImpl batchService) {
+    @Autowired
+    private final ClassRoomValidator classRoomValidator;
+
+    public TimetableController(TimeTableServiceImpl timeTableService, ClassRoomServiceImpl classRoomService, ModuleServiceImpl moduleService, BatchServiceImpl batchService, ClassRoomValidator classRoomValidator) {
         this.timeTableService = timeTableService;
         this.classRoomService = classRoomService;
         this.moduleService = moduleService;
         this.batchService = batchService;
+        this.classRoomValidator = classRoomValidator;
     }
 
     @GetMapping("/addRoom")
@@ -56,9 +61,11 @@ public class TimetableController {
              Model r,
              BindingResult br) {
 
+        classRoomValidator.validate(classRoomDto, br);
+
         if (br.hasErrors()) {
             r.addAttribute("error", "Room  Was not Added Successfully");
-            return "addTimeTable";
+            return "addClassRoom";
         } else {
             try {
                 classRoomService.addRoom(classRoomDto);
@@ -76,9 +83,9 @@ public class TimetableController {
     public String addTimetableDirect(Model t) {
         List<ClassRoomDto> classRoomDtoList = classRoomService.viewRooms();
         List<ModuleDto> moduleDtoList = moduleService.getAllModules();
-        List<BatchDto>  batchDtoList = batchService.getAllBatches();
-        t.addAttribute("moduleList",moduleDtoList);
-        t.addAttribute("batchList",batchDtoList);
+        List<BatchDto> batchDtoList = batchService.getAllBatches();
+        t.addAttribute("moduleList", moduleDtoList);
+        t.addAttribute("batchList", batchDtoList);
         t.addAttribute("roomList", classRoomDtoList);
         t.addAttribute("timetable", new Timetable());
         t.addAttribute("success", "TimeTable  Added Successfully");

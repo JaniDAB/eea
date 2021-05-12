@@ -13,7 +13,7 @@
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/register.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/addRoom.css">
 </head>
 <body>
 
@@ -48,7 +48,7 @@
             <%--            <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt=""/>--%>
             <h3>Add Class Room  here</h3>
             <p> Class Room, Class Room ID, Room Type can be added</p>
-            <input type="submit" name="" value=""/><br/>
+<%--            <input type="submit" name="" value=""/><br/>--%>
         </div>
         <div class="col-md-9 register-right">
             <%--            <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">--%>
@@ -72,7 +72,8 @@
                             <div class="form-group" >
                                     <%--                                <input   type="text" class="form-control" placeholder="First Name *"  required="required" value="" />--%>
                                         <form:label path="roomId">Enter ID:</form:label><br>
-                                <form:input   type="text" path="roomId" cssClass="form-control" placeholder="Room ID *" required="required"/>
+                                <form:input   type="text" path="roomId" cssClass="form-control" placeholder=" Type as L(number)CR(number)" required="required"/>
+
                                 <form:errors path="roomId" cssStyle="color: red" />
                             </div>
                             <div class="form-group">

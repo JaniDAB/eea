@@ -25,5 +25,6 @@ public interface UserService extends UserDetailsService {
 
      User assignBatch(UserDto userDto);
 
+     void deleteUserByID(int ID);
 }
 

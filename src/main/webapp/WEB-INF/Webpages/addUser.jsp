@@ -9,21 +9,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link rel="stylesheet" href="css/register.css">
     <title>Register </title>
-    <script>
-        function Validate() {
-            var pasword1 = document.getElementById("pass1");
-            var password2 = document.getElementById("pass2");
 
-            if (pasword1.value.trim() !== password2.value.trim()) {
-                alert("Please re submit the Password correclty");
-                return false;
-            }
-            return true
-
-        }
-
-
-    </script>
 
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
@@ -61,7 +47,7 @@
                 <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                     <h3 class="register-heading">Register User</h3>
 
-                    <form:form action="/registration" method="POST" onsubmit=" return Validate()" modelAttribute="user">
+                    <form:form action="/registration" method="POST"  modelAttribute="user">
 
 
                     <div class="row register-form">
@@ -76,18 +62,15 @@
 
                             </div>
                             <div class="form-group">
-                                    <%----%>
-                                <form:input type="password" path="password" cssClass="form-control"
-                                         value="12345"   placeholder="Password *" id="pass1" required="required"/>
+                                <form:input type="text" maxlength="10" path="mobile" cssClass="form-control"
+                                            placeholder="Your Phone  *" required="required"/>
                             </div>
-                            <div class="form-group">
-                                <input type="password" class="form-control" placeholder="Confirm Password *" id="pass2"
-                                       required="required" value=""/>
 
-                            </div>
+
                             <div class="form-group">
                                 <div class="maxl">
                                     <label class="radio inline">
+                                        <form:label path="gender"> Gender :</form:label>
                                         <form:radiobutton path="gender" value="Male"/> Male
                                         <form:radiobutton path="gender" value="Female"/> Female
                                     </label>
@@ -105,10 +88,7 @@
                                             placeholder="Date of Birth *" required="required"/>
 
                             </div>
-                            <div class="form-group">
-                                <form:input type="text" maxlength="10" path="mobile" cssClass="form-control"
-                                            placeholder="Your Phone  *" required="required"/>
-                            </div>
+
                             <div class="form-group">
 
                                 <form:select path="role" cssClass="form-control" aria-required="true">
@@ -126,7 +106,7 @@
                                     <form:errors path="username" cssClass="alert-danger"/>
                                 </spring:bind>
                             </div>
-                            <input type="submit" class="btnRegister" onclick="Validate()" value="Register"/>
+                            <input type="submit" class="btnRegister"  value="Register"/>
                         </div>
                     </div>
 

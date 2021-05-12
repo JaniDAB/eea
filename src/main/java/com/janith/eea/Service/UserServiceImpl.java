@@ -41,6 +41,7 @@ public class UserServiceImpl implements UserService {
         User userdomain = new User();
         UserRole userRole = new UserRole();
 
+        String DefaultPassword = "user123";
         if (userRepository.findUsersByUsername(registerUser.getUsername()) != null) {
             return null;
         } else {
@@ -50,7 +51,7 @@ public class UserServiceImpl implements UserService {
                 userdomain.setLastname(registerUser.getLastname());
                 userdomain.setEmail(registerUser.getEmail().toLowerCase(Locale.ROOT)); // validation
                 userdomain.setMobile(registerUser.getMobile());
-                userdomain.setPassword(passwordEncoder.encode(registerUser.getPassword()));
+                userdomain.setPassword(passwordEncoder.encode(DefaultPassword));
                 userRole.setRoleName(UserTypeUtil.fromText(registerUser.getRole()));
                 userdomain.setRole(userRole);
                 userdomain.setDateOfBirth(registerUser.getDateOfBirth());
@@ -218,6 +219,11 @@ public class UserServiceImpl implements UserService {
 
         }
         return userRepository.save(user);
+    }
+
+    @Override
+    public void deleteUserByID(int ID) {
+        this.userRepository.deleteById(ID);
     }
 
     @Override

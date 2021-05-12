@@ -25,6 +25,9 @@
 
     <li><a  class="fa fa-sign-out"  href="${pageContext.request.contextPath}/login">Log out</a></li>
 </ul>
+<div class="row justify-content-center alert-light ml-5 successmessage" role="alert" style="color: #55efc4">
+    ${deleted}
+</div>
 
 <table class="content-table">
     <thead>
@@ -52,7 +55,7 @@
             <td>${tempUser.dateOfBirth}</td>
             <td>${tempUser.username}</td>
             <td>${tempUser.mobile}</td>
-            <td><button><a href="${Remove}">Remove</a></button></td>
+            <td><button><a href="${pageContext.request.contextPath}/deleteUser/${tempUser.userId}">Remove</a></button></td>
 
         </tr>
 

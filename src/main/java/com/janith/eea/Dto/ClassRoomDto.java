@@ -10,7 +10,7 @@ import javax.validation.constraints.Pattern;
 
 public class ClassRoomDto {
 
-    @Pattern(regexp = "^[L][0-9][C][R][0-9]{0,2}$", message = "Invalid Room ID")
+
     private String roomId;
 
 
@@ -21,7 +21,7 @@ public class ClassRoomDto {
     public ClassRoomDto() {
     }
 
-    public ClassRoomDto(@Pattern(regexp = "^[L][0-9][C][R][0-9]{0,2}$", message = "Invalid Room ID") String roomId, String roomType, Integer roomCapacity) {
+    public ClassRoomDto(String roomId, String roomType, Integer roomCapacity) {
         this.roomId = roomId;
         this.roomType = roomType;
         this.roomCapacity = roomCapacity;
