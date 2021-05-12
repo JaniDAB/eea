@@ -16,4 +16,6 @@ public interface ModuleService {
 Module editModule(ModuleDto moduleDto);
 
 Module assignLecturer(ModuleDto moduleDto);
+
+
 }

@@ -1,6 +1,5 @@
 package com.janith.eea.Dto;
 
-import javax.persistence.Column;
 
 public class BatchDto {
 

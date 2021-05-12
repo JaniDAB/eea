@@ -106,6 +106,7 @@ public class AdminController {
     public String AddBatch(Model a) {
         a.addAttribute("batch", new BatchDto());
         a.addAttribute("success", "Batch Added Successfully");
+        a.addAttribute("allmodules", moduleService.getAllModules());
         return "/addBatch";
     }
 

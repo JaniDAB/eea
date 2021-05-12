@@ -1,4 +1,5 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
 
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
@@ -97,7 +98,7 @@
                             <div class="form-group">
                                 <form:input type="email" path="email" cssClass="form-control" placeholder="Email *"
                                             required="required"/>
-
+                                <form:errors path="email" cssStyle="color: red"/>
                             </div>
                             <div class="form-group">
                                 <form:input type="date" path="dateOfBirth" cssClass="form-control"
@@ -119,9 +120,11 @@
 
 
                             <div class="form-group">
+                                <spring:bind path="username">
                                 <form:input type="text" path="username" cssClass="form-control"
-                                            placeholder="User Name *" required="required"/>
-
+                                            placeholder="User Name *" />
+                                    <form:errors path="username" cssClass="alert-danger"/>
+                                </spring:bind>
                             </div>
                             <input type="submit" class="btnRegister" onclick="Validate()" value="Register"/>
                         </div>

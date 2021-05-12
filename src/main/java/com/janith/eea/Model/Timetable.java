@@ -33,6 +33,18 @@ public class Timetable {
 @Setter
 private ClassRoom classRoom;
 
+    @ManyToOne
+    @JoinColumn(name = "batch_id")
+    @Setter
+    @Getter
+    private Batch batch;
+
+    @ManyToOne
+    @JoinColumn(name = "module_id")
+    @Setter
+    @Getter
+    private Module module;
+
     public Timetable() {
     }
 

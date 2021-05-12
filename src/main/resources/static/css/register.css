@@ -113,6 +113,11 @@
 body{
     background-color: #25254a;
 }
+.successmessage{
+    background: #25254a;
+    font-weight: bold;
+    font-family: 'Cinzel', serif;
+}
 .register{
     background: -webkit-linear-gradient(right,#15151d,  #25254a, #2891a6);
     /*margin-top: 3%;*/

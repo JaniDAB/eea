@@ -81,6 +81,7 @@ public class User {
 @Getter
 private Batch batch;
 
+
     public User() {
     }
 }

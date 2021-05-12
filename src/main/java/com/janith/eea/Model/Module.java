@@ -11,6 +11,7 @@ import java.util.List;
 public class Module {
 
     @Id
+    @Column(name = "module_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer module_id;
 

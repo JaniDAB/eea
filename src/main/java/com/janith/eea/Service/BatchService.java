@@ -13,4 +13,6 @@ public interface BatchService {
     List<BatchDto> getAllBatches();
 
     Batch editBatch(BatchDto batchDto);
+
+
 }

@@ -5,6 +5,10 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.security.core.parameters.P;
+
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Pattern;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -30,6 +34,7 @@ public class UserDto {
 
     @Getter
     @Setter
+    @Email
     private String email;
 
 

@@ -157,7 +157,6 @@ public class UserServiceImpl implements UserService {
         Optional<User> userdomain = userRepository.findById(userDto.getUserId());
 
         User user = userdomain.get();
-        UserRole userRole = new UserRole();
 
 
             if (user != null) {
@@ -168,7 +167,7 @@ public class UserServiceImpl implements UserService {
                 user.setEmail(userDto.getEmail().toLowerCase(Locale.ROOT)); // validation
                 user.setMobile(userDto.getMobile());
                 user.setPassword(passwordEncoder.encode(userDto.getPassword()));
-                user.setBatch(userDto.getBatch());
+//                user.setBatch(userDto.getBatch());
 
 
             }

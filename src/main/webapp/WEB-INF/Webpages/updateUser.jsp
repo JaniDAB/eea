@@ -48,7 +48,7 @@
             <%--    Add users--%>
             <img src="https://i.ibb.co/6bkWbL7/icons8-business-group-64.png" alt="icons8-business-group-64" border="0">
             <h3>${userinfo.firstname} ${userinfo.lastname} </h3>
-                <p>Batch(If Assigned): ${userinfo.batch.batchCode} </p>
+                <p>Batch(If Enrolled): ${userinfo.batch.batchCode} </p>
 <%--            <p>Add Timetable System users here</p>--%>
             <input type="submit" name="" value="Login"/><br/>
         </div>
