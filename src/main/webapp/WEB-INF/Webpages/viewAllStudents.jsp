@@ -11,6 +11,8 @@
 <head>
     <title>View All Students</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/viewUsers.css">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 </head>
 <body>
 
@@ -40,6 +42,7 @@
         <th>phone Number</th>
         <th>Edit</th>
         <th>Assign Batch</th>
+        <th>Delete User</th>
 
     </tr>
     </thead>
@@ -57,13 +60,15 @@
             <td>${tempUser.batch.batchCode}</td>
             <td>${tempUser.mobile}</td>
             <td>
-                <button><a href="${pageContext.request.contextPath}/showFormUpdate/${tempUser.userId}">Edit</a>
-                </button>
+                <a href="${pageContext.request.contextPath}/showFormUpdate/${tempUser.userId}" class="btn btn-outline-primary">Edit</a>
+
             </td>
             <td>
-                <button><a href="${pageContext.request.contextPath}/assignBatch/${tempUser.userId}">Assign</a>
-                </button>
+              <a href="${pageContext.request.contextPath}/assignBatch/${tempUser.userId}" class="btn btn-outline-primary">Assign</a>
+
             </td>
+            <td><a href="${pageContext.request.contextPath}/deleteUser/${tempUser.userId}" class="btn btn-outline-danger">Remove</a></td>
+
 
         </tr>
 

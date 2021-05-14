@@ -19,7 +19,7 @@
 <div class="header">
     <h1 class="header1"> Timetable System </h1>
 </div>
-<ul class="nav_link" style="margin-bottom: 0">
+<ul class="nav-justified" style="margin-bottom: 0">
     <li><a href="${pageContext.request.contextPath}/admin">Home</a></li>
     <li><a href="${pageContext.request.contextPath}/admin/users">View All Users</a></li>
     <li><a  href="${pageContext.request.contextPath}/admin/users/allStudents">View  Students & Assign Batch</a></li>

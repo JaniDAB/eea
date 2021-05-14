@@ -9,11 +9,11 @@ import com.janith.eea.Model.User;
 import com.janith.eea.Service.BatchServiceImpl;
 import com.janith.eea.Service.ModuleService;
 import com.janith.eea.Service.UserServiceImpl;
+import com.janith.eea.Validation.BatchValidator;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -36,10 +36,15 @@ public class AdminController {
     @Autowired
     private final UserServiceImpl service;
 
-    public AdminController(BatchServiceImpl batchService, ModuleService moduleService, UserServiceImpl userService, UserServiceImpl service) {
+
+    @Autowired
+    private  final BatchValidator batchValidator;
+
+    public AdminController(BatchServiceImpl batchService, ModuleService moduleService, UserServiceImpl userService, UserServiceImpl service, BatchValidator batchValidator) {
         this.batchService = batchService;
         this.moduleService = moduleService;
         this.service = service;
+        this.batchValidator = batchValidator;
     }
 
     // Users Functions  ----------------------------------------------------------------------------------------
@@ -96,10 +101,10 @@ public class AdminController {
             int userID = ID;
             this.service.deleteUserByID(userID);
 m.addAttribute("deleted", "Record Deleted Successfully");
-            return "redirect:/admin/users";
+            return "redirect:/admin/users/allStudents";
         }catch (Exception e){
             m.addAttribute("error", "Record Deletion UnSuccessful");
-            return "viewUsers";
+            return "viewAllStudents";
         }
     }
 
@@ -126,7 +131,12 @@ m.addAttribute("deleted", "Record Deleted Successfully");
     }
 
     @PostMapping("/admin/addBatch")
-    public String AddAABath(@ModelAttribute("batch") BatchDto batchDto , Model a) {
+    public String AddAABath(@ModelAttribute("batch") BatchDto batchDto , Model a, BindingResult br) {
+        batchValidator.validate(batchDto , br);
+
+        if(br.hasErrors()){
+            return "addBatch";
+        }
         try {
             final Batch save = batchService.save(batchDto);
             a.addAttribute("successful", "Batch Added Successfully");

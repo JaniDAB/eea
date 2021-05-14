@@ -26,7 +26,8 @@ public class ModuleServiceImpl implements ModuleService{
     public Module save(ModuleDto moduleDto) {
         Module modeldom = new Module();
 
-modeldom.setBatchList(batchRepository.findAll());
+//modeldom.setBatchList(batchRepository.findAll());
+
         if(moduleDto != null){
             modeldom.setModuleName(moduleDto.getModuleName());
         }

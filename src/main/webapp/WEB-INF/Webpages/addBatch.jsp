@@ -60,7 +60,9 @@
                         <div class="col-md-6">
                             <div class="form-group" >
                                     <%--                                <input   type="text" class="form-control" placeholder="First Name *"  required="required" value="" />--%>
-                                <form:input   type="text" path="batchCode" cssClass="form-control" placeholder="Batch code *" required="required"/>
+                             <form:label path="batchCode" >Enter Batch Code:</form:label>
+                                <form:input   type="text" path="batchCode" cssClass="form-control" placeholder="For Ex: HF1231SEeng" required="required"/>
+                            <form:errors path="batchCode" cssClass="align-content-center" cssStyle="color: red"/>
                             </div>
 
 <%--                            <div class="form-group">--%>
@@ -76,7 +78,8 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                     <%--                                <input type="" class="form-control" placeholder="Your Email *"  required="required" value="" />--%>
-                                <form:input  type="text"  path="description" cssClass="form-control" placeholder="Batch Description *"  required="required"/>
+                                        <form:label path="description" >Enter Description:</form:label>
+                                        <form:input  type="text"  path="description" cssClass="form-control" placeholder="Batch Description *"  required="required"/>
 
                             </div>
 

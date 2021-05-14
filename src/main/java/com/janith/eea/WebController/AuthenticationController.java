@@ -39,20 +39,22 @@ public class AuthenticationController {
     }
 
     @GetMapping("/afterlogin")
-    public String afterLogin(Authentication auth){
+    public String afterLogin(Authentication auth , Model a){
         User user = userService.getUser(auth.getName());
         if (user.getRole().getRoleName() == UserTypeUtil.STUDENT) {
+            a.addAttribute("student", user);
             return "/studentHome";
         }
         if (user.getRole().getRoleName() == UserTypeUtil.ADMIN){
+
             return "/adminHome";
         }
         if (user.getRole().getRoleName() == UserTypeUtil.LECTURER){
+            a.addAttribute("lecturer", user);
             return "/lecturerHome";
         }
 
-        System.out.println("REACHED AFTER LOGIN");
-        return "/login";
+        return "login";
 
     }
 

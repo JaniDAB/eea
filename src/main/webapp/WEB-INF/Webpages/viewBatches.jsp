@@ -11,6 +11,8 @@
 <head>
     <title>View Batches</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/viewModules.css">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 </head>
 <body style="background-image: url(/images/timetable.png)">
 
@@ -29,6 +31,8 @@
         <th> Batch Code </th>
         <th> Batch Description </th>
         <th> Edit Batch </th>
+        <th> Assign Modules to Batch </th>
+        <th> More Info </th>
 
 
     </tr>
@@ -42,8 +46,16 @@
             <td>${tempBatch.batchCode}</td>
             <td>${tempBatch.description}</td>
             <td>
-                <span><button><a href="${pageContext.request.contextPath}/directUpdateMBatchForm/${tempBatch.batchID}">Edit</a>
-                </button></span>
+                <span><a href="${pageContext.request.contextPath}/directUpdateMBatchForm/${tempBatch.batchID}" class="btn btn-outline-primary">Edit</a>
+                </span>
+            </td>
+            <td>
+                <span><a href="${pageContext.request.contextPath}/assignModule/${tempBatch.batchID}" class="btn btn-outline-primary">Assign</a>
+                </span>
+            </td>
+            <td>
+                <span><a href="${pageContext.request.contextPath}/modulelist/${tempBatch.batchID}" class="btn btn-outline-primary">Info</a>
+                </span>
             </td>
 
 

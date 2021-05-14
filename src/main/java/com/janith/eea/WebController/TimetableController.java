@@ -69,7 +69,7 @@ public class TimetableController {
         } else {
             try {
                 classRoomService.addRoom(classRoomDto);
-                r.addAttribute("successful", "Room Added Successfully");
+                r.addAttribute("successful", "Room was Added Successfully");
 
             } catch (Exception ex) {
                 r.addAttribute("error", "Room  Was not Added Successfully");

@@ -5,8 +5,10 @@ import com.janith.eea.Dto.ModuleDto;
 import com.janith.eea.Dto.UserDto;
 import com.janith.eea.Model.User;
 import com.janith.eea.Service.BatchService;
+import com.janith.eea.Service.ModuleServiceImpl;
 import com.janith.eea.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,10 +26,13 @@ public class BatchController {
 
     @Autowired
     private final BatchService batchService;
+    @Autowired
+    private final ModuleServiceImpl moduleService;
 
-    public BatchController(UserService service, BatchService batchService) {
+    public BatchController(UserService service, BatchService batchService, ModuleServiceImpl moduleService) {
         this.service = service;
         this.batchService = batchService;
+        this.moduleService = moduleService;
     }
 
 
@@ -57,7 +62,51 @@ public class BatchController {
         return "redirect:/admin/users/allStudents";
     }
 
+    @GetMapping("/assignModule/{batchId}")
+    public  String getAssignModuleToBatch(@PathVariable(value = "batchId") int id,Model b)
+    {
+        try{
+            int batchId = id;
+            BatchDto batchDto = new BatchDto();
+            BatchDto batchInfo =batchService.getBatchById(batchId);
+            List<ModuleDto> moduleDtoList;
+            moduleDtoList = moduleService.getAllModules();
 
+            b.addAttribute("moduleList",moduleDtoList);
+            b.addAttribute("assignModule", batchDto);
+            b.addAttribute("batchinfo", batchInfo);
+
+            return "assignModulesToBatch";
+
+        }catch (Exception e){
+            System.out.println(e);
+            return "assignModulesToBatch";
+        }
+    }
+
+    @PostMapping("/assignModulesToBatch")
+    public String assignModulesToBatch(@ModelAttribute("assignModule")BatchDto batchDto){
+        batchService.editBatch(batchDto);
+        return "";
+    }
+
+    @GetMapping("/modulelist/{id}")
+    public  String showModuleList(@PathVariable(value = "id")int id, Model ba)
+    {
+        try{
+            int BatchID = id;
+
+            List<ModuleDto>  moduleDtoList = batchService.getModuleList(BatchID);
+
+            ba.addAttribute("moduleList" , moduleDtoList);
+
+            return "";
+        }catch (Exception e){
+            System.out.println(e);
+            return "";
+        }
+
+    }
 
 
 

@@ -9,13 +9,24 @@ public class BatchDto {
 
     private  String description;
 
-    public BatchDto(Integer batchID, String batchCode, String description) {
+    private String[] moduleList;
+
+    public BatchDto(Integer batchID, String batchCode, String description, String[] moduleList) {
         this.batchID = batchID;
         this.batchCode = batchCode;
         this.description = description;
+        this.moduleList = moduleList;
     }
 
     public BatchDto() {
+    }
+
+    public String[] getModuleList() {
+        return moduleList;
+    }
+
+    public void setModuleList(String[] moduleList) {
+        this.moduleList = moduleList;
     }
 
     public Integer getBatchID() {

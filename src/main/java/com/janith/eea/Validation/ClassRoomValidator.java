@@ -34,7 +34,9 @@ public class ClassRoomValidator implements Validator {
 
     @Override
     public void validate(Object o, Errors errors) {
+
         ClassRoomDto classRoomDto = (ClassRoomDto)o;
+
         String regex = "^[L][0-9][C][R][0-9]{0,2}$";
         Pattern p = Pattern.compile(regex);
         Matcher matcher = p.matcher(classRoomDto.getRoomId());

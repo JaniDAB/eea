@@ -1,6 +1,7 @@
 package com.janith.eea.Service;
 
 import com.janith.eea.Dto.BatchDto;
+import com.janith.eea.Dto.ModuleDto;
 import com.janith.eea.Model.Batch;
 
 import java.util.List;
@@ -12,7 +13,7 @@ public interface BatchService {
 
     List<BatchDto> getAllBatches();
 
-    Batch editBatch(BatchDto batchDto);
+    Object editBatch(BatchDto batchDto);
 
-
+    List<ModuleDto> getModuleList(int id);
 }

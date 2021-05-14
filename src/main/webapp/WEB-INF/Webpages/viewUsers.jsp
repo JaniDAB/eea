@@ -39,7 +39,7 @@
         <th>Date of Birth</th>
         <th> User Name</th>
         <th>Contact Number</th>
-        <th>Delete</th>
+
 
     </tr>
     </thead>
@@ -55,7 +55,6 @@
             <td>${tempUser.dateOfBirth}</td>
             <td>${tempUser.username}</td>
             <td>${tempUser.mobile}</td>
-            <td><button><a href="${pageContext.request.contextPath}/deleteUser/${tempUser.userId}">Remove</a></button></td>
 
         </tr>
 
