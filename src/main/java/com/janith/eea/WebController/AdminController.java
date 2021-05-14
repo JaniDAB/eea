@@ -180,7 +180,7 @@ m.addAttribute("deleted", "Record Deleted Successfully");
 
     @PostMapping("/modifyBatch")
     public String modifyBatch(@ModelAttribute("batchupdate") BatchDto batchDto) {
-       final Batch batch = batchService.editBatch(batchDto);
+       final Batch batch = batchService.editBatchInfo(batchDto);
         return "adminHome";
     }
 

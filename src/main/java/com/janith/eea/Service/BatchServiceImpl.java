@@ -107,7 +107,7 @@ public class BatchServiceImpl implements BatchService {
 
         Optional<Batch> optionalBatch = batchRepo.findById(batchID);
 
-        ModuleDto moduleDto = new ModuleDto();
+
 
         List<ModuleDto> moduleDtoList = new ArrayList<>();
 
@@ -119,14 +119,30 @@ public class BatchServiceImpl implements BatchService {
 
             for (Module mudulel : batchinfor.getModuleList()) {
 
+                ModuleDto moduleDto = new ModuleDto();
                 moduleDto.setModuleName(mudulel.getModuleName());
                 moduleDto.setModule_id(mudulel.getModule_id());
-
                 moduleDtoList.add(moduleDto);
             }
         }
         return moduleDtoList;
     }
 
+    @Override
+    public Batch editBatchInfo(BatchDto batchDto) {
+        Optional<Batch> optionalBatch = batchRepo.findById(batchDto.getBatchID());
+
+
+        Batch batch = optionalBatch.get();
+
+        if (batch != null) {
+
+                batch.setBatchCode(batchDto.getBatchCode());
+                batch.setDescription(batchDto.getDescription());
+
+        }
+
+        return batchRepo.save(batch);
+    }
 
 }

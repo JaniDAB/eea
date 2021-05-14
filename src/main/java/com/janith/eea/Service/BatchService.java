@@ -16,4 +16,6 @@ public interface BatchService {
     Object editBatch(BatchDto batchDto);
 
     List<ModuleDto> getModuleList(int id);
+
+    Batch editBatchInfo(BatchDto batchDto);
 }
