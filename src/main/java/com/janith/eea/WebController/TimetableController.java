@@ -16,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
@@ -79,18 +80,18 @@ public class TimetableController {
         return "addClassRoom";
     }
 
-    @GetMapping("/addTimetable")
-    public String addTimetableDirect(Model t) {
-        List<ClassRoomDto> classRoomDtoList = classRoomService.viewRooms();
-        List<ModuleDto> moduleDtoList = moduleService.getAllModules();
-        List<BatchDto> batchDtoList = batchService.getAllBatches();
-        t.addAttribute("moduleList", moduleDtoList);
-        t.addAttribute("batchList", batchDtoList);
-        t.addAttribute("roomList", classRoomDtoList);
-        t.addAttribute("timetable", new Timetable());
-        t.addAttribute("success", "TimeTable  Added Successfully");
-        return "addTimeTable";
-    }
+//    @GetMapping("/addTimetable")
+//    public String addTimetableDirect(Model t) {
+//        List<ClassRoomDto> classRoomDtoList = classRoomService.viewRooms();
+//        List<ModuleDto> moduleDtoList = moduleService.getAllModules();
+//        List<BatchDto> batchDtoList = batchService.getAllBatches();
+//        t.addAttribute("moduleList", moduleDtoList);
+//        t.addAttribute("batchList", batchDtoList);
+//        t.addAttribute("roomList", classRoomDtoList);
+//        t.addAttribute("timetable", new Timetable());
+//        t.addAttribute("success", "TimeTable  Added Successfully");
+//        return "addTimeTable";
+//    }
 
     @PostMapping("/admin/addTimetable")
     public String addingTimeTable(@ModelAttribute("timetable") TimetableDto timetableDto, Model r) {
@@ -103,5 +104,38 @@ public class TimetableController {
         }
         return "addTimeTable";
     }
+
+    @GetMapping("/admin/timetable/listBatches")
+    public String viewBatches(Model b) {
+        List<BatchDto> batchDtoList;
+        batchDtoList = batchService.getAllBatches();
+        b.addAttribute("batches", batchDtoList);
+
+        return "selectBatchForSchedule";
+    }
+
+    @GetMapping("/admin/addTimetable/{id}")
+    public String addTimetableD(@PathVariable(value = "id")int id, Model t) {
+
+        try {
+            int batchId = id;
+            BatchDto batchInfo =batchService.getBatchById(batchId);
+            List<ModuleDto>  moduleDtoList = batchService.getModuleList(batchId);
+            List<ClassRoomDto> classRoomDtoList = classRoomService.viewRooms();
+
+            t.addAttribute("moduleList", moduleDtoList);
+            t.addAttribute("batchinfo", batchInfo);
+            t.addAttribute("roomList", classRoomDtoList);
+            t.addAttribute("timetable", new Timetable());
+
+            t.addAttribute("success", "TimeTable  Added Successfully");
+            return "addTimeTable";
+
+        }catch (Exception e){
+            System.out.println(e);
+            return "addTimeTable";
+        }
+    }
+
 }
 

@@ -21,8 +21,8 @@
     <h1 class="header1" > Timetable System </h1>
 </div>
 <ul class="nav_link" style="margin-bottom: 0">
-    <li><a href="${pageContext.request.contextPath}/admin">Home</a></li>
-    <li><a href="${pageContext.request.contextPath}/admin/listBatches">View Batches</a></li>
+    <li><a class="nav-link" href="${pageContext.request.contextPath}/admin">Home</a></li>
+    <li><a class="nav-link" href="${pageContext.request.contextPath}/admin/listBatches">View Batches</a></li>
 
 </ul>
 
@@ -91,8 +91,8 @@
                             <div class="form-group">
                                          <form:label path="roomCapacity">Enter Room Capacity:</form:label><br>
 <%--                       <input type="" class="form-control" placeholder="Your Email *"  required="required" value="" />&ndash;%&gt;--%>
-                                <form:input  type="number"  path="roomCapacity" cssClass="form-control" placeholder="Room Capacity*"  required="required"/>
-
+                                <form:input  type="number"  path="roomCapacity" cssClass="form-control" placeholder="Room Capacity*"   required="required"/>
+<form:errors path="roomCapacity" cssStyle="color: red"/>
                             </div>
 
 

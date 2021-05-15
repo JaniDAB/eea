@@ -7,24 +7,26 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link rel="stylesheet" href="css/register.css">
-    <title>Register </title>
 
+    <title>Register </title>
 
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/register.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 </head>
 <body style="background-color: #000000">
 <div class="header">
     <h1 class="header1"> Timetable System </h1>
 </div>
-<ul class="nav-justified" style="margin-bottom: 0">
-    <li><a href="${pageContext.request.contextPath}/admin">Home</a></li>
-    <li><a href="${pageContext.request.contextPath}/admin/users">View All Users</a></li>
-    <li><a  href="${pageContext.request.contextPath}/admin/users/allStudents">View  Students & Assign Batch</a></li>
-    <li><a  href="${pageContext.request.contextPath}/admin/users/allLectruer">View  Lecturers</a></li>
-    <li style="float:right"><a href="${pageContext.request.contextPath}/logout">Log out</a></li>
+<ul class="nav_link">
+    <li><a class="nav-link" href="${pageContext.request.contextPath}/admin">Home</a></li>
+    <li><a class="nav-link" href="${pageContext.request.contextPath}/admin/users">View All Users</a></li>
+    <li><a  class="nav-link" href="${pageContext.request.contextPath}/admin/users/allStudents">View  Students & Assign Batch</a></li>
+    <li><a   class="nav-link" href="${pageContext.request.contextPath}/admin/users/allLectruer">View  Lecturers</a></li>
+    <li style="float:right"><a  class="fa fa-sign-out" href="${pageContext.request.contextPath}/logout">Log out</a></li>
 </ul>
 
 <!------ Include the above in your HEAD tag ---------->

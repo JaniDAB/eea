@@ -14,7 +14,7 @@
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/register.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/timetable.css">
 </head>
 <body>
 
@@ -22,8 +22,8 @@
     <h1 class="header1"> Timetable System </h1>
 </div>
 <ul class="nav_link" style="margin-bottom: 0">
-    <li><a href="${pageContext.request.contextPath}/admin">Admin Home</a></li>
-    <li><a href="${pageContext.request.contextPath}/addRoom">Add a Room</a></li>
+    <li><a class="nav-link" href="${pageContext.request.contextPath}/admin">Admin Home</a></li>
+    <li><a  class="nav-link" href="${pageContext.request.contextPath}/addRoom">Add a Room</a></li>
 </ul>
 
 <!------ Include the above in your HEAD tag ---------->
@@ -33,12 +33,12 @@
 <div class="container register" style="max-width: 100%;">
     <div class="row">
         <div class="col-md-3 register-left">
-            <h1>Time Table</h1>
+            <h1>Schedule Time table For ${batchinfo.batchCode}</h1>
             <img src="https://img.icons8.com/wired/100/000000/timetable.png" alt="icons8-business-group-64" border="0">
-            <h3></h3>
+
 
 <%--            <p> Assigning a Batch to a User can be done here</p>--%>
-            <input type="submit" name="" value="Login"/><br/>
+
         </div>
         <div class="col-md-9 register-right">
 
@@ -71,14 +71,19 @@
                                 </form:select>
                             </div>
                             <div class="form-group">
-                                <form:label path="batch"> Select the Batch from Below  List: </form:label>
-                                <form:select path="batch" cssClass="form-control" aria-required="true">
-                                    <c:forEach var="batch" items="${batchList}" >
-                                        <form:option value="${batch.batchID}">
-                                            ${batch.batchCode}
-                                        </form:option>
-                                    </c:forEach>
-                                </form:select>
+                                <form:label path="batch"> Batch </form:label>
+                                <form:input type="hidden" path="batch" cssClass="form-control"
+                                           value="${batchinfo.batchID}" readonly="true"
+                                            required="required"/>
+                                                                    <input   type="text" class="form-control"   required="required" value="${batchinfo.batchCode}" readonly="readonly" />
+
+                            <%--                                <form:select path="batch" cssClass="form-control" aria-required="true">--%>
+<%--                                    <c:forEach var="batch" items="${batchList}" >--%>
+<%--                                        <form:option value="${batch.batchID}">--%>
+<%--                                            ${batch.batchCode}--%>
+<%--                                        </form:option>--%>
+<%--                                    </c:forEach>--%>
+<%--                                </form:select>--%>
                             </div>
                         </div>
 

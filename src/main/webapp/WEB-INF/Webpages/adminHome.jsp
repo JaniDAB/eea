@@ -11,6 +11,7 @@
     <title>Admin Home Page</title>
     <link rel="stylesheet"  href="${pageContext.request.contextPath}/css/adminHome.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 <%--        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">--%>
 
 </head>
@@ -22,7 +23,7 @@
 <%--    <h1 class="header1" > Timetable System </h1>--%>
 </div>
 <ul class="nav_link">
-    <li><a  class="fa fa-sign-out"  href="${pageContext.request.contextPath}/login">Log out</a></li>
+    <li style="float: right"><a  class="fa fa-sign-out" href="${pageContext.request.contextPath}/login">Log out</a></li>
 
 </ul>
 
@@ -53,7 +54,7 @@
             </div>
         </a>
             </li>
-            <a class="card" href="${pageContext.request.contextPath}/addTimetable">
+            <a class="card" href="${pageContext.request.contextPath}/admin/timetable/listBatches">
                 <div class="card__background" style="background-image: url(https://images.unsplash.com/photo-1557004396-66e4174d7bf6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60)"></div>
                 <div class="card__content">
 

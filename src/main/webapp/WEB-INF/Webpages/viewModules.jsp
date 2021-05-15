@@ -10,16 +10,38 @@
 <html>
 <head>
     <title>View All Modules</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/viewModules.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/viewUsers.css">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 </head>
 <body>
 <div class="header">
     <h1 class="head" >Time Table System</h1>
 </div>
-<ul>
-    <li><a  href="${pageContext.request.contextPath}/admin">home</a></li>
+<%--<ul>--%>
+<%--    <li><a  href="${pageContext.request.contextPath}/admin">home</a></li>--%>
 
-</ul>
+<%--</ul>--%>
+
+<%--<nav class="navbar navbar-expand-lg navbar-light bg-light">--%>
+
+<%--    <div class="collapse navbar-collapse" id="navbarNav">--%>
+<%--        <ul class="navbar-nav">--%>
+<%--            <li class="nav-item active">--%>
+<%--                <a class="nav-link" href="${pageContext.request.contextPath}/admin">Home</a>--%>
+<%--            </li>--%>
+<%--        </ul>--%>
+<%--    </div>--%>
+<%--</nav>--%>
+<nav class="fill">
+    <ul>
+        <li> <a class="nav-link" href="${pageContext.request.contextPath}/admin">Home</a></li>
+
+        <li style="float:right"><a class="fa fa-sign-out nav-link"  href="${pageContext.request.contextPath}/logout"> Logout</a></li>
+    </ul>
+</nav>
 
 <table class="content-table">
 
@@ -42,12 +64,11 @@
             <td>${tempModules.moduleName}</td>
             <td>${tempModules.lecUser.firstname}</td>
             <td>
-                <button><a href="${pageContext.request.contextPath}/updateModuleForm/${tempModules.module_id}">Edit</a>
-                </button>
+         <a href="${pageContext.request.contextPath}/updateModuleForm/${tempModules.module_id}" class="btn btn-outline-danger">Edit</a>
+
             </td>
             <td>
-                <button><a href="${pageContext.request.contextPath}/assignModuleForm/${tempModules.module_id}">Assign</a>
-                </button>
+               <a href="${pageContext.request.contextPath}/assignModuleForm/${tempModules.module_id}" class="btn btn-outline-success">Assign</a>
             </td>
 
         </tr>

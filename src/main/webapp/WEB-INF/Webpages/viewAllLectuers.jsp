@@ -11,6 +11,11 @@
 <head>
     <title>Title</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/viewUsers.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+
+
 </head>
 <body>
 
@@ -19,12 +24,20 @@
 
 </div>
 
-<ul>
-    <li><a  href="${pageContext.request.contextPath}/admin">Home</a></li>
-    <li><a  href="${pageContext.request.contextPath}/admin/users/allStudents">View Students & Assign Batch</a></li>
-    <li style="float:right"><a href="${pageContext.request.contextPath}/logout">Log out</a></li>
+<%--<ul>--%>
+<%--    <li><a  href="${pageContext.request.contextPath}/admin">Home</a></li>--%>
+<%--    <li><a  href="${pageContext.request.contextPath}/admin/users/allStudents">View Students & Assign Batch</a></li>--%>
+<%--    <li style="float:right"><a class="fa fa-sign-out" href="${pageContext.request.contextPath}/logout">Log out</a></li>--%>
 
-</ul>
+<%--</ul>--%>
+<nav class="fill">
+    <ul>
+        <li><a   class="nav-link" href="${pageContext.request.contextPath}/admin">Home</a></li>
+        <li><a class="nav-link" href="${pageContext.request.contextPath}/admin/users/allStudents">View Students & Assign Batches</a></li>
+        <li style="float:right"><a  class="nav-link fa fa-sign-out" href="${pageContext.request.contextPath}/logout">Log out</a></li>
+
+    </ul>
+</nav>
 
 <table class="content-table">
     <thead>
@@ -54,8 +67,8 @@
             <td>${tempUser.mobile}</td>
 
             <td>
-                <button><a href="${pageContext.request.contextPath}/showFormUpdate/${tempUser.userId}">Edit</a>
-                </button>
+                <a href="${pageContext.request.contextPath}/showFormUpdate/${tempUser.userId}" class="btn btn-primary">Edit</a>
+
             </td>
         </tr>
 

@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/viewUsers.css">
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 </head>
 <body>
 
@@ -20,14 +22,24 @@
     <h1>Time Table System</h1>
 </div>
 
-<ul>
-    <li><a  href="${pageContext.request.contextPath}/admin">Home</a></li>
-    <li><a href="${pageContext.request.contextPath}/admin/users/allLectruer">View Lecturers</a></li>
+<%--<ul>--%>
+<%--    <li><a  href="${pageContext.request.contextPath}/admin">Home</a></li>--%>
+<%--    <li><a href="${pageContext.request.contextPath}/admin/users/allLectruer">View Lecturers</a></li>--%>
 
-    <li style="float:right"><a href="${pageContext.request.contextPath}/logout">Log out</a></li>
+<%--    <li style="float:right"><a class="fa fa-sign-out" href="${pageContext.request.contextPath}/logout">Log out</a></li>--%>
 
 
-</ul>
+<%--</ul>--%>
+
+<nav class="fill">
+    <ul>
+        <li><a   class="nav-link" href="${pageContext.request.contextPath}/admin">Home</a></li>
+            <li><a   class="nav-link" href="${pageContext.request.contextPath}/admin/users/allLectruer">View Lecturers</a></li>
+
+            <li style="float:right"><a  class="nav-link fa fa-sign-out" href="${pageContext.request.contextPath}/logout">Log out</a></li>
+
+    </ul>
+</nav>
 
 <table class="content-table">
     <thead>
@@ -64,7 +76,7 @@
 
             </td>
             <td>
-              <a href="${pageContext.request.contextPath}/assignBatch/${tempUser.userId}" class="btn btn-outline-primary">Assign</a>
+              <a href="${pageContext.request.contextPath}/assignBatch/${tempUser.userId}" class="btn btn-outline-success">Assign</a>
 
             </td>
             <td><a href="${pageContext.request.contextPath}/deleteUser/${tempUser.userId}" class="btn btn-outline-danger">Remove</a></td>

@@ -87,7 +87,7 @@ public class BatchController {
     @PostMapping("/assignModulesToBatch")
     public String assignModulesToBatch(@ModelAttribute("assignModule")BatchDto batchDto){
         batchService.editBatch(batchDto);
-        return "";
+        return "assignModulesToBatch";
     }
 
     @GetMapping("/modulelist/{id}")
@@ -100,10 +100,10 @@ public class BatchController {
 
             ba.addAttribute("moduleList" , moduleDtoList);
 
-            return "";
+            return "ViewBatchModules";
         }catch (Exception e){
             System.out.println(e);
-            return "";
+            return "ViewBatchModules";
         }
 
     }

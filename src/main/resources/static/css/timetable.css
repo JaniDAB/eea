@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Montserrat:500&display=swap');
+/*@import url('https://fonts.googleapis.com/css?family=Montserrat:500&display=swap');*/
 /*@import url('https://fonts.googleapis.com/css?family=Gochi+Hand&display=swap');*/
 /*@import url('https://fonts.googleapis.com/css?family=Patrick+Hand&display=swap');*/
 @import url('https://fonts.googleapis.com/css?family=Cinzel&display=swap');
@@ -114,12 +114,12 @@ body{
     background-color: #25254a;
 }
 .successmessage{
-    background: #25254a;
+    background: #759120;
     font-weight: bold;
     font-family: 'Cinzel', serif;
 }
 .register{
-    background: -webkit-linear-gradient(right,#15151d,  #25254a, #2891a6);
+    background: -webkit-linear-gradient(left,#6bbf1d,  #759120, #2a5a70);
     /*margin-top: 3%;*/
     padding: 3%;
 }
@@ -276,17 +276,6 @@ li a:hover {
 }
 .nav_link li a{
     transition: all 0.3s ease 0s;
-
-    font-weight: 700;
-    font-size: 16px;
-    color: #edf0f1;
-    text-decoration: none;
-
-    display: inline-block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
 }
 
 .nav_link li a:hover {

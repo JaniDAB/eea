@@ -21,8 +21,8 @@
     <h1 class="header1" > Timetable System </h1>
 </div>
 <ul class="nav_link" style="margin-bottom: 0">
-    <li><a href="${pageContext.request.contextPath}/admin">Home</a></li>
-    <li><a href="${pageContext.request.contextPath}/admin/listModules">View Modules</a></li>
+    <li><a class="nav-link" href="${pageContext.request.contextPath}/admin">Home</a></li>
+    <li><a  class="nav-link" href="${pageContext.request.contextPath}/admin/listModules">View Modules</a></li>
 </ul>
 
 <!------ Include the above in your HEAD tag ---------->
@@ -35,27 +35,26 @@
             <%--            <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt=""/>--%>
             <h3> Add Module here</h3>
             <p>Module Name can be added</p>
-            <input type="submit" name=""  href="/admin" value="Login"/><br/>
         </div>
         <div class="col-md-9 register-right">
 
             <div class="tab-content" id="myTabContent">
                 <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                    <h3 class="register-heading"> Add MOdule</h3>
+                    <h3 class="register-heading"> Add Module</h3>
 
                     <form:form action="/admin/addModule" method="POST"  modelAttribute="module" >
 
 
                      <div class="row register-form">
-                        <div class="col-md-6">
+                        <div class="col-md-8">
                             <div class="form-group" >
                                 <form:input   type="text" path="moduleName" cssClass="form-control" placeholder="Module *" required="required"/>
                             </div>
-
                         </div>
-
-                        <input type="submit" class="btnRegister"   value="Add Batch"/>
-                        </div>
+                         <div class="col-md-8" >
+                        <input type="submit" class="btnRegister"   value="Add Module"/>
+                     <div/>
+                     </div>
                     </div>
                 </div>
 

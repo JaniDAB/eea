@@ -11,6 +11,10 @@
 <head>
     <title> View User</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/viewUsers.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+
 </head>
 <body style="background-image: url(/images/timetable.png)">
 
@@ -18,13 +22,22 @@
     <h1 >Time Table System</h1>
 </div>
 
-<ul>
-    <li><a  href="${pageContext.request.contextPath}/admin">Home</a></li>
-    <li><a  href="${pageContext.request.contextPath}/admin/users/allStudents">View Students & Assign Batches</a></li>
-    <li><a  href="${pageContext.request.contextPath}/admin/users/allLectruer">View All Lecturers</a></li>
+<%--<ul>--%>
+<%--    <li><a  href="${pageContext.request.contextPath}/admin">Home</a></li>--%>
+<%--    <li><a  href="${pageContext.request.contextPath}/admin/users/allStudents">View Students & Assign Batches</a></li>--%>
+<%--    <li><a  href="${pageContext.request.contextPath}/admin/users/allLectruer">View All Lecturers</a></li>--%>
 
-    <li><a  class="fa fa-sign-out"  href="${pageContext.request.contextPath}/login">Log out</a></li>
-</ul>
+<%--    <li><a  class="fa fa-sign-out"  href="${pageContext.request.contextPath}/login">Log out</a></li>--%>
+<%--</ul>--%>
+<nav class="fill">
+    <ul>
+        <li><a   class="nav-link" href="${pageContext.request.contextPath}/admin">Home</a></li>
+        <li><a class="nav-link" href="${pageContext.request.contextPath}/admin/users/allStudents">View Students & Assign Batches</a></li>
+        <li><a   class="nav-link" href="${pageContext.request.contextPath}/admin/users/allLectruer">View Lecturers</a></li>
+        <li style="float:right"><a  class="nav-link fa fa-sign-out" href="${pageContext.request.contextPath}/logout">Log out</a></li>
+
+    </ul>
+</nav>
 <div class="row justify-content-center alert-light ml-5 successmessage" role="alert" style="color: #55efc4">
     ${deleted}
 </div>

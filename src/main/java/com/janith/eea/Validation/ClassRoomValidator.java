@@ -48,6 +48,11 @@ public class ClassRoomValidator implements Validator {
         if (classRoomRepository.findById(classRoomDto.getRoomId()).isPresent()){
             errors.rejectValue("roomId", "classroom.exist");
         }
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "roomCapacity", "NotEmpty");
+
+        if(classRoomDto.getRoomCapacity() > 50){
+            ValidationUtils.rejectIfEmptyOrWhitespace(errors, "roomCapacity", "capacity.room.value");
+        }
 
 
     }
