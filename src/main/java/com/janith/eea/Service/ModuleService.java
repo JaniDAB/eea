@@ -17,5 +17,5 @@ Module editModule(ModuleDto moduleDto);
 
 Module assignLecturer(ModuleDto moduleDto);
 
-
+List<ModuleDto> viewLecsModules(int userID);
 }

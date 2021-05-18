@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: janithdabare
@@ -41,6 +42,13 @@
 
 </ul>
 
+<%--<c:if test="${pageContext.request.getParameter('error') == null}">--%>
+<%--    <div class="alert alert-danger p-2 text-center">--%>
+<%--        <p>--%>
+<%--            <b> Username Or Password is Invalid</b>--%>
+<%--        </p>--%>
+<%--    </div>--%>
+<%--</c:if>--%>
 <form  action="${pageContext.request.contextPath}/loginservelet" class="box" method="POST" onsubmit=" return Validate()" >
     <h1> Login </h1>
 

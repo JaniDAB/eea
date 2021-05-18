@@ -117,6 +117,7 @@ body{
     background: #759120;
     font-weight: bold;
     font-family: 'Cinzel', serif;
+    font-size: medium;
 }
 .register{
     background: -webkit-linear-gradient(left,#6bbf1d,  #759120, #2a5a70);

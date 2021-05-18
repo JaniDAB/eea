@@ -107,4 +107,10 @@ public class ModuleServiceImpl implements ModuleService{
         return moduleRepository.save(module);
     }
 
+
+    @Override
+    public List<ModuleDto> viewLecsModules(int userID) {
+        return null;
+    }
 }
+

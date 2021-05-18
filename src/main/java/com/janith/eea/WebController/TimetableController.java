@@ -5,6 +5,7 @@ import com.janith.eea.Dto.ClassRoomDto;
 import com.janith.eea.Dto.ModuleDto;
 import com.janith.eea.Dto.TimetableDto;
 import com.janith.eea.Model.Timetable;
+import com.janith.eea.Model.User;
 import com.janith.eea.Service.BatchServiceImpl;
 import com.janith.eea.Service.ClassRoomServiceImpl;
 import com.janith.eea.Service.ModuleServiceImpl;
@@ -126,7 +127,7 @@ public class TimetableController {
             t.addAttribute("moduleList", moduleDtoList);
             t.addAttribute("batchinfo", batchInfo);
             t.addAttribute("roomList", classRoomDtoList);
-            t.addAttribute("timetable", new Timetable());
+            t.addAttribute("timetable", new TimetableDto());
 
             t.addAttribute("success", "TimeTable  Added Successfully");
             return "addTimeTable";
@@ -137,5 +138,55 @@ public class TimetableController {
         }
     }
 
+    @GetMapping("/student/timetable/{id}")
+    public String getStudentTimetable(@PathVariable(value = "id") int id, Model timetable)
+    {
+        List<TimetableDto> timetableDtoList = timeTableService.viewTableByBatch(id);
+
+        timetable.addAttribute("timetableList" , timetableDtoList);
+
+        return "viewStudentTimetable";
+
+    }
+
+    @GetMapping("/getAllSchedules")
+    public  String getAllTimetables(Model model)
+    {
+        List<TimetableDto> timetableList = timeTableService.getAllTimeTables();
+
+        model.addAttribute("allSchedules", timetableList);
+
+        return "timetableList";
+    }
+
+    @GetMapping("/admin/rescheduleDirect/{timetableId}/{batchID}")
+    public  String getRescheduleForm(@PathVariable(value="timetableId") int timetableid,@PathVariable(value = "batchID")int BatchId, Model timetableM)
+    {
+       TimetableDto timetableDtoInfo  = timeTableService.viewTableByID(timetableid);
+        List<ModuleDto>  ModuleList = batchService.getModuleList(BatchId);
+        List<ClassRoomDto> classRoomDtoList = classRoomService.viewRooms();
+
+        timetableM.addAttribute("roomList", classRoomDtoList);
+        timetableM.addAttribute("moduleList", ModuleList);
+       timetableM.addAttribute("timetableinfor" , timetableDtoInfo);
+       timetableM.addAttribute("rescheduleTime", new TimetableDto());
+
+
+       return "rescedule";
+
+    }
+
+    @PostMapping("/admin/rescheduleTimetable")
+public  String setRescheduleTimetable(@ModelAttribute("rescheduleTime") TimetableDto timetableDto, Model m)
+    {
+        try {
+            final Timetable update = timeTableService.reSchedule(timetableDto);
+            m.addAttribute("Updated", "Rescheduled Successfully");
+            return "rescedule";
+        }catch (Exception e){
+            m.addAttribute("error", "  UnSuccessful");
+        }
+        return "rescedule";
+    }
 }
 

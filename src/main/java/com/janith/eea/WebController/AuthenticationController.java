@@ -43,6 +43,8 @@ public class AuthenticationController {
         User user = userService.getUser(auth.getName());
         if (user.getRole().getRoleName() == UserTypeUtil.STUDENT) {
             a.addAttribute("student", user);
+//            System.out.println( user.getBatch().getBatchCode());
+
             return "/studentHome";
         }
         if (user.getRole().getRoleName() == UserTypeUtil.ADMIN){
@@ -54,7 +56,7 @@ public class AuthenticationController {
             return "/lecturerHome";
         }
 
-        return "login";
+        return "/login";
 
     }
 
@@ -71,6 +73,11 @@ public class AuthenticationController {
     @GetMapping("/admin")
     public String adminHome() {
         return "adminHome";
+    }
+
+    @GetMapping("/student")
+    public String studentHome() {
+        return "studentHome";
     }
 
     @GetMapping("/home")

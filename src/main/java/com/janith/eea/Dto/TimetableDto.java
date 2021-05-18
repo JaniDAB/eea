@@ -14,12 +14,19 @@ public class TimetableDto {
     @Getter
     @Setter
     private Integer timetableID;
+
+    @Getter
+    @Setter
+    private String Date;
+
     @Getter
     @Setter
     private String startTime;
+
     @Getter
     @Setter
     private String endTIme;
+
     @Getter
     @Setter
     private ClassRoom classRoom;

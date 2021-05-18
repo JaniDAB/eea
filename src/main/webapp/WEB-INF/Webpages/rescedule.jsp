@@ -10,7 +10,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Scheduling Time table</title>
+    <title>Re-Scheduling Time table</title>
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -28,26 +28,26 @@
 
 <!------ Include the above in your HEAD tag ---------->
 <div class="row justify-content-center alert-light  successmessage" role="alert" style="color: #1b1e21">
-    ${successful}
+    ${Updated}
     ${error}
 </div>
 <div class="container register" style="max-width: 100%;">
     <div class="row">
         <div class="col-md-3 register-left">
-            <h1>Schedule Time table For ${batchinfo.batchCode}</h1>
             <img src="https://img.icons8.com/wired/100/000000/timetable.png" alt="icons8-business-group-64" border="0">
+            <P>Room Booked : ${timetableinfor.classRoom.roomId} </P>
+            <P>Module Scheduled : ${timetableinfor.module.moduleName} </P>
 
-
-<%--            <p> Assigning a Batch to a User can be done here</p>--%>
+            <%--            <p> Assigning a Batch to a User can be done here</p>--%>
 
         </div>
         <div class="col-md-9 register-right">
 
             <div class="tab-content" id="myTabContent">
                 <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                    <h3 class="register-heading">Scheduling A Timetable</h3>
+                    <h3 class="register-heading">Re-Scheduling Timetable</h3>
 
-                    <form:form action="/admin/addTimetable" method="POST" modelAttribute="timetable">
+                    <form:form  action="${pageContext.request.contextPath}/admin/rescheduleTimetable"  method="POST" modelAttribute="rescheduleTime">
 
                     <div class="row register-form">
                         <div class="col-md-6">
@@ -55,20 +55,20 @@
                             <div class="form-group">
                                 <form:label path="date">Enter the Date:</form:label>
                                 <form:input type="date" path="date" cssClass="form-control"
-                                            placeholder=" Start Time *"
+                                         Value="${timetableinfor.date}"   placeholder=" Start Time *"
                                             required="required"/>
                             </div>
 
                             <div class="form-group">
                                 <form:label path="startTime">Enter the Start Time:</form:label>
                                 <form:input type="time" path="startTime" cssClass="form-control"
-                                            required="required"/>
+                                        value="${timetableinfor.startTime}"    required="required"/>
                             </div>
 
                             <div class="form-group">
                                 <form:label path="endTIme">Enter the End time:</form:label>
                                 <form:input type="time" path="endTIme" cssClass="form-control"
-                                            placeholder="End Time *"
+                                     value="${timetableinfor.endTIme}"       placeholder="End Time *"
                                             required="required"/>
 
                             </div>
@@ -81,7 +81,7 @@
                             <div class="form-group">
                                 <form:label path="classRoom"> Select the Room from Below  List: </form:label>
                                 <form:select path="classRoom" cssClass="form-control" aria-required="true">
-                                    <c:forEach var="roomList" items="${roomList}" >
+                                    <c:forEach var="roomList" items="${roomList}"  >
                                         <form:option value="${roomList.roomId}">
                                             ${roomList.roomId} : ${roomList.roomType}
                                         </form:option>
@@ -101,22 +101,18 @@
                             </div>
                             <div class="form-group">
                                 <form:label path="batch"> Batch </form:label>
-                                <form:input type="hidden" path="batch" cssClass="form-control"
-                                            value="${batchinfo.batchID}" readonly="true"
+                                <form:input type="hidden" path="timetableID" cssClass="form-control"
+                                            value="${timetableinfor.timetableID}" readonly="true"
                                             required="required"/>
-                                <input   type="text" class="form-control"   required="required" value="${batchinfo.batchCode}" readonly="readonly" />
+                                <input   type="text" class="form-control"   required="required" value="${timetableinfor.batch.batchCode}" readonly="readonly" />
 
-                                    <%--                                <form:select path="batch" cssClass="form-control" aria-required="true">--%>
-                                    <%--                                    <c:forEach var="batch" items="${batchList}" >--%>
-                                    <%--                                        <form:option value="${batch.batchID}">--%>
-                                    <%--                                            ${batch.batchCode}--%>
-                                    <%--                                        </form:option>--%>
-                                    <%--                                    </c:forEach>--%>
-                                    <%--                                </form:select>--%>
                             </div>
+                            <form:input type="hidden" path="batch" cssClass="form-control"
+                                        value="${timetableinfor.batch.batchID}" readonly="true"
+                                        />
 
 
-                            <input type="submit" class="btnRegister"  value="Submit"/>
+                            <input type="submit" class="btnRegister"  value="Reschedule"/>
                         </div>
                     </div>
 

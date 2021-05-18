@@ -139,6 +139,10 @@ li a:hover {
 }
 .nav_link li a{
     transition: all 0.3s ease 0s;
+    font-weight: 500;
+    font-size: 16px;
+    color: #edf0f1;
+    text-decoration: none;
 }
 
 .nav_link li a:hover{

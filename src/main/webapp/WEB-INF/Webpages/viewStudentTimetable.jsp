@@ -1,15 +1,16 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%--
   Created by IntelliJ IDEA.
   User: janithdabare
-  Date: 5/7/21
-  Time: 21:03
+  Date: 5/16/21
+  Time: 19:05
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>View All Modules</title>
+    <title>Title</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/viewUsers.css">
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
@@ -17,6 +18,7 @@
 
 </head>
 <body>
+
 <div class="header">
     <h1 class="head" >Time Table System</h1>
 </div>
@@ -46,30 +48,30 @@
 <table class="content-table">
 
     <thead><tr>
-        <th>Module ID </th>
-        <th> Module Name </th>
-        <th>  Module Lecturer </th>
-        <th>  Update </th>
-        <th>  Lecturer Assign </th>
-
+        <th>Date</th>
+        <th>Start Time </th>
+        <th> End Time </th>
+        <th>  Module  </th>
+        <th>   Room </th>
+        <th>   Room Type </th>
+        <th>  Lecturer  </th>
 
     </tr>
     </thead>
     <tbody>
 
-    <c:forEach var="tempModules" items="${modules}">
+    <c:forEach var="timetable" items="${timetableList}">
 
         <tr>
-            <td>${tempModules.module_id}</td>
-            <td>${tempModules.moduleName}</td>
-            <td>${tempModules.lecUser.firstname}</td>
-            <td>
-         <a href="${pageContext.request.contextPath}/updateModuleForm/${tempModules.module_id}" class="btn btn-outline-danger">Edit</a>
+            <td> ${timetable.date} </td>
+            <td>${timetable.startTime}</td>
+            <td>${timetable.endTIme}</td>
+            <td>${timetable.module.moduleName}</td>
+            <td>${timetable.classRoom.roomId}</td>
+            <td>${timetable.classRoom.roomType}</td>
+            <td>${timetable.module.lecUser.firstname}</td>
 
-            </td>
-            <td>
-               <a href="${pageContext.request.contextPath}/assignModuleForm/${tempModules.module_id}" class="btn btn-outline-success ">Assign</a>
-            </td>
+
 
         </tr>
     </c:forEach>

@@ -26,6 +26,9 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
 
+    @Autowired
+    private  EmailServiceImpl emailService;
+
     public User getUser(String username) {
         return userRepository.findUsersByUsername(username);
     }
@@ -58,7 +61,9 @@ public class UserServiceImpl implements UserService {
                 userdomain.setGender(registerUser.getGender());
                 //Collection <com.janith.eea.Model.UserRole>
             }
-            return userRepository.save(userdomain);
+            User save = userRepository.save(userdomain);
+            emailService.sendEmail(registerUser);
+            return save;
 
         }
     }
@@ -167,12 +172,32 @@ public class UserServiceImpl implements UserService {
                 user.setLastname(userDto.getLastname());
                 user.setEmail(userDto.getEmail().toLowerCase(Locale.ROOT)); // validation
                 user.setMobile(userDto.getMobile());
-                user.setPassword(passwordEncoder.encode(userDto.getPassword()));
+//                user.setPassword(passwordEncoder.encode(userDto.getPassword()));
 //                user.setBatch(userDto.getBatch());
 
 
             }
             return userRepository.save(user);
+
+
+    }
+
+    @Override
+    public User updateStudent(UserDto userDto) {
+        Optional<User> userdomain = userRepository.findById(userDto.getUserId());
+
+        User user = userdomain.get();
+
+
+        if (user != null) {
+
+
+            user.setEmail(userDto.getEmail().toLowerCase(Locale.ROOT)); // validation
+            user.setMobile(userDto.getMobile());
+            user.setPassword(passwordEncoder.encode(userDto.getPassword()));
+
+        }
+        return userRepository.save(user);
 
 
     }

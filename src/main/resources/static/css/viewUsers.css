@@ -124,14 +124,14 @@ h1{
 /*}*/
 
 
-/*.nav_link li a:hover{*/
-/*    transition: all 0.3s ease 0s;*/
-/*}*/
+.nav_link li a:hover{
+    transition: all 0.3s ease 0s;
+}
 
-/*.nav_right{*/
-/*    margin-left: 950px;*/
+.nav_right{
+    margin-left: 950px;
 
-/*}*/
+}
 
 /*
 table {

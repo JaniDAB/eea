@@ -78,14 +78,10 @@ public class AdminController {
     @GetMapping("/showFormUpdate/{id}")
     public String updateFormDirect(@PathVariable(value = "id") int id, Model model) {
         try {
-            int num = id;
             UserDto userDto = new UserDto();
-            UserDto userinfo = service.getUserById(num);
-            List<BatchDto> batchDtoList;
-            batchDtoList = batchService.getAllBatches();
+            UserDto userinfo = service.getUserById(id);
             model.addAttribute("userinfo", userinfo);
             model.addAttribute("user", userDto);
-            model.addAttribute("batchlist",batchDtoList);
             return "updateUser";
         } catch (Exception ex) {
             System.out.println(ex);
@@ -98,8 +94,7 @@ public class AdminController {
     public String deleteUser(@PathVariable(value = "id")int ID, Model m)
     {
         try {
-            int userID = ID;
-            this.service.deleteUserByID(userID);
+            this.service.deleteUserByID(ID);
 m.addAttribute("deleted", "Record Deleted Successfully");
             return "redirect:/admin/users/allStudents";
         }catch (Exception e){
@@ -116,6 +111,35 @@ m.addAttribute("deleted", "Record Deleted Successfully");
     public String modifyUser(@ModelAttribute("user") UserDto userDto) {
         final User save = service.editUser(userDto);
         return "/adminHome";
+    }
+
+    @GetMapping("/student/getUpdateForm/{id}")
+    public  String  getUpdateFormStudent(@PathVariable(value = "id") int id , Model u)
+    {
+        try {
+            UserDto userDto = new UserDto();
+            UserDto userinfo = service.getUserById(id);
+            u.addAttribute("userinfo", userinfo);
+            u.addAttribute("student", userDto);
+            return "updateStudent";
+        } catch (Exception ex) {
+            System.out.println(ex);
+            u.addAttribute("student", new UserDto());
+            return "updateStudent";
+        }
+    }
+
+    @PostMapping("/student/Updateform")
+    public String updateStudent(@ModelAttribute("student") UserDto userDto , Model m)
+    {
+        try {
+            final User update = service.updateStudent(userDto); // change service method
+            m.addAttribute("Updated", "Updated Successfully");
+            return "updateStudent";
+        }catch (Exception e){
+            m.addAttribute("error", "  UnSuccessful");
+            return "";
+        }
     }
 
 

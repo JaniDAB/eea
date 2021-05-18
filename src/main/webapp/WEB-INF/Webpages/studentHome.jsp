@@ -10,7 +10,7 @@
 <head>
     <title>Student Home Page</title>
     <link rel="stylesheet"  href="${pageContext.request.contextPath}/css/studentHome.css">
-    <%--        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">--%>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 </head>
 <body>
@@ -18,9 +18,10 @@
 
 <%--<div class="header">--%>
 <%--    <h1 class="header1" > Timetable System </h1>--%>
-</div>
+<%--</div>--%>
 <ul class="nav_link">
-    <li><a href="${pageContext.request.contextPath}/login">Home</a></li>
+
+    <li style="float: right"><a  class="fa fa-sign-out" href="${pageContext.request.contextPath}/login">Log out</a></li>
 
 </ul>
 
@@ -36,20 +37,20 @@
 <%--                <h3 class="card__heading">Add Modules</h3>--%>
 <%--            </div>--%>
 <%--        </a>--%>
-        <a class="card" href="${pageContext.request.contextPath}/ViewTimetable" style="padding-left: 10px">
+        <a class="card" href="${pageContext.request.contextPath}/student/timetable/${student.batch.batchID}" style="padding-left: 10px">
             <div class="card__background" style="background-image: url(http://i.ibb.co/2nLr8js/schedule.png)"></div>
             <div class="card__content">
                 <%--                <p class="card__category">Category</p>--%>
                 <h3 class="card__heading">View Time Table</h3>
             </div>
         </a>
-<%--        <a class="card" href="${pageContext.request.contextPath}/add">--%>
-<%--            <div class="card__background" style="background-image: url(https://i.ibb.co/hFvmzXt/image.png)"></div>--%>
-<%--            <div class="card__content">--%>
-<%--                &lt;%&ndash;                <p class="card__category">Category</p>&ndash;%&gt;--%>
-<%--                <h3 class="card__heading">Add Academic Users</h3>--%>
-<%--            </div>--%>
-<%--        </a>--%>
+        <a class="card" href="${pageContext.request.contextPath}/student/getUpdateForm/${student.userId}">
+            <div class="card__background" style="background-image: url(https://i.ibb.co/hFvmzXt/image.png)"></div>
+            <div class="card__content">
+                <%--                <p class="card__category">Category</p>--%>
+                <h3 class="card__heading">My Account</h3>
+            </div>
+        </a>
             <%--            <a class="card" href="#">--%>
             <%--                <div class="card__background" style="background-image: url(https://images.unsplash.com/photo-1557004396-66e4174d7bf6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60)"></div>--%>
             <%--                <div class="card__content">--%>

@@ -9,8 +9,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>View Batches</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/viewM.css">
+    <title>View Schedule </title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/viewUsers.css">
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 </head>
@@ -26,35 +26,45 @@
 <nav class="fill">
     <ul>
         <li> <a class="nav-link" href="${pageContext.request.contextPath}/admin">Home</a></li>
-        <li> <a class="nav-link" href="${pageContext.request.contextPath}/getAllSchedules">View Schedule</a></li>
 
         <li style="float:right"><a class="fa fa-sign-out nav-link"  href="${pageContext.request.contextPath}/logout"> Logout</a></li>
     </ul>
 </nav>
-<div class="row justify-content-center  headingg">
-    <h3>
-        Please Select a Batch to Schedule the  time table
-    </h3>
-</div>
+<%--<div class="row justify-content-center  headingg">--%>
+<%--    <h3>--%>
+<%--        Please Select a Batch to Schedule the  time table--%>
+<%--    </h3>--%>
+<%--</div>--%>
 
 <table class="content-table">
 
     <thead><tr>
-        <th> Batch Code </th>
-        <th> Batch Description </th>
-        <th> Schedule a Time table </th>
-
+        <th>Batch</th>
+        <th>Date</th>
+        <th>Start Time </th>
+        <th> End Time </th>
+        <th>  Module  </th>
+        <th>   Room </th>
+        <th>   Room Type </th>
+        <th>  Lecturer  </th>
+        <th> Reschedule</th>
     </tr>
     </thead>
     <tbody>
 
-    <c:forEach var="tempBatch" items="${batches}">
+    <c:forEach var="temptimetable" items="${allSchedules}">
 
         <tr>
-            <td>${tempBatch.batchCode}</td>
-            <td>${tempBatch.description}</td>
+            <td> ${temptimetable.batch.batchCode} </td>
+            <td> ${temptimetable.date} </td>
+            <td>${temptimetable.startTime}</td>
+            <td>${temptimetable.endTIme}</td>
+            <td>${temptimetable.module.moduleName}</td>
+            <td>${temptimetable.classRoom.roomId}</td>
+            <td>${temptimetable.classRoom.roomType}</td>
+            <td>${temptimetable.module.lecUser.firstname}</td>
             <td>
-                <span><a href="${pageContext.request.contextPath}/admin/addTimetable/${tempBatch.batchID}" class="btn btn-success">Schedule</a>
+                <span><a href="${pageContext.request.contextPath}/admin/rescheduleDirect/${temptimetable.timetableID}/${temptimetable.batch.batchID}" class="btn btn-success">Reschedule</a>
                 </span>
             </td>
 

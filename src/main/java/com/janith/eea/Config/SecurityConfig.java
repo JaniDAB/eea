@@ -13,6 +13,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.util.matcher.RequestMatcher;
 import org.springframework.util.AntPathMatcher;
 
 @Configuration
@@ -51,17 +52,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .formLogin()
                 .loginPage("/login")
-                .defaultSuccessUrl("/afterlogin")
                 .loginProcessingUrl("/loginservelet")
                 .usernameParameter("username")
                 .passwordParameter("password")
+                .defaultSuccessUrl("/afterlogin")
                 .permitAll()
                 .and()
                 .logout()
-//                .invalidateHttpSession(true)
-////                .clearAuthentication(true)
-////                .logoutRequestMatcher(new AntPathMatcher("/logout"))
-//                .logoutSuccessUrl("/login?logout")
+                .invalidateHttpSession(true)
+                .clearAuthentication(true)
+//                .logoutRequestMatcher((RequestMatcher) new AntPathMatcher("/logout"))
+                .logoutSuccessUrl("/login?logout")
         .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED);
 
         http.csrf().disable();

@@ -82,6 +82,8 @@
                                         <form:label path="roomType"> Select Room Type :</form:label><br>
                                         <form:radiobutton path="roomType" value="Lecturer Hall"/> Lecturer Hall
                                         <form:radiobutton path="roomType" value="Conference Hall"/> Conference Hall
+                                        <form:radiobutton path="roomType" value="Lab"/> Lab
+
                                     </label>
                                 </div>
                             </div>
