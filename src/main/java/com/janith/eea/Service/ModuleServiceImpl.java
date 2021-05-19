@@ -110,7 +110,22 @@ public class ModuleServiceImpl implements ModuleService{
 
     @Override
     public List<ModuleDto> viewLecsModules(int userID) {
-        return null;
+        List<Module> moduleList = moduleRepository.findModuleByLecUser_UserId(userID);
+
+        List<ModuleDto> moduleDtoList  = new ArrayList<>();
+
+        if(moduleList != null){
+            for( Module model :moduleList){
+                ModuleDto moduleDto = new ModuleDto();
+
+                moduleDto.setModule_id(model.getModule_id());
+                moduleDto.setModuleName(model.getModuleName());
+                moduleDto.setLecUser(model.getLecUser());
+
+                moduleDtoList.add(moduleDto);
+            }
+        }
+        return  moduleDtoList;
     }
 }
 

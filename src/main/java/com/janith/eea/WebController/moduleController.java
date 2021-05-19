@@ -94,6 +94,23 @@ public class moduleController {
 
     }
 
+    @GetMapping("/getLecturerModuleList/{userID}")
+    public String getModuleListLecturer(@PathVariable( name = "userID") int UserID, Model m)
+    {
+        try {
+            List<ModuleDto> modelInfoList = moduleService.viewLecsModules(UserID);
+
+            m.addAttribute("moduleInfoList", modelInfoList);
+
+            return "LecturerModules";
+        } catch (Exception ex) {
+            System.out.println("Module not found"+ex);
+
+            return "LecturerModules";
+        }
+
+    }
+
 
 
 }

@@ -53,7 +53,8 @@ public class AuthenticationController {
         }
         if (user.getRole().getRoleName() == UserTypeUtil.LECTURER){
             a.addAttribute("lecturer", user);
-            return "/lecturerHome";
+
+            return "/LecturerHome";
         }
 
         return "/login";
