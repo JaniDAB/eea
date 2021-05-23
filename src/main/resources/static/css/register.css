@@ -292,3 +292,10 @@ li a:hover {
 .nav_link li a:hover {
     transition: all 0.3s ease 0s;
 }
+
+.form-select{
+    width: 300px;
+    padding: 14px 16px;
+    font-family: "montserrat",sans-serif;
+
+}

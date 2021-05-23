@@ -10,13 +10,13 @@
 <html>
 <head>
     <title> View User</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/viewUsers.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/viewStudents.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 
 </head>
-<body style="background-image: url(/images/timetable.png)">
+<body style="background : -webkit-linear-gradient(right,#c4e5ec, #5484c7);">
 
 <div class="header">
     <h1 >Time Table System</h1>
@@ -34,7 +34,7 @@
         <li><a   class="nav-link" href="${pageContext.request.contextPath}/admin">Home</a></li>
         <li><a class="nav-link" href="${pageContext.request.contextPath}/admin/users/allStudents">View Students & Assign Batches</a></li>
         <li><a   class="nav-link" href="${pageContext.request.contextPath}/admin/users/allLectruer">View Lecturers</a></li>
-        <li style="float:right"><a  class="nav-link fa fa-sign-out" href="${pageContext.request.contextPath}/logout">Log out</a></li>
+        <li  style="float:right"> <form method="post" action="${pageContext.request.contextPath}/logout"> <button type="submit" class="fa fa-sign-out nav-link" > Logout</button></form> </li>
 
     </ul>
 </nav>

@@ -35,13 +35,12 @@
             <%--            <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt=""/>--%>
             <h3> Update Batch here</h3>
             <p>Batch Name, Description can be Updated</p>
-            <input type="submit" name="" value="Login"/><br/>
         </div>
         <div class="col-md-9 register-right">
 
             <div class="tab-content" id="myTabContent">
                 <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                    <h3 class="register-heading">Add A Batch</h3>
+                    <h3 class="register-heading">Update Batch</h3>
 
                     <form:form action="${pageContext.request.contextPath}/modifyBatch" method="POST"  modelAttribute="batchupdate" >
 
@@ -50,18 +49,21 @@
                         <div class="col-md-6">
                             <div class="form-group" >
                                     <%--                                <input   type="text" class="form-control" placeholder="First Name *"  required="required" value="" />--%>
+                              <form:label path="batchCode"> Batch Code</form:label>
                                 <form:input   value="${batchInfo.batchCode}" type="text" path="batchCode" cssClass="form-control" placeholder="Batch code *" required="required"/>
                             </div>
                             <div class="form-group" >
                                     <%--                                <input   type="text" class="form-control" placeholder="First Name *"  required="required" value="" />--%>
-                                <form:input   value="${batchInfo.batchID}" type="hidden" path="batchID" cssClass="form-control" placeholder="Batch code *" required="required"/>
+
+                                        <form:input   value="${batchInfo.batchID}" type="hidden" path="batchID" cssClass="form-control" placeholder="Batch code *" required="required"/>
                             </div>
 
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                     <%--                                <input type="" class="form-control" placeholder="Your Email *"  required="required" value="" />--%>
-                                <form:input  type="text"   value ="${batchInfo.description}" path="description" cssClass="form-control" placeholder="Batch Description *"  required="required"/>
+                                        <form:label path="description"> Batch Description</form:label>
+                                        <form:input  type="text"   value ="${batchInfo.description}" path="description" cssClass="form-control" placeholder="Batch Description *"  required="required"/>
 
                             </div>
 

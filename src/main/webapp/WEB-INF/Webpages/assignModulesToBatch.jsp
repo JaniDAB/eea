@@ -22,7 +22,7 @@
     <h1 class="header1"> Timetable System </h1>
 </div>
 <ul class="nav_link" style="margin-bottom: 0">
-    <li><a class="nav-link" href="${pageContext.request.contextPath}/admin">Admin Home</a></li>
+    <li><a class="nav-link" href="${pageContext.request.contextPath}/admin">Home</a></li>
 </ul>
 
 <!------ Include the above in your HEAD tag ---------->
@@ -35,7 +35,6 @@
             <h3>Assign Modules To a Batch</h3>
 
             <p> Assigning Modules to a Batch can be done here</p>
-            <input type="submit" name="" value="Login"/><br/>
         </div>
         <div class="col-md-9 register-right">
 

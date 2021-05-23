@@ -37,7 +37,6 @@
             <%--            <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt=""/>--%>
             <h3> Add Batch here</h3>
             <p>Batch Name, Description can be added</p>
-            <input type="submit" name="" value="Login"/><br/>
         </div>
         <div class="col-md-9 register-right">
             <%--            <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">--%>

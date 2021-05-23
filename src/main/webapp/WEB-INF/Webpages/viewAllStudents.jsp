@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 </head>
-<body>
+<body style="background : -webkit-linear-gradient(right,#c4e5ec, #5484c7);">
 
 <div class="header">
     <h1>Time Table System</h1>
@@ -36,10 +36,14 @@
         <li><a   class="nav-link" href="${pageContext.request.contextPath}/admin">Home</a></li>
             <li><a   class="nav-link" href="${pageContext.request.contextPath}/admin/users/allLectruer">View Lecturers</a></li>
 
-            <li style="float:right"><a  class="nav-link fa fa-sign-out" href="${pageContext.request.contextPath}/logout">Log out</a></li>
+        <li  style="float:right"> <form method="post" action="${pageContext.request.contextPath}/logout"> <button type="submit" class="fa fa-sign-out nav-link" > Logout</button></form> </li>
 
     </ul>
 </nav>
+<div class="row justify-content-center successmessage" role="alert" >
+    ${deleted}
+    ${error}
+</div>
 
 <table class="content-table">
     <thead>

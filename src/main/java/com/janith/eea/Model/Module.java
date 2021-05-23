@@ -30,6 +30,7 @@ public class Module {
 @Setter
 private User lecUser;
 
+
     public List<Batch> getBatchList() {
         return batchList;
     }
@@ -56,4 +57,14 @@ private User lecUser;
     public void setModuleName(String moduleName) {
         this.moduleName = moduleName;
     }
+
+    public User getLecUser() {
+        return lecUser;
+    }
+
+    public void setLecUser(User lecUser) {
+        this.lecUser = lecUser;
+    }
+
+
 }

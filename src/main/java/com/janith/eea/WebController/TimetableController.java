@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -115,17 +116,32 @@ public class TimetableController {
         return "selectBatchForSchedule";
     }
 
+    @GetMapping("/admin/timetable/listModules")
+    public String listModules(Model b) {
+
+         List<ModuleDto> moduleDtoList = moduleService.getAllModules();
+        b.addAttribute("modules", moduleDtoList);
+
+        return "selectModuleforSchedule";
+    }
+
     @GetMapping("/admin/addTimetable/{id}")
     public String addTimetableD(@PathVariable(value = "id")int id, Model t) {
 
         try {
-            int batchId = id;
-            BatchDto batchInfo =batchService.getBatchById(batchId);
-            List<ModuleDto>  moduleDtoList = batchService.getModuleList(batchId);
+            int module = id;
+//            BatchDto batchInfo =batchService.getBatchById(batchId);
+
+            ModuleDto moduleinfor = moduleService.getModuleById(module);
+
+//            List<ModuleDto>  moduleDtoList = batchService.getModuleList(batchId);
+
+            List<BatchDto> batchDtoList = moduleService.getBatchListM(module);
+
             List<ClassRoomDto> classRoomDtoList = classRoomService.viewRooms();
 
-            t.addAttribute("moduleList", moduleDtoList);
-            t.addAttribute("batchinfo", batchInfo);
+            t.addAttribute("batchList", batchDtoList);
+            t.addAttribute("moduleInfo", moduleinfor);
             t.addAttribute("roomList", classRoomDtoList);
             t.addAttribute("timetable", new TimetableDto());
 
@@ -159,15 +175,15 @@ public class TimetableController {
         return "timetableList";
     }
 
-    @GetMapping("/admin/rescheduleDirect/{timetableId}/{batchID}")
-    public  String getRescheduleForm(@PathVariable(value="timetableId") int timetableid,@PathVariable(value = "batchID")int BatchId, Model timetableM)
+    @GetMapping("/admin/rescheduleDirect/{timetableId}")
+    public  String getRescheduleForm(@PathVariable(value="timetableId") int timetableid, Model timetableM)
     {
        TimetableDto timetableDtoInfo  = timeTableService.viewTableByID(timetableid);
-        List<ModuleDto>  ModuleList = batchService.getModuleList(BatchId);
+//        List<ModuleDto>  ModuleList = batchService.getModuleList(BatchId);
         List<ClassRoomDto> classRoomDtoList = classRoomService.viewRooms();
 
         timetableM.addAttribute("roomList", classRoomDtoList);
-        timetableM.addAttribute("moduleList", ModuleList);
+//        timetableM.addAttribute("moduleList", ModuleList);
        timetableM.addAttribute("timetableinfor" , timetableDtoInfo);
        timetableM.addAttribute("rescheduleTime", new TimetableDto());
 
@@ -188,5 +204,33 @@ public  String setRescheduleTimetable(@ModelAttribute("rescheduleTime") Timetabl
         }
         return "rescedule";
     }
+
+
+    @GetMapping("/deleteTimetable/{id}")
+            public String deleteTimetable(@PathVariable(value = "id")int tableID, Model mod, RedirectAttributes rd)
+    {
+        String s = timeTableService.deleteTimetableByID(tableID);
+        if (s.equals("deleted")){
+            rd.addFlashAttribute("deleted", "Table Deleted");
+
+        }
+        else {
+            mod.addAttribute("error", "Table Deleted");
+
+        }
+        return "redirect:/getAllSchedules";
+    }
+
+    @GetMapping("/lecturer/timetable/{id}")
+    public String getLecturerTimetable(@PathVariable(value = "id") int id, Model timetable)
+    {
+        List<TimetableDto> timetableDtoList = timeTableService.getAllTimeTablestoLecturer(id);
+
+        timetable.addAttribute("timetableList" , timetableDtoList);
+
+        return "viewLecturerTimetable";
+
+    }
+
 }
 

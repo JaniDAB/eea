@@ -21,7 +21,7 @@
 <%--</div>--%>
 <ul class="nav_link">
 
-    <li style="float: right"><a  class="fa fa-sign-out" href="${pageContext.request.contextPath}/login">Log out</a></li>
+    <li  style="float:right"> <form method="post" action="${pageContext.request.contextPath}/logout"> <button type="submit" class="fa fa-sign-out nav-link" > Logout</button></form> </li>
 
 </ul>
 

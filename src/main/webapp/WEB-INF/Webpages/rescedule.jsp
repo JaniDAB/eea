@@ -89,27 +89,27 @@
                                 </form:select>
                             </div>
 
+<%--                            <div class="form-group">--%>
+<%--                                <form:label path="module"> Select the Module from Below  List: </form:label>--%>
+<%--                                <form:select path="module" cssClass="form-control" aria-required="true">--%>
+<%--                                    <c:forEach var="module" items="${moduleList}" >--%>
+<%--                                        <form:option value="${module.module_id}">--%>
+<%--                                            ${module.moduleName}--%>
+<%--                                        </form:option>--%>
+<%--                                    </c:forEach>--%>
+<%--                                </form:select>--%>
+<%--                            </div>--%>
                             <div class="form-group">
-                                <form:label path="module"> Select the Module from Below  List: </form:label>
-                                <form:select path="module" cssClass="form-control" aria-required="true">
-                                    <c:forEach var="module" items="${moduleList}" >
-                                        <form:option value="${module.module_id}">
-                                            ${module.moduleName}
-                                        </form:option>
-                                    </c:forEach>
-                                </form:select>
-                            </div>
-                            <div class="form-group">
-                                <form:label path="batch"> Batch </form:label>
+<%--                                <form:label path="batch"> Batch </form:label>--%>
                                 <form:input type="hidden" path="timetableID" cssClass="form-control"
                                             value="${timetableinfor.timetableID}" readonly="true"
                                             required="required"/>
-                                <input   type="text" class="form-control"   required="required" value="${timetableinfor.batch.batchCode}" readonly="readonly" />
+<%--                                <input   type="text" class="form-control"   required="required" value="${timetableinfor.batch.batchCode}" readonly="readonly" />--%>
 
                             </div>
-                            <form:input type="hidden" path="batch" cssClass="form-control"
-                                        value="${timetableinfor.batch.batchID}" readonly="true"
-                                        />
+<%--                            <form:input type="hidden" path="batch" cssClass="form-control"--%>
+<%--                                        value="${timetableinfor.batch.batchID}" readonly="true"--%>
+<%--                                        />--%>
 
 
                             <input type="submit" class="btnRegister"  value="Reschedule"/>

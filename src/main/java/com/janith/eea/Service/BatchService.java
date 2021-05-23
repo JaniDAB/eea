@@ -18,4 +18,6 @@ public interface BatchService {
     List<ModuleDto> getModuleList(int id);
 
     Batch editBatchInfo(BatchDto batchDto);
+
+    String deleteBatch(int BatchId);
 }

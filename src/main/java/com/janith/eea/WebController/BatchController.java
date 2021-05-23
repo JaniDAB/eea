@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -94,18 +95,33 @@ public class BatchController {
     public  String showModuleList(@PathVariable(value = "id")int id, Model ba)
     {
         try{
-            int BatchID = id;
-
-            List<ModuleDto>  moduleDtoList = batchService.getModuleList(BatchID);
+            BatchDto batchInfo =batchService.getBatchById(id);
+            List<ModuleDto>  moduleDtoList = batchService.getModuleList(id);
 
             ba.addAttribute("moduleList" , moduleDtoList);
-
+            ba.addAttribute("batchinfo", batchInfo);
             return "ViewBatchModules";
         }catch (Exception e){
             System.out.println(e);
             return "ViewBatchModules";
         }
 
+
+    }
+
+    @GetMapping("/deleteBatch/{id}")
+    public String deleteTimetable(@PathVariable(value = "id")int batchID, Model mod, RedirectAttributes rd)
+    {
+        String s = batchService.deleteBatch(batchID);
+        if (s.equals("deleted")){
+            rd.addFlashAttribute("deleted", "Table Deleted");
+
+        }
+        else {
+            mod.addAttribute("error", "Table Deleted");
+
+        }
+        return "redirect:/admin/listBatches";
     }
 
 

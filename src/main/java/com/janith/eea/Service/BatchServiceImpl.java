@@ -128,6 +128,8 @@ public class BatchServiceImpl implements BatchService {
         return moduleDtoList;
     }
 
+
+
     @Override
     public Batch editBatchInfo(BatchDto batchDto) {
         Optional<Batch> optionalBatch = batchRepo.findById(batchDto.getBatchID());
@@ -145,4 +147,17 @@ public class BatchServiceImpl implements BatchService {
         return batchRepo.save(batch);
     }
 
+    @Override
+    public String deleteBatch(int BatchId) {
+        try {
+            this.batchRepo.deleteById(BatchId);
+            return "deleted";
+        }
+        catch (Exception EX)
+        {
+            System.out.println(EX);
+            return "error";
+        }
+
+    }
 }

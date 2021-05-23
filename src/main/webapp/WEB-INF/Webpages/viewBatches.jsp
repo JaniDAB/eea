@@ -10,11 +10,13 @@
 <html>
 <head>
     <title>View Batches</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/viewM.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/viewUsers.css">
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 </head>
-<body style="background-image: url(/images/timetable.png)">
+<body style="background : -webkit-linear-gradient(right,#c4e5ec, #5484c7);">
 
 <div class="header">
     <h1 class="head" >Time Table System</h1>
@@ -27,19 +29,23 @@
 <nav class="fill">
     <ul>
         <li> <a class="nav-link" href="${pageContext.request.contextPath}/admin">Home</a></li>
+        <li  style="float:right"> <form method="post" action="${pageContext.request.contextPath}/logout"> <button type="submit" class="fa fa-sign-out nav-link" > Logout</button></form> </li>
+
     </ul>
 </nav>
-
+<div class="row justify-content-center successmessage" role="alert" >
+    ${deleted}
+    ${error}
+</div>
 <table class="content-table">
 
     <thead><tr>
         <th>Batch ID </th>
         <th> Batch Code </th>
         <th> Batch Description </th>
-        <th> Edit Batch </th>
+        <th> Edit And Delete Batch </th>
         <th> Assign Modules to Batch </th>
         <th> More Info </th>
-
 
     </tr>
     </thead>
@@ -53,6 +59,7 @@
             <td>${tempBatch.description}</td>
             <td>
                 <span><a href="${pageContext.request.contextPath}/directUpdateMBatchForm/${tempBatch.batchID}" class="btn btn-primary">Edit</a>
+                    <a href="${pageContext.request.contextPath}/deleteBatch/${tempBatch.batchID}" class="btn btn-danger">Remove</a>
                 </span>
             </td>
             <td>

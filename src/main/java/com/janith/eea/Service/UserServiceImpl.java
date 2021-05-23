@@ -197,8 +197,11 @@ public class UserServiceImpl implements UserService {
             user.setPassword(passwordEncoder.encode(userDto.getPassword()));
 
         }
-        return userRepository.save(user);
 
+        User save = userRepository.save(user);
+        emailService.emailPasswordReset(user);
+
+        return save;
 
     }
 
@@ -247,8 +250,18 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void deleteUserByID(int ID) {
-        this.userRepository.deleteById(ID);
+    public String deleteUserByID(int ID) {
+        try {
+            this.userRepository.deleteById(ID);
+            return "deleted";
+        }
+        catch (Exception EX)
+        {
+            System.out.println(EX);
+            return "error";
+        }
+
+
     }
 
     @Override

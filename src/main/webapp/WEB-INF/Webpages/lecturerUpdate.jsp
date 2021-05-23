@@ -8,7 +8,8 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/register.css">
-    <title>Update User </title>
+    <title>Update My Account </title>
+
     <script>
         function Validate() {
             var pasword1 = document.getElementById("pass1");
@@ -34,11 +35,14 @@
     <h1 class="header1"> Timetable System </h1>
 </div>
 <ul class="nav_link" style="margin-bottom: 0">
-    <li><a class="nav-link" href="${pageContext.request.contextPath}/admin"> Home</a></li>
+    <li><a class="nav-link" href="${pageContext.request.contextPath}/lecturer"> Home</a></li>
 </ul>
 
 <!------ Include the above in your HEAD tag ---------->
-
+<div class="row justify-content-center  successmessage" role="alert" style="color: #55efc4">
+    ${Updated}
+    ${error}
+</div>
 <div class="container register" style="max-width: 100%;">
     <div class="row">
         <div class="col-md-3 register-left">
@@ -48,8 +52,9 @@
             <%--    Add users--%>
             <img src="https://i.ibb.co/6bkWbL7/icons8-business-group-64.png" alt="icons8-business-group-64" border="0">
             <h3>${userinfo.firstname} ${userinfo.lastname} </h3>
-                <p>Batch(If Enrolled): ${userinfo.batch.batchCode} </p>
-<%--            <p>Add Timetable System users here</p>--%>
+            <p> Enrolled Batch: ${userinfo.batch.batchCode} </p>
+            <%--            <p>Add Timetable System users here</p>--%>
+            <%--            <input type="submit" name="" value="Login"/><br/>--%>
         </div>
         <div class="col-md-9 register-right">
 
@@ -57,60 +62,51 @@
                 <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                     <h3 class="register-heading">Update User</h3>
 
-                    <form:form action="/modifyUser" method="POST"   modelAttribute="user">
+                    <form:form action="${pageContext.request.contextPath}/lecturer/Updateform" method="POST"
+                               onsubmit="return Validate()" modelAttribute="lecturer">
 
 
                     <div class="row register-form">
+
+
                         <div class="col-md-6">
                             <div class="form-group">
-                                <form:input type="text" path="firstname" cssClass="form-control"
-                                          value="${userinfo.firstname}"  placeholder="First Name *" required="required"/>
+                                <form:input type="text" path="email" cssClass="form-control"
+                                            value="${userinfo.email}" required="required"/>
                             </div>
                             <div class="form-group">
-                                <form:input type="text" path="lastname" cssClass="form-control"
-                                          value="${userinfo.lastname}"  placeholder="Last Name *" required="required"/>
-
+                                <form:input type="password" path="password" cssClass="form-control"
+                                            placeholder="New Password *" id="pass1" required="required"/>
                             </div>
-<%--                            <div class="form-group">--%>
-<%--                                    &lt;%&ndash;&ndash;%&gt;--%>
-<%--                                <form:input type="password" path="password" cssClass="form-control"--%>
-<%--                                            value="${userinfo.password}"     placeholder="Password *" id="pass1" required="required"/>--%>
-<%--                            </div>--%>
-
-<%--                            <div class="form-group">--%>
-<%--                                <input type="password" class="form-control" placeholder="Confirm Password *" id="pass2"--%>
-<%--                                         required="required" value=""/>--%>
-
-<%--                            </div>--%>
 
                         </div>
                         <div class="col-md-6">
 
                             <div class="form-group">
-                                <form:input value="${userinfo.email}" type="email" path="email" cssClass="form-control" placeholder="Email *"
-                                            required="required"/>
-
-                            </div>
-                            <div class="form-group">
-                                <form:input value="${userinfo.userId}" type="hidden" path="userId" cssClass="form-control" placeholder="Email *"
+                                <form:input value="${userinfo.mobile}" type="number" path="mobile" cssClass="form-control"
+                                            placeholder="Mobile *"
                                             required="required"/>
 
                             </div>
 
                             <div class="form-group">
-                                <form:input type="text" maxlength="10" path="mobile" cssClass="form-control"
-                                            value="${userinfo.mobile}"   placeholder="Your Phone  *" required="required"/>
+                                <input type="password" class="form-control" placeholder="Confirm Password *" id="pass2"
+                                       required="required" value=""/>
                             </div>
+                            <div class="form-group">
+                                <form:input value="${userinfo.userId}" type="hidden" path="userId"
+                                            cssClass="form-control"
+                                            required="required"/>
 
-
+                            </div>
 
                             <div class="form-group">
                                 <form:input type="text" path="username" cssClass="form-control"
-                                            value="${userinfo.username}"     placeholder="User Name *" required="required"/>
+                                            readonly="true"   value="${userinfo.username}"  required="required"/>
 
                             </div>
 
-                            <input type="submit" class="btnRegister"  value="Register"/>
+                            <input type="submit" class="btnRegister" onclick="Validate()"  value="Update"/>
                         </div>
                     </div>
 

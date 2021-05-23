@@ -23,7 +23,7 @@
 <%--    <h1 class="header1" > Timetable System </h1>--%>
 </div>
 <ul class="nav_link">
-    <li style="float: right"><a  class="fa fa-sign-out" href="${pageContext.request.contextPath}/login">Log out</a></li>
+    <li  style="float:right"> <form method="post" action="${pageContext.request.contextPath}/logout"> <button type="submit" class="fa fa-sign-out nav-link" > Logout</button></form> </li>
 
 </ul>
 
@@ -54,7 +54,7 @@
             </div>
         </a>
             </li>
-            <a class="card" href="${pageContext.request.contextPath}/admin/timetable/listBatches">
+            <a class="card" href="${pageContext.request.contextPath}/admin/timetable/listModules">
                 <div class="card__background" style="background-image: url(https://images.unsplash.com/photo-1557004396-66e4174d7bf6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60)"></div>
                 <div class="card__content">
 

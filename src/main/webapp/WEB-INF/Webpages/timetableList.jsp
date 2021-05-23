@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/viewUsers.css">
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 </head>
 <body style="background : -webkit-linear-gradient(right,#c4e5ec, #5484c7);">
 
@@ -27,7 +29,11 @@
     <ul>
         <li> <a class="nav-link" href="${pageContext.request.contextPath}/admin">Home</a></li>
 
-        <li style="float:right"><a class="fa fa-sign-out nav-link"  href="${pageContext.request.contextPath}/logout"> Logout</a></li>
+<%--        <li style="float:right"><a class="fa fa-sign-out nav-link"  href="${pageContext.request.contextPath}/logout"> Logout</a></li>--%>
+        <li  style="float:right"> <form method="post" action="${pageContext.request.contextPath}/logout">
+
+            <button type="submit" class="fa fa-sign-out nav-link" > Logout</button></form> </li>
+
     </ul>
 </nav>
 <%--<div class="row justify-content-center  headingg">--%>
@@ -35,11 +41,14 @@
 <%--        Please Select a Batch to Schedule the  time table--%>
 <%--    </h3>--%>
 <%--</div>--%>
-
+<div class="row justify-content-center  successmessage" role="alert" style="color: #55efc4">
+${deleted}
+${error}
+</div>
 <table class="content-table">
 
     <thead><tr>
-        <th>Batch</th>
+        <th>Batches</th>
         <th>Date</th>
         <th>Start Time </th>
         <th> End Time </th>
@@ -48,6 +57,8 @@
         <th>   Room Type </th>
         <th>  Lecturer  </th>
         <th> Reschedule</th>
+        <th> Delete</th>
+
     </tr>
     </thead>
     <tbody>
@@ -55,7 +66,11 @@
     <c:forEach var="temptimetable" items="${allSchedules}">
 
         <tr>
-            <td> ${temptimetable.batch.batchCode} </td>
+            <td>
+                    <c:forEach items="${temptimetable.batchList}" var="batchlist">
+                     ${batchlist.batchCode} <br>
+                    </c:forEach>
+            </td>
             <td> ${temptimetable.date} </td>
             <td>${temptimetable.startTime}</td>
             <td>${temptimetable.endTIme}</td>
@@ -64,7 +79,11 @@
             <td>${temptimetable.classRoom.roomType}</td>
             <td>${temptimetable.module.lecUser.firstname}</td>
             <td>
-                <span><a href="${pageContext.request.contextPath}/admin/rescheduleDirect/${temptimetable.timetableID}/${temptimetable.batch.batchID}" class="btn btn-success">Reschedule</a>
+                <span><a href="${pageContext.request.contextPath}/admin/rescheduleDirect/${temptimetable.timetableID}" class="btn btn-success">Reschedule</a>
+                </span>
+            </td>
+            <td>
+                <span><a href="${pageContext.request.contextPath}/deleteTimetable/${temptimetable.timetableID}" class="btn btn-danger">Remove</a>
                 </span>
             </td>
 

@@ -39,7 +39,7 @@
 </ul>
 
 <!------ Include the above in your HEAD tag ---------->
-<div class="row justify-content-center alert-light ml-5 successmessage" role="alert" style="color: #55efc4">
+<div class="row justify-content-center  successmessage" role="alert" style="color: #55efc4">
     ${Updated}
     ${error}
 </div>

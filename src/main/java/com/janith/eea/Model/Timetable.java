@@ -8,6 +8,7 @@ import javax.persistence.*;
 import java.sql.Date;
 import java.sql.Time;
 import java.time.LocalTime;
+import java.util.List;
 
 @Entity
 @Table(name = "timetable")
@@ -41,12 +42,16 @@ public class Timetable {
 @Setter
 private ClassRoom classRoom;
 
-    @ManyToOne
-    @JoinColumn(name = "batch_id")
+//    @ManyToOne
+//    @JoinColumn(name = "batch_id")
     @Setter
     @Getter
-    private Batch batch;
-
+//    private Batch batch;
+@ManyToMany
+@JoinTable(name = "timetable_batch",
+        joinColumns = @JoinColumn(name = "timetable_id"),
+        inverseJoinColumns = @JoinColumn(name = "batch_id"))
+private List<Batch> batchList;
     @ManyToOne
     @JoinColumn(name = "module_id")
     @Setter

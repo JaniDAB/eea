@@ -26,7 +26,6 @@
     <li><a class="nav-link" href="${pageContext.request.contextPath}/admin/users">View All Users</a></li>
     <li><a  class="nav-link" href="${pageContext.request.contextPath}/admin/users/allStudents">View  Students & Assign Batch</a></li>
     <li><a   class="nav-link" href="${pageContext.request.contextPath}/admin/users/allLectruer">View  Lecturers</a></li>
-    <li style="float:right"><a  class="fa fa-sign-out" href="${pageContext.request.contextPath}/logout">Log out</a></li>
 </ul>
 
 <!------ Include the above in your HEAD tag ---------->
@@ -77,6 +76,7 @@
                                         <form:radiobutton path="gender" value="Female"/> Female
                                     </label>
                                 </div>
+                                <form:errors path="gender" cssStyle="color: red"/>
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -98,6 +98,8 @@
                                     <option value="STUDENT">Student</option>
                                     <option value="LECTURER">Lecturer</option>
                                 </form:select>
+                                <form:errors path="role" cssStyle="color: red"/>
+
                             </div>
 
 
@@ -105,7 +107,7 @@
                                 <spring:bind path="username">
                                 <form:input type="text" path="username" cssClass="form-control"
                                             placeholder="User Name *" />
-                                    <form:errors path="username" cssClass="alert-danger"/>
+                                    <form:errors path="username" cssStyle="color: red"/>
                                 </spring:bind>
                             </div>
                             <input type="submit" class="btnRegister"  value="Register"/>

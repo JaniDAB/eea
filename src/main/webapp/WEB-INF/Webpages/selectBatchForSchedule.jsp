@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/viewM.css">
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 </head>
 <body style="background : -webkit-linear-gradient(right,#c4e5ec, #5484c7);">
 
@@ -26,6 +28,7 @@
 <nav class="fill">
     <ul>
         <li> <a class="nav-link" href="${pageContext.request.contextPath}/admin">Home</a></li>
+        <li> <a class="nav-link" href="${pageContext.request.contextPath}/addRoom">Add Room</a></li>
         <li> <a class="nav-link" href="${pageContext.request.contextPath}/getAllSchedules">View Schedule</a></li>
 
         <li style="float:right"><a class="fa fa-sign-out nav-link"  href="${pageContext.request.contextPath}/logout"> Logout</a></li>

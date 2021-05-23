@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -91,17 +92,34 @@ public class AdminController {
     }
 
     @GetMapping("/deleteUser/{id}")
-    public String deleteUser(@PathVariable(value = "id")int ID, Model m)
+    public String deleteUser(@PathVariable(value = "id")int ID, Model m, RedirectAttributes rd)
     {
-        try {
-            this.service.deleteUserByID(ID);
-m.addAttribute("deleted", "Record Deleted Successfully");
-            return "redirect:/admin/users/allStudents";
-        }catch (Exception e){
-            m.addAttribute("error", "Record Deletion UnSuccessful");
-            return "viewAllStudents";
-        }
+
+            String s = this.service.deleteUserByID(ID);
+            if (s.equals("deleted")) {
+                rd.addFlashAttribute("deleted", "Record Deleted Successfully");
+            }else {
+                rd.addFlashAttribute("error", "Record Deletion UnSuccessful");
+            }
+
+        return "redirect:/admin/users/allStudents";
+
     }
+    @GetMapping("/deleteUserLec/{id}")
+    public String deleteUserLec(@PathVariable(value = "id")int ID, Model m, RedirectAttributes rd)
+    {
+
+        String s = this.service.deleteUserByID(ID);
+        if (s.equals("deleted")) {
+            rd.addFlashAttribute("deleted", "Record Deleted Successfully");
+        }else {
+            rd.addFlashAttribute("error", "UnSuccessful,  Please DeAssign from Lecturers from Module");
+        }
+
+        return "redirect:/admin/users/allLectruer";
+
+    }
+
 
 
 
@@ -138,11 +156,37 @@ m.addAttribute("deleted", "Record Deleted Successfully");
             return "updateStudent";
         }catch (Exception e){
             m.addAttribute("error", "  UnSuccessful");
-            return "";
+            return "updateStudent";
         }
     }
 
-
+    @GetMapping("/lecturer/getUpdateForm/{id}")
+    public  String  getUpdateFormLecturer(@PathVariable(value = "id") int id , Model u)
+    {
+        try {
+            UserDto userDto = new UserDto();
+            UserDto userinfo = service.getUserById(id);
+            u.addAttribute("userinfo", userinfo);
+            u.addAttribute("lecturer", userDto);
+            return "lecturerUpdate";
+        } catch (Exception ex) {
+            System.out.println(ex);
+            u.addAttribute("lecturer", new UserDto());
+            return "lecturerUpdate";
+        }
+    }
+    @PostMapping("/lecturer/Updateform")
+    public String updateLecturer(@ModelAttribute("lecturer") UserDto userDto , Model m)
+    {
+        try {
+            final User update = service.updateStudent(userDto); // change service method
+            m.addAttribute("Updated", "Updated Successfully");
+            return "lecturerUpdate";
+        }catch (Exception e){
+            m.addAttribute("error", "  UnSuccessful");
+            return "lecturerUpdate";
+        }
+    }
 
 
     /// Batch functions ----------------------------------------------------------------

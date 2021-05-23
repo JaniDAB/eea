@@ -8,6 +8,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @NoArgsConstructor
 @AllArgsConstructor
 public class TimetableDto {
@@ -33,7 +35,7 @@ public class TimetableDto {
 
     @Getter
     @Setter
-    private Batch batch;
+    private List<Batch> batchList;
 
     @Getter
     @Setter

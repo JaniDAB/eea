@@ -33,7 +33,6 @@
                                  <img src="https://img.icons8.com/dotty/80/ffffff/elective.png"/>
             <h3> Update Module here</h3>
             <p>Module Name can be Updated</p>
-            <input type="submit" name="" value="Login"/><br/>
         </div>
         <div class="col-md-9 register-right">
 

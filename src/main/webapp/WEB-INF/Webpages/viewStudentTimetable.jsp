@@ -11,13 +11,13 @@
 <html>
 <head>
     <title>Title</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/viewUsers.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/viewStudents.css">
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 </head>
-<body>
+<body  style="background : -webkit-linear-gradient(right,#c4e5ec, #5484c7);">
 
 <div class="header">
     <h1 class="head" >Time Table System</h1>
@@ -41,7 +41,7 @@
     <ul>
         <li> <a class="nav-link" href="${pageContext.request.contextPath}/admin">Home</a></li>
 
-        <li style="float:right"><a class="fa fa-sign-out nav-link"  href="${pageContext.request.contextPath}/logout"> Logout</a></li>
+        <li  style="float:right"> <form method="post" action="${pageContext.request.contextPath}/logout"> <button type="submit" class="fa fa-sign-out nav-link" > Logout</button></form> </li>
     </ul>
 </nav>
 

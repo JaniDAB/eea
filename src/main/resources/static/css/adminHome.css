@@ -126,17 +126,16 @@ li {
     float: left;
 }
 
-li a {
+li button{
     font-family: "Montserrat", sans-serif;
     font-weight: 1000;
     font-size: 200px;
-    color: #edf0f1;
     text-decoration: none;
 
 
 }
 
-li a:hover {
+li button:hover {
     background-color: #17a2b8 ;
 }
 
@@ -150,20 +149,20 @@ li a:hover {
     display: inline-block;
     padding: 0px 20px;
 }
-.nav_link li a{
+.nav_link li button{
     transition: all 0.3s ease 0s;
     font-weight: 600;
-    font-size: 20px;
 
     display: inline-block;
-    color: white;
+    color: black;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
+    border-radius: 25px 25px 25px 25px;
     /*font-family: "Montserrat", sans-serif;*/
 }
 
-.nav_link li a:hover{
+.nav_link li button:hover{
     transition: all 0.3s ease 0s;
 }
 :root{

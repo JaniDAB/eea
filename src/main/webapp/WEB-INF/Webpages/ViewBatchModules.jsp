@@ -9,7 +9,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>View MOdules of the Batch</title>
+    <title>View Modules of the Batch</title>
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -29,17 +29,18 @@
 <div class="container register" style="max-width: 100%;">
     <div class="row">
         <div class="col-md-3 register-left">
+            <img src="https://img.icons8.com/dotty/80/ffffff/add-book.png"/>
+            <img src="https://img.icons8.com/dotty/80/ffffff/elective.png"/>
 
-            <img src="https://i.ibb.co/6bkWbL7/icons8-business-group-64.png" alt="icons8-business-group-64" border="0">
-            <h3>Assign Lecturer To a Module</h3>
-            <p> Assigning a Lecturer to a Module can be done here</p>
-            <input type="submit" name="" value="Login"/><br/>
+            <h3>Modules Enrolled with the Batch</h3>
+            <p> Batch : ${batchinfo.batchCode} </p>
+            <p> Description : ${batchinfo.description}</p>
         </div>
         <div class="col-md-9 register-right">
 
             <div class="tab-content" id="myTabContent">
                 <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                    <h3 class="register-heading">Lecturer Assignment</h3>
+                    <h3 class="register-heading">Modules List</h3>
 
                     <div class="row register-form">
                         <div class="col-md-6">

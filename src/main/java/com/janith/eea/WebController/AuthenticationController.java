@@ -41,20 +41,21 @@ public class AuthenticationController {
     @GetMapping("/afterlogin")
     public String afterLogin(Authentication auth , Model a){
         User user = userService.getUser(auth.getName());
+
         if (user.getRole().getRoleName() == UserTypeUtil.STUDENT) {
             a.addAttribute("student", user);
 //            System.out.println( user.getBatch().getBatchCode());
 
-            return "/studentHome";
+            return "studentHome";
         }
         if (user.getRole().getRoleName() == UserTypeUtil.ADMIN){
 
-            return "/adminHome";
+            return "redirect:/admin";
         }
         if (user.getRole().getRoleName() == UserTypeUtil.LECTURER){
             a.addAttribute("lecturer", user);
 
-            return "/LecturerHome";
+            return "LecturerHome";
         }
 
         return "/login";
@@ -73,12 +74,22 @@ public class AuthenticationController {
 
     @GetMapping("/admin")
     public String adminHome() {
+
         return "adminHome";
     }
 
     @GetMapping("/student")
-    public String studentHome() {
+    public String studentHome(Authentication auth,Model a) {
+        User user = userService.getUser(auth.getName());
+        a.addAttribute("lecturer", user);
         return "studentHome";
+    }
+
+    @GetMapping("/lecturer")
+    public String lecturerHome(Authentication auth,Model a) {
+        User user = userService.getUser(auth.getName());
+        a.addAttribute("lecturer", user);
+        return "LecturerHome";
     }
 
     @GetMapping("/home")

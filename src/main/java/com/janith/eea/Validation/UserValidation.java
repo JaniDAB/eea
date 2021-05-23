@@ -49,9 +49,16 @@ public class UserValidation implements Validator {
             errors.rejectValue("username", "Duplicate.userForm.username");
         }
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email", "NotEmpty");
+
         if(!matcher.matches()){
             errors.rejectValue("email", "regex.email.!equals");
         }
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "role", "NotEmpty");
+
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "gender", "NotGEmpty");
+
+
+
 
 
     }

@@ -17,6 +17,12 @@ body{
     background: #191919;
     text-align: center;
 }
+
+.invalid{
+    text-align: center;
+    font-family: "Montserrat", sans-serif;
+margin-top: 20px;
+}
 .box h1{
     color: white;
     text-transform:  capitalize;

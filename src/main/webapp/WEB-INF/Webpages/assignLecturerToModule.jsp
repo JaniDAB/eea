@@ -35,7 +35,6 @@
             <img src="https://i.ibb.co/6bkWbL7/icons8-business-group-64.png" alt="icons8-business-group-64" border="0">
             <h3>Assign Lecturer To a Module</h3>
             <p> Assigning a Lecturer to a Module can be done here</p>
-            <input type="submit" name="" value="Login"/><br/>
         </div>
         <div class="col-md-9 register-right">
 

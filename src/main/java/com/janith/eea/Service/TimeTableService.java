@@ -17,5 +17,9 @@ public interface TimeTableService {
 
     Timetable reSchedule(TimetableDto timetableDto);
 
+    String deleteTimetableByID(int ID);
+
+
+    List<TimetableDto> getAllTimeTablestoLecturer(int UserID);
 
 }
