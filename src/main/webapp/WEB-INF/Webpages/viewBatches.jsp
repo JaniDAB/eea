@@ -59,7 +59,7 @@
             <td>${tempBatch.description}</td>
             <td>
                 <span><a href="${pageContext.request.contextPath}/directUpdateMBatchForm/${tempBatch.batchID}" class="btn btn-primary">Edit</a>
-                    <a href="${pageContext.request.contextPath}/deleteBatch/${tempBatch.batchID}" class="btn btn-danger">Remove</a>
+                    <a href="${pageContext.request.contextPath}/deleteBatch/${tempBatch.batchID}" onclick="return confirm('Delete this Schedule')" class="btn btn-danger">Remove</a>
                 </span>
             </td>
             <td>

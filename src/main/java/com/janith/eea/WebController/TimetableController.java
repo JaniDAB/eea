@@ -59,8 +59,7 @@ public class TimetableController {
 
     @PostMapping("/admin/AddRoom")
     public String AddingRoom
-            (@Valid
-             @ModelAttribute("addRoom") ClassRoomDto classRoomDto,
+            (@ModelAttribute("addRoom")@Valid ClassRoomDto classRoomDto,
              Model r,
              BindingResult br) {
 
@@ -211,11 +210,11 @@ public  String setRescheduleTimetable(@ModelAttribute("rescheduleTime") Timetabl
     {
         String s = timeTableService.deleteTimetableByID(tableID);
         if (s.equals("deleted")){
-            rd.addFlashAttribute("deleted", "Table Deleted");
+            rd.addFlashAttribute("deleted", "Schedule Deleted");
 
         }
         else {
-            mod.addAttribute("error", "Table Deleted");
+            mod.addAttribute("error", "Error.....Please try again later.");
 
         }
         return "redirect:/getAllSchedules";

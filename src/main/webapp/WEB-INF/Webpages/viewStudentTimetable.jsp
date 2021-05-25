@@ -39,7 +39,7 @@
 <%--</nav>--%>
 <nav class="fill">
     <ul>
-        <li> <a class="nav-link" href="${pageContext.request.contextPath}/admin">Home</a></li>
+        <li> <a class="nav-link" href="${pageContext.request.contextPath}/student">Home</a></li>
 
         <li  style="float:right"> <form method="post" action="${pageContext.request.contextPath}/logout"> <button type="submit" class="fa fa-sign-out nav-link" > Logout</button></form> </li>
     </ul>

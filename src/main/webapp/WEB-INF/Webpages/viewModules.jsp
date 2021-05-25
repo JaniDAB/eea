@@ -42,6 +42,10 @@
         <li  style="float:right"> <form method="post" action="${pageContext.request.contextPath}/logout"> <button type="submit" class="fa fa-sign-out nav-link" > Logout</button></form> </li>
     </ul>
 </nav>
+<div class="row justify-content-center successmessage" role="alert" >
+    ${deleted}
+    ${error}
+</div>
 
 <table class="content-table">
 
@@ -51,6 +55,8 @@
         <th>  Module Lecturer </th>
         <th>  Update </th>
         <th>  Lecturer Assign </th>
+        <th>   DeAssign </th>
+
 
 
     </tr>
@@ -69,6 +75,9 @@
             </td>
             <td>
                <a href="${pageContext.request.contextPath}/assignModuleForm/${tempModules.module_id}" class="btn btn-outline-success ">Assign</a>
+            </td>
+            <td>
+                <a href="${pageContext.request.contextPath}/deAssign/${tempModules.module_id}" class="btn btn-outline-success ">De-Assign</a>
             </td>
 
         </tr>

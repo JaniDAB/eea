@@ -35,8 +35,8 @@
     <div class="row">
         <div class="col-md-3 register-left">
             <img src="https://img.icons8.com/wired/100/000000/timetable.png" alt="icons8-business-group-64" border="0">
-            <P>Room Booked : ${timetableinfor.classRoom.roomId} </P>
-            <P>Module Scheduled : ${timetableinfor.module.moduleName} </P>
+            <P style="font-weight: bold; color: #1d2124">Room Booked : ${timetableinfor.classRoom.roomId} </P>
+            <P style="font-weight: bold; color: #1d2124">Module Scheduled : ${timetableinfor.module.moduleName} </P>
 
             <%--            <p> Assigning a Batch to a User can be done here</p>--%>
 
@@ -65,13 +65,6 @@
                                         value="${timetableinfor.startTime}"    required="required"/>
                             </div>
 
-                            <div class="form-group">
-                                <form:label path="endTIme">Enter the End time:</form:label>
-                                <form:input type="time" path="endTIme" cssClass="form-control"
-                                     value="${timetableinfor.endTIme}"       placeholder="End Time *"
-                                            required="required"/>
-
-                            </div>
 
 
                         </div>
@@ -89,6 +82,13 @@
                                 </form:select>
                             </div>
 
+                            <div class="form-group">
+                                <form:label path="endTIme">Enter the End time:</form:label>
+                                <form:input type="time" path="endTIme" cssClass="form-control"
+                                            value="${timetableinfor.endTIme}"       placeholder="End Time *"
+                                            required="required"/>
+
+                            </div>
 <%--                            <div class="form-group">--%>
 <%--                                <form:label path="module"> Select the Module from Below  List: </form:label>--%>
 <%--                                <form:select path="module" cssClass="form-control" aria-required="true">--%>

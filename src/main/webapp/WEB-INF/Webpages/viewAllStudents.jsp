@@ -43,6 +43,8 @@
 <div class="row justify-content-center successmessage" role="alert" >
     ${deleted}
     ${error}
+        ${deAssigned}
+        ${errord}
 </div>
 
 <table class="content-table">
@@ -80,10 +82,11 @@
 
             </td>
             <td>
-              <a href="${pageContext.request.contextPath}/assignBatch/${tempUser.userId}" class="btn btn-outline-success">Assign</a>
+              <a href="${pageContext.request.contextPath}/assignBatch/${tempUser.userId}" class="btn btn-outline-success">  Assign </a>
+                <a href="${pageContext.request.contextPath}/admin/deAssignBatch/${tempUser.userId}" class="btn btn-outline-secondary">De-Assign</a>
 
             </td>
-            <td><a href="${pageContext.request.contextPath}/deleteUser/${tempUser.userId}" class="btn btn-outline-danger">Remove</a></td>
+            <td><a href="${pageContext.request.contextPath}/deleteUser/${tempUser.userId}" onclick="return confirm('Delete this Schedule')" class="btn btn-outline-danger">Remove</a></td>
 
 
         </tr>

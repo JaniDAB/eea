@@ -45,6 +45,7 @@
     <thead><tr>
         <th>Module Name</th>
         <th> Lecturer </th>
+        <th> Batches Enrolled </th>
         <th> Schedule a Time table </th>
 
     </tr>
@@ -56,6 +57,7 @@
         <tr>
             <td>${tempBatch.moduleName}</td>
             <td>${tempBatch.lecUser.firstname}</td>
+            <td>${tempBatch.batchList.size()}</td>
             <td>
                 <span><a href="${pageContext.request.contextPath}/admin/addTimetable/${tempBatch.module_id}" class="btn btn-success">Schedule</a>
                 </span>

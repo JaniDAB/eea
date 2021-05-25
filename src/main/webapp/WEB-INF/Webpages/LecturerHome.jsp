@@ -9,12 +9,15 @@
 <html>
 <head>
     <title>Student Home Page</title>
-    <link rel="stylesheet"  href="${pageContext.request.contextPath}/css/studentHome.css">
+    <link rel="stylesheet"  href="${pageContext.request.contextPath}/css/adminHome.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 </head>
-<body>
 
+<body style="background-color: #000000">
+<div class="header">
+    <h1 class="header1"> Timetable System </h1>
+</div>
 
 <%--<div class="header">--%>
 <%--    <h1 class="header1" > Timetable System </h1>--%>

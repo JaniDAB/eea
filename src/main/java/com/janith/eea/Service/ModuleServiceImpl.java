@@ -66,6 +66,7 @@ public class ModuleServiceImpl implements ModuleService {
             for (Module model : modeList) {
                 ModuleDto moduleDto = new ModuleDto();
 
+                moduleDto.setBatchList(model.getBatchList());
                 moduleDto.setModule_id(model.getModule_id());
                 moduleDto.setModuleName(model.getModuleName());
                 moduleDto.setLecUser(model.getLecUser());
@@ -106,6 +107,20 @@ public class ModuleServiceImpl implements ModuleService {
         return moduleRepository.save(module);
     }
 
+    @Override
+    public String deAssignLecturer(int moduleDto) {
+        try {
+            Module optionalModule = moduleRepository.findById(moduleDto).get();
+            optionalModule.setLecUser(null);
+            moduleRepository.save(optionalModule);
+            return "deleted";
+        }
+        catch (Exception EX)
+        {
+            System.out.println(EX);
+            return "error";
+        }
+    }
 
     @Override
     public List<ModuleDto> viewLecsModules(int userID) {
@@ -120,7 +135,7 @@ public class ModuleServiceImpl implements ModuleService {
                 moduleDto.setModule_id(model.getModule_id());
                 moduleDto.setModuleName(model.getModuleName());
                 moduleDto.setLecUser(model.getLecUser());
-
+                moduleDto.setBatchList(model.getBatchList());
                 moduleDtoList.add(moduleDto);
             }
         }

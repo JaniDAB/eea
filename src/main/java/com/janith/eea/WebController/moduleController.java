@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -93,6 +94,21 @@ public class moduleController {
         return "redirect:/admin/listModules";
 
     }
+
+    @GetMapping("/deAssign/{id}")
+    public String deAssignLecturerModule(@PathVariable(value = "id")int ID, Model m, RedirectAttributes rd)
+    {
+        String s = this.moduleService.deAssignLecturer(ID);
+        if (s.equals("deleted")) {
+            rd.addFlashAttribute("deleted", "De-Assign  Successfully");
+        }else {
+            rd.addFlashAttribute("error", "De-Assign UnSuccessful");
+        }
+
+        return "redirect:/admin/listModules";
+
+    }
+
 
     @GetMapping("/getLecturerModuleList/{userID}")
     public String getModuleListLecturer(@PathVariable( name = "userID") int UserID, Model m)

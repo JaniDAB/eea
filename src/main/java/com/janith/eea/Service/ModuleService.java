@@ -18,7 +18,10 @@ Module editModule(ModuleDto moduleDto);
 
 Module assignLecturer(ModuleDto moduleDto);
 
+    String deAssignLecturer(int moduleDto);
+
 List<ModuleDto> viewLecsModules(int userID);
 
 List<BatchDto> getBatchListM(int  moduleID);
+
 }

@@ -25,8 +25,12 @@ public interface UserService extends UserDetailsService {
 
      User assignBatch(UserDto userDto);
 
+    String deAssignBatch(int id);
+
      String deleteUserByID(int ID);
 
      User updateStudent(UserDto userDto);
+
+
 }
 

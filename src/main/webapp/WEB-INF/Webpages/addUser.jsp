@@ -65,6 +65,8 @@
                             <div class="form-group">
                                 <form:input type="text" maxlength="10" path="mobile" cssClass="form-control"
                                             placeholder="Your Phone  *" required="required"/>
+                                <form:errors path="mobile" cssStyle="color: red"/>
+
                             </div>
 
 
@@ -88,7 +90,7 @@
                             <div class="form-group">
                                 <form:input type="date" path="dateOfBirth" cssClass="form-control"
                                             placeholder="Date of Birth *" required="required"/>
-
+                                <form:errors path="dateOfBirth" cssStyle="color: red"/>
                             </div>
 
                             <div class="form-group">

@@ -1,7 +1,10 @@
 package com.janith.eea.Dto;
 
 
+import com.janith.eea.Model.Batch;
 import com.janith.eea.Model.User;
+
+import java.util.List;
 
 public class ModuleDto {
     private Integer module_id;
@@ -12,10 +15,13 @@ public class ModuleDto {
     private User lecUser;
 
 
-    public ModuleDto(Integer module_id, String moduleName, User lecUser) {
+    private List<Batch> batchList;
+
+    public ModuleDto(Integer module_id, String moduleName, User lecUser, List<Batch> batchList) {
         this.module_id = module_id;
         this.moduleName = moduleName;
         this.lecUser = lecUser;
+        this.batchList = batchList;
     }
 
     public ModuleDto() {
@@ -43,5 +49,15 @@ public class ModuleDto {
 
     public void setLecUser(User lecUser) {
         this.lecUser = lecUser;
+    }
+
+
+
+    public List<Batch> getBatchList() {
+        return batchList;
+    }
+
+    public void setBatchList(List<Batch> batchList) {
+        this.batchList = batchList;
     }
 }

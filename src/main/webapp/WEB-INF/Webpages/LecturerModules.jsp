@@ -30,10 +30,10 @@
     <div class="row">
         <div class="col-md-3 register-left">
             <img src="https://img.icons8.com/plasticine/100/ffffff/ingredients-list.png"/>
-<%--            <img src="https://img.icons8.com/material/100/ffffff/add-list--v1.png"/>--%>
+            <%--            <img src="https://img.icons8.com/material/100/ffffff/add-list--v1.png"/>--%>
             <%--            <img src="https://i.ibb.co/6bkWbL7/icons8-business-group-64.png" alt="icons8-business-group-64" border="0">--%>
             <h3>Your Current Teaching Modules </h3>
-            <p> </p>
+            <p></p>
 
         </div>
         <div class="col-md-9 register-right">
@@ -44,11 +44,21 @@
 
                     <div class="row register-form">
                         <div class="col-md-6">
+                            <%--                            <ul class="list-group list-group-flush">--%>
+                            <%--                                <c:forEach var="moduelList" items="${moduleInfoList}" >--%>
+                            <%--                                    <li class="list-group-item">${moduelList.moduleName}</li>--%>
+                            <%--                                </c:forEach>--%>
+                            <%--                            </ul>--%>
                             <ul class="list-group list-group-flush">
                                 <c:forEach var="moduelList" items="${moduleInfoList}" >
-                                    <li class="list-group-item">${moduelList.moduleName}</li>
+
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                ${moduelList.moduleName}
+                                    <span class="badge badge-success badge-pill">${moduelList.batchList.size()} Batches</span>
+                                </li>
                                 </c:forEach>
                             </ul>
+
                         </div>
 
                         <div class="col-md-6">

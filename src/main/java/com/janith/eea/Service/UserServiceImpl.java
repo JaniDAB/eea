@@ -250,6 +250,22 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public String deAssignBatch(int id) {
+        try {
+            User userdomain = userRepository.findById(id).get();
+            userdomain.setBatch(null);
+            userRepository.save(userdomain);
+            return "unAssigned";
+        }
+        catch (Exception EX)
+        {
+            System.out.println(EX);
+            return "error";
+        }
+
+    }
+
+    @Override
     public String deleteUserByID(int ID) {
         try {
             this.userRepository.deleteById(ID);
@@ -267,7 +283,6 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
         User user = userRepository.findUsersByUsername(s);
-        System.out.println(user.getPassword());
 
         if (user == null) {
             throw new UsernameNotFoundException(String.format("%s not Found", s));

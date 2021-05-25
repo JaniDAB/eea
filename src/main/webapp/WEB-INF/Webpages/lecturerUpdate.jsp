@@ -60,7 +60,7 @@
 
             <div class="tab-content" id="myTabContent">
                 <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                    <h3 class="register-heading">Update User</h3>
+                    <h3 class="register-heading">Update Your account</h3>
 
                     <form:form action="${pageContext.request.contextPath}/lecturer/Updateform" method="POST"
                                onsubmit="return Validate()" modelAttribute="lecturer">

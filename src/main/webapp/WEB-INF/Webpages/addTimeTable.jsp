@@ -57,20 +57,20 @@
                             <div class="form-group">
                                 <form:label path="date">Enter the Date:</form:label>
                                 <form:input type="date" path="date" cssClass="form-control"
-                                            placeholder=" Start Time *"
+                                            placeholder="MM/DD/YYYY"
                                             required="required"/>
                             </div>
 
                             <div class="form-group">
                                 <form:label path="startTime">Enter the Start Time:</form:label>
-                                <form:input type="time" path="startTime" cssClass="form-control"
-                                            required="required"/>
+                                <form:input type="time" path="startTime" cssClass="form-control" min="08:00" max="16:00"
+                                      placeholder="HH:MM"      required="required"/>
                             </div>
 
                             <div class="form-group">
                                 <form:label path="endTIme">Enter the End time:</form:label>
-                                <form:input type="time" path="endTIme" cssClass="form-control"
-                                            placeholder="End Time *"
+                                <form:input type="time" path="endTIme" cssClass="form-control"  min="08:00" max="17:00"
+                                            placeholder="HH:MM"
                                             required="required"/>
 
                             </div>

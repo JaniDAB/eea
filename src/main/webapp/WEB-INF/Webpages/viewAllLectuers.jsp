@@ -75,7 +75,7 @@
                 <a href="${pageContext.request.contextPath}/showFormUpdate/${tempUser.userId}" class="btn btn-primary">Edit</a>
 
             </td>
-            <td><a href="${pageContext.request.contextPath}/deleteUserLec/${tempUser.userId}" class="btn btn-outline-danger">Remove</a></td>
+            <td><a href="${pageContext.request.contextPath}/deleteUserLec/${tempUser.userId}" onclick="return confirm('Delete this Schedule')"  class="btn btn-outline-danger">Remove</a></td>
 
         </tr>
 

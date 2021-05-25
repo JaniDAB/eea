@@ -1,4 +1,5 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: janithdabare
@@ -28,7 +29,7 @@
 
 <!------ Include the above in your HEAD tag ---------->
 
-<div class="row justify-content-center alert-light ml-5 successmessage" role="alert" style="color: #55efc4">
+<div class="row justify-content-center  successmessage" role="alert" style="color: #55efc4">
     ${successful}
 </div>
 <%--<div class="alert alert-warning alert-dismissible fade show" role="alert">--%>
@@ -66,7 +67,6 @@
 
                     <form:form action="${pageContext.request.contextPath}/admin/AddRoom" method="POST"  modelAttribute="addRoom" >
 
-
                     <div class="row register-form">
                         <div class="col-md-6">
                             <div class="form-group" >
@@ -92,9 +92,10 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                          <form:label path="roomCapacity">Enter Room Capacity:</form:label><br>
-<%--                       <input type="" class="form-control" placeholder="Your Email *"  required="required" value="" />&ndash;%&gt;--%>
-                                <form:input  type="number"  path="roomCapacity" cssClass="form-control" placeholder="Room Capacity*"   required="required"/>
-<form:errors path="roomCapacity" cssStyle="color: red"/>
+<%--                       <input type="" class="form-control" placeholder="Your Email *"  required="required" value="" max="50"  />&ndash;%&gt;--%>
+                                <form:input  type="number"  path="roomCapacity" cssClass="form-control" placeholder="Room Capacity*"  max="50" min="10"   required="required"/>
+<%--<form:errors path="roomCapacity" cssStyle="color: red"/>--%>
+
                             </div>
 
 

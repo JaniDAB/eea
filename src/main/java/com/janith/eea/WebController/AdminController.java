@@ -105,6 +105,22 @@ public class AdminController {
         return "redirect:/admin/users/allStudents";
 
     }
+    @GetMapping("/admin/deAssignBatch/{id}")
+    public String deAssignBatch(@PathVariable(value = "id")int ID, Model m, RedirectAttributes rd)
+    {
+
+        String s = this.service.deAssignBatch(ID);
+        if (s.equals("unAssigned")) {
+            rd.addFlashAttribute("deAssigned", " De-Assigned");
+        }else {
+            rd.addFlashAttribute("errord", " De-Assign UnSuccessful");
+        }
+
+        return "redirect:/admin/users/allStudents";
+
+    }
+
+
     @GetMapping("/deleteUserLec/{id}")
     public String deleteUserLec(@PathVariable(value = "id")int ID, Model m, RedirectAttributes rd)
     {

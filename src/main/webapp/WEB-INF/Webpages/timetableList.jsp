@@ -83,7 +83,7 @@ ${error}
                 </span>
             </td>
             <td>
-                <span><a href="${pageContext.request.contextPath}/deleteTimetable/${temptimetable.timetableID}" class="btn btn-danger">Remove</a>
+                <span><a href="${pageContext.request.contextPath}/deleteTimetable/${temptimetable.timetableID}" class="btn btn-danger" onclick="return confirm('Delete this Schedule')">Remove</a>
                 </span>
             </td>
 
