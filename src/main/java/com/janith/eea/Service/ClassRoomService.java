@@ -9,4 +9,10 @@ public interface ClassRoomService {
     ClassRoom addRoom(ClassRoomDto classRoomDto);
 
     List<ClassRoomDto> viewRooms();
+
+    ClassRoom editRoom(ClassRoomDto classRoomDto);
+
+    String deleteRoom(String roomID);
+
+    ClassRoomDto viewSingleRoom(String ID);
 }

@@ -45,6 +45,7 @@
 <table class="content-table">
     <thead>
     <tr>
+        <th> User Type</th>
         <th> First Name</th>
         <th> Last Name</th>
         <th>Email</th>
@@ -61,6 +62,7 @@
     <c:forEach var="tempUser" items="${users}">
 
         <tr>
+            <td> ${tempUser.role}</td>
             <td> ${tempUser.firstname}</td>
             <td>${tempUser.lastname}</td>
             <td>${tempUser.email}</td>

@@ -11,6 +11,7 @@ import com.janith.eea.Service.ModuleService;
 import com.janith.eea.Service.UserServiceImpl;
 import com.janith.eea.Validation.BatchValidator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -23,6 +24,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.util.List;
 
 @Controller
+@PreAuthorize("hasAuthority('ADMIN')")
 public class AdminController {
 
 
@@ -147,62 +149,62 @@ public class AdminController {
         return "/adminHome";
     }
 
-    @GetMapping("/student/getUpdateForm/{id}")
-    public  String  getUpdateFormStudent(@PathVariable(value = "id") int id , Model u)
-    {
-        try {
-            UserDto userDto = new UserDto();
-            UserDto userinfo = service.getUserById(id);
-            u.addAttribute("userinfo", userinfo);
-            u.addAttribute("student", userDto);
-            return "updateStudent";
-        } catch (Exception ex) {
-            System.out.println(ex);
-            u.addAttribute("student", new UserDto());
-            return "updateStudent";
-        }
-    }
+//    @GetMapping("/student/getUpdateForm/{id}")
+//    public  String  getUpdateFormStudent(@PathVariable(value = "id") int id , Model u)
+//    {
+//        try {
+//            UserDto userDto = new UserDto();
+//            UserDto userinfo = service.getUserById(id);
+//            u.addAttribute("userinfo", userinfo);
+//            u.addAttribute("student", userDto);
+//            return "updateStudent";
+//        } catch (Exception ex) {
+//            System.out.println(ex);
+//            u.addAttribute("student", new UserDto());
+//            return "updateStudent";
+//        }
+//    }
+//
+//    @PostMapping("/student/Updateform")
+//    public String updateStudent(@ModelAttribute("student") UserDto userDto , Model m)
+//    {
+//        try {
+//            final User update = service.updateStudent(userDto); // change service method
+//            m.addAttribute("Updated", "Updated Successfully");
+//            return "updateStudent";
+//        }catch (Exception e){
+//            m.addAttribute("error", "  UnSuccessful");
+//            return "updateStudent";
+//        }
+//    }
 
-    @PostMapping("/student/Updateform")
-    public String updateStudent(@ModelAttribute("student") UserDto userDto , Model m)
-    {
-        try {
-            final User update = service.updateStudent(userDto); // change service method
-            m.addAttribute("Updated", "Updated Successfully");
-            return "updateStudent";
-        }catch (Exception e){
-            m.addAttribute("error", "  UnSuccessful");
-            return "updateStudent";
-        }
-    }
-
-    @GetMapping("/lecturer/getUpdateForm/{id}")
-    public  String  getUpdateFormLecturer(@PathVariable(value = "id") int id , Model u)
-    {
-        try {
-            UserDto userDto = new UserDto();
-            UserDto userinfo = service.getUserById(id);
-            u.addAttribute("userinfo", userinfo);
-            u.addAttribute("lecturer", userDto);
-            return "lecturerUpdate";
-        } catch (Exception ex) {
-            System.out.println(ex);
-            u.addAttribute("lecturer", new UserDto());
-            return "lecturerUpdate";
-        }
-    }
-    @PostMapping("/lecturer/Updateform")
-    public String updateLecturer(@ModelAttribute("lecturer") UserDto userDto , Model m)
-    {
-        try {
-            final User update = service.updateStudent(userDto); // change service method
-            m.addAttribute("Updated", "Updated Successfully");
-            return "lecturerUpdate";
-        }catch (Exception e){
-            m.addAttribute("error", "  UnSuccessful");
-            return "lecturerUpdate";
-        }
-    }
+//    @GetMapping("/lecturer/getUpdateForm/{id}")
+//    public  String  getUpdateFormLecturer(@PathVariable(value = "id") int id , Model u)
+//    {
+//        try {
+//            UserDto userDto = new UserDto();
+//            UserDto userinfo = service.getUserById(id);
+//            u.addAttribute("userinfo", userinfo);
+//            u.addAttribute("lecturer", userDto);
+//            return "lecturerUpdate";
+//        } catch (Exception ex) {
+//            System.out.println(ex);
+//            u.addAttribute("lecturer", new UserDto());
+//            return "lecturerUpdate";
+//        }
+//    }
+//    @PostMapping("/lecturer/Updateform")
+//    public String updateLecturer(@ModelAttribute("lecturer") UserDto userDto , Model m)
+//    {
+//        try {
+//            final User update = service.updateStudent(userDto); // change service method
+//            m.addAttribute("Updated", "Updated Successfully");
+//            return "lecturerUpdate";
+//        }catch (Exception e){
+//            m.addAttribute("error", "  UnSuccessful");
+//            return "lecturerUpdate";
+//        }
+//    }
 
 
     /// Batch functions ----------------------------------------------------------------
@@ -226,7 +228,7 @@ public class AdminController {
             a.addAttribute("successful", "Batch Added Successfully");
         }
         catch (Exception e){
-            a.addAttribute("fail", " Failed");
+            a.addAttribute("fail", " Couldn't Add the Batch Successfully");
         }
 
         return "/addBatch";

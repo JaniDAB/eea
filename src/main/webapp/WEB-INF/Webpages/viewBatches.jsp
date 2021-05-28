@@ -14,6 +14,7 @@
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 </head>
 <body style="background : -webkit-linear-gradient(right,#c4e5ec, #5484c7);">
@@ -58,16 +59,24 @@
             <td>${tempBatch.batchCode}</td>
             <td>${tempBatch.description}</td>
             <td>
-                <span><a href="${pageContext.request.contextPath}/directUpdateMBatchForm/${tempBatch.batchID}" class="btn btn-primary">Edit</a>
-                    <a href="${pageContext.request.contextPath}/deleteBatch/${tempBatch.batchID}" onclick="return confirm('Delete this Schedule')" class="btn btn-danger">Remove</a>
+                <span><a href="${pageContext.request.contextPath}/directUpdateMBatchForm/${tempBatch.batchID}" class="btn btn-primary">
+                    <i class="material-icons">&#xe3c9;</i>
+                </a>
+                    <a href="${pageContext.request.contextPath}/deleteBatch/${tempBatch.batchID}" onclick="return confirm('Delete Batch :${tempBatch.batchCode}')" class="btn btn-danger">
+                        <i class="material-icons">&#xe872;</i>
+                    </a>
                 </span>
             </td>
             <td>
-                <span><a href="${pageContext.request.contextPath}/assignModule/${tempBatch.batchID}" class="btn btn-success">Assign</a>
+                <span><a href="${pageContext.request.contextPath}/assignModule/${tempBatch.batchID}" class="btn btn-success">
+                     <i class="material-icons">&#xea20;</i>
+                </a>
                 </span>
             </td>
             <td>
-                <span><a href="${pageContext.request.contextPath}/modulelist/${tempBatch.batchID}" class="btn btn-outline-info">Info</a>
+                <span><a href="${pageContext.request.contextPath}/modulelist/${tempBatch.batchID}" class="btn btn-outline-info">
+                        <i class="material-icons">&#xe88e;</i>
+                </a>
                 </span>
             </td>
 

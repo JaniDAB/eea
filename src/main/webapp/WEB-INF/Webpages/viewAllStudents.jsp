@@ -14,6 +14,7 @@
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 </head>
 <body style="background : -webkit-linear-gradient(right,#c4e5ec, #5484c7);">
@@ -59,8 +60,8 @@
         <th>Batch</th>
         <th>phone Number</th>
         <th>Edit</th>
-        <th>Assign Batch</th>
-        <th>Delete User</th>
+        <th>Assign/De-Assign Batch</th>
+        <th>Delete </th>
 
     </tr>
     </thead>
@@ -78,15 +79,21 @@
             <td>${tempUser.batch.batchCode}</td>
             <td>${tempUser.mobile}</td>
             <td>
-                <a href="${pageContext.request.contextPath}/showFormUpdate/${tempUser.userId}" class="btn btn-outline-primary">Edit</a>
+                <a href="${pageContext.request.contextPath}/showFormUpdate/${tempUser.userId}" class="btn btn-outline-primary">
+                    <i class="material-icons">&#xe3c9;</i>
+                </a>
 
             </td>
             <td>
-              <a href="${pageContext.request.contextPath}/assignBatch/${tempUser.userId}" class="btn btn-outline-success">  Assign </a>
-                <a href="${pageContext.request.contextPath}/admin/deAssignBatch/${tempUser.userId}" class="btn btn-outline-secondary">De-Assign</a>
+              <a href="${pageContext.request.contextPath}/assignBatch/${tempUser.userId}" class="btn btn-outline-success">
+                  <i class="material-icons">&#xea4d;</i> </a>
+                <a href="${pageContext.request.contextPath}/admin/deAssignBatch/${tempUser.userId}" class="btn btn-outline-secondary">
+                    <i class="material-icons">&#xe7ad;</i>
+                </a>
 
             </td>
-            <td><a href="${pageContext.request.contextPath}/deleteUser/${tempUser.userId}" onclick="return confirm('Delete this Schedule')" class="btn btn-outline-danger">Remove</a></td>
+            <td><a href="${pageContext.request.contextPath}/deleteUser/${tempUser.userId}" onclick="return confirm('Remove Student : ${tempUser.firstname}')" class="btn btn-outline-danger">
+                <i class="material-icons">&#xe872;</i></a></td>
 
 
         </tr>

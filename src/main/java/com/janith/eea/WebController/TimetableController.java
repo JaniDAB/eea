@@ -4,6 +4,7 @@ import com.janith.eea.Dto.BatchDto;
 import com.janith.eea.Dto.ClassRoomDto;
 import com.janith.eea.Dto.ModuleDto;
 import com.janith.eea.Dto.TimetableDto;
+import com.janith.eea.Model.ClassRoom;
 import com.janith.eea.Model.Timetable;
 import com.janith.eea.Model.User;
 import com.janith.eea.Service.BatchServiceImpl;
@@ -12,6 +13,7 @@ import com.janith.eea.Service.ModuleServiceImpl;
 import com.janith.eea.Service.TimeTableServiceImpl;
 import com.janith.eea.Validation.ClassRoomValidator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -25,6 +27,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Controller
+@PreAuthorize("hasAuthority('ADMIN')")
 public class TimetableController {
 
     @Autowired
@@ -153,16 +156,16 @@ public class TimetableController {
         }
     }
 
-    @GetMapping("/student/timetable/{id}")
-    public String getStudentTimetable(@PathVariable(value = "id") int id, Model timetable)
-    {
-        List<TimetableDto> timetableDtoList = timeTableService.viewTableByBatch(id);
-
-        timetable.addAttribute("timetableList" , timetableDtoList);
-
-        return "viewStudentTimetable";
-
-    }
+//    @GetMapping("/student/timetable/{id}")
+//    public String getStudentTimetable(@PathVariable(value = "id") int id, Model timetable)
+//    {
+//        List<TimetableDto> timetableDtoList = timeTableService.viewTableByBatch(id);
+//
+//        timetable.addAttribute("timetableList" , timetableDtoList);
+//
+//        return "viewStudentTimetable";
+//
+//    }
 
     @GetMapping("/getAllSchedules")
     public  String getAllTimetables(Model model)
@@ -220,16 +223,64 @@ public  String setRescheduleTimetable(@ModelAttribute("rescheduleTime") Timetabl
         return "redirect:/getAllSchedules";
     }
 
-    @GetMapping("/lecturer/timetable/{id}")
-    public String getLecturerTimetable(@PathVariable(value = "id") int id, Model timetable)
-    {
-        List<TimetableDto> timetableDtoList = timeTableService.getAllTimeTablestoLecturer(id);
+    @GetMapping("/admin/room/listrooms")
+    public String viewRooms(Model b) {
+        List<ClassRoomDto> classRoomDtoList;
+        classRoomDtoList = classRoomService.viewRooms();
+        b.addAttribute("rooms", classRoomDtoList);
 
-        timetable.addAttribute("timetableList" , timetableDtoList);
-
-        return "viewLecturerTimetable";
-
+        return "viewClassRooms";
     }
+    @GetMapping("/admin/deleteRoom/{id}")
+    public String deleteRoom(@PathVariable(value = "id")String roomID, Model mod, RedirectAttributes rd)
+    {
+        String s = classRoomService.deleteRoom(roomID);
+        if (s.equals("deleted")){
+            rd.addFlashAttribute("deleted", "Room Deleted");
+
+        }
+        else if(s.equals("error")){
+            rd.addFlashAttribute("errorDelete", "Error Removing, Room: "+roomID+" is  having a scheduled. ");
+
+        }
+        return "redirect:/admin/room/listrooms";
+    }
+    @GetMapping("/admin/updateRoom/{id}")
+    public  String getRoominfo(@PathVariable(value="id") String roomID, Model m)
+    {
+        ClassRoomDto cl = classRoomService.viewSingleRoom(roomID);
+
+        m.addAttribute("roominfo", cl);
+        m.addAttribute("editRoom", new ClassRoomDto());
+
+        return "RoomUpdate";
+    }
+    @PostMapping("/admin/updateRoom")
+    public  String setRescheduleTimetable(@ModelAttribute("editRoom") ClassRoomDto classRoomDto, Model m)
+    {
+        try {
+            final ClassRoom update = classRoomService.editRoom( classRoomDto);
+            m.addAttribute("Updated", "Updated Successfully");
+            return "RoomUpdate";
+        }catch (Exception e){
+            m.addAttribute("error", "  UnSuccessful");
+        }
+        return "RoomUpdate";
+    }
+
+
+
+//
+//    @GetMapping("/lecturer/timetable/{id}")
+//    public String getLecturerTimetable(@PathVariable(value = "id") int id, Model timetable)
+//    {
+//        List<TimetableDto> timetableDtoList = timeTableService.getAllTimeTablestoLecturer(id);
+//
+//        timetable.addAttribute("timetableList" , timetableDtoList);
+//
+//        return "viewLecturerTimetable";
+//
+//    }
 
 }
 

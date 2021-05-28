@@ -23,15 +23,14 @@
 </div>
 <ul class="nav_link" style="margin-bottom: 0">
     <li><a class="nav-link" href="${pageContext.request.contextPath}/admin">Home</a></li>
-    <li><a class="nav-link" href="${pageContext.request.contextPath}/admin/room/listrooms">View Rooms</a></li>
-
 
 </ul>
 
 <!------ Include the above in your HEAD tag ---------->
 
 <div class="row justify-content-center  successmessage" role="alert" style="color: #55efc4">
-    ${successful}
+    ${Updated}
+        ${error}
 </div>
 <%--<div class="alert alert-warning alert-dismissible fade show" role="alert">--%>
 <%--    ${successful}--%>
@@ -48,9 +47,9 @@
             <img src="https://img.icons8.com/nolan/300/room.png"/>
             <%--                     <img src="https://img.icons8.com/dotty/80/ffffff/elective.png"/>--%>
             <%--            <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt=""/>--%>
-            <h3>Add Class Room  here</h3>
-            <p> Class Room, Class Room ID, Room Type can be added</p>
-<%--            <input type="submit" name="" value=""/><br/>--%>
+            <h3>Update Class Room  ${roominfo.roomId}</h3>
+            <p>  Class Room Capacity, Room Type can be Updated</p>
+            <%--            <input type="submit" name="" value=""/><br/>--%>
         </div>
         <div class="col-md-9 register-right">
             <%--            <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">--%>
@@ -64,16 +63,16 @@
 
             <div class="tab-content" id="myTabContent">
                 <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                    <h3 class="register-heading">Add A Room</h3>
+                    <h3 class="register-heading">Update Room ${roominfo.roomId}</h3>
 
-                    <form:form action="${pageContext.request.contextPath}/admin/AddRoom" method="POST"  modelAttribute="addRoom" >
+                    <form:form action="${pageContext.request.contextPath}/admin/updateRoom" method="POST"  modelAttribute="editRoom" >
 
                     <div class="row register-form">
                         <div class="col-md-6">
                             <div class="form-group" >
                                     <%--                                <input   type="text" class="form-control" placeholder="First Name *"  required="required" value="" />--%>
-                                        <form:label path="roomId">Enter ID:</form:label><br>
-                                <form:input   type="text" path="roomId" cssClass="form-control" placeholder=" Type as L(number)CR(number)" required="required"/>
+<%--                                <form:label path="roomId">Enter ID:</form:label><br>--%>
+                                <form:input   type="hidden" path="roomId" cssClass="form-control" value="${roominfo.roomId}" placeholder=" Type as L(number)CR(number)" required="required"/>
 
                                 <form:errors path="roomId" cssStyle="color: red" />
                             </div>
@@ -92,15 +91,15 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                         <form:label path="roomCapacity">Enter Room Capacity:</form:label><br>
-<%--                       <input type="" class="form-control" placeholder="Your Email *"  required="required" value="" max="50"  />&ndash;%&gt;--%>
-                                <form:input  type="number"  path="roomCapacity" cssClass="form-control" placeholder="Room Capacity*"  max="50" min="10"   required="required"/>
-<%--<form:errors path="roomCapacity" cssStyle="color: red"/>--%>
+                                <form:label path="roomCapacity">Enter Room Capacity:</form:label><br>
+                                    <%--                       <input type="" class="form-control" placeholder="Your Email *"  required="required" value="" max="50"  />&ndash;%&gt;--%>
+                                <form:input  type="number"  path="roomCapacity" cssClass="form-control" placeholder="Room Capacity*"  max="50" min="10"   value="${roominfo.roomCapacity}" required="required"/>
+                                    <%--<form:errors path="roomCapacity" cssStyle="color: red"/>--%>
 
                             </div>
 
 
-                            <input type="submit" class="btnRegister"   value="Add Room"/>
+                            <input type="submit" class="btnRegister"   value="Update Room"/>
                         </div>
                     </div>
                     </form>

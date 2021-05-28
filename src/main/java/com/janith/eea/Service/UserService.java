@@ -31,6 +31,6 @@ public interface UserService extends UserDetailsService {
 
      User updateStudent(UserDto userDto);
 
-
+    User updatePasswordStudent(UserDto userDto);
 }
 

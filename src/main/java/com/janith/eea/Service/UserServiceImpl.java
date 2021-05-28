@@ -45,6 +45,7 @@ public class UserServiceImpl implements UserService {
         UserRole userRole = new UserRole();
 
         String DefaultPassword = "user123";
+        String LecturerPwd ="lec123";
         if (userRepository.findUsersByUsername(registerUser.getUsername()) != null) {
             return null;
         } else {
@@ -54,9 +55,16 @@ public class UserServiceImpl implements UserService {
                 userdomain.setLastname(registerUser.getLastname());
                 userdomain.setEmail(registerUser.getEmail().toLowerCase(Locale.ROOT)); // validation
                 userdomain.setMobile(registerUser.getMobile());
-                userdomain.setPassword(passwordEncoder.encode(DefaultPassword));
+
                 userRole.setRoleName(UserTypeUtil.fromText(registerUser.getRole()));
                 userdomain.setRole(userRole);
+                if(userdomain.getRole().getRoleName().equals(UserTypeUtil.STUDENT))
+                {
+                    userdomain.setPassword(passwordEncoder.encode(DefaultPassword));
+                }
+                else {
+                    userdomain.setPassword(passwordEncoder.encode(LecturerPwd));
+                }
                 userdomain.setDateOfBirth(registerUser.getDateOfBirth());
                 userdomain.setGender(registerUser.getGender());
                 //Collection <com.janith.eea.Model.UserRole>
@@ -199,11 +207,21 @@ public class UserServiceImpl implements UserService {
         }
 
         User save = userRepository.save(user);
-        emailService.emailPasswordReset(user);
+        emailService.emailUserUpdate(user);
 
         return save;
 
     }
+
+    @Override
+    public User updatePasswordStudent(UserDto userDto) {
+        User userdomain = userRepository.findById(userDto.getUserId()).get();
+
+        userdomain.setPassword(passwordEncoder.encode(userDto.getPassword()));
+        User save = userRepository.save(userdomain);
+        emailService.emaiPasswordReset(userdomain);
+
+        return save;    }
 
     @Override
     public UserDto getUserById(int id) {

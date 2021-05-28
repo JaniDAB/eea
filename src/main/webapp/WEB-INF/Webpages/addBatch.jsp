@@ -26,8 +26,9 @@
 
 <!------ Include the above in your HEAD tag ---------->
 
-<div class="alert-light ml-5" style="color: #55efc4">
+<div class=" row justify-content-center  successmessage" style="color: #55efc4">
     ${successful}
+        ${fail}
 </div>
 <div class="container register" style="max-width: 100%;">
     <div class="row">
@@ -59,7 +60,7 @@
                         <div class="col-md-6">
                             <div class="form-group" >
                                     <%--                                <input   type="text" class="form-control" placeholder="First Name *"  required="required" value="" />--%>
-                             <form:label path="batchCode" >Enter Batch Code:</form:label>
+                             <form:label path="batchCode" >Enter Batch Code: Ex(HF1231SEeng) </form:label>
                                 <form:input   type="text" path="batchCode" cssClass="form-control" placeholder="For Ex: HF1231SEeng" required="required"/>
                             <form:errors path="batchCode" cssClass="align-content-center" cssStyle="color: red"/>
                             </div>

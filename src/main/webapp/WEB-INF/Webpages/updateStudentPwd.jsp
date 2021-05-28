@@ -52,42 +52,39 @@
             <%--    Add users--%>
             <img src="https://i.ibb.co/6bkWbL7/icons8-business-group-64.png" alt="icons8-business-group-64" border="0">
             <h3>${userinfo.firstname} ${userinfo.lastname} </h3>
+                <p> Email : ${userinfo.email} </p>
             <p> Enrolled Batch: ${userinfo.batch.batchCode} </p>
+
             <%--            <p>Add Timetable System users here</p>--%>
-                        <a  href="${pageContext.request.contextPath}/student/getPasswordUpdate/${userinfo.userId}" class="btn btn-success">
-                            Reset Password
-                        </a>
+
         </div>
         <div class="col-md-9 register-right">
 
             <div class="tab-content" id="myTabContent">
                 <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                    <h3 class="register-heading">Update Your Account</h3>
+                    <h3 class="register-heading">Update Password</h3>
 
-                    <form:form action="${pageContext.request.contextPath}/student/Updateform" method="POST"
-                                modelAttribute="student">
+                    <form:form action="${pageContext.request.contextPath}/student/updatePassword" method="POST"
+                               onsubmit="return Validate()" modelAttribute="UpdatePassword">
 
 
                     <div class="row register-form">
 
 
                         <div class="col-md-6">
-                            <div class="form-group">
-                                <form:input type="text" path="email" cssClass="form-control"
-                                            value="${userinfo.email}" required="required"/>
-                            </div>
 
+                            <div class="form-group">
+                                <form:input type="password" path="password" cssClass="form-control"
+                                            placeholder="New Password *" id="pass1" required="required"/>
+                            </div>
 
                         </div>
                         <div class="col-md-6">
 
                             <div class="form-group">
-                                <form:input value="${userinfo.mobile}" type="number" path="mobile" cssClass="form-control"
-                                            placeholder="Mobile *"
-                                            required="required"/>
-
+                                <input type="password" class="form-control" placeholder="Confirm Password *" id="pass2"
+                                       required="required" value=""/>
                             </div>
-
                             <div class="form-group">
                                 <form:input value="${userinfo.userId}" type="hidden" path="userId"
                                             cssClass="form-control"
@@ -95,13 +92,8 @@
 
                             </div>
 
-                            <div class="form-group">
-                                <form:input type="text" path="username" cssClass="form-control"
-                                     readonly="true"   value="${userinfo.username}"  required="required"/>
 
-                            </div>
-
-                            <input type="submit" class="btnRegister"  value="Update"/>
+                            <input type="submit" class="btnRegister" onclick="Validate()"  value="Update"/>
                         </div>
                     </div>
 

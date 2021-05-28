@@ -36,6 +36,7 @@ public class TimeTableServiceImpl implements  TimeTableService{
         List<Batch> batchList = new ArrayList<>();
         timetable.setTimetableID(timetable.getTimetableID());
         if(timetableDto != null){
+
         for(Batch batchInfor : timetableDto.getBatchList())
         {
             batchList.add(batchRepository.findById(batchInfor.getBatchID()).get());
@@ -45,7 +46,6 @@ public class TimeTableServiceImpl implements  TimeTableService{
             timetable.setStartTime(LocalTime.parse(timetableDto.getStartTime()));
             timetable.setEndTIme(LocalTime.parse(timetableDto.getEndTIme()));
             timetable.setClassRoom(timetableDto.getClassRoom());
-//            timetable.setBatch(timetableDto.getBatchList().get());
             timetable.setModule(timetableDto.getModule());
         }
 

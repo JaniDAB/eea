@@ -6,6 +6,7 @@ import com.janith.eea.Model.Module;
 import com.janith.eea.Service.ModuleServiceImpl;
 import com.janith.eea.Service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +18,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.util.List;
 
 @Controller
+@PreAuthorize("hasAuthority('ADMIN')")
 public class moduleController {
 
 
@@ -101,7 +103,7 @@ public class moduleController {
         String s = this.moduleService.deAssignLecturer(ID);
         if (s.equals("deleted")) {
             rd.addFlashAttribute("deleted", "De-Assign  Successfully");
-        }else {
+        }else  {
             rd.addFlashAttribute("error", "De-Assign UnSuccessful");
         }
 
@@ -110,22 +112,22 @@ public class moduleController {
     }
 
 
-    @GetMapping("/getLecturerModuleList/{userID}")
-    public String getModuleListLecturer(@PathVariable( name = "userID") int UserID, Model m)
-    {
-        try {
-            List<ModuleDto> modelInfoList = moduleService.viewLecsModules(UserID);
-
-            m.addAttribute("moduleInfoList", modelInfoList);
-
-            return "LecturerModules";
-        } catch (Exception ex) {
-            System.out.println("Module not found"+ex);
-
-            return "LecturerModules";
-        }
-
-    }
+//    @GetMapping("/getLecturerModuleList/{userID}")
+//    public String getModuleListLecturer(@PathVariable( name = "userID") int UserID, Model m)
+//    {
+//        try {
+//            List<ModuleDto> modelInfoList = moduleService.viewLecsModules(UserID);
+//
+//            m.addAttribute("moduleInfoList", modelInfoList);
+//
+//            return "LecturerModules";
+//        } catch (Exception ex) {
+//            System.out.println("Module not found"+ex);
+//
+//            return "LecturerModules";
+//        }
+//
+//    }
 
 
 

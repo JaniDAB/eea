@@ -35,7 +35,7 @@
             <h3>Assign Batch To a Student</h3>
 
             <p> Assigning a Batch to a User can be done here</p>
-            <input type="submit" name="" value="Login"/><br/>
+
         </div>
         <div class="col-md-9 register-right">
 

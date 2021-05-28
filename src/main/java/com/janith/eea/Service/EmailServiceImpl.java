@@ -70,7 +70,7 @@ public class EmailServiceImpl {
     }
 
 
-    public void emailPasswordReset( final User userInfo)
+    public void emailUserUpdate( final User userInfo)
     {
 
         MimeMessagePreparator preparator = new MimeMessagePreparator() {
@@ -81,7 +81,42 @@ public class EmailServiceImpl {
 
                 mimeMessage.setRecipient(Message.RecipientType.TO,
                         new InternetAddress(userInfo.getEmail()));
-                helper.setSubject("Password Reset & Updating your account Timetabling System 766 !");
+                helper.setSubject("Updating your account Timetabling System 766 !");
+                helper.setFrom(new InternetAddress(CollegeEmail));
+
+                String mailContent = "<p><b>Dear </b>" + userInfo.getFirstname()+" "+userInfo.getLastname() +"</p>";
+                mailContent+= "<p><b>You Have Successfully Updated Your account in  Timetable System,</b>"+"</p>";
+                mailContent+= "<hr><img src='cid:logoImage' />";
+
+                helper.setText(mailContent,true);
+                mimeMessage.setSentDate(new Date());
+                ClassPathResource  resource = new ClassPathResource("static/images/timetable.png");
+                helper.addInline("logoImage" , resource);
+            }
+        };
+
+        try {
+            this.javaMailSender.send(preparator);
+        }
+        catch (MailException ex) {
+            // simply log it and go on...
+            System.err.println(ex.getMessage());
+        }
+    }
+
+
+    public void emaiPasswordReset( final User userInfo)
+    {
+
+        MimeMessagePreparator preparator = new MimeMessagePreparator() {
+
+            public void prepare(MimeMessage mimeMessage) throws Exception {
+
+                MimeMessageHelper helper = new MimeMessageHelper(mimeMessage ,true);
+
+                mimeMessage.setRecipient(Message.RecipientType.TO,
+                        new InternetAddress(userInfo.getEmail()));
+                helper.setSubject("Password Reset : Timetabling System 766 !");
                 helper.setFrom(new InternetAddress(CollegeEmail));
 
                 String mailContent = "<p><b>Dear </b>" + userInfo.getFirstname()+" "+userInfo.getLastname() +"</p>";
@@ -92,12 +127,6 @@ public class EmailServiceImpl {
 
 
                 helper.setText(mailContent,true);
-////                        helper.setText(
-////                        "Dear " + userInfo.getFirstname()+ " "
-////                                + userInfo.getLastname()
-////                                + ",You Have Successfully Registered with Timetable System, Following  will be your User Name And Password "
-////                                +  "UserName "+ userInfo.getUsername()
-//                                +"   Password : user123");
                 mimeMessage.setSentDate(new Date());
                 ClassPathResource  resource = new ClassPathResource("static/images/timetable.png");
                 helper.addInline("logoImage" , resource);

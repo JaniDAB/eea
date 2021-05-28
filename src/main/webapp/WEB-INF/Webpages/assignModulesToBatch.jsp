@@ -71,7 +71,7 @@
                                 </form:select>
                             </div>
 
-                            <input type="submit" class="btnRegister"  value="Submit"/>
+                            <input type="submit" class="btnRegister"  value="Assign"/>
                         </div>
                     </div>
 

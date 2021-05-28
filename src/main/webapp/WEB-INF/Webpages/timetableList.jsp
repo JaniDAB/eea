@@ -14,7 +14,7 @@
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body style="background : -webkit-linear-gradient(right,#c4e5ec, #5484c7);">
 
@@ -44,6 +44,7 @@
 <div class="row justify-content-center  successmessage" role="alert" style="color: #55efc4">
 ${deleted}
 ${error}
+
 </div>
 <table class="content-table">
 
@@ -79,11 +80,16 @@ ${error}
             <td>${temptimetable.classRoom.roomType}</td>
             <td>${temptimetable.module.lecUser.firstname}</td>
             <td>
-                <span><a href="${pageContext.request.contextPath}/admin/rescheduleDirect/${temptimetable.timetableID}" class="btn btn-success">Reschedule</a>
+                <span><a href="${pageContext.request.contextPath}/admin/rescheduleDirect/${temptimetable.timetableID}" class="btn btn-success">
+                    <i class="material-icons">&#xe923;</i>
+                </a>
                 </span>
             </td>
             <td>
-                <span><a href="${pageContext.request.contextPath}/deleteTimetable/${temptimetable.timetableID}" class="btn btn-danger" onclick="return confirm('Delete this Schedule')">Remove</a>
+                <span><a href="${pageContext.request.contextPath}/deleteTimetable/${temptimetable.timetableID}" class="btn btn-danger" onclick="return confirm('Delete this Schedule')">
+
+                <i class="material-icons">&#xe872;</i>
+                    </a>
                 </span>
             </td>
 

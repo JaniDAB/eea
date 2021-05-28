@@ -54,4 +54,45 @@ public class ClassRoomServiceImpl implements ClassRoomService{
         }
         return classRoomDtoslist;
     }
+
+
+    @Override
+    public ClassRoom editRoom(ClassRoomDto classRoomDto) {
+        ClassRoom classRoom = roomRepository.findById(classRoomDto.getRoomId()).get();
+
+
+        classRoom.setRoomType(classRoomDto.getRoomType());
+        classRoom.setRoomCapacity(classRoomDto.getRoomCapacity());
+
+        return roomRepository.save(classRoom);
+
+
+    }
+
+
+    @Override
+    public String deleteRoom(String roomID) {
+        try {
+          roomRepository.deleteById(roomID);
+            return "deleted";
+        }
+        catch (Exception EX)
+        {
+            System.out.println(EX);
+            return "error";
+        }
+    }
+
+    @Override
+    public ClassRoomDto viewSingleRoom(String ID) {
+        ClassRoom cl = roomRepository.findClassRoomByRoomId(ID);
+
+        ClassRoomDto classRoomDto =  new ClassRoomDto();
+
+        classRoomDto.setRoomId(cl.getRoomId());
+        classRoomDto.setRoomType(cl.getRoomType());
+        classRoomDto.setRoomCapacity(cl.getRoomCapacity());
+
+        return classRoomDto;
+    }
 }

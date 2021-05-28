@@ -52,6 +52,7 @@ private ClassRoom classRoom;
         joinColumns = @JoinColumn(name = "timetable_id"),
         inverseJoinColumns = @JoinColumn(name = "batch_id"))
 private List<Batch> batchList;
+
     @ManyToOne
     @JoinColumn(name = "module_id")
     @Setter

@@ -46,7 +46,7 @@ public class AuthenticationController {
             a.addAttribute("student", user);
             System.out.println( user.getBatch().getBatchCode());
 
-            return "studentHome";
+            return "redirect:/student";
         }
         if (user.getRole().getRoleName() == UserTypeUtil.ADMIN){
 
