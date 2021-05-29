@@ -101,10 +101,12 @@ public class TimetableController {
     public String addingTimeTable(@ModelAttribute("timetable") TimetableDto timetableDto, Model r) {
         try {
 
-            final Timetable timetable = timeTableService.addTimetable(timetableDto);
+            final Timetable timetable = timeTableService.
+                    addTimetable(timetableDto);
             r.addAttribute("successful", "TimeTable Added Successfully");
         } catch (Exception ex) {
-            r.addAttribute("error", "Timetable   Was not Added Successfully");
+            System.out.println(ex);
+            r.addAttribute("error", ex);
         }
         return "addTimeTable";
     }

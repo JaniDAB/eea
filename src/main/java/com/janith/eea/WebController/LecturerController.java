@@ -11,6 +11,7 @@ import com.janith.eea.Service.UserServiceImpl;
 import com.janith.eea.Validation.BatchValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -83,10 +84,20 @@ public class LecturerController {
     @GetMapping("/lecturer/timetable/{id}")
     public String getLecturerTimetable(@PathVariable(value = "id") int id, Model timetable)
     {
-        List<TimetableDto> timetableDtoList = timeTableService.getAllTimeTablestoLecturer(id);
 
+        List<TimetableDto> timetableDtoList = timeTableService.getAllTimeTablestoLecturer(id);
         timetable.addAttribute("timetableList" , timetableDtoList);
 
+        return "viewLecturerTimetable";
+
+    }
+
+    @GetMapping("/lecturer/timetables")
+    public String getLecturerTimetableToday( Model timetable, Authentication auth)
+    {
+        List<TimetableDto> timetableDtoLists = timeTableService.getTodayTablesByDate(service.getUser(auth.getName()).getUserId());
+
+        timetable.addAttribute("timetableList" , timetableDtoLists);
         return "viewLecturerTimetable";
 
     }

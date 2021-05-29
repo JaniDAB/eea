@@ -100,10 +100,8 @@ public class ModuleServiceImpl implements ModuleService {
 
         Module module = optionalModule.get();
 
-        if (module != null) {
-            module.setLecUser(moduleDto.getLecUser());
+        module.setLecUser(moduleDto.getLecUser());
 
-        }
         return moduleRepository.save(module);
     }
 

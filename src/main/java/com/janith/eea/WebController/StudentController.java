@@ -10,6 +10,7 @@ import com.janith.eea.Service.UserServiceImpl;
 import com.janith.eea.Validation.BatchValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -121,6 +122,17 @@ public class StudentController {
         return "viewStudentTimetable";
 
     }
+    @GetMapping("/student/TodayTimetable")
+    public String getStudentTimetable(Authentication auth , Model timetable)
+    {
+        List<TimetableDto> timetableDtoList = timeTableService.getTodayTablesByDateStduents(service.getUser(auth.getName()).getBatch().getBatchID());
+
+        timetable.addAttribute("timetableList" , timetableDtoList);
+
+        return "viewStudentTimetable";
+
+    }
+
 
 
 }

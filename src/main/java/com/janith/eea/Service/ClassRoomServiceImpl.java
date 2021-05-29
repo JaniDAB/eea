@@ -39,19 +39,17 @@ public class ClassRoomServiceImpl implements ClassRoomService{
 
         List<ClassRoomDto> classRoomDtoslist =  new ArrayList<>();
 
-        if(classRooms != null) {
-            for (ClassRoom classRoom : classRooms) {
+        for (ClassRoom classRoom : classRooms) {
 
-                ClassRoomDto classRoomDto = new ClassRoomDto();
+            ClassRoomDto classRoomDto = new ClassRoomDto();
 
-                classRoomDto.setRoomId(classRoom.getRoomId());
-                classRoomDto.setRoomCapacity(classRoom.getRoomCapacity());
-                classRoomDto.setRoomType(classRoom.getRoomType());
+            classRoomDto.setRoomId(classRoom.getRoomId());
+            classRoomDto.setRoomCapacity(classRoom.getRoomCapacity());
+            classRoomDto.setRoomType(classRoom.getRoomType());
 
-                classRoomDtoslist.add(classRoomDto);
-            }
-
+            classRoomDtoslist.add(classRoomDto);
         }
+
         return classRoomDtoslist;
     }
 

@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface TimeTableService {
 
-    Timetable addTimetable(TimetableDto timetableDto);
+    Timetable addTimetable(TimetableDto timetableDto) throws Exception;
 
     List<TimetableDto> viewTableByBatch(int Batchcode);
 
@@ -21,5 +21,9 @@ public interface TimeTableService {
 
 
     List<TimetableDto> getAllTimeTablestoLecturer(int UserID);
+
+    List<TimetableDto> getTodayTablesByDate(int UserID);
+
+    List<TimetableDto> getTodayTablesByDateStduents(int Batchcode);
 
 }

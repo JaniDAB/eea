@@ -27,7 +27,7 @@ public class UserServiceImpl implements UserService {
     private BCryptPasswordEncoder passwordEncoder;
 
     @Autowired
-    private  EmailServiceImpl emailService;
+    private EmailServiceImpl emailService;
 
     public User getUser(String username) {
         return userRepository.findUsersByUsername(username);
@@ -38,14 +38,13 @@ public class UserServiceImpl implements UserService {
     }
 
 
-
     @Override
     public User save(UserDto registerUser) {
         User userdomain = new User();
         UserRole userRole = new UserRole();
 
         String DefaultPassword = "user123";
-        String LecturerPwd ="lec123";
+        String LecturerPwd = "lec123";
         if (userRepository.findUsersByUsername(registerUser.getUsername()) != null) {
             return null;
         } else {
@@ -58,11 +57,9 @@ public class UserServiceImpl implements UserService {
 
                 userRole.setRoleName(UserTypeUtil.fromText(registerUser.getRole()));
                 userdomain.setRole(userRole);
-                if(userdomain.getRole().getRoleName().equals(UserTypeUtil.STUDENT))
-                {
+                if (userdomain.getRole().getRoleName().equals(UserTypeUtil.STUDENT)) {
                     userdomain.setPassword(passwordEncoder.encode(DefaultPassword));
-                }
-                else {
+                } else {
                     userdomain.setPassword(passwordEncoder.encode(LecturerPwd));
                 }
                 userdomain.setDateOfBirth(registerUser.getDateOfBirth());
@@ -173,19 +170,16 @@ public class UserServiceImpl implements UserService {
         User user = userdomain.get();
 
 
-            if (user != null) {
+        if (user != null) {
 
-                user.setUsername(userDto.getUsername());
-                user.setFirstname(userDto.getFirstname());
-                user.setLastname(userDto.getLastname());
-                user.setEmail(userDto.getEmail().toLowerCase(Locale.ROOT)); // validation
-                user.setMobile(userDto.getMobile());
-//                user.setPassword(passwordEncoder.encode(userDto.getPassword()));
-//                user.setBatch(userDto.getBatch());
+            user.setUsername(userDto.getUsername());
+            user.setFirstname(userDto.getFirstname());
+            user.setLastname(userDto.getLastname());
+            user.setEmail(userDto.getEmail().toLowerCase(Locale.ROOT)); // validation
+            user.setMobile(userDto.getMobile());
 
-
-            }
-            return userRepository.save(user);
+        }
+        return userRepository.save(user);
 
 
     }
@@ -221,7 +215,8 @@ public class UserServiceImpl implements UserService {
         User save = userRepository.save(userdomain);
         emailService.emaiPasswordReset(userdomain);
 
-        return save;    }
+        return save;
+    }
 
     @Override
     public UserDto getUserById(int id) {
@@ -230,7 +225,7 @@ public class UserServiceImpl implements UserService {
         UserDto userdom = new UserDto();
         User userinfo = null;
 
-        if(optionalUser.isPresent()){
+        if (optionalUser.isPresent()) {
             userinfo = optionalUser.get();
 
             userdom.setUserId(userinfo.getUserId());
@@ -245,9 +240,8 @@ public class UserServiceImpl implements UserService {
             userdom.setMobile(userinfo.getMobile());
             userdom.setPassword(userinfo.getPassword());
 
-        }
-        else {
-            throw new RuntimeException("No use Found" +id);
+        } else {
+            throw new RuntimeException("No use Found" + id);
         }
         return userdom;
 
@@ -259,11 +253,8 @@ public class UserServiceImpl implements UserService {
 
         User user = userdomain.get();
 
-        if (user != null) {
+        user.setBatch(userDto.getBatch());
 
-            user.setBatch(userDto.getBatch());
-
-        }
         return userRepository.save(user);
     }
 
@@ -274,9 +265,7 @@ public class UserServiceImpl implements UserService {
             userdomain.setBatch(null);
             userRepository.save(userdomain);
             return "unAssigned";
-        }
-        catch (Exception EX)
-        {
+        } catch (Exception EX) {
             System.out.println(EX);
             return "error";
         }
@@ -288,9 +277,7 @@ public class UserServiceImpl implements UserService {
         try {
             this.userRepository.deleteById(ID);
             return "deleted";
-        }
-        catch (Exception EX)
-        {
+        } catch (Exception EX) {
             System.out.println(EX);
             return "error";
         }
