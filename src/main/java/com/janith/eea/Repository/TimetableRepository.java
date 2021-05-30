@@ -16,11 +16,11 @@ public interface TimetableRepository extends JpaRepository<Timetable,Integer> {
 //    public List<Timetable> findTimetableBy(int batchID);
 
 
-    public List<Timetable> findTimetablesByBatchListEquals(Batch BatchID);
+     List<Timetable> findTimetablesByBatchListEquals(Batch BatchID);
 
-    public List<Timetable> findTimetablesByModule_LecUser_UserId(int userID);
+     List<Timetable> findTimetablesByModule_LecUser_UserId(int userID);
 
-    public List<Timetable> findTimetablesByClassRoomAndDate(ClassRoom classRoom, Date date);
+     List<Timetable> findTimetablesByClassRoomAndDate(ClassRoom classRoom, Date date);
 
 //public  List<Timetable> findTimetableByDate(Date date);
 
@@ -28,9 +28,11 @@ public interface TimetableRepository extends JpaRepository<Timetable,Integer> {
 
 //    public List<Timetable> findByBatchListAndDate(List<Batch> batchList, Date date);
 
-    public  List<Timetable> findTimetablesByDateAndModule_LecUser_UserId(Date date, Integer module_lecUser_userId);
+      List<Timetable> findTimetablesByDateAndModule_LecUser_UserId(Date date, Integer module_lecUser_userId);
 
-    public List<Timetable> findTimetablesByBatchListEqualsAndDate(Batch BatchID,Date Date);
+     List<Timetable> findTimetablesByBatchListEqualsAndDate(Batch BatchID,Date Date);
 
+        List<Timetable> findTimetablesByBatchListEqualsAndDateLike(Batch BatchID,Date date);
 
+     List<Timetable> findTimetablesByModule_LecUser_UserIdAndDateLike(int userID , Date date);
 }

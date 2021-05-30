@@ -225,6 +225,30 @@ public class TimeTableServiceImpl implements TimeTableService {
     }
 
     @Override
+    public List<TimetableDto> searchbyDate(String Date , int batchid) {
+        Batch batch = batchRepository.findById(batchid).orElseThrow(RuntimeException::new);
+
+        List<Timetable> timetablesDomain = timetableRepo.findTimetablesByBatchListEqualsAndDateLike(batch, java.sql.Date.valueOf(Date));
+
+        List<TimetableDto> timetableDtoList = new ArrayList<>();
+
+        if (!timetablesDomain.isEmpty()) {
+            for (Timetable timetable : timetablesDomain) {
+                TimetableDto tt = new TimetableDto();
+//                tt.setBatch(timetable.getBatch());
+                tt.setModule(timetable.getModule());
+                tt.setDate(String.valueOf(timetable.getDate()));
+                tt.setStartTime(String.valueOf(timetable.getStartTime()));
+                tt.setEndTIme(String.valueOf(timetable.getEndTIme()));
+                tt.setTimetableID(timetable.getTimetableID());
+                tt.setClassRoom(timetable.getClassRoom());
+                timetableDtoList.add(tt);
+            }
+        }
+
+        return timetableDtoList;    }
+
+    @Override
     public Timetable reSchedule(TimetableDto timetableDto) {
 
         Timetable timetables = timetableRepo.findById(timetableDto.getTimetableID()).orElseThrow(RuntimeException::new);
@@ -270,4 +294,26 @@ public class TimeTableServiceImpl implements TimeTableService {
 
         return timetableDtoList;
     }
+
+    @Override
+    public List<TimetableDto> searchLecturerTimetable(int UserID, String Date) {
+        List<Timetable> timetablesDomain = timetableRepo.findTimetablesByModule_LecUser_UserIdAndDateLike(UserID,java.sql.Date.valueOf(Date) );
+
+        List<TimetableDto> timetableDtoListof = new ArrayList<>();
+
+        if (!timetablesDomain.isEmpty()) {
+            for (Timetable timetable : timetablesDomain) {
+                TimetableDto tt = new TimetableDto();
+                tt.setBatchList(timetable.getBatchList());
+                tt.setModule(timetable.getModule());
+                tt.setDate(String.valueOf(timetable.getDate()));
+                tt.setStartTime(String.valueOf(timetable.getStartTime()));
+                tt.setEndTIme(String.valueOf(timetable.getEndTIme()));
+                tt.setTimetableID(timetable.getTimetableID());
+                tt.setClassRoom(timetable.getClassRoom());
+                timetableDtoListof.add(tt);
+            }
+        }
+
+        return timetableDtoListof;    }
 }

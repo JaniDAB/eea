@@ -19,6 +19,14 @@ h1{
     margin-left:auto;
 
 }
+.successmessage{
+    color: red;
+    font-size: 1.5em;
+    min-width: 250px;
+    border-radius: 25px 25px 25px 25px;
+    font-family: "Montserrat", sans-serif;
+    font-weight: bold;
+}
 
 *{
     box-sizing: border-box;

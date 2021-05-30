@@ -79,6 +79,7 @@ public class BatchController {
 
             return "assignModulesToBatch";
 
+
         }catch (Exception e){
             System.out.println(e);
             return "assignModulesToBatch";
@@ -89,6 +90,7 @@ public class BatchController {
     public String assignModulesToBatch(@ModelAttribute("assignModule")BatchDto batchDto){
         batchService.editBatch(batchDto);
         return "assignModulesToBatch";
+
     }
 
     @GetMapping("/modulelist/{id}")

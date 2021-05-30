@@ -18,7 +18,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Controller
@@ -95,12 +97,26 @@ public class LecturerController {
     @GetMapping("/lecturer/timetables")
     public String getLecturerTimetableToday( Model timetable, Authentication auth)
     {
+        // take the list from timetable list of current date.
         List<TimetableDto> timetableDtoLists = timeTableService.getTodayTablesByDate(service.getUser(auth.getName()).getUserId());
 
+        // binding  the collected list to JSP
         timetable.addAttribute("timetableList" , timetableDtoLists);
         return "viewLecturerTimetable";
 
     }
+    @GetMapping("/lecturer/search")
+    public String getLecturerTimetable(Authentication auth , Model timetable , HttpServletRequest req)
+    {   String date = req.getParameter("date");
+
+        List<TimetableDto> timetableDtoList = timeTableService.searchLecturerTimetable(service.getUser(auth.getName()).getUserId(),date );
+        timetable.addAttribute("timetableList" , timetableDtoList);
+
+        return "viewLecturerTimetable";
+
+    }
+
+
     @GetMapping("/getLecturerModuleList/{userID}")
     public String getModuleListLecturer(@PathVariable( name = "userID") int UserID, Model m)
     {

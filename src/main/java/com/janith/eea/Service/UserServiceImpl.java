@@ -49,9 +49,9 @@ public class UserServiceImpl implements UserService {
             return null;
         } else {
             if (registerUser != null) {
-                userdomain.setUsername(registerUser.getUsername());
-                userdomain.setFirstname(registerUser.getFirstname());
-                userdomain.setLastname(registerUser.getLastname());
+                userdomain.setUsername(registerUser.getUsername().trim());
+                userdomain.setFirstname(registerUser.getFirstname().trim());
+                userdomain.setLastname(registerUser.getLastname().trim());
                 userdomain.setEmail(registerUser.getEmail().toLowerCase(Locale.ROOT)); // validation
                 userdomain.setMobile(registerUser.getMobile());
 
@@ -299,4 +299,28 @@ public class UserServiceImpl implements UserService {
         }
     }
 
+    @Override
+    public List<UserDto> searchUser(String fname) {
+        List<User> userList =  new ArrayList<>();
+        userList.addAll(userRepository.StudentSearch(fname));
+
+        List<UserDto> userDtoList = new ArrayList<>();
+
+        for(User user:userList)
+        {
+            UserDto usernew =  new UserDto();
+            usernew.setUserId(user.getUserId());
+            usernew.setUsername(user.getUsername());
+            usernew.setEmail(user.getEmail());
+            usernew.setFirstname(user.getFirstname());
+            usernew.setLastname(user.getLastname());
+            usernew.setGender(user.getGender());
+            usernew.setRole(user.getRole().getRoleName().toString());
+            usernew.setDateOfBirth(user.getDateOfBirth());
+            usernew.setMobile(user.getMobile());
+            usernew.setBatch(user.getBatch());
+            userDtoList.add(usernew);
+        }
+        return userDtoList;
+    }
 }

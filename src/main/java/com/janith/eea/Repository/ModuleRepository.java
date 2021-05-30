@@ -12,4 +12,8 @@ public interface ModuleRepository extends JpaRepository<Module,Integer> {
 
 
     public List<Module>  findModuleByLecUser_UserId(int UserID);
+
+    public Module  findByModuleName(String ModuleName);
+
+
 }

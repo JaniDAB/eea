@@ -41,6 +41,11 @@
     <ul>
         <li> <a class="nav-link" href="${pageContext.request.contextPath}/lecturer">Home</a></li>
         <li> <a class="nav-link" href="${pageContext.request.contextPath}/lecturer/timetables">Todays Schedule</a></li>
+        <li  style="float:right">  <form action="${pageContext.request.contextPath}/lecturer/search" method="get" class="d-flex">
+            <input class="form-control" style="width: 200px; border-radius: 25px 25px 25px 25px" type="date"  name="date" placeholder="Search.." aria-label="Search" required="required">
+            <button class="btn btn-primary" type="submit"><i class="fa fa-search"></i></button>
+
+        <li/>
         <li  style="float:right"> <form method="post" action="${pageContext.request.contextPath}/logout"> <button type="submit" class="fa fa-sign-out nav-link" > Logout</button></form> </li>
     </ul>
 </nav>

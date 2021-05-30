@@ -3,6 +3,7 @@ package com.janith.eea.Service;
 import com.janith.eea.Dto.TimetableDto;
 import com.janith.eea.Model.Timetable;
 
+import java.sql.Date;
 import java.util.List;
 
 public interface TimeTableService {
@@ -25,5 +26,10 @@ public interface TimeTableService {
     List<TimetableDto> getTodayTablesByDate(int UserID);
 
     List<TimetableDto> getTodayTablesByDateStduents(int Batchcode);
+
+    List<TimetableDto> searchbyDate(String Date , int batchid);
+
+    List<TimetableDto> searchLecturerTimetable(int UserID ,String Date );
+
 
 }

@@ -36,7 +36,11 @@
     <ul>
         <li><a   class="nav-link" href="${pageContext.request.contextPath}/admin">Home</a></li>
             <li><a   class="nav-link" href="${pageContext.request.contextPath}/admin/users/allLectruer">View Lecturers</a></li>
+        <li  style="float:right">  <form action="${pageContext.request.contextPath}/admin/searchUser" method="get" class="d-flex">
+            <input class="form-control" style="width: 200px; border-radius: 25px 25px 25px 25px" type="search"  name="searchByName" placeholder="Search..(First Name)" aria-label="Search">
+            <button class="btn btn-primary" type="submit"><i class="fa fa-search"></i></button>
 
+        <li/>
         <li  style="float:right"> <form method="post" action="${pageContext.request.contextPath}/logout"> <button type="submit" class="fa fa-sign-out nav-link" > Logout</button></form> </li>
 
     </ul>

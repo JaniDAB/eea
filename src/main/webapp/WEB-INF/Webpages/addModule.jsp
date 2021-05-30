@@ -49,6 +49,8 @@
                         <div class="col-md-8">
                             <div class="form-group" >
                                 <form:input   type="text" path="moduleName" cssClass="form-control" placeholder="Module *" required="required"/>
+                                <form:errors path="moduleName" cssClass="align-content-center" cssStyle="color: red"/>
+
                             </div>
                         </div>
                          <div class="col-md-8" >

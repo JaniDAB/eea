@@ -30,7 +30,7 @@ public class ModuleServiceImpl implements ModuleService {
 //modeldom.setBatchList(batchRepository.findAll());
 
         if (moduleDto != null) {
-            modeldom.setModuleName(moduleDto.getModuleName());
+            modeldom.setModuleName(moduleDto.getModuleName().trim());
         }
         return moduleRepository.save(modeldom);
 

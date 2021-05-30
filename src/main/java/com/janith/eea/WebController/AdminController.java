@@ -10,6 +10,7 @@ import com.janith.eea.Service.BatchServiceImpl;
 import com.janith.eea.Service.ModuleService;
 import com.janith.eea.Service.UserServiceImpl;
 import com.janith.eea.Validation.BatchValidator;
+import com.janith.eea.Validation.ModuleValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Controller
@@ -43,11 +45,16 @@ public class AdminController {
     @Autowired
     private  final BatchValidator batchValidator;
 
-    public AdminController(BatchServiceImpl batchService, ModuleService moduleService, UserServiceImpl userService, UserServiceImpl service, BatchValidator batchValidator) {
+
+    @Autowired
+    private final ModuleValidator moduleValidator;
+
+    public AdminController(BatchServiceImpl batchService, ModuleService moduleService, UserServiceImpl userService, UserServiceImpl service, BatchValidator batchValidator, ModuleValidator moduleValidator) {
         this.batchService = batchService;
         this.moduleService = moduleService;
         this.service = service;
         this.batchValidator = batchValidator;
+        this.moduleValidator = moduleValidator;
     }
 
     // Users Functions  ----------------------------------------------------------------------------------------
@@ -66,6 +73,15 @@ public class AdminController {
         userList = service.getAllStudets();
 
         a.addAttribute("users", userList);
+        return "/viewAllStudents";
+    }
+    @GetMapping("/admin/searchUser")
+    public String search(HttpServletRequest req , Model a)
+    {
+        String name = req.getParameter("searchByName");
+        List<UserDto> userDtoList = service.searchUser(name);
+
+        a.addAttribute("users", userDtoList);
         return "/viewAllStudents";
     }
 
@@ -278,7 +294,14 @@ public class AdminController {
     }
 
     @PostMapping("/admin/addModule")
-    public String addAModule(@ModelAttribute("module") ModuleDto moduleDto) {
+    public String addAModule(@ModelAttribute("module") ModuleDto moduleDto ,BindingResult br) {
+
+        moduleValidator.validate(moduleDto , br);
+
+        if(br.hasErrors())
+        {
+            return "/addModule";
+        }
         final Module save = moduleService.save(moduleDto);
         return "/addModule";
     }

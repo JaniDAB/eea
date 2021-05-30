@@ -17,7 +17,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletRequest;
+import java.sql.Date;
 import java.util.List;
 
 @Controller
@@ -122,15 +125,30 @@ public class StudentController {
         return "viewStudentTimetable";
 
     }
+
+    @GetMapping("/student/searchUser")
+    public String search(HttpServletRequest req , Model a , Authentication auth)
+    {
+        String date = req.getParameter("date");
+        List<TimetableDto> timetableDtoList = timeTableService.searchbyDate(date,service.getUser(auth.getName()).getBatch().getBatchID());
+
+        a.addAttribute("timetableList", timetableDtoList);
+        return "/viewStudentTimetable";
+    }
+
     @GetMapping("/student/TodayTimetable")
-    public String getStudentTimetable(Authentication auth , Model timetable)
+    public String getStudentTimetable(Authentication auth , Model timetable , RedirectAttributes rd)
     {
         List<TimetableDto> timetableDtoList = timeTableService.getTodayTablesByDateStduents(service.getUser(auth.getName()).getBatch().getBatchID());
 
-        timetable.addAttribute("timetableList" , timetableDtoList);
+        if(timetableDtoList.isEmpty()) {
+            rd.addFlashAttribute("emptys","Happy to hear, No Schedules today");
+            return "/viewStudentTimetable";
+        }
+        else
+        timetable.addAttribute("timetableList", timetableDtoList);
 
-        return "viewStudentTimetable";
-
+        return "/viewStudentTimetable";
     }
 
 

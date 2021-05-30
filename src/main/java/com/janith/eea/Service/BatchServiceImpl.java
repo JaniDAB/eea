@@ -28,8 +28,8 @@ public class BatchServiceImpl implements BatchService {
 
         if (batchinfo != null) {
 //            batchdom.setBatchID(batchinfo.getBatchID());
-            batchdom.setBatchCode(batchinfo.getBatchCode());
-            batchdom.setDescription(batchinfo.getDescription());
+            batchdom.setBatchCode(batchinfo.getBatchCode().trim());
+            batchdom.setDescription(batchinfo.getDescription().trim());
 
         }
         return batchRepo.save(batchdom);
