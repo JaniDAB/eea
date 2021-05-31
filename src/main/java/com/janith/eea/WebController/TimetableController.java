@@ -6,12 +6,12 @@ import com.janith.eea.Dto.ModuleDto;
 import com.janith.eea.Dto.TimetableDto;
 import com.janith.eea.Model.ClassRoom;
 import com.janith.eea.Model.Timetable;
-import com.janith.eea.Model.User;
 import com.janith.eea.Service.BatchServiceImpl;
 import com.janith.eea.Service.ClassRoomServiceImpl;
 import com.janith.eea.Service.ModuleServiceImpl;
 import com.janith.eea.Service.TimeTableServiceImpl;
 import com.janith.eea.Validation.ClassRoomValidator;
+import com.janith.eea.Validation.TimetableValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -26,6 +26,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.validation.Valid;
 import java.util.List;
 
+/**
+ * All the  controllers need in Timetable scheduling
+ * @author janith dabare
+ */
 @Controller
 @PreAuthorize("hasAuthority('ADMIN')")
 public class TimetableController {
@@ -45,12 +49,16 @@ public class TimetableController {
     @Autowired
     private final ClassRoomValidator classRoomValidator;
 
-    public TimetableController(TimeTableServiceImpl timeTableService, ClassRoomServiceImpl classRoomService, ModuleServiceImpl moduleService, BatchServiceImpl batchService, ClassRoomValidator classRoomValidator) {
+    @Autowired
+    private final TimetableValidator timetableValidator;
+
+    public TimetableController(TimeTableServiceImpl timeTableService, ClassRoomServiceImpl classRoomService, ModuleServiceImpl moduleService, BatchServiceImpl batchService, ClassRoomValidator classRoomValidator, TimetableValidator timetableValidator) {
         this.timeTableService = timeTableService;
         this.classRoomService = classRoomService;
         this.moduleService = moduleService;
         this.batchService = batchService;
         this.classRoomValidator = classRoomValidator;
+        this.timetableValidator = timetableValidator;
     }
 
     @GetMapping("/addRoom")
@@ -98,9 +106,14 @@ public class TimetableController {
 //    }
 
     @PostMapping("/admin/addTimetable")
-    public String addingTimeTable(@ModelAttribute("timetable") TimetableDto timetableDto, Model r) {
+    public String addingTimeTable(@Valid @ModelAttribute("timetable") TimetableDto timetableDto, Model r,BindingResult br) {
         try {
 
+//            validate scheduling
+timetableValidator.validate(timetableDto,br);
+if(br.hasErrors()){
+    return "addTimeTable";
+}
             final Timetable timetable = timeTableService.
                     addTimetable(timetableDto);
             r.addAttribute("successful", "TimeTable Added Successfully");
@@ -111,18 +124,20 @@ public class TimetableController {
         return "addTimeTable";
     }
 
-    @GetMapping("/admin/timetable/listBatches")
-    public String viewBatches(Model b) {
-        List<BatchDto> batchDtoList;
-        batchDtoList = batchService.getAllBatches();
-        b.addAttribute("batches", batchDtoList);
-
-        return "selectBatchForSchedule";
-    }
+//    @GetMapping("/admin/timetable/listBatches")
+//    public String viewBatches(Model b) {
+//
+//        List<BatchDto> batchDtoList;
+//        batchDtoList = batchService.getAllBatches();
+//        b.addAttribute("batches", batchDtoList);
+//
+//        return "selectBatchForSchedule";
+//    }
 
     @GetMapping("/admin/timetable/listModules")
     public String listModules(Model b) {
 
+//         get modules to schedule the timetable
          List<ModuleDto> moduleDtoList = moduleService.getAllModules();
         b.addAttribute("modules", moduleDtoList);
 
@@ -134,14 +149,12 @@ public class TimetableController {
 
         try {
             int module = id;
-//            BatchDto batchInfo =batchService.getBatchById(batchId);
-
             ModuleDto moduleinfor = moduleService.getModuleById(module);
 
-//            List<ModuleDto>  moduleDtoList = batchService.getModuleList(batchId);
-
+// get the relevant Batches  respective to the module
             List<BatchDto> batchDtoList = moduleService.getBatchListM(module);
 
+            //list of rooms
             List<ClassRoomDto> classRoomDtoList = classRoomService.viewRooms();
 
             t.addAttribute("batchList", batchDtoList);
@@ -169,9 +182,13 @@ public class TimetableController {
 //
 //    }
 
+
+
     @GetMapping("/getAllSchedules")
     public  String getAllTimetables(Model model)
     {
+
+//        list of timetables
         List<TimetableDto> timetableList = timeTableService.getAllTimeTables();
 
         model.addAttribute("allSchedules", timetableList);

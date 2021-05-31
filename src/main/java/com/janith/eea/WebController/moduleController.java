@@ -17,6 +17,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
+/**
+ * All the  controllers need in  Modules
+ * @author janith dabare
+ */
 @Controller
 @PreAuthorize("hasAuthority('ADMIN')")
 public class moduleController {

@@ -82,8 +82,8 @@
                         <div class="col-md-6">
 
                             <div class="form-group">
-                                <form:input value="${userinfo.mobile}" type="number" path="mobile" cssClass="form-control"
-                                            placeholder="Mobile *"
+                                <form:input value="${userinfo.mobile}" type="tel" path="mobile" cssClass="form-control"
+                                        maxlength="11"  size="11"    placeholder="Mobile *"
                                             required="required"/>
 
                             </div>

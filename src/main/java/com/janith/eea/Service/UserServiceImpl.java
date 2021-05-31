@@ -37,7 +37,7 @@ public class UserServiceImpl implements UserService {
         this.userRepository = userRepository;
     }
 
-
+// function for save the timetable users
     @Override
     public User save(UserDto registerUser) {
         User userdomain = new User();
@@ -67,7 +67,7 @@ public class UserServiceImpl implements UserService {
                 //Collection <com.janith.eea.Model.UserRole>
             }
             User save = userRepository.save(userdomain);
-            emailService.sendEmail(registerUser);
+            emailService.sendEmail(registerUser); // send the email when saving in the database
             return save;
 
         }
@@ -79,6 +79,8 @@ public class UserServiceImpl implements UserService {
         return passwordEncoder.matches(Password, pass);
     }
 
+
+//getting all the users from databse
     @Override
     public List<UserDto> getAllUsers() {
 
@@ -164,7 +166,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User editUser(UserDto userDto) {
-
+// get the details of the domain student.
         Optional<User> userdomain = userRepository.findById(userDto.getUserId());
 
         User user = userdomain.get();
@@ -179,6 +181,7 @@ public class UserServiceImpl implements UserService {
             user.setMobile(userDto.getMobile());
 
         }
+//        save the updated info
         return userRepository.save(user);
 
 
@@ -196,7 +199,6 @@ public class UserServiceImpl implements UserService {
 
             user.setEmail(userDto.getEmail().toLowerCase(Locale.ROOT)); // validation
             user.setMobile(userDto.getMobile());
-            user.setPassword(passwordEncoder.encode(userDto.getPassword()));
 
         }
 
@@ -247,14 +249,17 @@ public class UserServiceImpl implements UserService {
 
     }
 
+    // Assiging a batch to a Student
     @Override
     public User assignBatch(UserDto userDto) {
+        // get the details of the domain student.
         Optional<User> userdomain = userRepository.findById(userDto.getUserId());
 
         User user = userdomain.get();
 
         user.setBatch(userDto.getBatch());
 
+//        save the batch selected
         return userRepository.save(user);
     }
 

@@ -19,6 +19,10 @@ import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
+/**
+ * Login will be handled here
+ * @author janith dabare
+ */
 @Controller
 public class AuthenticationController {
 

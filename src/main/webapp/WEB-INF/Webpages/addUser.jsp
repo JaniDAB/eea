@@ -63,8 +63,8 @@
 
                             </div>
                             <div class="form-group">
-                                <form:input type="text" maxlength="10" path="mobile" cssClass="form-control"
-                                            placeholder="Your Phone  *" required="required"/>
+                                <form:input type="tel" maxlength="10" path="mobile" cssClass="form-control"
+                                           placeholder="Your Phone  *" required="required"/>
                                 <form:errors path="mobile" cssStyle="color: red"/>
 
                             </div>

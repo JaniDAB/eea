@@ -23,6 +23,10 @@ import javax.servlet.http.HttpServletRequest;
 import java.sql.Date;
 import java.util.List;
 
+/**
+ * All the  controllers need  to student(user)
+ * @author janith dabare
+ */
 @Controller
 @PreAuthorize("hasAuthority('STUDENT')")
 public class StudentController {

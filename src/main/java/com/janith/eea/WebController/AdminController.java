@@ -24,7 +24,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
-
+/**
+ * All the  controllers   Admin needs
+ * @author janith dabare
+ */
 @Controller
 @PreAuthorize("hasAuthority('ADMIN')")
 public class AdminController {

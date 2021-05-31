@@ -65,6 +65,8 @@
                                 <form:label path="startTime">Enter the Start Time:</form:label>
                                 <form:input type="time" path="startTime" cssClass="form-control" min="08:00" max="16:00"
                                       placeholder="HH:MM"      required="required"/>
+                                <form:errors path="startTime" cssStyle="color: red" />
+
                             </div>
 
                             <div class="form-group">
@@ -72,6 +74,8 @@
                                 <form:input type="time" path="endTIme" cssClass="form-control"  min="08:00" max="17:00"
                                             placeholder="HH:MM"
                                             required="required"/>
+                                <form:errors path="endTIme" cssStyle="color: red" />
+
 
                             </div>
 
@@ -89,7 +93,9 @@
                                         </form:option>
                                     </c:forEach>
                                 </form:select>
+                                <form:errors path="classRoom" cssStyle="color: red" />
                             </div>
+
 
                             <div class="form-group">
                                 <form:label path="batchList"> Select the Batch from Below  List: </form:label>

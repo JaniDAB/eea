@@ -8,4 +8,6 @@ import org.springframework.stereotype.Repository;
 public interface ClassRoomRepository extends JpaRepository<ClassRoom,String> {
 
     public ClassRoom findClassRoomByRoomId(String ID);
+
+
 }

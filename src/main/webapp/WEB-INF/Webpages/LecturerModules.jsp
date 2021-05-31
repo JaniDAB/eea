@@ -33,7 +33,7 @@
             <%--            <img src="https://img.icons8.com/material/100/ffffff/add-list--v1.png"/>--%>
             <%--            <img src="https://i.ibb.co/6bkWbL7/icons8-business-group-64.png" alt="icons8-business-group-64" border="0">--%>
             <h3>Your Current Teaching Modules </h3>
-            <p></p>
+            <p> And  Number of Batches Enrolled </p>
 
         </div>
         <div class="col-md-9 register-right">

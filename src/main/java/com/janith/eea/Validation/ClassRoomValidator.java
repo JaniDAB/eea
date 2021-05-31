@@ -54,6 +54,5 @@ public class ClassRoomValidator implements Validator {
             ValidationUtils.rejectIfEmptyOrWhitespace(errors, "roomCapacity", "capacity.room.value");
         }
 
-
     }
 }

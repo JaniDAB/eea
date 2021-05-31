@@ -22,7 +22,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
-
+/**
+ * All the  controllers need to lecturer (User)
+ * @author janith dabare
+ */
 @Controller
 @PreAuthorize("hasAuthority('LECTURER')")
 public class LecturerController {
