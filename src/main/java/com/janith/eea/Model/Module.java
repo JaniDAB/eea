@@ -15,6 +15,10 @@ public class Module {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer module_id;
 
+    @Column(name = "module_Code")
+    private  String moduleCode;
+
+
     @Column(name = "module_Name")
     private  String moduleName;
 
@@ -42,6 +46,10 @@ private User lecUser;
     public Module() {
     }
 
+    public Module(String moduleName) {
+        this.moduleName = moduleName;
+    }
+
     public Integer getModule_id() {
         return module_id;
     }
@@ -66,5 +74,11 @@ private User lecUser;
         this.lecUser = lecUser;
     }
 
+    public String getModuleCode() {
+        return moduleCode;
+    }
 
+    public void setModuleCode(String moduleCode) {
+        this.moduleCode = moduleCode;
+    }
 }

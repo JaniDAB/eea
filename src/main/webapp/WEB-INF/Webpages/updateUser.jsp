@@ -48,7 +48,11 @@
             <%--    Add users--%>
             <img src="https://i.ibb.co/6bkWbL7/icons8-business-group-64.png" alt="icons8-business-group-64" border="0">
             <h3>${userinfo.firstname} ${userinfo.lastname} </h3>
+               <c:if test="${userinfo.role.equals('STUDENT')}">
+
                 <p>Batch(If Enrolled): ${userinfo.batch.batchCode} </p>
+                   
+               </c:if>
 <%--            <p>Add Timetable System users here</p>--%>
         </div>
         <div class="col-md-9 register-right">
@@ -63,10 +67,12 @@
                     <div class="row register-form">
                         <div class="col-md-6">
                             <div class="form-group">
+                                <form:label path="firstname" >First Name: </form:label>
                                 <form:input type="text" path="firstname" cssClass="form-control"
                                           value="${userinfo.firstname}"  placeholder="First Name *" required="required"/>
                             </div>
                             <div class="form-group">
+                                <form:label path="lastname" >Last Name: </form:label>
                                 <form:input type="text" path="lastname" cssClass="form-control"
                                           value="${userinfo.lastname}"  placeholder="Last Name *" required="required"/>
 
@@ -87,6 +93,7 @@
                         <div class="col-md-6">
 
                             <div class="form-group">
+                                <form:label path="email" >Email Address: </form:label>
                                 <form:input value="${userinfo.email}" type="email" path="email" cssClass="form-control" placeholder="Email *"
                                             required="required"/>
 
@@ -98,6 +105,7 @@
                             </div>
 
                             <div class="form-group">
+                                <form:label path="mobile" >Contact Number: </form:label>
                                 <form:input type="text" maxlength="10" path="mobile" cssClass="form-control"
                                             value="${userinfo.mobile}"   placeholder="Your Phone  *" required="required"/>
                             </div>
@@ -105,6 +113,7 @@
 
 
                             <div class="form-group">
+                                <form:label path="username" >User Name: </form:label>
                                 <form:input type="text" path="username" cssClass="form-control"
                                             value="${userinfo.username}"     placeholder="User Name *" required="required"/>
 

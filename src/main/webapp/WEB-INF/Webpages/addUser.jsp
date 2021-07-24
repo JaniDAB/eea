@@ -15,7 +15,41 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/register.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script>
+    $(function(){
+        var dtToday = new Date();
 
+        var month = dtToday.getMonth() + 1;
+        var day = dtToday.getDate();
+        var year = dtToday.getFullYear();
+        if(month < 10)
+            month = '0' + month.toString();
+        if(day < 10)
+            day = '0' + day.toString();
+
+        var maxDate = year + '-' + month + '-' + day;
+
+        // alert(maxDate);
+        $('#txtDate').attr('max', maxDate);
+    });
+
+    $(function(){
+        var dtToday = new Date();
+
+        var month = dtToday.getMonth() + 1;
+        var day = dtToday.getDate();
+        var year = dtToday.getFullYear()-30;
+        if(month < 10)
+            month = '0' + month.toString();
+        if(day < 10)
+            day = '0' + day.toString();
+
+        var minDate = year + '-' + month + '-' + day;
+
+        // alert(maxDate);
+        $('#txtDate').attr('min', minDate);
+    });
+</script>
 </head>
 <body style="background-color: #000000">
 <div class="header">
@@ -89,7 +123,7 @@
                             </div>
                             <div class="form-group">
                                 <form:input type="date" path="dateOfBirth" cssClass="form-control"
-                                            placeholder="Date of Birth *" required="required"/>
+                                            id="txtDate"    placeholder="Date of Birth *" required="required"/>
                                 <form:errors path="dateOfBirth" cssStyle="color: red"/>
                             </div>
 

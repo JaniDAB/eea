@@ -10,7 +10,9 @@ import org.springframework.stereotype.Service;
 
 import java.sql.Date;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -35,12 +37,20 @@ public class TimeTableServiceImpl implements TimeTableService {
         Timetable timetable = new Timetable();
 
         List<Batch> batchList = new ArrayList<>();
-        timetable.setTimetableID(timetable.getTimetableID());
+
+        LocalTime startTime = LocalTime.parse(timetableDto.getStartTime());
+        LocalTime endTime = LocalTime.parse(timetableDto.getEndTIme());
+
         if (timetableDto != null) {
 
 
+            if(!checkTime(startTime,endTime)){
+                throw new Exception("A Class Can be Schedule of Minimum, 30 Minutes & Maximum 2 Hours");
+
+            }
             for (Batch batchInfor : timetableDto.getBatchList()) {
                 batchList.add(batchRepository.findById(batchInfor.getBatchID()).get());
+
             }
 
             // List of timetable related to date and the respective CLassRoom
@@ -70,6 +80,32 @@ public class TimeTableServiceImpl implements TimeTableService {
                     }
                 }
             }
+            for(Batch batchlistinfor:batchList){
+                final List<Timetable> allByBatchListEqualsAndDateEquals = timetableRepo.getAllByBatchListEqualsAndDateEquals(batchlistinfor, Date.valueOf(timetableDto.getDate()));
+
+                for (Timetable timetableinfo : allByBatchListEqualsAndDateEquals) {
+
+                    if (timetableinfo.getStartTime().isBefore(LocalTime.parse(timetableDto.getStartTime()))) {
+
+
+//                    11:00                              is after :00
+                        if (timetableinfo.getEndTIme().isBefore(LocalTime.parse(timetableDto.getEndTIme()))) {
+                            throw new Exception("Error, batch invalid");
+                        }
+                    }
+
+                    if (timetableinfo.getStartTime().isAfter(LocalTime.parse(timetableDto.getStartTime()))){
+                        if(timetableinfo.getEndTIme().isAfter(LocalTime.parse(timetableDto.getEndTIme())))
+                        {
+                            throw new Exception("Error, batch before invalid");
+
+                        }
+                    }
+                }
+
+            }
+
+
             // List of timetable of a particular Date
 //        List<Timetable> dateTimetable = timetableRepo.findTimetableByDate(Date.valueOf(timetableDto.getDate()));
 
@@ -77,7 +113,7 @@ public class TimeTableServiceImpl implements TimeTableService {
             //List of timetables of batches and respective date
 //            List<Timetable> batchesTable = timetableRepo.findByBatchListAndDate(batchList, Date.valueOf(timetableDto.getDate()));
 
-
+            timetable.setTimetableID(timetable.getTimetableID());
             timetable.setBatchList(batchList);
             timetable.setDate(Date.valueOf(timetableDto.getDate()));
             timetable.setStartTime(LocalTime.parse(timetableDto.getStartTime()));
@@ -87,6 +123,21 @@ public class TimeTableServiceImpl implements TimeTableService {
         }
 
         return timetableRepo.save(timetable);
+    }
+
+    public Boolean checkTime(LocalTime startTime, LocalTime endTime) {
+        long hours;
+
+
+        hours = ChronoUnit.MINUTES.between(startTime, endTime);
+
+        int durationInHours = Integer.parseInt(String.valueOf(hours));
+        if (durationInHours > 120 || durationInHours < 30) {
+
+            return false;
+        }
+        return true;
+
     }
 
     @Override

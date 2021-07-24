@@ -10,7 +10,7 @@ import org.springframework.security.core.parameters.P;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Pattern;
 
-@AllArgsConstructor
+
 @NoArgsConstructor
 public class UserDto {
     @Getter
@@ -64,4 +64,27 @@ public class UserDto {
     @Setter
     private Batch batch;
 
+    public UserDto( String username, String firstname, String lastname, @Email String email, String password, String mobile, String role, String dateOfBirth, String gender, Batch batch) {
+        this.username = username;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.email = email;
+        this.password = password;
+        this.mobile = mobile;
+        this.role = role;
+        this.dateOfBirth = dateOfBirth;
+        this.gender = gender;
+        this.batch = batch;
+    }
+
+    public UserDto(String username, String firstname, String lastname, @Email String email, String mobile, String role, String dateOfBirth, String gender) {
+        this.username = username;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.email = email;
+        this.mobile = mobile;
+        this.role = role;
+        this.dateOfBirth = dateOfBirth;
+        this.gender = gender;
+    }
 }

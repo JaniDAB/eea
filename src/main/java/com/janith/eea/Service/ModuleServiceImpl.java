@@ -31,6 +31,7 @@ public class ModuleServiceImpl implements ModuleService {
 
         if (moduleDto != null) {
             modeldom.setModuleName(moduleDto.getModuleName().trim());
+            modeldom.setModuleCode(moduleDto.getModuleCode().trim());
         }
         return moduleRepository.save(modeldom);
 

@@ -119,7 +119,7 @@ if(br.hasErrors()){
             r.addAttribute("successful", "TimeTable Added Successfully");
         } catch (Exception ex) {
             System.out.println(ex);
-            r.addAttribute("error", ex);
+            r.addAttribute("error", ex.getMessage());
         }
         return "addTimeTable";
     }
@@ -214,8 +214,12 @@ if(br.hasErrors()){
     }
 
     @PostMapping("/admin/rescheduleTimetable")
-public  String setRescheduleTimetable(@ModelAttribute("rescheduleTime") TimetableDto timetableDto, Model m)
+public  String setRescheduleTimetable(@ModelAttribute("rescheduleTime") TimetableDto timetableDto, Model m,BindingResult br)
     {
+        if(br.hasErrors()){
+            return "rescedule";
+        }
+
         try {
             final Timetable update = timeTableService.reSchedule(timetableDto);
             m.addAttribute("Updated", "Rescheduled Successfully");

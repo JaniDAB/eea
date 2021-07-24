@@ -84,4 +84,16 @@ private Batch batch;
 
     public User() {
     }
+
+    public User(String username, String firstname, String lastname, String email, String password, String mobile, String dateOfBirth, String gender, UserRole role) {
+        this.username = username;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.email = email;
+        this.password = password;
+        this.mobile = mobile;
+        this.dateOfBirth = dateOfBirth;
+        this.gender = gender;
+        this.role = role;
+    }
 }

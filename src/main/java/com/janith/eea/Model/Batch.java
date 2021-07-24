@@ -29,6 +29,12 @@ public class Batch {
     public Batch() {
     }
 
+    public Batch( String batchCode, String description) {
+
+        this.batchCode = batchCode;
+        this.description = description;
+    }
+
     public Integer getBatchID() {
         return batchID;
     }

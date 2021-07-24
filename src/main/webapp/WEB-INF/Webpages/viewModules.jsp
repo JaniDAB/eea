@@ -53,6 +53,7 @@
     <thead><tr>
         <th>Module ID </th>
         <th> Module Name </th>
+        <th>  Batches Enrolled  </th>
         <th>  Module Lecturer </th>
         <th>  Update </th>
         <th>  Lecturer Assign </th>
@@ -69,6 +70,11 @@
         <tr>
             <td>${tempModules.module_id}</td>
             <td>${tempModules.moduleName}</td>
+            <td>
+                <c:forEach items="${tempModules.batchList}" var="batchlist">
+                    ${batchlist.batchCode} <br>
+                </c:forEach>
+            </td>
             <td>${tempModules.lecUser.firstname}</td>
             <td>
          <a href="${pageContext.request.contextPath}/updateModuleForm/${tempModules.module_id}" class="btn btn-outline-danger">

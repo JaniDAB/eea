@@ -10,6 +10,7 @@ import org.springframework.validation.Validator;
 
 import java.sql.Date;
 import java.time.LocalTime;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 @Component
@@ -60,6 +61,26 @@ public class TimetableValidator implements Validator {
                 }
             }
         }
+        if(!checkTime(LocalTime.parse(timetableDto.getStartTime()),LocalTime.parse(timetableDto.getEndTIme()))){
+            errors.rejectValue("endTIme", "timetable.validate.MAX");
+
+        }
+
+
+    }
+
+    public Boolean checkTime(LocalTime startTime, LocalTime endTime) {
+        long hours;
+
+
+        hours = ChronoUnit.MINUTES.between(startTime, endTime);
+
+        int durationInHours = Integer.parseInt(String.valueOf(hours));
+        if (durationInHours > 120 || durationInHours < 30) {
+
+            return false;
+        }
+        return true;
 
     }
 }

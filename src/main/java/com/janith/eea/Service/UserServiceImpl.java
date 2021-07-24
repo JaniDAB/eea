@@ -89,19 +89,21 @@ public class UserServiceImpl implements UserService {
 
         if (!userDomain.isEmpty()) {
             for (User user : userDomain) {
-                UserDto userDto = new UserDto();
-
-                userDto.setUserId(user.getUserId());
-                userDto.setUsername(user.getUsername());
-                userDto.setEmail(user.getEmail());
-                userDto.setFirstname(user.getFirstname());
-                userDto.setLastname(user.getLastname());
-                userDto.setGender(user.getGender());
-                userDto.setRole(user.getRole().getRoleName().toString());
-                userDto.setDateOfBirth(user.getDateOfBirth());
-                userDto.setMobile(user.getMobile());
-                userDto.setPassword(user.getPassword());
-                userDtoList.add(userDto);
+                if (user.getRole().getRoleName().equals(UserTypeUtil.LECTURER) || user.getRole().getRoleName().equals(UserTypeUtil.STUDENT))
+                {
+                    UserDto userDto = new UserDto();
+                    userDto.setUserId(user.getUserId());
+                    userDto.setUsername(user.getUsername());
+                    userDto.setEmail(user.getEmail());
+                    userDto.setFirstname(user.getFirstname());
+                    userDto.setLastname(user.getLastname());
+                    userDto.setGender(user.getGender());
+                    userDto.setRole(user.getRole().getRoleName().toString());
+                    userDto.setDateOfBirth(user.getDateOfBirth());
+                    userDto.setMobile(user.getMobile());
+                    userDto.setPassword(user.getPassword());
+                    userDtoList.add(userDto);
+                }
             }
         }
         return userDtoList;
@@ -208,6 +210,8 @@ public class UserServiceImpl implements UserService {
         return save;
 
     }
+
+
 
     @Override
     public User updatePasswordStudent(UserDto userDto) {

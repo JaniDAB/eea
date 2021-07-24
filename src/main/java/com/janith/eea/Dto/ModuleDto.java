@@ -11,6 +11,8 @@ public class ModuleDto {
 
 
     private  String moduleName;
+    private  String moduleCode;
+
 
     private User lecUser;
 
@@ -25,6 +27,10 @@ public class ModuleDto {
     }
 
     public ModuleDto() {
+    }
+
+    public ModuleDto(String moduleName) {
+        this.moduleName = moduleName;
     }
 
     public Integer getModule_id() {
@@ -51,7 +57,13 @@ public class ModuleDto {
         this.lecUser = lecUser;
     }
 
+    public String getModuleCode() {
+        return moduleCode;
+    }
 
+    public void setModuleCode(String moduleCode) {
+        this.moduleCode = moduleCode;
+    }
 
     public List<Batch> getBatchList() {
         return batchList;

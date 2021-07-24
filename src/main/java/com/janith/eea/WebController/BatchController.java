@@ -115,7 +115,7 @@ public class BatchController {
     }
 
     @GetMapping("/deleteBatch/{id}")
-    public String deleteTimetable(@PathVariable(value = "id")int batchID, Model mod, RedirectAttributes rd)
+    public String deleteBatch(@PathVariable(value = "id")int batchID, Model mod, RedirectAttributes rd)
     {
         String s = batchService.deleteBatch(batchID);
         if (s.equals("deleted")){

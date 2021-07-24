@@ -15,6 +15,42 @@
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/timetable.css">
+
+    <script>
+        $(function(){
+            var dtToday = new Date();
+
+            var month = dtToday.getMonth() + 1;
+            var day = dtToday.getDate();
+            var year = dtToday.getFullYear();
+            if(month < 10)
+                month = '0' + month.toString();
+            if(day < 10)
+                day = '0' + day.toString();
+
+            var maxDate = year + '-' + month + '-' + day;
+
+            // alert(maxDate);
+            $('#txtDate').attr('min', maxDate);
+        });
+
+        $(function(){
+            var dtToday = new Date();
+
+            var month = dtToday.getMonth() ;
+            var day = dtToday.getDate();
+            var year = dtToday.getFullYear()+1;
+            if(month < 10)
+                month = '0' + month.toString();
+            if(day < 10)
+                day = '0' + day.toString();
+
+            var minDate = year + '-' + month + '-' + day;
+
+            // alert(maxDate);
+            $('#txtDate').attr('max', minDate);
+        });
+    </script>
 </head>
 <body>
 
@@ -29,10 +65,7 @@
 </ul>
 
 <!------ Include the above in your HEAD tag ---------->
-<div class="row justify-content-center alert-light  successmessage" role="alert" style="color: #1b1e21">
-    ${successful}
-    ${error}
-</div>
+
 <div class="container register" style="max-width: 100%;">
     <div class="row">
         <div class="col-md-3 register-left">
@@ -50,14 +83,22 @@
                     <h3 class="register-heading">Scheduling A Timetable</h3>
 
                     <form:form action="/admin/addTimetable" method="POST" modelAttribute="timetable">
-
+                  <c:if test="${error != null}">
+                    <div class="row justify-content-center alert-light" role="alert" style="color: red">
+                            ${error}
+                    </div>
+                  </c:if>
                     <div class="row register-form">
+                        <div class="row justify-content-center alert-success  " role="alert" style="color: #1b1e21">
+                                ${successful}
+                        </div>
+
                         <div class="col-md-6">
 
                             <div class="form-group">
                                 <form:label path="date">Enter the Date:</form:label>
                                 <form:input type="date" path="date" cssClass="form-control"
-                                            placeholder="MM/DD/YYYY"
+                                      id="txtDate"      placeholder="MM/DD/YYYY"
                                             required="required"/>
                             </div>
 
@@ -109,7 +150,7 @@
                             </div>
                             <div class="form-group">
                                 <form:label path="module"> Module </form:label>
-                                <form:input type="hidden" path="module." cssClass="form-control"
+                                <form:input type="hidden" path="module" cssClass="form-control"
                                             value="${moduleInfo.module_id}" readonly="true"
                                             required="required"/>
                                 <input   type="text" class="form-control"   required="required" value="${moduleInfo.moduleName}" readonly="readonly" />

@@ -45,18 +45,43 @@
                     <form:form action="/admin/addModule" method="POST"  modelAttribute="module" >
 
 
-                     <div class="row register-form">
-                        <div class="col-md-8">
+<%--                     <div class="row register-form">--%>
+<%--                        <div class="col-md-8">--%>
+<%--                            <div class="form-group" >--%>
+<%--                                <form:input   type="text" path="moduleName" cssClass="form-control" placeholder="Module *" required="required"/>--%>
+<%--                                <form:errors path="moduleName" cssClass="align-content-center" cssStyle="color: red"/>--%>
+
+<%--                            </div>--%>
+<%--                        </div>--%>
+
+<%--                         <div class="col-md-8" >--%>
+<%--                        <input type="submit" class="btnRegister"   value="Add Module"/>--%>
+
+<%--                     </div>--%>
+<%--                    </div>--%>
+
+                    <div class="row register-form">
+                        <div class="col-md-6">
                             <div class="form-group" >
-                                <form:input   type="text" path="moduleName" cssClass="form-control" placeholder="Module *" required="required"/>
-                                <form:errors path="moduleName" cssClass="align-content-center" cssStyle="color: red"/>
+                                    <%--                                <input   type="text" class="form-control" placeholder="First Name *"  required="required" value="" />--%>
+                                <form:label path="moduleCode" >Enter Module Code: </form:label>
+                                <form:input   type="text" path="moduleCode" cssClass="form-control" placeholder="For Ex: COSE60636" required="required"/>
+                                <form:errors path="moduleCode" cssClass="align-content-center" cssStyle="color: red"/>
+                            </div>
+
+
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <form:label path="moduleName" >Enter Module Name:</form:label>
+                                <form:input  type="text"  path="moduleName" cssClass="form-control" placeholder="Name *"  required="required"/>
+                                        <form:errors path="moduleName" cssClass="align-content-center" cssStyle="color: red"/>
 
                             </div>
+
+
+                            <input type="submit" class="btnRegister"   value="Add Module"/>
                         </div>
-                         <div class="col-md-8" >
-                        <input type="submit" class="btnRegister"   value="Add Module"/>
-                     <div/>
-                     </div>
                     </div>
                 </div>
 
