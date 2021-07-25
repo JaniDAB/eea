@@ -69,11 +69,13 @@
 <div class="container register" style="max-width: 100%;">
     <div class="row">
         <div class="col-md-3 register-left">
-            <h1>Schedule Time table For ${moduleInfo.moduleName}</h1>
-            <img src="https://img.icons8.com/wired/100/000000/timetable.png" alt="icons8-business-group-64" border="0">
+            <img src="https://img.icons8.com/nolan/300/room.png"/>
+            <%--                     <img src="https://img.icons8.com/dotty/80/ffffff/elective.png"/>--%>
+            <%--            <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt=""/>--%>
+            <h3>Schedule a Class for</h3>
+            <p>Module Name :${moduleInfo.moduleName}   <br>   Module Code :${moduleInfo.moduleCode} </p>
 
-
-<%--            <p> Assigning a Batch to a User can be done here</p>--%>
+        <%--            <p> Assigning a Batch to a User can be done here</p>--%>
 
         </div>
         <div class="col-md-9 register-right">
@@ -101,9 +103,8 @@
                                       id="txtDate"      placeholder="MM/DD/YYYY"
                                             required="required"/>
                             </div>
-
                             <div class="form-group">
-                                <form:label path="startTime">Enter the Start Time:</form:label>
+                                <form:label path="startTime">Enter the Start Time: From 8:00 AM</form:label>
                                 <form:input type="time" path="startTime" cssClass="form-control" min="08:00" max="16:00"
                                       placeholder="HH:MM"      required="required"/>
                                 <form:errors path="startTime" cssStyle="color: red" />
@@ -111,7 +112,7 @@
                             </div>
 
                             <div class="form-group">
-                                <form:label path="endTIme">Enter the End time:</form:label>
+                                <form:label path="endTIme">Enter the End time: To 17:00 PM</form:label>
                                 <form:input type="time" path="endTIme" cssClass="form-control"  min="08:00" max="17:00"
                                             placeholder="HH:MM"
                                             required="required"/>
@@ -127,7 +128,7 @@
 
                             <div class="form-group">
                                 <form:label path="classRoom"> Select the Room from Below  List: </form:label>
-                                <form:select path="classRoom" cssClass="form-control" aria-required="true">
+                                <form:select path="classRoom" cssClass="form-control" aria-required="true" required="required">
                                     <c:forEach var="roomList" items="${roomList}" >
                                         <form:option value="${roomList.roomId}">
                                             ${roomList.roomId} : ${roomList.roomType}
@@ -140,7 +141,7 @@
 
                             <div class="form-group">
                                 <form:label path="batchList"> Select the Batch from Below  List: </form:label>
-                                <form:select  multiple="true" path="batchList" cssClass="form-control" aria-required="true">
+                                <form:select  multiple="true" path="batchList" cssClass="form-control" aria-required="true" required="required" >
                                     <c:forEach var="batch" items="${batchList}" >
                                         <form:option value="${batch.batchID}">
                                             ${batch.batchCode}

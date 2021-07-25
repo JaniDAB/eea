@@ -119,7 +119,7 @@ body{
     font-size: large;
 }
 .register{
-    background: -webkit-linear-gradient(left,#6bbf1d,  #759120, #2a5a70);
+    background: -webkit-linear-gradient(to right, #34212c, #4c3549, #624c6a, #74658e, #8080b4, #7d94cd, #75a9e4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1);
     /*margin-top: 3%;*/
     padding: 3%;
 }

@@ -50,6 +50,7 @@ public class ModuleServiceImpl implements ModuleService {
 
             moduleDto.setModule_id(moduleinfo.getModule_id());
             moduleDto.setModuleName(moduleinfo.getModuleName());
+            moduleDto.setModuleCode(moduleinfo.getModuleCode());
         } else {
             throw new RuntimeException("No Module Found" + id);
         }

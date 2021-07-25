@@ -62,45 +62,59 @@ public class TimeTableServiceImpl implements TimeTableService {
             // 10:00 - 11:00
 // 9:00 - 10:00
             for (Timetable timetableinfo : classRoomList) {
+                    //10 < 12
+//                if (timetableinfo.getStartTime().isBefore(LocalTime.parse(timetableDto.getStartTime()))) {
+//                    //10 < 12 && 11 < 13
+//
+////                    11:00                              is after :00
+//                    if (timetableinfo.getEndTIme().isBefore(LocalTime.parse(timetableDto.getEndTIme()))) {
+//                        throw new Exception("Error, Already Time is scheduled");
+//                    }
+//                }
+//
+//                if (timetableinfo.getStartTime().isAfter(LocalTime.parse(timetableDto.getStartTime()))){
+//                    if(timetableinfo.getEndTIme().isAfter(LocalTime.parse(timetableDto.getEndTIme())))
+//                    {
+//                        throw new Exception("Error, Please Schedule for another time");
+//
+//                    }
+//                }
+                if ((LocalTime.parse(timetableDto.getStartTime()).isAfter(timetableinfo.getStartTime()))
+                        &&
+                        (LocalTime.parse(timetableDto.getStartTime()).isBefore(timetableinfo.getEndTIme()))) {
 
-                if (timetableinfo.getStartTime().isBefore(LocalTime.parse(timetableDto.getStartTime()))) {
-
-
-//                    11:00                              is after :00
-                    if (timetableinfo.getEndTIme().isBefore(LocalTime.parse(timetableDto.getEndTIme()))) {
                         throw new Exception("Error, Already Time is scheduled");
-                    }
                 }
-
-                if (timetableinfo.getStartTime().isAfter(LocalTime.parse(timetableDto.getStartTime()))){
-                    if(timetableinfo.getEndTIme().isAfter(LocalTime.parse(timetableDto.getEndTIme())))
-                    {
+                if ((LocalTime.parse(timetableDto.getEndTIme()).isAfter(timetableinfo.getStartTime()))
+                        &&
+                        (LocalTime.parse(timetableDto.getStartTime()).isBefore(timetableinfo.getEndTIme()))
+                ){
                         throw new Exception("Error, Please Schedule for another time");
-
-                    }
                 }
+
+
             }
             for(Batch batchlistinfor:batchList){
                 final List<Timetable> allByBatchListEqualsAndDateEquals = timetableRepo.getAllByBatchListEqualsAndDateEquals(batchlistinfor, Date.valueOf(timetableDto.getDate()));
 
                 for (Timetable timetableinfo : allByBatchListEqualsAndDateEquals) {
 
-                    if (timetableinfo.getStartTime().isBefore(LocalTime.parse(timetableDto.getStartTime()))) {
-
-
-//                    11:00                              is after :00
-                        if (timetableinfo.getEndTIme().isBefore(LocalTime.parse(timetableDto.getEndTIme()))) {
-                            throw new Exception("Error, batch invalid");
-                        }
-                    }
-
-                    if (timetableinfo.getStartTime().isAfter(LocalTime.parse(timetableDto.getStartTime()))){
-                        if(timetableinfo.getEndTIme().isAfter(LocalTime.parse(timetableDto.getEndTIme())))
-                        {
-                            throw new Exception("Error, batch before invalid");
-
-                        }
-                    }
+//                    if (timetableinfo.getStartTime().isBefore(LocalTime.parse(timetableDto.getStartTime()))) {
+//
+//
+////                    11:00                              is after :00
+//                        if (timetableinfo.getEndTIme().isBefore(LocalTime.parse(timetableDto.getEndTIme()))) {
+//                            throw new Exception("Error, batch invalid");
+//                        }
+//                    }
+//
+//                    if (timetableinfo.getStartTime().isAfter(LocalTime.parse(timetableDto.getStartTime()))){
+//                        if(timetableinfo.getEndTIme().isAfter(LocalTime.parse(timetableDto.getEndTIme())))
+//                        {
+//                            throw new Exception("Error, batch before invalid");
+//
+//                        }
+//                    }
                 }
 
             }

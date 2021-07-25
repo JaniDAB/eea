@@ -10,7 +10,7 @@
 <html>
 <head>
     <title>View Batches</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/viewM.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/viewUser.css">
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -41,38 +41,91 @@
     </h3>
 </div>
 
-<table class="content-table">
+<%--<table class="content-table">--%>
 
-    <thead><tr>
-        <th>Module Name</th>
-        <th> Lecturer </th>
-        <th> Batches Enrolled </th>
-        <th> Schedule a Time table </th>
+<%--    <thead><tr>--%>
+<%--        <th>Module Name</th>--%>
+<%--        <th> Lecturer </th>--%>
+<%--        <th> Batches Enrolled </th>--%>
+<%--        <th> Schedule a Time table </th>--%>
 
-    </tr>
-    </thead>
-    <tbody>
+<%--    </tr>--%>
+<%--    </thead>--%>
+<%--    <tbody>--%>
 
-    <c:forEach var="tempBatch" items="${modules}">
+<%--    <c:forEach var="tempBatch" items="${modules}">--%>
 
-        <tr>
-            <td>${tempBatch.moduleName}</td>
-            <td>${tempBatch.lecUser.firstname}</td>
-            <td>${tempBatch.batchList.size()}</td>
-            <td>
-                <span><a href="${pageContext.request.contextPath}/admin/addTimetable/${tempBatch.module_id}" class="btn btn-success">
-                     <i class="material-icons">&#xe8b5;</i>
-                </a>
-                </span>
-            </td>
-
-
-
-        </tr>
-    </c:forEach>
-    </tbody>
-</table>
+<%--        <tr>--%>
+<%--            <td>${tempBatch.moduleName}</td>--%>
+<%--            <td>${tempBatch.lecUser.firstname}</td>--%>
+<%--            <td>${tempBatch.batchList.size()}</td>--%>
+<%--            <td>--%>
+<%--                <span><a href="${pageContext.request.contextPath}/admin/addTimetable/${tempBatch.module_id}" class="btn btn-success">--%>
+<%--                     <i class="material-icons">&#xe8b5;</i>--%>
+<%--                </a>--%>
+<%--                </span>--%>
+<%--            </td>--%>
 
 
+
+<%--        </tr>--%>
+<%--    </c:forEach>--%>
+<%--    </tbody>--%>
+<%--</table>--%>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-offset-1 col-md-10 ss">
+            <div class="panel">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col col-sm-3 col-xs-12">
+                            <h4   class="title">Modules <span></span></h4>
+                        </div>
+                        <div class="col-sm-9 col-xs-12 text-right">
+                            <div class="btn_group">
+
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+                <div class="panel-body table-responsive">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>Module Name</th>
+                                    <th> Lecturer </th>
+                                    <th> Batches Enrolled </th>
+                                    <th> Schedule a Time table </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <c:forEach var="tempBatch" items="${modules}">
+                            <tr>
+
+                                <td>${tempBatch.moduleName}</td>
+                                                <td>${tempBatch.lecUser.firstname}</td>
+                                                <td>${tempBatch.batchList.size()}</td>
+                                                <td>
+                                                    <span><a href="${pageContext.request.contextPath}/admin/addTimetable/${tempBatch.module_id}" class="btn btn-outline-success ">
+                                                         <i class="material-icons">&#xe614;</i>
+                                                    </a>
+                                                    </span>
+                                                </td>
+                            </tr>
+                        </c:forEach>
+
+                        </tbody>
+                    </table>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>

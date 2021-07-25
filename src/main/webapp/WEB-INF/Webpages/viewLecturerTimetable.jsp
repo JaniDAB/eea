@@ -99,7 +99,7 @@
             <div class="col-sm-12">
 
                 <div class="alert alert-success" style="text-align: center">
-                    No Schedule For now.
+                    No Schedule For today.
                 </div>
             </div>
         </div>

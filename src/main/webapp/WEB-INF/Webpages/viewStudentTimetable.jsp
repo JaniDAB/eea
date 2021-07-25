@@ -89,6 +89,17 @@
     </tbody>
 </table>
 
+<c:if test="${timetableList.size() == 0 }">
+    <div class="container mt-2">
+        <div class="row">
+            <div class="col-sm-12">
 
+                <div class="alert alert-success" style="text-align: center">
+                    No Schedule For today.
+                </div>
+            </div>
+        </div>
+    </div>
+</c:if>
 </body>
 </html>

@@ -17,7 +17,7 @@ import java.util.List;
 public class TimetableValidator implements Validator {
 
     @Autowired
-    private  final TimetableRepository timetableRepository;
+    private final TimetableRepository timetableRepository;
 
     public TimetableValidator(TimetableRepository timetableRepository) {
         this.timetableRepository = timetableRepository;
@@ -43,25 +43,49 @@ public class TimetableValidator implements Validator {
         // 10:00 - 11:00
 // 9:00 - 10:00
         for (Timetable timetableinfo : classRoomList) {
+//                                  8:00       is before                  10:00
+//            if (timetableinfo.getStartTime().isBefore(LocalTime.parse(timetableDto.getStartTime()))) {
+//
+//
+////                    9:00            is before                             10:00
+//                if (timetableinfo.getEndTIme().isBefore(LocalTime.parse(timetableDto.getStartTime()))) {
+//                 errors.rejectValue("startTime", "timetable.validate");
+//                    errors.rejectValue("classRoom", "timetable.validate.cls");
+//                }
+//            }
+////
+//            if (timetableinfo.getStartTime().isAfter(LocalTime.parse(timetableDto.getStartTime()))){
+//                if(timetableinfo.getEndTIme().isAfter(LocalTime.parse(timetableDto.getEndTIme())))
+//                {
+//         errors.rejectValue("endTIme", "timetable.validate.end");
+//                }
+//            }
+//new  time isbefore   db start time
+//            new endtime is after  db endtime
 
-            if (timetableinfo.getStartTime().isBefore(LocalTime.parse(timetableDto.getStartTime()))) {
+            if((LocalTime.parse((timetableDto.getStartTime())).isBefore(timetableinfo.getStartTime()))
+            &&
+                    (LocalTime.parse(timetableDto.getEndTIme()).isAfter(timetableinfo.getEndTIme()))){
+                errors.rejectValue("startTime", "timetable.validate");
 
+            }
+            if ((LocalTime.parse(timetableDto.getStartTime()).isAfter(timetableinfo.getStartTime()))
+                    &&
+                    (LocalTime.parse(timetableDto.getStartTime()).isBefore(timetableinfo.getEndTIme()))) {
 
-//                    11:00                              is after :00
-                if (timetableinfo.getEndTIme().isBefore(LocalTime.parse(timetableDto.getEndTIme()))) {
-                 errors.rejectValue("startTime", "timetable.validate");
-                    errors.rejectValue("classRoom", "timetable.validate.cls");
-                }
+                errors.rejectValue("startTime", "timetable.validate");
+            }
+            if ((LocalTime.parse(timetableDto.getEndTIme()).isAfter(timetableinfo.getStartTime()))
+            &&
+                    (LocalTime.parse(timetableDto.getEndTIme()).isBefore(timetableinfo.getEndTIme()))
+            ){
+                         errors.rejectValue("endTIme", "timetable.validate.end");
             }
 
-            if (timetableinfo.getStartTime().isAfter(LocalTime.parse(timetableDto.getStartTime()))){
-                if(timetableinfo.getEndTIme().isAfter(LocalTime.parse(timetableDto.getEndTIme())))
-                {
-         errors.rejectValue("endTIme", "timetable.validate.end");
-                }
-            }
         }
-        if(!checkTime(LocalTime.parse(timetableDto.getStartTime()),LocalTime.parse(timetableDto.getEndTIme()))){
+
+
+        if (!checkTime(LocalTime.parse(timetableDto.getStartTime()), LocalTime.parse(timetableDto.getEndTIme()))) {
             errors.rejectValue("endTIme", "timetable.validate.MAX");
 
         }
