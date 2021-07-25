@@ -162,7 +162,7 @@ if(br.hasErrors()){
             t.addAttribute("roomList", classRoomDtoList);
             t.addAttribute("timetable", new TimetableDto());
 
-            t.addAttribute("success", "TimeTable  Added Successfully");
+            t.addAttribute("success", "Scheduled  Successfully");
             return "addTimeTable";
 
         }catch (Exception e){
@@ -259,7 +259,7 @@ public  String setRescheduleTimetable(@ModelAttribute("rescheduleTime") Timetabl
     {
         String s = classRoomService.deleteRoom(roomID);
         if (s.equals("deleted")){
-            rd.addFlashAttribute("deleted", "Room Deleted");
+            rd.addFlashAttribute("deleted", " Class Room Deleted");
 
         }
         else if(s.equals("error")){

@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:500&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Cinzel&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
 /*body{*/
 /*    margin: 0;*/
 /*    padding: 0;*/
@@ -102,7 +104,7 @@
     border-style: solid;
     /*padding: ;*/
     margin-left:auto;
-    font-family: 'Cinzel', serif;
+    font-family: 'Pacifico', cursive;
 
 }
 

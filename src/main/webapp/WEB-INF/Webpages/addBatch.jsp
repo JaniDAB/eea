@@ -17,7 +17,7 @@
 </head>
 <body>
 <div class="header">
-    <h1 class="header1" > Timetable System </h1>
+    <h1 class="header1" > Timetabler 766 </h1>
 </div>
 <ul class="nav_link" style="margin-bottom: 0">
     <li><a class="nav-link" href="${pageContext.request.contextPath}/admin">Home</a></li>
@@ -57,6 +57,30 @@
 
 
                     <div class="row register-form">
+                        <c:if test="${successful !=  null }">
+                            <div class="container mt-2">
+                                <div class="row">
+                                    <div class="col-sm-12">
+
+                                        <div class="alert alert-success" style="text-align: center">
+                                                ${successful}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </c:if>
+                        <c:if test="${fail !=  null }">
+                            <div class="container mt-2">
+                                <div class="row">
+                                    <div class="col-sm-12">
+
+                                        <div class="alert alert-success" style="text-align: center">
+                                                ${fail}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </c:if>
                         <div class="col-md-6">
                             <div class="form-group" >
                                     <%--                                <input   type="text" class="form-control" placeholder="First Name *"  required="required" value="" />--%>

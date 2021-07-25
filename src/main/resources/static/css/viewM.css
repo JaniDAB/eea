@@ -4,6 +4,8 @@
 @import url('https://fonts.googleapis.com/css?family=Patrick+Hand&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Cinzel&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Righteous&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
 
 h1{
     color: #191919;
@@ -13,7 +15,7 @@ h1{
 }
 
 .header {
-    font-family: 'Cinzel', serif;
+    font-family: 'Pacifico', cursive;
     border-style: solid;
     padding: auto;
     margin-left:auto;

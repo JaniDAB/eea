@@ -11,6 +11,7 @@ import org.springframework.validation.Validator;
 import java.sql.Date;
 import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
+import java.util.Arrays;
 import java.util.List;
 
 @Component
@@ -66,7 +67,10 @@ public class TimetableValidator implements Validator {
             if((LocalTime.parse((timetableDto.getStartTime())).isBefore(timetableinfo.getStartTime()))
             &&
                     (LocalTime.parse(timetableDto.getEndTIme()).isAfter(timetableinfo.getEndTIme()))){
-                errors.rejectValue("startTime", "timetable.validate");
+//                errors.rejectValue("startTime", "timetable.validate");
+                errors.rejectValue("classRoom", "  This  Class is Already booked" );
+
+
 
             }
             if ((LocalTime.parse(timetableDto.getStartTime()).isAfter(timetableinfo.getStartTime()))
@@ -74,6 +78,10 @@ public class TimetableValidator implements Validator {
                     (LocalTime.parse(timetableDto.getStartTime()).isBefore(timetableinfo.getEndTIme()))) {
 
                 errors.rejectValue("startTime", "timetable.validate");
+                String obj =timetableinfo.getClassRoom().getRoomId();
+                errors.rejectValue("classRoom", "timetable.validate.cls",Arrays.toString(new String[]{obj}));
+
+
             }
             if ((LocalTime.parse(timetableDto.getEndTIme()).isAfter(timetableinfo.getStartTime()))
             &&

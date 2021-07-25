@@ -19,7 +19,7 @@
 <body style="background : -webkit-linear-gradient(right,#c4e5ec, #5484c7);">
 
 <div class="header">
-    <h1 >Time Table System</h1>
+    <h1 >Timetabler 766</h1>
 </div>
 
 <%--<ul>--%>
@@ -84,7 +84,7 @@
                 <div class="panel-heading">
                     <div class="row">
                         <div class="col col-sm-3 col-xs-12">
-                            <h4  routerLink="/list-users" class="title">User <span>List</span></h4>
+                            <h4   class="title">User <span>List</span></h4>
                         </div>
                         <div class="col-sm-9 col-xs-12 text-right">
                             <div class="btn_group">

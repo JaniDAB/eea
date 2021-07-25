@@ -18,7 +18,7 @@
 <body>
 
 <div class="header">
-    <h1 class="header1"> Timetable System </h1>
+    <h1 class="header1"> Timetabler 766 </h1>
 </div>
 <ul class="nav_link" style="margin-bottom: 0">
     <li><a href="${pageContext.request.contextPath}/lecturer"> Home</a></li>

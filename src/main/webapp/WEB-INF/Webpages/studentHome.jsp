@@ -15,7 +15,7 @@
 </head>
 <body style="background-color: #000000">
 <div class="header">
-    <h1 class="header1"> Timetable System </h1>
+    <h1 class="header1"> Timetabler 766 </h1>
 </div>
 
 <%--<div class="header">--%>

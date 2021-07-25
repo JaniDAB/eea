@@ -19,7 +19,7 @@
 <body>
 
 <div class="header">
-    <h1 class="header1" > Timetable System </h1>
+    <h1 class="header1" > Timetabler 766 </h1>
 </div>
 <ul class="nav_link" style="margin-bottom: 0">
     <li><a class="nav-link" href="${pageContext.request.contextPath}/admin">Home</a></li>
@@ -28,20 +28,7 @@
 
 </ul>
 
-<!------ Include the above in your HEAD tag ---------->
 
-<div class="row justify-content-center  successmessage" role="alert" style="color: #55efc4">
-    ${successful}
-</div>
-<%--<div class="alert alert-warning alert-dismissible fade show" role="alert">--%>
-<%--    ${successful}--%>
-<%--</div>--%>
-<%--<div class="alert alert-warning alert-dismissible fade show" role="alert">--%>
-<%--    <strong>${successful}</strong>--%>
-<%--    <button type="button" class="close" data-dismiss="alert" aria-label="Close">--%>
-<%--        <span aria-hidden="true">&times;</span>--%>
-<%--    </button>--%>
-<%--</div>--%>
 <div class="container register" style="max-width: 100%;">
     <div class="row">
         <div class="col-md-3 register-left">
@@ -69,6 +56,18 @@
                     <form:form action="${pageContext.request.contextPath}/admin/AddRoom" method="POST"  modelAttribute="addRoom" >
 
                     <div class="row register-form">
+                        <c:if test="${successful !=  null }">
+                            <div class="container mt-2">
+                                <div class="row">
+                                    <div class="col-sm-12">
+
+                                        <div class="alert alert-success" style="text-align: center">
+                                                ${successful}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </c:if>
                         <div class="col-md-6">
                             <div class="form-group" >
                                     <%--                                <input   type="text" class="form-control" placeholder="First Name *"  required="required" value="" />--%>

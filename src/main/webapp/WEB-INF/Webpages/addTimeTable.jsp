@@ -17,15 +17,15 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/timetable.css">
 
     <script>
-        $(function(){
+        $(function () {
             var dtToday = new Date();
 
             var month = dtToday.getMonth() + 1;
             var day = dtToday.getDate();
             var year = dtToday.getFullYear();
-            if(month < 10)
+            if (month < 10)
                 month = '0' + month.toString();
-            if(day < 10)
+            if (day < 10)
                 day = '0' + day.toString();
 
             var maxDate = year + '-' + month + '-' + day;
@@ -34,15 +34,15 @@
             $('#txtDate').attr('min', maxDate);
         });
 
-        $(function(){
+        $(function () {
             var dtToday = new Date();
 
-            var month = dtToday.getMonth() ;
+            var month = dtToday.getMonth();
             var day = dtToday.getDate();
-            var year = dtToday.getFullYear()+1;
-            if(month < 10)
+            var year = dtToday.getFullYear() + 1;
+            if (month < 10)
                 month = '0' + month.toString();
-            if(day < 10)
+            if (day < 10)
                 day = '0' + day.toString();
 
             var minDate = year + '-' + month + '-' + day;
@@ -59,8 +59,8 @@
 </div>
 <ul class="nav_link" style="margin-bottom: 0">
     <li><a class="nav-link" href="${pageContext.request.contextPath}/admin"> Home</a></li>
-    <li><a  class="nav-link" href="${pageContext.request.contextPath}/addRoom">Add a Room</a></li>
-    <li> <a class="nav-link" href="${pageContext.request.contextPath}/getAllSchedules">View Schedule</a></li>
+    <li><a class="nav-link" href="${pageContext.request.contextPath}/addRoom">Add a Room</a></li>
+    <li><a class="nav-link" href="${pageContext.request.contextPath}/getAllSchedules">View Schedule</a></li>
 
 </ul>
 
@@ -73,9 +73,9 @@
             <%--                     <img src="https://img.icons8.com/dotty/80/ffffff/elective.png"/>--%>
             <%--            <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt=""/>--%>
             <h3>Schedule a Class for</h3>
-            <p>Module Name :${moduleInfo.moduleName}   <br>   Module Code :${moduleInfo.moduleCode} </p>
+            <p>Module Name :${moduleInfo.moduleName} <br> Module Code :${moduleInfo.moduleCode} </p>
 
-        <%--            <p> Assigning a Batch to a User can be done here</p>--%>
+            <%--            <p> Assigning a Batch to a User can be done here</p>--%>
 
         </div>
         <div class="col-md-9 register-right">
@@ -85,38 +85,54 @@
                     <h3 class="register-heading">Scheduling A Timetable</h3>
 
                     <form:form action="/admin/addTimetable" method="POST" modelAttribute="timetable">
-                  <c:if test="${error != null}">
-                    <div class="row justify-content-center alert-light" role="alert" style="color: red">
-                            ${error}
-                    </div>
-                  </c:if>
-                    <div class="row register-form">
-                        <div class="row justify-content-center alert-success  " role="alert" style="color: #1b1e21">
-                                ${successful}
-                        </div>
 
+                    <div class="row register-form">
+                        <c:if test="${error !=  null }">
+                            <div class="container mt-2">
+                                <div class="row">
+                                    <div class="col-sm-12">
+
+                                        <div class="alert alert-warning" style="text-align: center">
+                                                ${error}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </c:if>
+                        <c:if test="${successful !=  null }">
+                            <div class="container mt-2">
+                                <div class="row">
+                                    <div class="col-sm-12">
+
+                                        <div class="alert alert-success" style="text-align: center">
+                                                ${successful}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </c:if>
                         <div class="col-md-6">
 
                             <div class="form-group">
                                 <form:label path="date">Enter the Date:</form:label>
                                 <form:input type="date" path="date" cssClass="form-control"
-                                      id="txtDate"      placeholder="MM/DD/YYYY"
+                                            id="txtDate" placeholder="MM/DD/YYYY"
                                             required="required"/>
                             </div>
                             <div class="form-group">
                                 <form:label path="startTime">Enter the Start Time: From 8:00 AM</form:label>
                                 <form:input type="time" path="startTime" cssClass="form-control" min="08:00" max="16:00"
-                                      placeholder="HH:MM"      required="required"/>
-                                <form:errors path="startTime" cssStyle="color: red" />
+                                            placeholder="HH:MM" required="required"/>
+                                <form:errors path="startTime" cssStyle="color: red"/>
 
                             </div>
 
                             <div class="form-group">
                                 <form:label path="endTIme">Enter the End time: To 17:00 PM</form:label>
-                                <form:input type="time" path="endTIme" cssClass="form-control"  min="08:00" max="17:00"
+                                <form:input type="time" path="endTIme" cssClass="form-control" min="08:00" max="17:00"
                                             placeholder="HH:MM"
                                             required="required"/>
-                                <form:errors path="endTIme" cssStyle="color: red" />
+                                <form:errors path="endTIme" cssStyle="color: red"/>
 
 
                             </div>
@@ -127,22 +143,24 @@
                         <div class="col-md-6">
 
                             <div class="form-group">
-                                <form:label path="classRoom"> Select the Room from Below  List: </form:label>
-                                <form:select path="classRoom" cssClass="form-control" aria-required="true" required="required">
-                                    <c:forEach var="roomList" items="${roomList}" >
+                                <form:label path="classRoom"> Select the Room from Below List: </form:label>
+                                <form:select path="classRoom" cssClass="form-control" aria-required="true"
+                                             required="required">
+                                    <c:forEach var="roomList" items="${roomList}">
                                         <form:option value="${roomList.roomId}">
                                             ${roomList.roomId} : ${roomList.roomType}
                                         </form:option>
                                     </c:forEach>
                                 </form:select>
-                                <form:errors path="classRoom" cssStyle="color: red" />
+                                <form:errors path="classRoom" cssStyle="color: red"/>
                             </div>
 
 
                             <div class="form-group">
-                                <form:label path="batchList"> Select the Batch from Below  List: </form:label>
-                                <form:select  multiple="true" path="batchList" cssClass="form-control" aria-required="true" required="required" >
-                                    <c:forEach var="batch" items="${batchList}" >
+                                <form:label path="batchList"> Select the Batch from Below List: </form:label>
+                                <form:select multiple="true" path="batchList" cssClass="form-control"
+                                             aria-required="true" required="required">
+                                    <c:forEach var="batch" items="${batchList}">
                                         <form:option value="${batch.batchID}">
                                             ${batch.batchCode}
                                         </form:option>
@@ -154,7 +172,8 @@
                                 <form:input type="hidden" path="module" cssClass="form-control"
                                             value="${moduleInfo.module_id}" readonly="true"
                                             required="required"/>
-                                <input   type="text" class="form-control"   required="required" value="${moduleInfo.moduleName}" readonly="readonly" />
+                                <input type="text" class="form-control" required="required"
+                                       value="${moduleInfo.moduleName}" readonly="readonly"/>
 
                                     <%--                                <form:select path="batch" cssClass="form-control" aria-required="true">--%>
                                     <%--                                    <c:forEach var="batch" items="${batchList}" >--%>
@@ -166,7 +185,7 @@
                             </div>
 
 
-                            <input type="submit" class="btnRegister"  value="Submit"/>
+                            <input type="submit" class="btnRegister" value="Submit"/>
                         </div>
                     </div>
 

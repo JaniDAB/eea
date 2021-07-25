@@ -20,7 +20,7 @@
 <body style="background : -webkit-linear-gradient(right,#c4e5ec, #5484c7);">
 
 <div class="header">
-    <h1 class="head" >Time Table System</h1>
+    <h1 class="head" >Timetable 766</h1>
 </div>
 <%--<ul>--%>
 <%--    <li><a  href="${pageContext.request.contextPath}/admin">home</a></li>--%>
