@@ -23,9 +23,12 @@ public class BatchServiceImpl implements BatchService {
     private ModuleRepository moduleRepository;
 
     @Override
-    public Batch save(BatchDto batchinfo) {
+    public Batch save(BatchDto batchinfo) throws Exception {
         Batch batchdom = new Batch();
 
+        if(batchRepo.findBatchesByBatchCode(batchinfo.getBatchCode())!=null){
+            throw new Exception("Batch :"+batchinfo.getBatchCode()+"Already Added");
+        }
         if (batchinfo != null) {
 //            batchdom.setBatchID(batchinfo.getBatchID());
             batchdom.setBatchCode(batchinfo.getBatchCode().trim());

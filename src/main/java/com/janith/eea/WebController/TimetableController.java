@@ -111,11 +111,12 @@ public class TimetableController {
 
 //            validate scheduling
 timetableValidator.validate(timetableDto,br);
-if(br.hasErrors()){
-    return "addTimeTable";
-}
+
             final Timetable timetable = timeTableService.
                     addTimetable(timetableDto);
+            if(br.hasErrors()){
+                return "addTimeTable";
+            }
             r.addAttribute("successful", "TimeTable Added Successfully");
         } catch (Exception ex) {
             System.out.println(ex);

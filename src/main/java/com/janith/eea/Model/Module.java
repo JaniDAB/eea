@@ -46,7 +46,8 @@ private User lecUser;
     public Module() {
     }
 
-    public Module(String moduleName) {
+    public Module(String moduleCode, String moduleName) {
+        this.moduleCode = moduleCode;
         this.moduleName = moduleName;
     }
 

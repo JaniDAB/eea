@@ -332,4 +332,11 @@ public class UserServiceImpl implements UserService {
         }
         return userDtoList;
     }
+
+    @Override
+    public List<UserDto> listOfUsersBatch(int batchID) {
+        return null;
+    }
+
+
 }

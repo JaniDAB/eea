@@ -35,5 +35,7 @@ public interface UserService extends UserDetailsService {
     User updatePasswordStudent(UserDto userDto);
 
     List<UserDto> searchUser(String fname);
+
+    List<UserDto> listOfUsersBatch(int batchID);
 }
 

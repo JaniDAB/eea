@@ -12,8 +12,10 @@ public interface UserRepository  extends JpaRepository<User,Integer> {
     @Query(value = "SELECT u FROM User u  WHERE u.username = ?1")
     public User findByUsername(String username);
 
-    @Query(" FROM User u  WHERE u.firstname like %:fname%")
-    List<User>  StudentSearch(String fname);
+    @Query(" FROM User u  WHERE u.username like %:username%")
+    List<User>  StudentSearch(String username);
 
     public User findUsersByUsername(String username);
+
+    List<User> findUsersByBatchBatchID(int batchID);
 }

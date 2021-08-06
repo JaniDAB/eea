@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.Date;
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -85,17 +87,18 @@ public class TimeTableServiceImpl implements TimeTableService {
                         throw new Exception("Error, Please Schedule for another time");
 
                 }
+
                 if ((LocalTime.parse(timetableDto.getStartTime()).isAfter(timetableinfo.getStartTime()))
                         &&
                         (LocalTime.parse(timetableDto.getStartTime()).isBefore(timetableinfo.getEndTIme()))) {
 
-                        throw new Exception("Error");
+                    throw new Exception("Error Occured, Class Room ID : "+timetableDto.getClassRoom().getRoomId() +" Is already Booked at the Moment" );
                 }
                 if ((LocalTime.parse(timetableDto.getEndTIme()).isAfter(timetableinfo.getStartTime()))
                         &&
                         (LocalTime.parse(timetableDto.getEndTIme()).isBefore(timetableinfo.getEndTIme()))
                 ){
-                        throw new Exception("Error, Please Schedule for another time");
+                        throw new Exception("Error Occured, Class Room ID : "+timetableDto.getClassRoom().getRoomId() +" Is already Booked at the Moment" );
                 }
 
 
@@ -110,7 +113,7 @@ public class TimeTableServiceImpl implements TimeTableService {
                     if((LocalTime.parse((timetableDto.getStartTime())).isBefore(timetableinfo.getStartTime()))
                             &&
                             (LocalTime.parse(timetableDto.getEndTIme()).isAfter(timetableinfo.getEndTIme()))){
-                        throw new Exception("Batch :" + batchlistinfor.getBatchCode() +" Is Already Having an Schedule ");
+                        throw new Exception("Batch :" + batchlistinfor.getBatchCode() +" Is Already Having an Schedule  ");
 
                     }
                     if ((LocalTime.parse(timetableDto.getStartTime()).isAfter(timetableinfo.getStartTime()))
@@ -145,6 +148,7 @@ public class TimeTableServiceImpl implements TimeTableService {
             timetable.setEndTIme(LocalTime.parse(timetableDto.getEndTIme()));
             timetable.setClassRoom(timetableDto.getClassRoom());
             timetable.setModule(timetableDto.getModule());
+            System.out.println( timetableDto.getModule().getLecUser().getFirstname());
         }
 
         return timetableRepo.save(timetable);
@@ -180,8 +184,22 @@ public class TimeTableServiceImpl implements TimeTableService {
 //                tt.setBatch(timetable.getBatch());
                 tt.setModule(timetable.getModule());
                 tt.setDate(String.valueOf(timetable.getDate()));
-                tt.setStartTime(String.valueOf(timetable.getStartTime()));
-                tt.setEndTIme(String.valueOf(timetable.getEndTIme()));
+
+                SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+                try{
+                    java.util.Date startime = sdf.parse(String.valueOf(timetable.getStartTime()));
+                    java.util.Date endTime = sdf.parse(String.valueOf(timetable.getEndTIme()));
+
+                    //new format
+                    SimpleDateFormat sdf2 = new SimpleDateFormat("hh:mm aa");
+                    //formatting the given time to new format with AM/PM
+
+                    tt.setStartTime(sdf2.format(startime));
+                    tt.setEndTIme(sdf2.format(endTime));
+                }catch(ParseException e){
+                    e.printStackTrace();
+                }
+
                 tt.setTimetableID(timetable.getTimetableID());
                 tt.setClassRoom(timetable.getClassRoom());
                 timetableDtoList.add(tt);
@@ -229,8 +247,25 @@ public class TimeTableServiceImpl implements TimeTableService {
                 tt.setBatchList(timetable.getBatchList());
                 tt.setModule(timetable.getModule());
                 tt.setDate(String.valueOf(timetable.getDate()));
-                tt.setStartTime(String.valueOf(timetable.getStartTime()));
-                tt.setEndTIme(String.valueOf(timetable.getEndTIme()));
+
+
+                //old format
+                SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+                try{
+                    java.util.Date startime = sdf.parse(String.valueOf(timetable.getStartTime()));
+                    java.util.Date endTime = sdf.parse(String.valueOf(timetable.getEndTIme()));
+
+                    //new format
+                    SimpleDateFormat sdf2 = new SimpleDateFormat("hh:mm aa");
+                    //formatting the given time to new format with AM/PM
+
+                    tt.setStartTime(sdf2.format(startime));
+                    tt.setEndTIme(sdf2.format(endTime));
+                }catch(ParseException e){
+                    e.printStackTrace();
+                }
+
+
                 tt.setTimetableID(timetable.getTimetableID());
                 tt.setClassRoom(timetable.getClassRoom());
                 timetableDtoList.add(tt);
@@ -258,8 +293,23 @@ public class TimeTableServiceImpl implements TimeTableService {
                 tt.setBatchList(timetable.getBatchList());
                 tt.setModule(timetable.getModule());
                 tt.setDate(String.valueOf(timetable.getDate()));
-                tt.setStartTime(String.valueOf(timetable.getStartTime()));
-                tt.setEndTIme(String.valueOf(timetable.getEndTIme()));
+
+                SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+                try{
+                    java.util.Date startime = sdf.parse(String.valueOf(timetable.getStartTime()));
+                    java.util.Date endTime = sdf.parse(String.valueOf(timetable.getEndTIme()));
+
+                    //new format
+                    SimpleDateFormat sdf2 = new SimpleDateFormat("hh:mm aa");
+                    //formatting the given time to new format with AM/PM
+
+                    tt.setStartTime(sdf2.format(startime));
+                    tt.setEndTIme(sdf2.format(endTime));
+                }catch(ParseException e){
+                    e.printStackTrace();
+                }
+
+
                 tt.setTimetableID(timetable.getTimetableID());
                 tt.setClassRoom(timetable.getClassRoom());
                 timetableDtoList.add(tt);
@@ -289,8 +339,22 @@ public class TimeTableServiceImpl implements TimeTableService {
 //                tt.setBatch(timetable.getBatch());
                 tt.setModule(timetable.getModule());
                 tt.setDate(String.valueOf(timetable.getDate()));
-                tt.setStartTime(String.valueOf(timetable.getStartTime()));
-                tt.setEndTIme(String.valueOf(timetable.getEndTIme()));
+
+                SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+                try{
+                    java.util.Date startime = sdf.parse(String.valueOf(timetable.getStartTime()));
+                    java.util.Date endTime = sdf.parse(String.valueOf(timetable.getEndTIme()));
+
+                    //new format
+                    SimpleDateFormat sdf2 = new SimpleDateFormat("hh:mm aa");
+                    //formatting the given time to new format with AM/PM
+
+                    tt.setStartTime(sdf2.format(startime));
+                    tt.setEndTIme(sdf2.format(endTime));
+                }catch(ParseException e){
+                    e.printStackTrace();
+                }
+
                 tt.setTimetableID(timetable.getTimetableID());
                 tt.setClassRoom(timetable.getClassRoom());
                 timetableDtoList.add(tt);
@@ -314,8 +378,23 @@ public class TimeTableServiceImpl implements TimeTableService {
 //                tt.setBatch(timetable.getBatch());
                 tt.setModule(timetable.getModule());
                 tt.setDate(String.valueOf(timetable.getDate()));
-                tt.setStartTime(String.valueOf(timetable.getStartTime()));
-                tt.setEndTIme(String.valueOf(timetable.getEndTIme()));
+
+                SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+                try{
+                    java.util.Date startime = sdf.parse(String.valueOf(timetable.getStartTime()));
+                    java.util.Date endTime = sdf.parse(String.valueOf(timetable.getEndTIme()));
+
+                    //new format
+                    SimpleDateFormat sdf2 = new SimpleDateFormat("hh:mm aa");
+                    //formatting the given time to new format with AM/PM
+
+                    tt.setStartTime(sdf2.format(startime));
+                    tt.setEndTIme(sdf2.format(endTime));
+                }catch(ParseException e){
+                    e.printStackTrace();
+                }
+
+
                 tt.setTimetableID(timetable.getTimetableID());
                 tt.setClassRoom(timetable.getClassRoom());
                 timetableDtoList.add(tt);
@@ -360,8 +439,22 @@ public class TimeTableServiceImpl implements TimeTableService {
                 tt.setBatchList(timetable.getBatchList());
                 tt.setModule(timetable.getModule());
                 tt.setDate(String.valueOf(timetable.getDate()));
-                tt.setStartTime(String.valueOf(timetable.getStartTime()));
-                tt.setEndTIme(String.valueOf(timetable.getEndTIme()));
+
+                SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+                try{
+                    java.util.Date startime = sdf.parse(String.valueOf(timetable.getStartTime()));
+                    java.util.Date endTime = sdf.parse(String.valueOf(timetable.getEndTIme()));
+
+                    //new format
+                    SimpleDateFormat sdf2 = new SimpleDateFormat("hh:mm aa");
+                    //formatting the given time to new format with AM/PM
+
+                    tt.setStartTime(sdf2.format(startime));
+                    tt.setEndTIme(sdf2.format(endTime));
+                }catch(ParseException e){
+                    e.printStackTrace();
+                }
+
                 tt.setTimetableID(timetable.getTimetableID());
                 tt.setClassRoom(timetable.getClassRoom());
                 timetableDtoList.add(tt);
@@ -383,8 +476,22 @@ public class TimeTableServiceImpl implements TimeTableService {
                 tt.setBatchList(timetable.getBatchList());
                 tt.setModule(timetable.getModule());
                 tt.setDate(String.valueOf(timetable.getDate()));
-                tt.setStartTime(String.valueOf(timetable.getStartTime()));
-                tt.setEndTIme(String.valueOf(timetable.getEndTIme()));
+
+                SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+                try{
+                    java.util.Date startime = sdf.parse(String.valueOf(timetable.getStartTime()));
+                    java.util.Date endTime = sdf.parse(String.valueOf(timetable.getEndTIme()));
+
+                    //new format
+                    SimpleDateFormat sdf2 = new SimpleDateFormat("hh:mm aa");
+                    //formatting the given time to new format with AM/PM
+
+                    tt.setStartTime(sdf2.format(startime));
+                    tt.setEndTIme(sdf2.format(endTime));
+                }catch(ParseException e){
+                    e.printStackTrace();
+                }
+
                 tt.setTimetableID(timetable.getTimetableID());
                 tt.setClassRoom(timetable.getClassRoom());
                 timetableDtoListof.add(tt);

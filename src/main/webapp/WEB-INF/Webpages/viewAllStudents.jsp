@@ -37,7 +37,7 @@
         <li><a   class="nav-link" href="${pageContext.request.contextPath}/admin">Home</a></li>
             <li><a   class="nav-link" href="${pageContext.request.contextPath}/admin/users/allLectruer">View Lecturers</a></li>
         <li  style="float:right">  <form action="${pageContext.request.contextPath}/admin/searchUser" method="get" class="d-flex">
-            <input class="form-control" style="width: 200px; border-radius: 25px 25px 25px 25px" type="search"  name="searchByName" placeholder="Search..(First Name)" aria-label="Search">
+            <input class="form-control" style="width: 200px; border-radius: 25px 25px 25px 25px" type="search"  name="searchByName" placeholder="Search..(UserName)" aria-label="Search">
             <button class="btn btn-primary" type="submit"><i class="fa fa-search"></i></button>
 
         <li/>
@@ -105,6 +105,17 @@
     </c:forEach>
     </tbody>
 </table>
+<c:if test="${users.size() == 0 }">
+    <div class="container mt-2">
+        <div class="row">
+            <div class="col-sm-12">
 
+                <div class="alert alert-primary" style="text-align: center">
+                    No Data Found
+                </div>
+            </div>
+        </div>
+    </div>
+</c:if>
 </body>
 </html>

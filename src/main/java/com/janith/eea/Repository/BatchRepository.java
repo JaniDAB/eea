@@ -9,4 +9,6 @@ import org.springframework.stereotype.Repository;
 public interface BatchRepository extends JpaRepository<Batch,Integer> {
 
 public Batch findBatchesByBatchCode(String bachCode);
+
+
 }

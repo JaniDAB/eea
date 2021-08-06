@@ -12,7 +12,7 @@
 <html>
 <head>
     <title>Title</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/viewStudents.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/viewSheduleList.css">
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -57,54 +57,114 @@
     </ul>
 </nav>
 
-<table class="content-table">
+<%--<table class="content-table">--%>
 
-    <thead>
-    <tr>
-        <th>Batches</th>
-        <th>Date</th>
-        <th>Start Time</th>
-        <th> End Time</th>
-        <th> Module</th>
-        <th> Room</th>
-        <th> Room Type</th>
+<%--    <thead>--%>
+<%--    <tr>--%>
+<%--        <th>Batches</th>--%>
+<%--        <th>Date</th>--%>
+<%--        <th>Start Time</th>--%>
+<%--        <th> End Time</th>--%>
+<%--        <th> Module</th>--%>
+<%--        <th> Room</th>--%>
+<%--        <th> Room Type</th>--%>
 
-    </tr>
-    </thead>
-    <tbody>
+<%--    </tr>--%>
+<%--    </thead>--%>
+<%--    <tbody>--%>
 
-    <c:forEach var="timetable" items="${timetableList}">
+<%--    <c:forEach var="timetable" items="${timetableList}">--%>
 
-        <tr>
-            <td>
-                <c:forEach items="${timetable.batchList}" var="batchlist">
-                    ${batchlist.batchCode} <br>
-                </c:forEach>
-            </td>
-            <td> ${timetable.date} </td>
-            <td>${timetable.startTime}</td>
-            <td>${timetable.endTIme}</td>
-            <td>${timetable.module.moduleName}</td>
-            <td>${timetable.classRoom.roomId}</td>
-            <td>${timetable.classRoom.roomType}</td>
+<%--        <tr>--%>
+<%--            <td>--%>
+<%--                <c:forEach items="${timetable.batchList}" var="batchlist">--%>
+<%--                    ${batchlist.batchCode} <br>--%>
+<%--                </c:forEach>--%>
+<%--            </td>--%>
+<%--            <td> ${timetable.date} </td>--%>
+<%--            <td>${timetable.startTime}</td>--%>
+<%--            <td>${timetable.endTIme}</td>--%>
+<%--            <td>${timetable.module.moduleName}</td>--%>
+<%--            <td>${timetable.classRoom.roomId}</td>--%>
+<%--            <td>${timetable.classRoom.roomType}</td>--%>
 
-        </tr>
-    </c:forEach>
+<%--        </tr>--%>
+<%--    </c:forEach>--%>
 
-    </tbody>
-</table>
-<c:if test="${timetableList.size() == 0 }">
-    <div class="container mt-2">
-        <div class="row">
-            <div class="col-sm-12">
+<%--    </tbody>--%>
+<%--</table>--%>
 
-                <div class="alert alert-success" style="text-align: center">
-                    No Schedule For today.
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-offset-1 col-md-10 ss">
+            <div class="panel">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col col-sm-3 col-xs-12">
+                            <h4  routerLink="/list-users" class="title">Lecturers <span></span></h4>
+                        </div>
+                        <div class="col-sm-9 col-xs-12 text-right">
+                            <div class="btn_group">
+
+                            </div>
+                        </div>
+
+
+                    </div>
                 </div>
+                <div class="panel-body table-responsive">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>Batches</th>
+                                    <th>Date</th>
+                                    <th>Start Time</th>
+                                    <th> End Time</th>
+                                    <th> Module</th>
+                                    <th> Room</th>
+                                    <th> Room Type</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <c:forEach var="timetable" items="${timetableList}">
+                            <tr>
+
+                                                <td>
+                                                    <c:forEach items="${timetable.batchList}" var="batchlist">
+                                                        ${batchlist.batchCode} <br>
+                                                    </c:forEach>
+                                                </td>
+                                                <td> ${timetable.date} </td>
+                                                <td>${timetable.startTime}</td>
+                                                <td>${timetable.endTIme}</td>
+                                                <td>${timetable.module.moduleName}</td>
+                                                <td>${timetable.classRoom.roomId}</td>
+                                                <td>${timetable.classRoom.roomType}</td>
+                            </tr>
+                        </c:forEach>
+
+                        </tbody>
+                    </table>
+                    <c:if test="${timetableList.size() == 0 }">
+                        <div class="container mt-2">
+                            <div class="row">
+                                <div class="col-sm-12">
+
+                                    <div class="alert alert-success" style="text-align: center">
+                                        No Schedule For today.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </c:if>
+                </div>
+
             </div>
         </div>
     </div>
-</c:if>
+</div>
+
 
 </body>
 </html>

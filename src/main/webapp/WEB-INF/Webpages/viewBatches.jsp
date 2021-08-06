@@ -10,7 +10,7 @@
 <html>
 <head>
     <title>View Batches</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/viewUsers.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/viewUser.css">
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -38,54 +38,137 @@
     ${deleted}
     ${error}
 </div>
-<table class="content-table">
+<%--<table class="content-table">--%>
 
-    <thead><tr>
-        <th>Batch ID </th>
-        <th> Batch Code </th>
-        <th> Batch Description </th>
-        <th> Edit And Delete Batch </th>
-        <th> Assign Modules to Batch </th>
-        <th> More Info </th>
+<%--    <thead><tr>--%>
+<%--        <th>Batch ID </th>--%>
+<%--        <th> Batch Code </th>--%>
+<%--        <th> Batch Description </th>--%>
+<%--        <th> Edit And Delete Batch </th>--%>
+<%--        <th> Assign Modules to Batch </th>--%>
+<%--        <th> More Info </th>--%>
 
-    </tr>
-    </thead>
-    <tbody>
+<%--    </tr>--%>
+<%--    </thead>--%>
+<%--    <tbody>--%>
 
-    <c:forEach var="tempBatch" items="${batches}">
+<%--    <c:forEach var="tempBatch" items="${batches}">--%>
 
-        <tr>
-            <td>${tempBatch.batchID}</td>
-            <td>${tempBatch.batchCode}</td>
-            <td>${tempBatch.description}</td>
-            <td>
-                <span><a href="${pageContext.request.contextPath}/directUpdateMBatchForm/${tempBatch.batchID}" class="btn btn-primary">
-                    <i class="material-icons">&#xe3c9;</i>
-                </a>
-                    <a href="${pageContext.request.contextPath}/deleteBatch/${tempBatch.batchID}" onclick="return confirm('Delete Batch :${tempBatch.batchCode}')" class="btn btn-danger">
-                        <i class="material-icons">&#xe872;</i>
-                    </a>
-                </span>
-            </td>
-            <td>
-                <span><a href="${pageContext.request.contextPath}/assignModule/${tempBatch.batchID}" class="btn btn-success">
-                     <i class="material-icons">&#xea20;</i>
-                </a>
-                </span>
-            </td>
-            <td>
-                <span><a href="${pageContext.request.contextPath}/modulelist/${tempBatch.batchID}" class="btn btn-outline-info">
-                        <i class="material-icons">&#xe88e;</i>
-                </a>
-                </span>
-            </td>
+<%--        <tr>--%>
+<%--            <td>${tempBatch.batchID}</td>--%>
+<%--            <td>${tempBatch.batchCode}</td>--%>
+<%--            <td>${tempBatch.description}</td>--%>
+<%--            <td>--%>
+<%--                <span><a href="${pageContext.request.contextPath}/directUpdateMBatchForm/${tempBatch.batchID}" class="btn btn-primary">--%>
+<%--                    <i class="material-icons">&#xe3c9;</i>--%>
+<%--                </a>--%>
+<%--                    <a href="${pageContext.request.contextPath}/deleteBatch/${tempBatch.batchID}" onclick="return confirm('Delete Batch :${tempBatch.batchCode}')" class="btn btn-danger">--%>
+<%--                        <i class="material-icons">&#xe872;</i>--%>
+<%--                    </a>--%>
+<%--                </span>--%>
+<%--            </td>--%>
+<%--            <td>--%>
+<%--                <span><a href="${pageContext.request.contextPath}/assignModule/${tempBatch.batchID}" class="btn btn-success">--%>
+<%--                     <i class="material-icons">&#xea20;</i>--%>
+<%--                </a>--%>
+<%--                </span>--%>
+<%--            </td>--%>
+<%--            <td>--%>
+<%--                <span><a href="${pageContext.request.contextPath}/modulelist/${tempBatch.batchID}" class="btn btn-outline-info">--%>
+<%--                        <i class="material-icons">&#xe88e;</i>--%>
+<%--                </a>--%>
+<%--                </span>--%>
+<%--            </td>--%>
 
 
-        </tr>
-    </c:forEach>
-    </tbody>
-</table>
+<%--        </tr>--%>
+<%--    </c:forEach>--%>
+<%--    </tbody>--%>
+<%--</table>--%>
 
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-offset-1 col-md-10 ss">
+            <div class="panel">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col col-sm-3 col-xs-12">
+                            <h4   class="title">Batch <span>Lists</span></h4>
+                        </div>
+                        <div class="col-sm-9 col-xs-12 text-right">
+                            <div class="btn_group">
+
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+                <div class="panel-body table-responsive">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                                    <th>Batch ID </th>
+                                    <th> Batch Code </th>
+                                    <th> Batch Description </th>
+                                    <th> Edit And Delete Batch </th>
+                                    <th> Assign Modules to Batch </th>
+                                    <th> More Info </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <c:forEach var="tempBatch" items="${batches}">
+                            <tr>
+
+                                <td>${tempBatch.batchID}</td>
+                                                <td>${tempBatch.batchCode}</td>
+                                                <td>${tempBatch.description}</td>
+                                                <td>
+                                                    <span><a href="${pageContext.request.contextPath}/directUpdateMBatchForm/${tempBatch.batchID}" class="btn btn-primary">
+                                                        <i class="material-icons">&#xe3c9;</i>
+                                                    </a>
+                                                        <a href="${pageContext.request.contextPath}/deleteBatch/${tempBatch.batchID}" onclick="return confirm('Delete Batch :${tempBatch.batchCode}')" class="btn btn-danger">
+                                                            <i class="material-icons">&#xe872;</i>
+                                                        </a>
+                                                    </span>
+                                                </td>
+                                                <td>
+                                                    <span><a href="${pageContext.request.contextPath}/assignModule/${tempBatch.batchID}" class="btn btn-success">
+                                                         <i class="material-icons">&#xea20;</i>
+                                                    </a>
+                                                    </span>
+                                                </td>
+                                                <td>
+                                                    <span><a href="${pageContext.request.contextPath}/modulelist/${tempBatch.batchID}" class="btn btn-outline-info">
+                                                            <i class="material-icons">&#xe88e;</i>
+                                                    </a>
+                                                    </span>
+                                                </td>
+                            </tr>
+                        </c:forEach>
+
+                        </tbody>
+                    </table>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<c:if test="${batches.size() == 0 }">
+    <div class="container mt-2">
+        <div class="row">
+            <div class="col-sm-12">
+
+                <div class="alert alert-primary" style="text-align: center">
+                    No Data Found
+                </div>
+            </div>
+        </div>
+    </div>
+</c:if>
 
 </body>
 </html>

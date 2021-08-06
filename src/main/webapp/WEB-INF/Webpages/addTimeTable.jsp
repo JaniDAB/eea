@@ -92,7 +92,7 @@
                                 <div class="row">
                                     <div class="col-sm-12">
 
-                                        <div class="alert alert-warning" style="text-align: center">
+                                        <div class="alert alert-danger" style="text-align: center">
                                                 ${error}
                                         </div>
                                     </div>

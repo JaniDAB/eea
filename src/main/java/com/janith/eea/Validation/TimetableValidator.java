@@ -87,7 +87,9 @@ public class TimetableValidator implements Validator {
             &&
                     (LocalTime.parse(timetableDto.getEndTIme()).isBefore(timetableinfo.getEndTIme()))
             ){
-                         errors.rejectValue("endTIme", "timetable.validate.end");
+                String obj =timetableinfo.getClassRoom().getRoomId();
+                errors.rejectValue("classRoom", "timetable.validate.cls",Arrays.toString(new String[]{obj}));
+                errors.rejectValue("endTIme", "timetable.validate.end");
             }
 
         }

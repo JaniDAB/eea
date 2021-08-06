@@ -150,7 +150,7 @@ public class AdminController {
         if (s.equals("deleted")) {
             rd.addFlashAttribute("deleted", "Record Deleted Successfully");
         }else {
-            rd.addFlashAttribute("error", "UnSuccessful,  Please DeAssign from Lecturers from Module");
+            rd.addFlashAttribute("error", "UnSuccessful, Please De-Assign Lecturers from Module");
         }
 
         return "redirect:/admin/users/allLectruer";

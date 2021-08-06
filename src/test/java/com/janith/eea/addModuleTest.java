@@ -8,6 +8,7 @@ import com.janith.eea.Service.ModuleServiceImpl;
 
 import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Order;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -17,8 +18,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThat;
+import static org.junit.Assert.*;
 import static org.mockito.Mockito.when;
 
 @RunWith(SpringRunner.class)
@@ -40,9 +40,13 @@ private ModuleRepository moduleRepository;
 
         when(moduleRepository.findAll()).thenReturn
                 (Stream.of(
-                        new Module("English"),
-                        new Module("Network"))
+                        new Module("COSE1223","English" ),
+                        new Module( "COSE2221","Network"))
                         .collect(Collectors.toList()));
 assertEquals(2, moduleService.getAllModules().size());
     }
+
+
+ 
+
 }

@@ -104,7 +104,7 @@
                                     <th> Last Name</th>
                                     <th>Email</th>
                                     <th>gender</th>
-                                    <th>Date of Birth</th>
+                                    <th>Date of Birth </th>
                                     <th> User Name</th>
                                     <th>Contact Number</th>
                         </tr>
@@ -133,5 +133,17 @@
         </div>
     </div>
 </div>
+<c:if test="${users.size() == 0 }">
+    <div class="container mt-2">
+        <div class="row">
+            <div class="col-sm-12">
+
+                <div class="alert alert-primary" style="text-align: center">
+                   No Data Found
+                </div>
+            </div>
+        </div>
+    </div>
+</c:if>
 </body>
 </html>

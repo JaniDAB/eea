@@ -58,5 +58,9 @@ public class ModuleValidator implements Validator {
         if(moduleRepository.findByModuleCode(moduleDto.getModuleCode()) != null){
             errors.rejectValue("moduleCode", "Duplicate.moduleCode");
         }
+
+        if(moduleDto.getModuleName().trim().length() < 3 || moduleDto.getModuleName().trim().length() > 30){
+            errors.rejectValue("moduleName", "Size.module.name");
+        }
     }
 }

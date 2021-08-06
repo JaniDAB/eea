@@ -19,7 +19,7 @@
 <body>
 
 <div class="header">
-    <h1 class="header1">Timetable 766</h1>
+    <h1 class="header1">Timetabler 766</h1>
 </div>
 <ul class="nav_link" style="margin-bottom: 0">
     <li><a class="nav-link" href="${pageContext.request.contextPath}/admin">Admin Home</a></li>
@@ -34,9 +34,9 @@
 <div class="container register" style="max-width: 100%;">
     <div class="row">
         <div class="col-md-3 register-left">
-            <img src="https://img.icons8.com/wired/100/000000/timetable.png" alt="icons8-business-group-64" border="0">
-            <P style="font-weight: bold; color: #1d2124">Room Booked : ${timetableinfor.classRoom.roomId} </P>
-            <P style="font-weight: bold; color: #1d2124">Module Scheduled : ${timetableinfor.module.moduleName} </P>
+            <img src="https://img.icons8.com/nolan/300/room.png"/>
+            <P style="font-weight: bold; ">Room Booked : ${timetableinfor.classRoom.roomId}
+         Module Scheduled : ${timetableinfor.module.moduleName} </P>
 
             <%--            <p> Assigning a Batch to a User can be done here</p>--%>
 

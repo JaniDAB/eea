@@ -39,10 +39,30 @@
 
     </ul>
 </nav>
-<div class="row justify-content-center  successmessage">
-    ${deleted}
-    ${error}
-</div>
+<c:if test="${deleted !=  null }">
+    <div class="container mt-2">
+        <div class="row">
+            <div class="col-sm-12">
+
+                <div class="alert alert-secondary" style="text-align: center">
+                        ${deleted}
+                </div>
+            </div>
+        </div>
+    </div>
+</c:if>
+<c:if test="${error !=  null }">
+    <div class="container mt-2">
+        <div class="row">
+            <div class="col-sm-12">
+
+                <div class="alert alert-danger" style="text-align: center">
+                        ${error}
+                </div>
+            </div>
+        </div>
+    </div>
+</c:if>
 
 <%--<table class="content-table">--%>
 <%--    <thead>--%>
@@ -114,7 +134,7 @@
                                     <th> Last Name</th>
                                     <th>Email</th>
                                     <th>gender</th>
-                                    <th>Date of Birth</th>
+                                    <th>Date of Birth </th>
                                     <th> User Name</th>
                                     <th>phone Number</th>
                                     <th>Update</th>

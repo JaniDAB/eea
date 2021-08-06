@@ -36,13 +36,13 @@ public class UserValidation implements Validator {
     @Override
     public void validate(Object o, Errors errors) {
  UserDto user= (UserDto) o;
-
+    String  regexEmail = "^[\\w.+\\-]+@gmail\\.com$";
  String emailRegex = "^(([^<>()\\[\\]\\\\.,;:\\s@\"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@\"]+)*)|(\".+\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$";
-        Pattern p = Pattern.compile(emailRegex);
+        Pattern p = Pattern.compile(regexEmail);
         Matcher matcher = p.matcher(user.getEmail());
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "username", "NotEmpty");
 
-        if(user.getUsername().length() < 5 || user.getUsername().length() > 30){
+        if(user.getUsername().trim().length() < 5 || user.getUsername().trim().length() > 30){
             errors.rejectValue("username", "Size.userForm.username");
         }
         if(userRepository.findUsersByUsername(user.getUsername()) != null){

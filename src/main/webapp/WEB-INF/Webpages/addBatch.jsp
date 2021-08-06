@@ -1,4 +1,5 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: janithdabare
@@ -74,7 +75,7 @@
                                 <div class="row">
                                     <div class="col-sm-12">
 
-                                        <div class="alert alert-success" style="text-align: center">
+                                        <div class="alert alert-danger" style="text-align: center">
                                                 ${fail}
                                         </div>
                                     </div>

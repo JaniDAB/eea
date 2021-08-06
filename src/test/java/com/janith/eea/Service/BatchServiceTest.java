@@ -35,7 +35,7 @@ class BatchServiceTest {
     }
 
     @Test
-    void saveBatch() {
+    void saveBatch() throws Exception {
         Batch batch = new Batch("HF12SEeng","Software batch");
         BatchDto batchDto = null;
  

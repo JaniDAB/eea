@@ -7,7 +7,7 @@ import com.janith.eea.Model.Batch;
 import java.util.List;
 
 public interface BatchService {
-    Batch save(BatchDto batchinfo);
+    Batch save(BatchDto batchinfo) throws Exception;
 
     BatchDto getBatchById(int id);
 

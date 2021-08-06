@@ -51,7 +51,7 @@
 <table class="content-table">
 
     <thead><tr>
-        <th>Module ID </th>
+        <th>Module Code </th>
         <th> Module Name </th>
         <th>  Batches Enrolled  </th>
         <th>  Module Lecturer </th>
@@ -68,7 +68,7 @@
     <c:forEach var="tempModules" items="${modules}">
 
         <tr>
-            <td>${tempModules.module_id}</td>
+            <td>${tempModules.moduleCode}</td>
             <td>${tempModules.moduleName}</td>
             <td>
                 <c:forEach items="${tempModules.batchList}" var="batchlist">

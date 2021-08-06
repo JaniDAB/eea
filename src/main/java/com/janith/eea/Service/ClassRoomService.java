@@ -6,7 +6,7 @@ import com.janith.eea.Model.ClassRoom;
 import java.util.List;
 
 public interface ClassRoomService {
-    ClassRoom addRoom(ClassRoomDto classRoomDto);
+    ClassRoom addRoom(ClassRoomDto classRoomDto) throws Exception;
 
     List<ClassRoomDto> viewRooms();
 

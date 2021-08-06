@@ -21,15 +21,17 @@ public class ClassRoomServiceImpl implements ClassRoomService{
     }
 
     @Override
-    public ClassRoom addRoom(ClassRoomDto classRoomDto) {
+    public ClassRoom addRoom(ClassRoomDto classRoomDto) throws Exception {
         ClassRoom classRoom = new ClassRoom();
 
-        if(classRoomDto != null){
+        if(roomRepository.findById(classRoomDto.getRoomId()).isPresent()){
+            throw new Exception("Room ID : "+ classRoomDto.getRoomId() +" already Exists." );
+        }
             classRoom.setRoomId(classRoomDto.getRoomId());
             classRoom.setRoomCapacity(classRoomDto.getRoomCapacity());
             classRoom.setRoomType(classRoomDto.getRoomType());
 
-        }
+
         return roomRepository.save(classRoom);
     }
 

@@ -72,6 +72,7 @@ public class ModuleServiceImpl implements ModuleService {
                 moduleDto.setModule_id(model.getModule_id());
                 moduleDto.setModuleName(model.getModuleName());
                 moduleDto.setLecUser(model.getLecUser());
+                moduleDto.setModuleCode(model.getModuleCode());
 
                 moduleDtoList.add(moduleDto);
             }
