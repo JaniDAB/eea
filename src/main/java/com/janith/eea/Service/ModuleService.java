@@ -8,7 +8,7 @@ import com.janith.eea.Model.Module;
 import java.util.List;
 
 public interface ModuleService {
-    Module save(ModuleDto moduleDto);
+    Module save(ModuleDto moduleDto) throws Exception;
 
     ModuleDto getModuleById(int id);
 

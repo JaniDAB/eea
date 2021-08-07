@@ -297,7 +297,7 @@ public class AdminController {
     }
 
     @PostMapping("/admin/addModule")
-    public String addAModule(@ModelAttribute("module") ModuleDto moduleDto ,BindingResult br) {
+    public String addAModule(@ModelAttribute("module") ModuleDto moduleDto ,BindingResult br) throws Exception {
 
         moduleValidator.validate(moduleDto , br);
 

@@ -24,10 +24,17 @@ public class ModuleServiceImpl implements ModuleService {
 
 
     @Override
-    public Module save(ModuleDto moduleDto) {
+    public Module save(ModuleDto moduleDto) throws Exception {
         Module modeldom = new Module();
 
 //modeldom.setBatchList(batchRepository.findAll());
+if(moduleRepository.findByModuleCode(moduleDto.getModuleCode())!=null){
+     throw  new Exception("Module Code  : "+ moduleDto.getModuleCode() +" already Exists.");
+}
+else if(moduleRepository.findByModuleName(moduleDto.getModuleName())!= null){
+    throw  new Exception("Module Name : "+ moduleDto.getModuleName() +" already There.");
+
+}
 
         if (moduleDto != null) {
             modeldom.setModuleName(moduleDto.getModuleName().trim());
