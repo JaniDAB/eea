@@ -39,14 +39,15 @@ public class UserServiceImpl implements UserService {
 
 // function for save the timetable users
     @Override
-    public User save(UserDto registerUser) {
+    public User save(UserDto registerUser) throws Exception {
         User userdomain = new User();
         UserRole userRole = new UserRole();
 
         String DefaultPassword = "user123";
         String LecturerPwd = "lec123";
         if (userRepository.findUsersByUsername(registerUser.getUsername()) != null) {
-            return null;
+          // changed done return null;
+            throw  new Exception("User : " + registerUser.getUsername() + " is Already in System");
         } else {
             if (registerUser != null) {
                 userdomain.setUsername(registerUser.getUsername().trim());

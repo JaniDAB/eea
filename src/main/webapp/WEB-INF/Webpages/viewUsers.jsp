@@ -102,9 +102,10 @@
                             <th> User Type</th>
                                     <th> First Name</th>
                                     <th> Last Name</th>
-                                    <th>Email</th>
+                            <th>Date of Birth </th>
+
                                     <th>gender</th>
-                                    <th>Date of Birth </th>
+                            <th>Email</th>
                                     <th> User Name</th>
                                     <th>Contact Number</th>
                         </tr>
@@ -116,10 +117,10 @@
                             <td> ${tempUser.role}</td>
                                         <td> ${tempUser.firstname}</td>
                                         <td>${tempUser.lastname}</td>
-                                        <td>${tempUser.email}</td>
+                            <td>${tempUser.dateOfBirth} </td>
                                         <td>${tempUser.gender}</td>
-                                        <td>${tempUser.dateOfBirth}</td>
-                                        <td>${tempUser.username}</td>
+                            <td>${tempUser.email}</td>
+                            <td>${tempUser.username}</td>
                                         <td>${tempUser.mobile}</td>
                         </tr>
         </c:forEach>

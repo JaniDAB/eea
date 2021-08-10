@@ -45,12 +45,36 @@
 
     </ul>
 </nav>
-<div class="row justify-content-center successmessage" role="alert" >
-    ${deleted}
-    ${error}
-        ${deAssigned}
-        ${errord}
-</div>
+<%--<div class="row justify-content-center successmessage" role="alert" >--%>
+<%--    ${deleted}--%>
+<%--    ${error}--%>
+<%--        ${deAssigned}--%>
+<%--        ${errord}--%>
+<%--</div>--%>
+<c:if test="${deAssigned !=  null }">
+    <div class="container mt-2">
+        <div class="row">
+            <div class="col-sm-12">
+
+                <div class="alert alert-success" style="text-align: center">
+                        ${deAssigned}
+                </div>
+            </div>
+        </div>
+    </div>
+</c:if>
+<c:if test="${errord !=  null }">
+    <div class="container mt-2">
+        <div class="row">
+            <div class="col-sm-12">
+
+                <div class="alert alert-danger" style="text-align: center">
+                        ${errord}
+                </div>
+            </div>
+        </div>
+    </div>
+</c:if>
 
 <table class="content-table">
     <thead>

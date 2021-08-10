@@ -43,10 +43,31 @@
         <li  style="float:right"> <form method="post" action="${pageContext.request.contextPath}/logout"> <button type="submit" class="fa fa-sign-out nav-link" > Logout</button></form> </li>
     </ul>
 </nav>
-<div class="row justify-content-center successmessage" role="alert" >
-    ${deleted}
-    ${error}
-</div>
+
+<c:if test="${deleted !=  null }">
+    <div class="container mt-2">
+        <div class="row">
+            <div class="col-sm-12">
+
+                <div class="alert alert-success" style="text-align: center">
+                        ${deleted}
+                </div>
+            </div>
+        </div>
+    </div>
+</c:if>
+<c:if test="${error !=  null }">
+    <div class="container mt-2">
+        <div class="row">
+            <div class="col-sm-12">
+
+                <div class="alert alert-danger" style="text-align: center">
+                        ${error}
+                </div>
+            </div>
+        </div>
+    </div>
+</c:if>
 
 <table class="content-table">
 
@@ -71,11 +92,22 @@
             <td>${tempModules.moduleCode}</td>
             <td>${tempModules.moduleName}</td>
             <td>
+                <c:if test="${tempModules.batchList.size()==0}">
+                    <div class="alert-warning"> No Batches Enrolled
+                        <i class="material-icons">&#xe001;</i>
+                    </div>
+                </c:if>
                 <c:forEach items="${tempModules.batchList}" var="batchlist">
                     ${batchlist.batchCode} <br>
                 </c:forEach>
             </td>
-            <td>${tempModules.lecUser.firstname}</td>
+            <td>
+                <c:if test="${tempModules.lecUser.firstname == null}">
+                    <div class="alert-warning"> No Lecturer
+                        <i class="material-icons">&#xe001;</i>
+                    </div>
+                </c:if>
+                    ${tempModules.lecUser.firstname}</td>
             <td>
          <a href="${pageContext.request.contextPath}/updateModuleForm/${tempModules.module_id}" class="btn btn-outline-danger">
              <i class="material-icons">&#xe3c9;</i>

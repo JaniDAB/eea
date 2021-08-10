@@ -2,8 +2,10 @@ package com.janith.eea.Service;
 
 import com.janith.eea.Dto.BatchDto;
 import com.janith.eea.Dto.ModuleDto;
+import com.janith.eea.Dto.UserDto;
 import com.janith.eea.Model.Batch;
 import com.janith.eea.Model.Module;
+import com.janith.eea.Model.User;
 import com.janith.eea.Repository.BatchRepository;
 import com.janith.eea.Repository.ModuleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +24,8 @@ public class ModuleServiceImpl implements ModuleService {
     @Autowired
     private BatchRepository batchRepository;
 
+    @Autowired
+    UserService userService;
 
     @Override
     public Module save(ModuleDto moduleDto) throws Exception {
@@ -79,6 +83,34 @@ else if(moduleRepository.findByModuleName(moduleDto.getModuleName())!= null){
                 moduleDto.setModule_id(model.getModule_id());
                 moduleDto.setModuleName(model.getModuleName());
                 moduleDto.setLecUser(model.getLecUser());
+                moduleDto.setModuleCode(model.getModuleCode());
+
+                moduleDtoList.add(moduleDto);
+            }
+        }
+        return moduleDtoList;
+    }
+
+    @Override
+    public List<ModuleDto> getAllModulestoAPI() {
+        List<Module> modeList = moduleRepository.findAll();
+
+        List<ModuleDto> moduleDtoList = new ArrayList<>();
+
+        if (modeList != null) {
+            for (Module model : modeList) {
+                ModuleDto moduleDto = new ModuleDto();
+
+//                moduleDto.setBatchList(model.getBatchList());
+                moduleDto.setModule_id(model.getModule_id());
+                moduleDto.setModuleName(model.getModuleName());
+
+                if( model.getLecUser() == null) {
+                    moduleDto.setFirstName("Not Assigned");
+                }else
+                moduleDto.setFirstName(model.getLecUser().getFirstname());
+
+//               moduleDto.setLecUser(model.getLecUser());
                 moduleDto.setModuleCode(model.getModuleCode());
 
                 moduleDtoList.add(moduleDto);

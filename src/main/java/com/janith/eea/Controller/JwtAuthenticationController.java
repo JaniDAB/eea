@@ -9,6 +9,7 @@ import com.janith.eea.Service.UserService;
 import com.janith.eea.Util.UserTypeUtil;
 import org.hibernate.usertype.UserType;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -36,8 +37,17 @@ public class JwtAuthenticationController {
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public ResponseEntity<?> createAuthenticationToken(@RequestBody UserDto userDto) throws Exception {
 
-        authenticate(userDto.getUsername(), userDto.getPassword());
+//        authenticate(userDto.getUsername(), userDto.getPassword());
 
+        try {
+            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(userDto.getUsername(), userDto.getPassword()));
+        }
+        catch (BadCredentialsException e) {
+
+            JwtResponse jwtResponse = new JwtResponse(null,null, "INVALID CREDENTIALS", null, null);
+
+            return  ResponseEntity.ok(jwtResponse);
+        }
         final UserDetails userDetails = jwtUserDetailsService.loadUserByUsername(userDto.getUsername());
 
         String jwttoken = jwtTokenUtil.generateToken(userDetails);
@@ -52,9 +62,8 @@ public class JwtAuthenticationController {
     private void authenticate(String username, String password) throws Exception {
         try {
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
-        } catch (DisabledException e) {
-            throw new Exception("USER_NOT_FOUND", e); //
-        } catch (BadCredentialsException e) {
+        }
+        catch (BadCredentialsException e) {
             throw new Exception("INVALID_CREDENTIALS", e);
         }
     }

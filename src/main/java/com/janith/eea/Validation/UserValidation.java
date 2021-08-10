@@ -42,7 +42,7 @@ public class UserValidation implements Validator {
         Matcher matcher = p.matcher(user.getEmail());
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "username", "NotEmpty");
 
-        if(user.getUsername().trim().length() < 5 || user.getUsername().trim().length() > 30){
+        if(user.getUsername().trim().length() < 5 || user.getUsername().trim().length() > 15){
             errors.rejectValue("username", "Size.userForm.username");
         }
         if(userRepository.findUsersByUsername(user.getUsername()) != null){

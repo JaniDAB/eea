@@ -13,6 +13,8 @@ public class ModuleDto {
     private  String moduleName;
     private  String moduleCode;
 
+    private String firstName;
+
 
     private User lecUser;
 
@@ -71,5 +73,13 @@ public class ModuleDto {
 
     public void setBatchList(List<Batch> batchList) {
         this.batchList = batchList;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 }

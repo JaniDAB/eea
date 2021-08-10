@@ -1,23 +1,26 @@
 package com.janith.eea.Controller;
 
 import com.janith.eea.Dto.ClassRoomDto;
-import com.janith.eea.Service.ClassRoomService;
-import com.janith.eea.Service.ClassRoomServiceImpl;
+import com.janith.eea.Dto.UserDto;
+import com.janith.eea.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/mobile/")
-public class RoomController {
+public class UserCon {
 
     @Autowired
-    private ClassRoomService classRoomService;
+    private UserService userService;
 
-    @PostMapping("/add_room/")
-    public HashMap<String, String> addARoom(@RequestBody ClassRoomDto classRoomDto) throws Exception {
+
+    @PostMapping("/add_user/")
+    public HashMap<String, String> addAUser(@RequestBody UserDto userDto) throws Exception {
         HashMap<String, String> message = new HashMap<>();
 
 //        ClassRoomDto classRoomDto =  new ClassRoomDto();
@@ -25,7 +28,7 @@ public class RoomController {
 //        classRoomDto.setRoomType(request.get("roomType"));
 //        classRoomDto.setRoomCapacity( Integer.parseInt(request.get("capacity")));
         try {
-            classRoomService.addRoom(classRoomDto);
+           userService.save(userDto);
 
             message.put("result", "Added");
         } catch (Exception ex) {
@@ -34,13 +37,4 @@ public class RoomController {
         }
         return message;
     }
-
-
-    @GetMapping("/view_Rooms/")
-    public List<ClassRoomDto> viewRoom(){
-
-        return  classRoomService.viewRooms();
-    }
-
-
 }

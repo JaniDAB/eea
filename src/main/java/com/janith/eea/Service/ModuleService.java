@@ -14,6 +14,8 @@ public interface ModuleService {
 
     List<ModuleDto> getAllModules();
 
+    List<ModuleDto> getAllModulestoAPI();
+
 Module editModule(ModuleDto moduleDto);
 
 Module assignLecturer(ModuleDto moduleDto);

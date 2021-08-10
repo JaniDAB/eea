@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface UserService extends UserDetailsService {
 
-    User save(UserDto registerUser);
+    User save(UserDto registerUser) throws Exception;
 
 
     boolean passwordencoder(String Password, String pass);

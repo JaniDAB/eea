@@ -29,7 +29,7 @@ public class UserRegistration {
     }
 
     @PostMapping
-    public  String registerUser(@Valid @ModelAttribute("user")UserDto registerdto, BindingResult br) {
+    public  String registerUser(@Valid @ModelAttribute("user")UserDto registerdto, BindingResult br) throws Exception {
 
 userValidation.validate(registerdto ,br );
 
