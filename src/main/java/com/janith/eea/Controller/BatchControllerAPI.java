@@ -4,12 +4,10 @@ import com.janith.eea.Dto.BatchDto;
 import com.janith.eea.Dto.ClassRoomDto;
 import com.janith.eea.Service.BatchService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/mobile/")
@@ -31,5 +29,11 @@ public class BatchControllerAPI {
             return message;
         }
         return message;
+    }
+
+    @GetMapping("/view_Batches/")
+    public List<BatchDto> viewBatches(){
+
+        return  batchService.getAllBatches();
     }
 }
