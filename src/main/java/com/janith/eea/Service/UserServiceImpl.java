@@ -146,6 +146,28 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public List<UserDto> getAllLecturersToAPI() {
+        List<User> userDomain = userRepository.findAll();
+        List<UserDto> userDtoList = new ArrayList<>();
+
+        if (!userDomain.isEmpty()) {
+            for (User user : userDomain) {
+                if (user.getRole().getRoleName().equals(UserTypeUtil.LECTURER))
+                {
+                    UserDto userDto = new UserDto();
+                    userDto.setUserId(user.getUserId());
+                    userDto.setUsername(user.getUsername());
+                    userDto.setEmail(user.getEmail());
+                    userDto.setFirstname(user.getFirstname());
+                    userDto.setDateOfBirth(user.getDateOfBirth());
+                    userDto.setMobile(user.getMobile());
+                    userDtoList.add(userDto);
+                }
+            }
+        }
+        return userDtoList;    }
+
+    @Override
     public List<UserDto> getAllLecturers() {
         List<User> userDomain = userRepository.findAll();
 

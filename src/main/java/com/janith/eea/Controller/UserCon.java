@@ -42,4 +42,9 @@ public class UserCon {
         return  userService.getAllStudentToAPI();
     }
 
+    @GetMapping("/view_lecturers/")
+    public List<UserDto> viewLectures(){
+
+        return  userService.getAllLecturersToAPI();
+    }
 }

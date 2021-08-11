@@ -19,6 +19,9 @@ public interface UserService extends UserDetailsService {
 
     List<UserDto> getAllStudentToAPI();
 
+    List<UserDto> getAllLecturersToAPI();
+
+
     List<UserDto> getAllLecturers();
 
      User editUser(UserDto userDto);
