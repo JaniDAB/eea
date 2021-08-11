@@ -113,11 +113,52 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<UserDto> getAllStudets() {
         List<User> userDomain = userRepository.findAll();
+
+        return  convertToDTO(userDomain,UserTypeUtil.STUDENT);
+    }
+
+    @Override
+    public List<UserDto> getAllStudentToAPI() {
+        List<User> userDomain = userRepository.findAll();
         List<UserDto> userDtoList = new ArrayList<>();
 
         if (!userDomain.isEmpty()) {
             for (User user : userDomain) {
-                if (user.getRole().getRoleName().equals(UserTypeUtil.STUDENT)) {
+                if (user.getRole().getRoleName().equals(UserTypeUtil.STUDENT))
+                {
+                    UserDto userDto = new UserDto();
+                    userDto.setUserId(user.getUserId());
+                    userDto.setUsername(user.getUsername());
+                    userDto.setEmail(user.getEmail());
+                    userDto.setFirstname(user.getFirstname());
+                    userDto.setDateOfBirth(user.getDateOfBirth());
+                    userDto.setMobile(user.getMobile());
+                    if(user.getBatch() == null){
+                        userDto.setBatchCode("No Batch Assigned");
+                    }else
+
+                    userDto.setBatchCode(user.getBatch().getBatchCode());
+                    userDtoList.add(userDto);
+                }
+            }
+        }
+        return userDtoList;
+    }
+
+    @Override
+    public List<UserDto> getAllLecturers() {
+        List<User> userDomain = userRepository.findAll();
+
+      return convertToDTO(userDomain, UserTypeUtil.LECTURER);
+    }
+
+    private List<UserDto> convertToDTO(List<User> userList , UserTypeUtil userRole){
+
+        List<UserDto> userDtoList = new ArrayList<>();
+
+        if (!userList.isEmpty()) {
+            for (User user : userList) {
+                if (user.getRole().getRoleName().equals(userRole)) {
                     UserDto userDto = new UserDto();
 
                     userDto.setUserId(user.getUserId());
@@ -138,35 +179,6 @@ public class UserServiceImpl implements UserService {
         }
         return userDtoList;
     }
-
-    @Override
-    public List<UserDto> getAllLecturers() {
-        List<User> userDomain = userRepository.findAll();
-        List<UserDto> userDtoList = new ArrayList<>();
-
-        if (!userDomain.isEmpty()) {
-            for (User user : userDomain) {
-                if (user.getRole().getRoleName().equals(UserTypeUtil.LECTURER)) {
-                    UserDto userDto = new UserDto();
-
-                    userDto.setUserId(user.getUserId());
-                    userDto.setUsername(user.getUsername());
-                    userDto.setEmail(user.getEmail());
-                    userDto.setFirstname(user.getFirstname());
-                    userDto.setLastname(user.getLastname());
-                    userDto.setGender(user.getGender());
-                    userDto.setRole(user.getRole().getRoleName().toString());
-                    userDto.setDateOfBirth(user.getDateOfBirth());
-                    userDto.setMobile(user.getMobile());
-                    userDto.setPassword(user.getPassword());
-                    userDtoList.add(userDto);
-                }
-            }
-
-        }
-        return userDtoList;
-    }
-
     @Override
     public User editUser(UserDto userDto) {
 // get the details of the domain student.

@@ -60,6 +60,11 @@ public class UserDto {
     @Setter
     private String gender;
 
+
+    @Getter
+    @Setter
+    private String batchCode;
+
     @Getter
     @Setter
     private Batch batch;
