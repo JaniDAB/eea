@@ -1,18 +1,20 @@
 package com.janith.eea.Service;
 
+import com.janith.eea.Dto.BatchDto;
 import com.janith.eea.Dto.TimetableDto;
+import com.janith.eea.Dto.UserDto;
 import com.janith.eea.Model.Batch;
 import com.janith.eea.Model.Timetable;
+import com.janith.eea.Model.User;
 import com.janith.eea.Repository.BatchRepository;
 import com.janith.eea.Repository.TimetableRepository;
+import com.janith.eea.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.Date;
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
@@ -28,9 +30,22 @@ public class TimeTableServiceImpl implements TimeTableService {
     @Autowired
     private final TimetableRepository timetableRepo;
 
-    public TimeTableServiceImpl(BatchRepository batchRepository, TimetableRepository timetableRepo) {
+    @Autowired
+    private final ClassRoomService classRoomService;
+
+
+    @Autowired
+    private final ModuleService moduleService;
+
+    @Autowired
+    private final UserRepository userRepository;
+
+    public TimeTableServiceImpl(BatchRepository batchRepository, TimetableRepository timetableRepo, ClassRoomService classRoomService, ModuleService moduleService, UserRepository userRepository) {
         this.batchRepository = batchRepository;
         this.timetableRepo = timetableRepo;
+        this.classRoomService = classRoomService;
+        this.moduleService = moduleService;
+        this.userRepository = userRepository;
     }
 
     @Override
@@ -275,6 +290,61 @@ public class TimeTableServiceImpl implements TimeTableService {
         return timetableDtoList;
     }
 
+//API
+    @Override
+    public List<TimetableDto> getAllTimeTablesAPI() {
+        List<Timetable> timetablesDomain = timetableRepo.findAll();
+
+        List<TimetableDto> timetableDtoList = new ArrayList<>();
+
+        if (!timetablesDomain.isEmpty()) {
+            for (Timetable timetable : timetablesDomain) {
+                List<BatchDto> batchDtoList = new ArrayList<>();
+
+                TimetableDto tt = new TimetableDto();
+
+                for(Batch batchob: timetable.getBatchList() ){
+                    BatchDto batch = new BatchDto();
+
+                    batch.setBatchID(batchob.getBatchID());
+                    batch.setBatchCode(batchob.getBatchCode());
+                    batch.setDescription(batchob.getDescription());
+                    batchDtoList.add(batch);
+                }
+                tt.setBatchListDto(batchDtoList);
+
+
+                tt.setModuleDto( moduleService.getModuleByIdAPI(timetable.getModule().getModule_id()));
+
+                tt.setDate(String.valueOf(timetable.getDate()));
+
+
+                //old format
+                SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+                try{
+                    java.util.Date startime = sdf.parse(String.valueOf(timetable.getStartTime()));
+                    java.util.Date endTime = sdf.parse(String.valueOf(timetable.getEndTIme()));
+
+                    //new format
+                    SimpleDateFormat sdf2 = new SimpleDateFormat("hh:mm aa");
+                    //formatting the given time to new format with AM/PM
+
+                    tt.setStartTime(sdf2.format(startime));
+                    tt.setEndTIme(sdf2.format(endTime));
+                }catch(ParseException e){
+                    e.printStackTrace();
+                }
+
+
+                tt.setTimetableID(timetable.getTimetableID());
+                tt.setClassRoomDTO(classRoomService.viewSingleRoom(timetable.getClassRoom().getRoomId()));
+                timetableDtoList.add(tt);
+            }
+        }
+
+        return timetableDtoList;    }
+
+
     //Lecturers time table of the current date
     @Override
     public List<TimetableDto> getTodayTablesByDate(int UserID) {
@@ -331,6 +401,58 @@ public class TimeTableServiceImpl implements TimeTableService {
 
         List<Timetable> timetablesDomain = timetableRepo.findTimetablesByBatchListEqualsAndDate(batch,Date.valueOf(formatter.format(date)));
 
+       return  convertToDTOTimetable(timetablesDomain);
+    }
+
+    @Override
+    public List<TimetableDto> getTodayTablesByDateStduentsApi(String userID) {
+        // This object contains the current date value
+        java.util.Date date = new java.util.Date();
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        System.out.println(formatter.format(date));
+
+       User userinfo = userRepository.findByUsername(userID);
+
+        Batch batch = batchRepository.findById(userinfo.getBatch().getBatchID()).orElseThrow(RuntimeException::new);
+
+        List<Timetable> timetablesDomain = timetableRepo.findTimetablesByBatchListEqualsAndDate(batch,Date.valueOf(formatter.format(date)));
+
+        List<TimetableDto> timetableDtoList = new ArrayList<>();
+
+        if (!timetablesDomain.isEmpty()) {
+            for (Timetable timetable : timetablesDomain) {
+                TimetableDto tt = new TimetableDto();
+                tt.setModuleDto(moduleService.getModuleByIdAPI(timetable.getModule().getModule_id()));
+                tt.setDate(String.valueOf(timetable.getDate()));
+
+                SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+                try{
+                    java.util.Date startime = sdf.parse(String.valueOf(timetable.getStartTime()));
+                    java.util.Date endTime = sdf.parse(String.valueOf(timetable.getEndTIme()));
+
+                    //new format
+                    SimpleDateFormat sdf2 = new SimpleDateFormat("hh:mm aa");
+                    //formatting the given time to new format with AM/PM
+
+                    tt.setStartTime(sdf2.format(startime));
+                    tt.setEndTIme(sdf2.format(endTime));
+                }catch(ParseException e){
+                    e.printStackTrace();
+                }
+
+                tt.setTimetableID(timetable.getTimetableID());
+                tt.setClassRoomDTO(classRoomService.viewSingleRoom(timetable.getClassRoom().getRoomId()));
+                timetableDtoList.add(tt);
+            }
+        }
+
+        return timetableDtoList;
+
+
+
+    }
+
+    public List<TimetableDto> convertToDTOTimetable(List<Timetable> timetablesDomain){
         List<TimetableDto> timetableDtoList = new ArrayList<>();
 
         if (!timetablesDomain.isEmpty()) {
@@ -363,6 +485,7 @@ public class TimeTableServiceImpl implements TimeTableService {
 
         return timetableDtoList;
     }
+
 
     @Override
     public List<TimetableDto> searchbyDate(String Date , int batchid) {
@@ -402,6 +525,47 @@ public class TimeTableServiceImpl implements TimeTableService {
         }
 
         return timetableDtoList;    }
+
+    @Override
+    public List<TimetableDto> searchbyDateStudentAPI(String Date, String userId) {
+        User userinfo = userRepository.findByUsername(userId);
+
+        Batch batch = batchRepository.findById(userinfo.getBatch().getBatchID()).orElseThrow(RuntimeException::new);
+
+        List<Timetable> timetablesDomain = timetableRepo.findTimetablesByBatchListEqualsAndDateLike(batch, java.sql.Date.valueOf(Date));
+
+        List<TimetableDto> timetableDtoList = new ArrayList<>();
+
+        if (!timetablesDomain.isEmpty()) {
+            for (Timetable timetable : timetablesDomain) {
+                TimetableDto tt = new TimetableDto();
+                tt.setModuleDto(moduleService.getModuleByIdAPI(timetable.getModule().getModule_id()));
+                tt.setDate(String.valueOf(timetable.getDate()));
+
+                SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+                try{
+                    java.util.Date startime = sdf.parse(String.valueOf(timetable.getStartTime()));
+                    java.util.Date endTime = sdf.parse(String.valueOf(timetable.getEndTIme()));
+
+                    //new format
+                    SimpleDateFormat sdf2 = new SimpleDateFormat("hh:mm aa");
+                    //formatting the given time to new format with AM/PM
+
+                    tt.setStartTime(sdf2.format(startime));
+                    tt.setEndTIme(sdf2.format(endTime));
+                }catch(ParseException e){
+                    e.printStackTrace();
+                }
+
+                tt.setTimetableID(timetable.getTimetableID());
+                tt.setClassRoomDTO(classRoomService.viewSingleRoom(timetable.getClassRoom().getRoomId()));
+                timetableDtoList.add(tt);
+            }
+        }
+
+        return timetableDtoList;
+
+    }
 
     @Override
     public Timetable reSchedule(TimetableDto timetableDto) {

@@ -44,7 +44,7 @@ public class JwtAuthenticationController {
         }
         catch (BadCredentialsException e) {
 
-            JwtResponse jwtResponse = new JwtResponse(null,null, "INVALID CREDENTIALS", null, null);
+            JwtResponse jwtResponse = new JwtResponse(null,null, "INVALID CREDENTIALS", null , null, null,null);
 
             return  ResponseEntity.ok(jwtResponse);
         }
@@ -54,7 +54,7 @@ public class JwtAuthenticationController {
 
         User usersD = userRepository.findByUsername(userDto.getUsername());
 
-        JwtResponse jwtResponse = new JwtResponse(jwttoken, usersD.getUserId(), "Success", usersD.getRole().getRoleName().toString(), userDto.getUsername());
+        JwtResponse jwtResponse = new JwtResponse(jwttoken, usersD.getUserId(), "Success", usersD.getRole().getRoleName().toString(), userDto.getUsername(),usersD.getFirstname(),usersD.getLastname());
 
         return ResponseEntity.ok(jwtResponse);
     }

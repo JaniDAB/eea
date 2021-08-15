@@ -145,11 +145,11 @@ public class StudentController {
     {
         List<TimetableDto> timetableDtoList = timeTableService.getTodayTablesByDateStduents(service.getUser(auth.getName()).getBatch().getBatchID());
 
-        if(timetableDtoList.isEmpty()) {
-            rd.addFlashAttribute("emptys","Happy to hear, No Schedules today");
-            return "/viewStudentTimetable";
-        }
-        else
+//        if(timetableDtoList.isEmpty()) {
+//            rd.addFlashAttribute("emptys","Happy to hear, No Schedules today");
+//            return "/viewStudentTimetable";
+//        }
+//        else
         timetable.addAttribute("timetableList", timetableDtoList);
 
         return "/viewStudentTimetable";

@@ -102,7 +102,7 @@
                 <div class="panel-heading">
                     <div class="row">
                         <div class="col col-sm-3 col-xs-12">
-                            <h4  routerLink="/list-users" class="title">Lecturers <span></span></h4>
+                            <h4  routerLink="/list-users" class="title">My Schedules <span></span></h4>
                         </div>
                         <div class="col-sm-9 col-xs-12 text-right">
                             <div class="btn_group">
@@ -118,9 +118,9 @@
                         <thead>
                         <tr>
                             <th>Batches</th>
-                                    <th>Date</th>
-                                    <th>Start Time</th>
-                                    <th> End Time</th>
+                                    <th>Scheduled Date</th>
+                                    <th>Starting Time</th>
+                                    <th> Ending Time</th>
                                     <th> Module</th>
                                     <th> Room</th>
                                     <th> Room Type</th>

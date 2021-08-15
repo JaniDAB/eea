@@ -1,7 +1,9 @@
 package com.janith.eea.Controller;
 
 import com.janith.eea.Dto.ClassRoomDto;
+import com.janith.eea.Dto.TimetableDto;
 import com.janith.eea.Dto.UserDto;
+import com.janith.eea.Service.TimeTableService;
 import com.janith.eea.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -16,6 +18,8 @@ public class UserCon {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private TimeTableService timeTableService;
 
     @PostMapping("/add_user/")
     public HashMap<String, String> addAUser(@RequestBody UserDto userDto) throws Exception {
@@ -47,4 +51,25 @@ public class UserCon {
 
         return  userService.getAllLecturersToAPI();
     }
+
+    @GetMapping("/view_today_schedules/{userId}")
+    public List<TimetableDto> viewStudentsTodaySchedules(@PathVariable("userId") String id){
+
+        return  timeTableService.getTodayTablesByDateStduentsApi(id);
+    }
+    @GetMapping("/view_All_schedules/")
+    public List<TimetableDto> viewAllSchedules(){
+
+        return  timeTableService.getAllTimeTablesAPI();
+    }
+
+    @GetMapping("/student_search_schedules/{userId}/{date}")
+    public List<TimetableDto> searchByStudentTimetable(@PathVariable("userId") String id,@PathVariable("date") String date){
+
+        return  timeTableService.searchbyDateStudentAPI(date,id);
+    }
+
+
+
+
 }

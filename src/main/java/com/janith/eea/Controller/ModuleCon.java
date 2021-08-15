@@ -5,6 +5,8 @@ import com.janith.eea.Dto.ClassRoomDto;
 import com.janith.eea.Dto.ModuleDto;
 import com.janith.eea.Service.ModuleService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -37,6 +39,14 @@ public class ModuleCon {
     public List<ModuleDto> viewModules(){
 
         return  moduleService.getAllModulestoAPI();
+    }
+
+    @GetMapping("/view_module/")
+    public ResponseEntity<List<ModuleDto>> viewModule(){
+
+        List<ModuleDto> allModulestoAPI = moduleService.getAllModulestoAPI();
+
+        return new ResponseEntity<>(allModulestoAPI, HttpStatus.OK);
     }
 
 }

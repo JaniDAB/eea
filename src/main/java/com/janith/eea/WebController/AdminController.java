@@ -247,7 +247,7 @@ public class AdminController {
             a.addAttribute("successful", "Batch Added Successfully");
         }
         catch (Exception e){
-            a.addAttribute("fail", " Couldn't Add the Batch Successfully");
+            a.addAttribute("fail", "Error Occurred Couldn't Add the Batch ");
         }
 
         return "/addBatch";
@@ -297,7 +297,7 @@ public class AdminController {
     }
 
     @PostMapping("/admin/addModule")
-    public String addAModule(@ModelAttribute("module") ModuleDto moduleDto ,BindingResult br) throws Exception {
+    public String addAModule(@ModelAttribute("module") ModuleDto moduleDto ,BindingResult br,Model a) throws Exception {
 
         moduleValidator.validate(moduleDto , br);
 
@@ -305,7 +305,15 @@ public class AdminController {
         {
             return "/addModule";
         }
-        final Module save = moduleService.save(moduleDto);
+        try {
+            final Module save = moduleService.save(moduleDto);
+            a.addAttribute("successful", "Module Added Successfully");
+        }
+        catch (Exception ex)
+        {
+            a.addAttribute("fail", ex.getMessage());
+        }
+
         return "/addModule";
     }
 

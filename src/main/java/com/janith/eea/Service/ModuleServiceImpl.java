@@ -62,11 +62,32 @@ else if(moduleRepository.findByModuleName(moduleDto.getModuleName())!= null){
             moduleDto.setModule_id(moduleinfo.getModule_id());
             moduleDto.setModuleName(moduleinfo.getModuleName());
             moduleDto.setModuleCode(moduleinfo.getModuleCode());
-        } else {
+moduleDto.setLecUser(moduleinfo.getLecUser()
+);        } else {
             throw new RuntimeException("No Module Found" + id);
         }
         return moduleDto;
 
+    }
+
+    @Override
+    public ModuleDto getModuleByIdAPI(int id) {
+        Optional<Module> optionalModule = moduleRepository.findById(id);
+
+        ModuleDto moduleDto = new ModuleDto();
+
+        Module moduleinfo = null;
+        if (optionalModule.isPresent()) {
+            moduleinfo = optionalModule.get();
+
+            moduleDto.setModule_id(moduleinfo.getModule_id());
+            moduleDto.setModuleName(moduleinfo.getModuleName());
+            moduleDto.setModuleCode(moduleinfo.getModuleCode());
+            moduleDto.setFirstName(moduleinfo.getLecUser().getFirstname());
+        } else {
+            throw new RuntimeException("No Module Found" + id);
+        }
+        return moduleDto;
     }
 
     @Override
@@ -82,6 +103,7 @@ else if(moduleRepository.findByModuleName(moduleDto.getModuleName())!= null){
                 moduleDto.setBatchList(model.getBatchList());
                 moduleDto.setModule_id(model.getModule_id());
                 moduleDto.setModuleName(model.getModuleName());
+
                 moduleDto.setLecUser(model.getLecUser());
                 moduleDto.setModuleCode(model.getModuleCode());
 
@@ -107,10 +129,11 @@ else if(moduleRepository.findByModuleName(moduleDto.getModuleName())!= null){
 
                 if( model.getLecUser() == null) {
                     moduleDto.setFirstName("Not Assigned");
-                }else
-                moduleDto.setFirstName(model.getLecUser().getFirstname());
+                }else{
+                    moduleDto.setFirstName(model.getLecUser().getFirstname());
+                    moduleDto.setLecUserDTO(userService.getUserById(model.getLecUser().getUserId()));
+                }
 
-//               moduleDto.setLecUser(model.getLecUser());
                 moduleDto.setModuleCode(model.getModuleCode());
 
                 moduleDtoList.add(moduleDto);

@@ -34,12 +34,27 @@ public class TimetableDto {
     @Setter
     private ClassRoom classRoom;
 
+    //API
+    @Getter
+    @Setter
+    private ClassRoomDto classRoomDTO;
+
     @Getter
     @Setter
     private List<Batch> batchList;
 
+    //API
+    @Getter
+    @Setter
+    private List<BatchDto> batchListDto;
+
     @Getter
     @Setter
     private Module module;
+
+    //API
+    @Getter
+    @Setter
+    private ModuleDto moduleDto;
 
 }

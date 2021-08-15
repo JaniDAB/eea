@@ -109,18 +109,18 @@
                 </c:if>
                     ${tempModules.lecUser.firstname}</td>
             <td>
-         <a href="${pageContext.request.contextPath}/updateModuleForm/${tempModules.module_id}" class="btn btn-outline-danger">
+         <a href="${pageContext.request.contextPath}/updateModuleForm/${tempModules.module_id}" class="btn btn-danger">
              <i class="material-icons">&#xe3c9;</i>
          </a>
 
             </td>
             <td>
-               <a href="${pageContext.request.contextPath}/assignModuleForm/${tempModules.module_id}" class="btn btn-outline-success ">
+               <a href="${pageContext.request.contextPath}/assignModuleForm/${tempModules.module_id}" class="btn btn-success ">
                    <i class="material-icons">&#xea4d;</i>
                </a>
             </td>
             <td>
-                <a href="${pageContext.request.contextPath}/deAssign/${tempModules.module_id}" class="btn btn-outline-secondary ">
+                <a href="${pageContext.request.contextPath}/deAssign/${tempModules.module_id}" class="btn btn-secondary ">
                     <i class="material-icons">&#xe7ad;</i>
                 </a>
             </td>

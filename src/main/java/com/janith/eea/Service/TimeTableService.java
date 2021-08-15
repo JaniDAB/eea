@@ -16,6 +16,8 @@ public interface TimeTableService {
 
     List<TimetableDto> getAllTimeTables();
 
+    List<TimetableDto> getAllTimeTablesAPI();
+
     Timetable reSchedule(TimetableDto timetableDto);
 
     String deleteTimetableByID(int ID);
@@ -27,7 +29,11 @@ public interface TimeTableService {
 
     List<TimetableDto> getTodayTablesByDateStduents(int Batchcode);
 
+    List<TimetableDto> getTodayTablesByDateStduentsApi(String userID);
+
     List<TimetableDto> searchbyDate(String Date , int batchid);
+
+    List<TimetableDto> searchbyDateStudentAPI(String Date , String userId);
 
     List<TimetableDto> searchLecturerTimetable(int UserID ,String Date );
 

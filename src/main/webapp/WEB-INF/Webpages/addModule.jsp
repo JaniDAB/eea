@@ -1,4 +1,5 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: janithdabare
@@ -61,6 +62,30 @@
 <%--                    </div>--%>
 
                     <div class="row register-form">
+                        <c:if test="${successful !=  null }">
+                            <div class="container mt-2">
+                                <div class="row">
+                                    <div class="col-sm-12">
+
+                                        <div class="alert alert-success" style="text-align: center">
+                                                ${successful}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </c:if>
+                        <c:if test="${fail !=  null }">
+                            <div class="container mt-2">
+                                <div class="row">
+                                    <div class="col-sm-12">
+
+                                        <div class="alert alert-danger" style="text-align: center">
+                                                ${fail}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </c:if>
                         <div class="col-md-6">
                             <div class="form-group" >
                                     <%--                                <input   type="text" class="form-control" placeholder="First Name *"  required="required" value="" />--%>

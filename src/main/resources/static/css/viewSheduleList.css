@@ -15,7 +15,7 @@ h1{
 
 .header {
     font-family: 'Pacifico', cursive;
-    border-style: solid;
+    /*border-style: solid;*/
     padding: auto;
     margin-left:auto;
 
@@ -460,7 +460,7 @@ nav.fill ul li button:hover:after {
 }
 .panel .panel-body .table tbody tr td{
     color: #fff;
-    font-size: 15px;
+    font-size: 20px;
     padding: 1px 10px;
     align-content: center;
     vertical-align: middle;

@@ -11,7 +11,7 @@ public interface ModuleService {
     Module save(ModuleDto moduleDto) throws Exception;
 
     ModuleDto getModuleById(int id);
-
+    ModuleDto getModuleByIdAPI(int id);
     List<ModuleDto> getAllModules();
 
     List<ModuleDto> getAllModulestoAPI();

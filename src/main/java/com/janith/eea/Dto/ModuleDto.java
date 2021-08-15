@@ -15,11 +15,16 @@ public class ModuleDto {
 
     private String firstName;
 
+// to web
 
     private User lecUser;
+// to API
+    private UserDto lecUserDTO;
 
-
+// to web
     private List<Batch> batchList;
+// to API
+    private List<BatchDto> batchListDto;
 
     public ModuleDto(Integer module_id, String moduleName, User lecUser, List<Batch> batchList) {
         this.module_id = module_id;
@@ -29,6 +34,22 @@ public class ModuleDto {
     }
 
     public ModuleDto() {
+    }
+
+    public UserDto getLecUserDTO() {
+        return lecUserDTO;
+    }
+
+    public void setLecUserDTO(UserDto lecUserDTO) {
+        this.lecUserDTO = lecUserDTO;
+    }
+
+    public List<BatchDto> getBatchListDto() {
+        return batchListDto;
+    }
+
+    public void setBatchListDto(List<BatchDto> batchListDto) {
+        this.batchListDto = batchListDto;
     }
 
     public ModuleDto(String moduleName) {

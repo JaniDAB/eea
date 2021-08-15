@@ -27,10 +27,6 @@
 
 <!------ Include the above in your HEAD tag ---------->
 
-<div class=" row justify-content-center  successmessage" style="color: #55efc4">
-    ${successful}
-        ${fail}
-</div>
 <div class="container register" style="max-width: 100%;">
     <div class="row">
         <div class="col-md-3 register-left">
