@@ -27,6 +27,8 @@ public interface TimeTableService {
 
     List<TimetableDto> getTodayTablesByDate(int UserID);
 
+    List<TimetableDto> getTodayLecturerTimetableAPI(int UserID);
+
     List<TimetableDto> getTodayTablesByDateStduents(int Batchcode);
 
     List<TimetableDto> getTodayTablesByDateStduentsApi(String userID);

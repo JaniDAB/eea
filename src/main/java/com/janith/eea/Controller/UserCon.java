@@ -68,7 +68,11 @@ public class UserCon {
 
         return  timeTableService.searchbyDateStudentAPI(date,id);
     }
+    @GetMapping("/lecturer_today_schedules/{userId}")
+    public List<TimetableDto> viewLecturerTodaySchedule(@PathVariable("userId") int id){
 
+        return  timeTableService.getTodayLecturerTimetableAPI(id);
+    }
 
 
 
