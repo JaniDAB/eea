@@ -288,6 +288,37 @@ public class UserServiceImpl implements UserService {
 
     }
 
+    @Override
+    public UserDto getUserByIdAPI(int id) {
+        Optional<User> optionalUser = userRepository.findById(id);
+
+        UserDto userdom = new UserDto();
+        User userinfo = null;
+
+        if (optionalUser.isPresent()) {
+            userinfo = optionalUser.get();
+
+            userdom.setUserId(userinfo.getUserId());
+            userdom.setUsername(userinfo.getUsername());
+            userdom.setEmail(userinfo.getEmail());
+            userdom.setFirstname(userinfo.getFirstname());
+            userdom.setLastname(userinfo.getLastname());
+            if(userinfo.getBatch()==null){
+                userdom.setBatchCode("Not Assigned");
+            }else
+                userdom.setBatchCode(userinfo.getBatch().getBatchCode());
+
+            userdom.setGender(userinfo.getGender());
+            userdom.setDateOfBirth(userinfo.getDateOfBirth());
+            userdom.setRole(userinfo.getRole().getRoleName().toString());
+            userdom.setMobile(userinfo.getMobile());
+            userdom.setPassword(userinfo.getPassword());
+
+        } else {
+            throw new RuntimeException("No use Found" + id);
+        }
+        return userdom;    }
+
     // Assiging a batch to a Student
     @Override
     public User assignBatch(UserDto userDto) {

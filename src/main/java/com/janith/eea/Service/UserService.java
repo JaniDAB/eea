@@ -28,7 +28,9 @@ public interface UserService extends UserDetailsService {
 
      UserDto getUserById(int id);
 
-     User assignBatch(UserDto userDto);
+    UserDto getUserByIdAPI(int id);
+
+    User assignBatch(UserDto userDto);
 
     String deAssignBatch(int id);
 
