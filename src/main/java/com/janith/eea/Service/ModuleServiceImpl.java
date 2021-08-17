@@ -32,13 +32,12 @@ public class ModuleServiceImpl implements ModuleService {
         Module modeldom = new Module();
 
 //modeldom.setBatchList(batchRepository.findAll());
-if(moduleRepository.findByModuleCode(moduleDto.getModuleCode())!=null){
-     throw  new Exception("Module Code  : "+ moduleDto.getModuleCode() +" already Exists.");
-}
-else if(moduleRepository.findByModuleName(moduleDto.getModuleName())!= null){
-    throw  new Exception("Module Name : "+ moduleDto.getModuleName() +" already There.");
+        if (moduleRepository.findByModuleCode(moduleDto.getModuleCode()) != null) {
+            throw new Exception("Module Code  : " + moduleDto.getModuleCode() + " already Exists.");
+        } else if (moduleRepository.findByModuleName(moduleDto.getModuleName()) != null) {
+            throw new Exception("Module Name : " + moduleDto.getModuleName() + " already There.");
 
-}
+        }
 
         if (moduleDto != null) {
             modeldom.setModuleName(moduleDto.getModuleName().trim());
@@ -62,8 +61,9 @@ else if(moduleRepository.findByModuleName(moduleDto.getModuleName())!= null){
             moduleDto.setModule_id(moduleinfo.getModule_id());
             moduleDto.setModuleName(moduleinfo.getModuleName());
             moduleDto.setModuleCode(moduleinfo.getModuleCode());
-moduleDto.setLecUser(moduleinfo.getLecUser()
-);        } else {
+            moduleDto.setLecUser(moduleinfo.getLecUser()
+            );
+        } else {
             throw new RuntimeException("No Module Found" + id);
         }
         return moduleDto;
@@ -122,14 +122,24 @@ moduleDto.setLecUser(moduleinfo.getLecUser()
         if (modeList != null) {
             for (Module model : modeList) {
                 ModuleDto moduleDto = new ModuleDto();
+                List<BatchDto> batchDtoList = new ArrayList<>();
 
-//                moduleDto.setBatchList(model.getBatchList());
+//
+                for (Batch batchob : model.getBatchList()) {
+                    BatchDto batch = new BatchDto();
+
+                    batch.setBatchID(batchob.getBatchID());
+                    batch.setBatchCode(batchob.getBatchCode());
+                    batch.setDescription(batchob.getDescription());
+                    batchDtoList.add(batch);
+                }
+                moduleDto.setBatchListDto(batchDtoList);
                 moduleDto.setModule_id(model.getModule_id());
                 moduleDto.setModuleName(model.getModuleName());
 
-                if( model.getLecUser() == null) {
+                if (model.getLecUser() == null) {
                     moduleDto.setFirstName("Not Assigned");
-                }else{
+                } else {
                     moduleDto.setFirstName(model.getLecUser().getFirstname());
                     moduleDto.setLecUserDTO(userService.getUserById(model.getLecUser().getUserId()));
                 }
@@ -177,9 +187,7 @@ moduleDto.setLecUser(moduleinfo.getLecUser()
             optionalModule.setLecUser(null);
             moduleRepository.save(optionalModule);
             return "deleted";
-        }
-        catch (Exception EX)
-        {
+        } catch (Exception EX) {
             System.out.println(EX);
             return "error";
         }
