@@ -16,6 +16,7 @@
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 </head>
 <body style="background : -webkit-linear-gradient(right,#c4e5ec, #5484c7);">
@@ -102,8 +103,20 @@
                 <div class="panel-heading">
                     <div class="row">
                         <div class="col col-sm-3 col-xs-12">
-                            <h4  routerLink="/list-users" class="title">My Schedules <span></span></h4>
+                            <h4   class="title">My Schedules <span></span></h4>
                         </div>
+                        <c:if test="${rescheduled !=  null }">
+                            <div class="container mt-2">
+                                <div class="row">
+                                    <div class="col-sm-12">
+
+                                        <div class="alert alert-success" style="text-align: center">
+                                                ${rescheduled}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </c:if>
                         <div class="col-sm-9 col-xs-12 text-right">
                             <div class="btn_group">
 
@@ -124,6 +137,8 @@
                                     <th> Module</th>
                                     <th> Room</th>
                                     <th> Room Type</th>
+                            <th>Request Reschedule</th>
+
                         </tr>
                         </thead>
                         <tbody>
@@ -141,6 +156,12 @@
                                                 <td>${timetable.module.moduleName}</td>
                                                 <td>${timetable.classRoom.roomId}</td>
                                                 <td>${timetable.classRoom.roomType}</td>
+                                <td>
+                                                    <span><a href="${pageContext.request.contextPath}/requestReschedule/${timetable.timetableID}" class="btn btn-outline-success">
+                                                        <i class="material-icons">&#xe923;</i>
+                                                    </a>
+                                                    </span>
+                                </td>
                             </tr>
                         </c:forEach>
 

@@ -65,7 +65,6 @@ public class ModuleCon {
     @GetMapping("/view_lec_modules/")
     public List<ModuleDto> viewLecModules(Authentication auth){
         User user = userService.getUser(auth.getName());
-        System.out.println(user);
         return  moduleService.viewLecsModulesAPI(user.getUserId());
     }
 

@@ -86,11 +86,12 @@ public class LecturerController {
         }
     }
 
-    @GetMapping("/lecturer/timetable/{id}")
-    public String getLecturerTimetable(@PathVariable(value = "id") int id, Model timetable)
+    @GetMapping("/lecturer/timetable")
+    public String getLecturerTimetable( Model timetable , Authentication auth)
     {
+        User user = service.getUser(auth.getName());
 
-        List<TimetableDto> timetableDtoList = timeTableService.getAllTimeTablestoLecturer(id);
+        List<TimetableDto> timetableDtoList = timeTableService.getAllTimeTablestoLecturer(user.getUserId());
         timetable.addAttribute("timetableList" , timetableDtoList);
 
         return "viewLecturerTimetable";
@@ -135,6 +136,20 @@ public class LecturerController {
             return "LecturerModules";
         }
 
+    }
+    @GetMapping("/requestReschedule/{id}")
+    public String requestReschedule(@PathVariable(value = "id")int tableID, Model mod, RedirectAttributes rd)
+    {
+        String s = timeTableService.lecturerRequestReschedule(tableID);
+        if (s.equals("done")){
+            rd.addFlashAttribute("rescheduled", " Request for a Reschedule Message Has been Sent to Academic Admin");
+
+        }
+        else {
+            mod.addAttribute("error", "Error.....Please try again later.");
+
+        }
+        return "redirect:/lecturer/timetable";
     }
 
 

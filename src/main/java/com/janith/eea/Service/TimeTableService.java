@@ -18,12 +18,15 @@ public interface TimeTableService {
 
     List<TimetableDto> getAllTimeTables();
 
-    List<TimetableDto> getAllTimeTablesAPI();
+   List<TimetableDto> getRescheduleRequestedTimetables();
+
+   List<TimetableDto> getAllTimeTablesAPI();
 
     Timetable reSchedule(TimetableDto timetableDto);
 
     String deleteTimetableByID(int ID);
 
+    String lecturerRequestReschedule(int timetableID);
 
     List<TimetableDto> getAllTimeTablestoLecturer(int UserID);
 

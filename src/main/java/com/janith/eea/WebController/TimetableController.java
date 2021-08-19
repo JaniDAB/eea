@@ -197,6 +197,19 @@ timetableValidator.validate(timetableDto,br);
         return "timetableList";
     }
 
+
+    @GetMapping("/getRequestedTimetables")
+    public  String getRequestedReschedules(Model model)
+    {
+
+//        list of timetables
+        List<TimetableDto> timetableList = timeTableService.getRescheduleRequestedTimetables();
+
+        model.addAttribute("allSchedules", timetableList);
+
+        return "timetableList";
+    }
+
     @GetMapping("/admin/rescheduleDirect/{timetableId}")
     public  String getRescheduleForm(@PathVariable(value="timetableId") int timetableid, Model timetableM)
     {
@@ -305,6 +318,7 @@ public  String setRescheduleTimetable(@ModelAttribute("rescheduleTime") Timetabl
 //        return "viewLecturerTimetable";
 //
 //    }
+
 
 }
 

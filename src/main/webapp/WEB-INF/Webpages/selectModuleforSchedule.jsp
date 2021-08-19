@@ -95,6 +95,7 @@
         <li> <a class="nav-link" href="${pageContext.request.contextPath}/admin">Home</a></li>
         <li> <a class="nav-link" href="${pageContext.request.contextPath}/addRoom">Add Room</a></li>
         <li> <a class="nav-link" href="${pageContext.request.contextPath}/getAllSchedules">View Schedule</a></li>
+        <li> <a class="nav-link" href="${pageContext.request.contextPath}/getRequestedTimetables">Requested Reschedules</a></li>
 
         <li  style="float:right"> <form method="post" action="${pageContext.request.contextPath}/logout"> <button type="submit" class="fa fa-sign-out nav-link" > Logout</button></form> </li>
     </ul>

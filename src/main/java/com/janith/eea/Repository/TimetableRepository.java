@@ -16,6 +16,7 @@ public interface TimetableRepository extends JpaRepository<Timetable,Integer> {
 //    public List<Timetable> findTimetableBy(int batchID);
 
 
+
      List<Timetable> findTimetablesByBatchListEquals(Batch BatchID);
 
      List<Timetable> findTimetablesByModule_LecUser_UserId(int userID);
@@ -38,4 +39,6 @@ public interface TimetableRepository extends JpaRepository<Timetable,Integer> {
 
     List<Timetable> getAllByBatchListEqualsAndDateEquals(Batch batch , Date date);
 
+
+    List<Timetable> findTimetablesByRequestReschedule(boolean state);
 }

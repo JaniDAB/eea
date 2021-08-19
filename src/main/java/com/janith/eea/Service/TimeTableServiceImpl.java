@@ -37,6 +37,8 @@ public class TimeTableServiceImpl implements TimeTableService {
     @Autowired
     private final ModuleRepository moduleRepository;
 
+    @Autowired
+    private EmailServiceImpl emailService;
 
 
     @Autowired
@@ -170,7 +172,8 @@ public class TimeTableServiceImpl implements TimeTableService {
             timetable.setEndTIme(LocalTime.parse(timetableDto.getEndTIme()));
             timetable.setClassRoom(timetableDto.getClassRoom());
             timetable.setModule(timetableDto.getModule());
-            System.out.println( timetableDto.getModule().getLecUser().getFirstname());
+            timetable.setRequestReschedule(false);
+
         }
 
         return timetableRepo.save(timetable);
@@ -206,23 +209,7 @@ public class TimeTableServiceImpl implements TimeTableService {
             // 10:00 - 11:00
 // 9:00 - 10:00
             for (Timetable timetableinfo : classRoomList) {
-                //10 < 12
-//                if (timetableinfo.getStartTime().isBefore(LocalTime.parse(timetableDto.getStartTime()))) {
-//                    //10 < 12 && 11 < 13
-//
-////                    11:00                              is after :00
-//                    if (timetableinfo.getEndTIme().isBefore(LocalTime.parse(timetableDto.getEndTIme()))) {
-//                        throw new Exception("Error, Already Time is scheduled");
-//                    }
-//                }
-//
-//                if (timetableinfo.getStartTime().isAfter(LocalTime.parse(timetableDto.getStartTime()))){
-//                    if(timetableinfo.getEndTIme().isAfter(LocalTime.parse(timetableDto.getEndTIme())))
-//                    {
-//                        throw new Exception("Error, Please Schedule for another time");
-//
-//                    }
-//                }
+
                 if((LocalTime.parse((timetableDto.getStartTime())).isBefore(timetableinfo.getStartTime()))
                         &&
                         (LocalTime.parse(timetableDto.getEndTIme()).isAfter(timetableinfo.getEndTIme()))){
@@ -283,6 +270,7 @@ public class TimeTableServiceImpl implements TimeTableService {
             timetable.setStartTime(LocalTime.parse(timetableDto.getStartTime()));
             timetable.setEndTIme(LocalTime.parse(timetableDto.getEndTIme()));
             timetable.setClassRoom(ss);
+            timetable.setRequestReschedule(false);
             timetable.setModule(moduleRepository.findById(timetableDto.getModule().getModule_id()).get());
         }
 
@@ -409,7 +397,46 @@ public class TimeTableServiceImpl implements TimeTableService {
         return timetableDtoList;
     }
 
-//API
+    @Override
+    public List<TimetableDto> getRescheduleRequestedTimetables() {
+        List<Timetable> timetablesDomain = timetableRepo.findTimetablesByRequestReschedule(true);
+
+        List<TimetableDto> timetableDtoList = new ArrayList<>();
+
+        if (!timetablesDomain.isEmpty()) {
+            for (Timetable timetable : timetablesDomain) {
+                TimetableDto tt = new TimetableDto();
+                tt.setBatchList(timetable.getBatchList());
+                tt.setModule(timetable.getModule());
+                tt.setDate(String.valueOf(timetable.getDate()));
+
+
+                //old format
+                SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+                try{
+                    java.util.Date startime = sdf.parse(String.valueOf(timetable.getStartTime()));
+                    java.util.Date endTime = sdf.parse(String.valueOf(timetable.getEndTIme()));
+
+                    //new format
+                    SimpleDateFormat sdf2 = new SimpleDateFormat("hh:mm aa");
+                    //formatting the given time to new format with AM/PM
+
+                    tt.setStartTime(sdf2.format(startime));
+                    tt.setEndTIme(sdf2.format(endTime));
+                }catch(ParseException e){
+                    e.printStackTrace();
+                }
+
+
+                tt.setTimetableID(timetable.getTimetableID());
+                tt.setClassRoom(timetable.getClassRoom());
+                timetableDtoList.add(tt);
+            }
+        }
+
+        return timetableDtoList;    }
+
+    //API
     @Override
     public List<TimetableDto> getAllTimeTablesAPI() {
         List<Timetable> timetablesDomain = timetableRepo.findAll();
@@ -752,7 +779,20 @@ public class TimeTableServiceImpl implements TimeTableService {
             return "error";
         }
     }
-//Lecturers Time table
+
+    @Override
+    public String lecturerRequestReschedule(int timetableID) {
+        Timetable timetable= timetableRepo.findById(timetableID).orElseThrow(RuntimeException::new);
+
+        timetable.setRequestReschedule(true);
+        timetableRepo.save(timetable);
+
+        emailService.RescheduleRequested(timetable);
+
+        return "done";
+    }
+
+    //Lecturers Time table
     @Override
     public List<TimetableDto> getAllTimeTablestoLecturer(int UserID) {
         List<Timetable> timetablesDomain = timetableRepo.findTimetablesByModule_LecUser_UserId(UserID);

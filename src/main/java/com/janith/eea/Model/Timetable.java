@@ -35,6 +35,10 @@ public class Timetable {
     @Setter
     private LocalTime endTIme;
 
+    @Column(name = "request_Reschedule")
+    @Getter
+    @Setter
+    private boolean requestReschedule;
 
 @ManyToOne
 @JoinColumn(name = "room_id")
@@ -58,6 +62,7 @@ private List<Batch> batchList;
     @Setter
     @Getter
     private Module module;
+
 
     public Timetable() {
     }

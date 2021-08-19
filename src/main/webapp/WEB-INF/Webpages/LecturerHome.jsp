@@ -54,7 +54,7 @@
                 <h3 class="card__heading">My Account</h3>
             </div>
         </a>
-                    <a class="card" href="${pageContext.request.contextPath}/lecturer/timetable/${lecturer.userId}">
+                    <a class="card" href="${pageContext.request.contextPath}/lecturer/timetable">
                         <div class="card__background" style="background-image: url(https://images.unsplash.com/photo-1557004396-66e4174d7bf6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60)"></div>
                         <div class="card__content">
 <%--                            <p class="card__category">Category</p>--%>

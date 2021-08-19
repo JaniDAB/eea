@@ -1,6 +1,7 @@
 package com.janith.eea.Service;
 
 import com.janith.eea.Dto.UserDto;
+import com.janith.eea.Model.Timetable;
 import com.janith.eea.Model.User;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.mail.MailException;
@@ -125,6 +126,45 @@ public class EmailServiceImpl {
                 mailContent+= " <p><b> Also Has been Changed </b></p>";
                 mailContent+= "<hr><img src='cid:logoImage' />";
 
+
+                helper.setText(mailContent,true);
+                mimeMessage.setSentDate(new Date());
+                ClassPathResource  resource = new ClassPathResource("static/images/timetable.png");
+                helper.addInline("logoImage" , resource);
+            }
+        };
+
+        try {
+            this.javaMailSender.send(preparator);
+        }
+        catch (MailException ex) {
+            // simply log it and go on...
+            System.err.println(ex.getMessage());
+        }
+    }
+
+    public void RescheduleRequested( final Timetable timetable)
+    {
+ String AdminMail="janithdabare17@gmail.com";
+        MimeMessagePreparator preparator = new MimeMessagePreparator() {
+
+            public void prepare(MimeMessage mimeMessage) throws Exception {
+
+                MimeMessageHelper helper = new MimeMessageHelper(mimeMessage ,true);
+
+                mimeMessage.setRecipient(Message.RecipientType.TO,
+                        new InternetAddress(AdminMail));
+                helper.setSubject("A Reschedule Has been Requested By Mrs./Mr "+timetable.getModule().getLecUser().getFirstname());
+                helper.setFrom(new InternetAddress(CollegeEmail));
+
+                String mailContent = "<p><b>Dear </b> Admin </p>";
+                mailContent+= "<p><b>Lecturer : Mrs/Mr. "+ timetable.getModule().getLecUser().getFirstname()+"</b> Has Requested a Reschedule on</p>";
+                mailContent+=  "<p><b> Timetable ID: </b>"+timetable.getTimetableID() +"</p>";
+                mailContent+=  "<p><b> Module Code: </b>"+timetable.getModule().getModuleCode() +"</p>";
+                mailContent+=  "<p><b> Scheduled On: </b>"+timetable.getDate()+" From :" +timetable.getStartTime()+" To :"+timetable.getEndTIme()+"</p>";
+                mailContent+=  "<p><b> Please Kindly Look on to it </b></p>";
+                mailContent+=  "<p><b> Thank you</b></p>";
+                mailContent+= "<hr><img src='cid:logoImage' />";
 
                 helper.setText(mailContent,true);
                 mimeMessage.setSentDate(new Date());
