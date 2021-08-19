@@ -93,7 +93,7 @@
             <td>${tempModules.moduleName}</td>
             <td>
                 <c:if test="${tempModules.batchList.size()==0}">
-                    <div class="alert-warning"> No Batches Enrolled
+                    <div class="alert-warning" style="border-radius: 20px 20px 20px 20px"> No Batches Enrolled
                         <i class="material-icons">&#xe001;</i>
                     </div>
                 </c:if>
@@ -103,7 +103,7 @@
             </td>
             <td>
                 <c:if test="${tempModules.lecUser.firstname == null}">
-                    <div class="alert-warning"> No Lecturer
+                    <div class="alert-warning" style="border-radius: 20px 20px 20px 20px"> No Lecturer
                         <i class="material-icons">&#xe001;</i>
                     </div>
                 </c:if>

@@ -2,13 +2,11 @@ package com.janith.eea.Service;
 
 import com.janith.eea.Dto.BatchDto;
 import com.janith.eea.Dto.TimetableDto;
-import com.janith.eea.Dto.UserDto;
 import com.janith.eea.Model.Batch;
+import com.janith.eea.Model.ClassRoom;
 import com.janith.eea.Model.Timetable;
 import com.janith.eea.Model.User;
-import com.janith.eea.Repository.BatchRepository;
-import com.janith.eea.Repository.TimetableRepository;
-import com.janith.eea.Repository.UserRepository;
+import com.janith.eea.Repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,6 +31,13 @@ public class TimeTableServiceImpl implements TimeTableService {
     @Autowired
     private final ClassRoomService classRoomService;
 
+    @Autowired
+    private final ClassRoomRepository classRoomRepository;
+
+    @Autowired
+    private final ModuleRepository moduleRepository;
+
+
 
     @Autowired
     private final ModuleService moduleService;
@@ -40,10 +45,12 @@ public class TimeTableServiceImpl implements TimeTableService {
     @Autowired
     private final UserRepository userRepository;
 
-    public TimeTableServiceImpl(BatchRepository batchRepository, TimetableRepository timetableRepo, ClassRoomService classRoomService, ModuleService moduleService, UserRepository userRepository) {
+    public TimeTableServiceImpl(BatchRepository batchRepository, TimetableRepository timetableRepo, ClassRoomService classRoomService, ClassRoomRepository classRoomRepository, ModuleRepository moduleRepository, ModuleService moduleService, UserRepository userRepository) {
         this.batchRepository = batchRepository;
         this.timetableRepo = timetableRepo;
         this.classRoomService = classRoomService;
+        this.classRoomRepository = classRoomRepository;
+        this.moduleRepository = moduleRepository;
         this.moduleService = moduleService;
         this.userRepository = userRepository;
     }
@@ -168,6 +175,118 @@ public class TimeTableServiceImpl implements TimeTableService {
 
         return timetableRepo.save(timetable);
     }
+
+    @Override
+    public Timetable mobileAddTimetable(TimetableDto timetableDto) throws Exception {
+        Timetable timetable = new Timetable();
+
+        List<Batch> batchList = new ArrayList<>();
+
+        LocalTime startTime = LocalTime.parse(timetableDto.getStartTime());
+        LocalTime endTime = LocalTime.parse(timetableDto.getEndTIme());
+
+        if (timetableDto != null) {
+
+
+            if(!checkTime(startTime,endTime)){
+                throw new Exception("A Class Can be Schedule of Minimum, 30 Minutes & Maximum 2 Hours");
+
+            }
+            for (Batch batchInfor : timetableDto.getBatchList()) {
+                batchList.add(batchRepository.findBatchesByBatchCode(batchInfor.getBatchCode()));
+
+            }
+            ClassRoom ss = classRoomRepository.findClassRoomByRoomId(timetableDto.getClassRoom().getRoomId());
+            // List of timetable related to date and the respective CLassRoom
+            List<Timetable> classRoomList = timetableRepo.findTimetablesByClassRoomAndDate(ss, Date.valueOf(timetableDto.getDate()));
+
+            for (int i = 0; i < classRoomList.size(); i++) {
+                System.out.println(classRoomList.get(i).getTimetableID());
+            }
+            // 10:00 - 11:00
+// 9:00 - 10:00
+            for (Timetable timetableinfo : classRoomList) {
+                //10 < 12
+//                if (timetableinfo.getStartTime().isBefore(LocalTime.parse(timetableDto.getStartTime()))) {
+//                    //10 < 12 && 11 < 13
+//
+////                    11:00                              is after :00
+//                    if (timetableinfo.getEndTIme().isBefore(LocalTime.parse(timetableDto.getEndTIme()))) {
+//                        throw new Exception("Error, Already Time is scheduled");
+//                    }
+//                }
+//
+//                if (timetableinfo.getStartTime().isAfter(LocalTime.parse(timetableDto.getStartTime()))){
+//                    if(timetableinfo.getEndTIme().isAfter(LocalTime.parse(timetableDto.getEndTIme())))
+//                    {
+//                        throw new Exception("Error, Please Schedule for another time");
+//
+//                    }
+//                }
+                if((LocalTime.parse((timetableDto.getStartTime())).isBefore(timetableinfo.getStartTime()))
+                        &&
+                        (LocalTime.parse(timetableDto.getEndTIme()).isAfter(timetableinfo.getEndTIme()))){
+                    throw new Exception("Error, Please Schedule for another time");
+
+                }
+
+                if ((LocalTime.parse(timetableDto.getStartTime()).isAfter(timetableinfo.getStartTime()))
+                        &&
+                        (LocalTime.parse(timetableDto.getStartTime()).isBefore(timetableinfo.getEndTIme()))) {
+
+                    throw new Exception("Error Occured, Class Room ID : "+timetableDto.getClassRoom().getRoomId() +" Is already Booked at the Moment" );
+                }
+                if ((LocalTime.parse(timetableDto.getEndTIme()).isAfter(timetableinfo.getStartTime()))
+                        &&
+                        (LocalTime.parse(timetableDto.getEndTIme()).isBefore(timetableinfo.getEndTIme()))
+                ){
+                    throw new Exception("Error Occured, Class Room ID : "+timetableDto.getClassRoom().getRoomId() +" Is already Booked at the Moment" );
+                }
+
+
+            }
+
+//              Scheduling Validation with Batch list
+            for(Batch batchlistinfor:batchList){
+                final List<Timetable> allByBatchListEqualsAndDateEquals = timetableRepo.getAllByBatchListEqualsAndDateEquals(batchlistinfor, Date.valueOf(timetableDto.getDate()));
+
+                for (Timetable timetableinfo : allByBatchListEqualsAndDateEquals) {
+
+                    if((LocalTime.parse((timetableDto.getStartTime())).isBefore(timetableinfo.getStartTime()))
+                            &&
+                            (LocalTime.parse(timetableDto.getEndTIme()).isAfter(timetableinfo.getEndTIme()))){
+                        throw new Exception("Batch :" + batchlistinfor.getBatchCode() +" Is Already Having an Schedule  ");
+
+                    }
+                    if ((LocalTime.parse(timetableDto.getStartTime()).isAfter(timetableinfo.getStartTime()))
+                            &&
+                            (LocalTime.parse(timetableDto.getStartTime()).isBefore(timetableinfo.getEndTIme()))) {
+
+                        throw new Exception("Batch :" + batchlistinfor.getBatchCode() +"Is Already Having an Schedule");
+                    }
+                    if ((LocalTime.parse(timetableDto.getEndTIme()).isAfter(timetableinfo.getStartTime()))
+                            &&
+                            (LocalTime.parse(timetableDto.getEndTIme()).isBefore(timetableinfo.getEndTIme()))
+                    ){
+                        throw new Exception("Batch :" + batchlistinfor.getBatchCode() +"Is Already Having an Schedule");
+                    }
+
+                }
+
+            }
+
+
+
+            timetable.setTimetableID(timetable.getTimetableID());
+            timetable.setBatchList(batchList);
+            timetable.setDate(Date.valueOf(timetableDto.getDate()));
+            timetable.setStartTime(LocalTime.parse(timetableDto.getStartTime()));
+            timetable.setEndTIme(LocalTime.parse(timetableDto.getEndTIme()));
+            timetable.setClassRoom(ss);
+            timetable.setModule(moduleRepository.findById(timetableDto.getModule().getModule_id()).get());
+        }
+
+        return timetableRepo.save(timetable);    }
 
     public Boolean checkTime(LocalTime startTime, LocalTime endTime) {
         long hours;

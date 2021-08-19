@@ -16,6 +16,70 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
+
+    <!-- JavaScript -->
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
+    <!-- Default theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css"/>
+    <!-- Semantic UI theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.min.css"/>
+    <!-- Bootstrap theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css"/>
+
+    <script>
+
+    var ALERT_TITLE = "Oops!";
+    var ALERT_BUTTON_TEXT = "Ok";
+
+    if(document.getElementById) {
+        window.alert = function(txt) {
+            createCustomAlert(txt);
+        }
+    }
+
+    function createCustomAlert(txt) {
+        d = document;
+
+        if(d.getElementById("modalContainer")) return;
+
+        mObj = d.getElementsByTagName("body")[0].appendChild(d.createElement("div"));
+        mObj.id = "modalContainer";
+        mObj.style.height = d.documentElement.scrollHeight + "px";
+
+        alertObj = mObj.appendChild(d.createElement("div"));
+        alertObj.id = "alertBox";
+        if(d.all && !window.opera) alertObj.style.top = document.documentElement.scrollTop + "px";
+        alertObj.style.left = (d.documentElement.scrollWidth - alertObj.offsetWidth)/2 + "px";
+        alertObj.style.visiblity="visible";
+
+        h1 = alertObj.appendChild(d.createElement("h1"));
+        h1.appendChild(d.createTextNode(ALERT_TITLE));
+
+        msg = alertObj.appendChild(d.createElement("p"));
+        //msg.appendChild(d.createTextNode(txt));
+        msg.innerHTML = txt;
+
+        btn = alertObj.appendChild(d.createElement("a"));
+        btn.id = "closeBtn";
+        btn.appendChild(d.createTextNode(ALERT_BUTTON_TEXT));
+        btn.href = "#";
+        btn.focus();
+        btn.onclick = function() { removeCustomAlert();return false; }
+
+        alertObj.style.display = "block";
+
+    }
+
+    function removeCustomAlert() {
+        document.getElementsByTagName("body")[0].removeChild(document.getElementById("modalContainer"));
+    }
+    function ful(){
+        alert('Alert this pages');
+    }
+</script>
 </head>
 <body style="background : -webkit-linear-gradient(right,#c4e5ec, #5484c7);">
 
@@ -107,13 +171,29 @@
                             <tr>
 
                                 <td>${tempBatch.moduleName}</td>
-                                                <td>${tempBatch.lecUser.firstname}</td>
+                                                <td>
+                                                    <c:if test="${tempBatch.lecUser.firstname == null}">
+                                                        <div class="alert-dark" style="border-radius: 20px 20px 20px 20px ; text-align: center" > No Lecturer Assigned
+                                                            <i class="material-icons">&#xe001;</i>
+                                                        </div>
+                                                    </c:if>
+                                                        ${tempBatch.lecUser.firstname}</td>
                                                 <td>${tempBatch.batchList.size()}</td>
                                                 <td>
-                                                    <span><a href="${pageContext.request.contextPath}/admin/addTimetable/${tempBatch.module_id}" class="btn btn-outline-success ">
+                                                    <c:if test="${tempBatch.batchList.size()>0 && tempBatch.lecUser != null}">
+                                                    <span ><a href="${pageContext.request.contextPath}/admin/addTimetable/${tempBatch.module_id}" class="btn btn-outline-success ">
                                                          <i class="material-icons">&#xe614;</i>
                                                     </a>
                                                     </span>
+                                                    </c:if>
+                                                    <c:if test="${tempBatch.batchList.size()==0 || tempBatch.lecUser == null}">
+                                                    <span >
+<%--                                                        <a onclick="alert('Cannot Schedule For this Module....');" class="btn btn-outline-danger">--%>
+                                                        <a onclick=" alertify.alert('Oops', 'Cannot Schedule For this Module..!');" class="btn btn-outline-danger">
+                                                         <i class="material-icons">&#xe614;</i>
+                                                    </a>
+                                                    </span>
+                                                    </c:if>
                                                 </td>
                             </tr>
                         </c:forEach>

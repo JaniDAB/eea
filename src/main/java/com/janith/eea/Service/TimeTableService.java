@@ -10,7 +10,9 @@ public interface TimeTableService {
 
     Timetable addTimetable(TimetableDto timetableDto) throws Exception;
 
-    List<TimetableDto> viewTableByBatch(int Batchcode);
+   Timetable mobileAddTimetable(TimetableDto timetableDto) throws Exception;
+
+   List<TimetableDto> viewTableByBatch(int Batchcode);
 
  TimetableDto viewTableByID(int timetableID);
 

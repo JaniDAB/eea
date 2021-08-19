@@ -2,6 +2,7 @@ package com.janith.eea.Controller;
 
 import com.janith.eea.Dto.BatchDto;
 import com.janith.eea.Dto.ClassRoomDto;
+import com.janith.eea.Dto.UserDto;
 import com.janith.eea.Service.BatchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -36,4 +37,6 @@ public class BatchControllerAPI {
 
         return  batchService.getAllBatches();
     }
+
+
 }

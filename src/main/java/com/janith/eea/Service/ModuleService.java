@@ -24,6 +24,9 @@ Module assignLecturer(ModuleDto moduleDto);
 
 List<ModuleDto> viewLecsModules(int userID);
 
+    List<ModuleDto> viewLecsModulesAPI(int userID);
+
+
 List<BatchDto> getBatchListM(int  moduleID);
 
 }

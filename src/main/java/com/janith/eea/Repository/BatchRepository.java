@@ -11,4 +11,5 @@ public interface BatchRepository extends JpaRepository<Batch,Integer> {
 public Batch findBatchesByBatchCode(String bachCode);
 
 
+
 }

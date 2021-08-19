@@ -86,4 +86,24 @@ public class UserCon {
         return  userService.getUserByIdAPI(id);
     }
 
+    @PostMapping("/add_Schedule/")
+    public HashMap<String, String> AddSchedule(@RequestBody TimetableDto timetableDto) throws Exception {
+        HashMap<String, String> message = new HashMap<>();
+
+//        ClassRoomDto classRoomDto =  new ClassRoomDto();
+//
+//        classRoomDto.setRoomType(request.get("roomType"));
+//        classRoomDto.setRoomCapacity( Integer.parseInt(request.get("capacity")));
+        try {
+            timeTableService.mobileAddTimetable(timetableDto);
+
+            message.put("result", "Added");
+        } catch (Exception ex) {
+            message.put("result", ex.getMessage());
+            return message;
+        }
+        return message;
+    }
+
+
 }

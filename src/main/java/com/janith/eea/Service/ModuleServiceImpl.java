@@ -205,6 +205,7 @@ public class ModuleServiceImpl implements ModuleService {
 
                 moduleDto.setModule_id(model.getModule_id());
                 moduleDto.setModuleName(model.getModuleName());
+                moduleDto.setModuleCode(model.getModuleCode());
                 moduleDto.setLecUser(model.getLecUser());
                 moduleDto.setBatchList(model.getBatchList());
                 moduleDtoList.add(moduleDto);
@@ -212,6 +213,37 @@ public class ModuleServiceImpl implements ModuleService {
         }
         return moduleDtoList;
     }
+
+    @Override
+    public List<ModuleDto> viewLecsModulesAPI(int userID) {
+        List<Module> moduleList = moduleRepository.findModuleByLecUser_UserId(userID);
+
+        List<ModuleDto> moduleDtoList = new ArrayList<>();
+
+        if (moduleList != null) {
+            for (Module model : moduleList) {
+                ModuleDto moduleDto = new ModuleDto();
+
+                moduleDto.setModule_id(model.getModule_id());
+                moduleDto.setModuleName(model.getModuleName());
+                moduleDto.setModuleCode(model.getModuleCode());
+                moduleDto.setLecUserDTO(userService.getUserById(model.getLecUser().getUserId()));
+
+                List<BatchDto> batchDtoList = new ArrayList<>();
+
+                for (Batch batchob : model.getBatchList()) {
+                    BatchDto batch = new BatchDto();
+
+                    batch.setBatchID(batchob.getBatchID());
+                    batch.setBatchCode(batchob.getBatchCode());
+                    batch.setDescription(batchob.getDescription());
+                    batchDtoList.add(batch);
+                }
+                moduleDto.setBatchListDto(batchDtoList);
+                moduleDtoList.add(moduleDto);
+            }
+        }
+        return moduleDtoList;    }
 
     @Override
     public List<BatchDto> getBatchListM(int moduleID) {
