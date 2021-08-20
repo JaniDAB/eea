@@ -765,6 +765,7 @@ public class TimeTableServiceImpl implements TimeTableService {
         timetables.setStartTime(LocalTime.parse(timetableDto.getStartTime()));
         timetables.setEndTIme(LocalTime.parse(timetableDto.getEndTIme()));
         timetables.setClassRoom(timetableDto.getClassRoom());
+        timetables.setRequestReschedule(false);
         return timetableRepo.save(timetables);
     }
 

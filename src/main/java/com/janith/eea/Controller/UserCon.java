@@ -105,5 +105,22 @@ public class UserCon {
         return message;
     }
 
+    @GetMapping("/send_request_reschedule/{timetID}")
+    public HashMap<String, String> lecRequestReschedule(@PathVariable("timetID") int id){
+        HashMap<String, String> message = new HashMap<>();
+try {
+    timeTableService.lecturerRequestReschedule(id);
+    message.put("result", "done");
+
+}catch (Exception e)
+{
+    message.put("result", e.getMessage());
+    return message;
+}
+        return message;
+    }
+
+
+
 
 }
