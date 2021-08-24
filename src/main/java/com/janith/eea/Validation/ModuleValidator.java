@@ -59,7 +59,7 @@ public class ModuleValidator implements Validator {
             errors.rejectValue("moduleCode", "Duplicate.moduleCode");
         }
 
-        if(moduleDto.getModuleName().trim().length() < 3 || moduleDto.getModuleName().trim().length() > 30){
+        if(moduleDto.getModuleName().trim().length() < 3 || moduleDto.getModuleName().trim().length() > 20){
             errors.rejectValue("moduleName", "Size.module.name");
         }
     }

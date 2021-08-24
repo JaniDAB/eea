@@ -22,7 +22,7 @@ public interface TimeTableService {
 
    List<TimetableDto> getAllTimeTablesAPI();
 
-    Timetable reSchedule(TimetableDto timetableDto);
+    Timetable reSchedule(TimetableDto timetableDto) throws Exception;
 
     String deleteTimetableByID(int ID);
 

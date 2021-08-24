@@ -104,7 +104,12 @@
             <td>${tempUser.gender}</td>
             <td>${tempUser.dateOfBirth}</td>
             <td>${tempUser.username}</td>
-            <td>${tempUser.batch.batchCode}</td>
+            <td><c:if test="${tempUser.batch.batchCode == null}">
+                <div class="alert-warning" style="border-radius: 15px 15px"> Not Enrolled
+                    <i class="material-icons">&#xe001;</i>
+                </div>
+            </c:if>
+                    ${tempUser.batch.batchCode}</td>
             <td>${tempUser.mobile}</td>
             <td>
                 <a href="${pageContext.request.contextPath}/showFormUpdate/${tempUser.userId}" class="btn btn-outline-primary">

@@ -156,14 +156,39 @@ public class TimeTableServiceImpl implements TimeTableService {
                 }
 
             }
+            // check lecturer availability  validation
+            com.janith.eea.Model.Module module = moduleRepository.findById(timetableDto.getModule().getModule_id()).get();
+
+            List<Timetable> moduleUserList = timetableRepo.findTimetablesByModule_LecUser_UserIdAndDateLike(module.getLecUser().getUserId(), Date.valueOf(timetableDto.getDate()));
+
+            for (Timetable timetableinfo : moduleUserList) {
+
+                if((LocalTime.parse((timetableDto.getStartTime())).isBefore(timetableinfo.getStartTime()))
+                        &&
+                        (LocalTime.parse(timetableDto.getEndTIme()).isAfter(timetableinfo.getEndTIme()))){
+                    throw new Exception("Lecturer : "+module.getLecUser().getFirstname() +" Is Having a Lecture at the Moment" );
+
+                }
+
+                if ((LocalTime.parse(timetableDto.getStartTime()).isAfter(timetableinfo.getStartTime()))
+                        &&
+                        (LocalTime.parse(timetableDto.getStartTime()).isBefore(timetableinfo.getEndTIme()))) {
+
+                    throw new Exception("Lecturer : "+module.getLecUser().getFirstname() +" Is Having a Lecture at the Moment" );
+                }
+                if ((LocalTime.parse(timetableDto.getEndTIme()).isAfter(timetableinfo.getStartTime()))
+                        &&
+                        (LocalTime.parse(timetableDto.getEndTIme()).isBefore(timetableinfo.getEndTIme()))
+                ){
+                    throw new Exception("Lecturer : "+module.getLecUser().getFirstname() +" Is Having a Lecture at the Moment" );
+                }
 
 
-            // List of timetable of a particular Date
-//        List<Timetable> dateTimetable = timetableRepo.findTimetableByDate(Date.valueOf(timetableDto.getDate()));
+            }
 
 
-            //List of timetables of batches and respective date
-//            List<Timetable> batchesTable = timetableRepo.findByBatchListAndDate(batchList, Date.valueOf(timetableDto.getDate()));
+
+
 
             timetable.setTimetableID(timetable.getTimetableID());
             timetable.setBatchList(batchList);
@@ -262,6 +287,35 @@ public class TimeTableServiceImpl implements TimeTableService {
 
             }
 
+
+            com.janith.eea.Model.Module module = moduleRepository.findById(timetableDto.getModule().getModule_id()).get();
+
+            List<Timetable> moduleUserList = timetableRepo.findTimetablesByModule_LecUser_UserIdAndDateLike(module.getLecUser().getUserId(), Date.valueOf(timetableDto.getDate()));
+
+            for (Timetable timetableinfo : moduleUserList) {
+
+                if((LocalTime.parse((timetableDto.getStartTime())).isBefore(timetableinfo.getStartTime()))
+                        &&
+                        (LocalTime.parse(timetableDto.getEndTIme()).isAfter(timetableinfo.getEndTIme()))){
+                    throw new Exception("Lecturer : "+module.getLecUser().getFirstname() +" Is Having a Lecture at the Moment" );
+
+                }
+
+                if ((LocalTime.parse(timetableDto.getStartTime()).isAfter(timetableinfo.getStartTime()))
+                        &&
+                        (LocalTime.parse(timetableDto.getStartTime()).isBefore(timetableinfo.getEndTIme()))) {
+
+                    throw new Exception("Error Occurred,  Lecturer : "+module.getLecUser().getFirstname() +" Is Having a Lecture at the Moment" );
+                }
+                if ((LocalTime.parse(timetableDto.getEndTIme()).isAfter(timetableinfo.getStartTime()))
+                        &&
+                        (LocalTime.parse(timetableDto.getEndTIme()).isBefore(timetableinfo.getEndTIme()))
+                ){
+                    throw new Exception("Error Occurred,  Lecturer : "+module.getLecUser().getFirstname() +" Is Having a Lecture at the Moment" );
+                }
+
+
+            }
 
 
             timetable.setTimetableID(timetable.getTimetableID());
@@ -757,13 +811,87 @@ public class TimeTableServiceImpl implements TimeTableService {
     }
 
     @Override
-    public Timetable reSchedule(TimetableDto timetableDto) {
+    public Timetable reSchedule(TimetableDto timetableDto) throws Exception {
+
+        List<Batch> batchList = new ArrayList<>();
+
+        LocalTime startTime = LocalTime.parse(timetableDto.getStartTime());
+        LocalTime endTime = LocalTime.parse(timetableDto.getEndTIme());
+
 
         Timetable timetables = timetableRepo.findById(timetableDto.getTimetableID()).orElseThrow(RuntimeException::new);
 
+
+        if(!checkTime(startTime,endTime)){
+            throw new Exception("A Class Can be Schedule of Minimum, 30 Minutes & Maximum 2 Hours");
+
+        }
+        for (Batch batchInfor : timetables.getBatchList()) {
+            batchList.add(batchRepository.findById(batchInfor.getBatchID()).get());
+
+        }
+
+        // List of timetable related to date and the respective CLassRoom
+        List<Timetable> classRoomList = timetableRepo.findTimetablesByClassRoomAndDate(timetableDto.getClassRoom(), Date.valueOf(timetableDto.getDate()));
+
+
+        for (Timetable timetableinfo : classRoomList) {
+
+            if((LocalTime.parse((timetableDto.getStartTime())).isBefore(timetableinfo.getStartTime()))
+                    &&
+                    (LocalTime.parse(timetableDto.getEndTIme()).isAfter(timetableinfo.getEndTIme()))){
+                throw new Exception("Error, Please Schedule for another time");
+
+            }
+
+            if ((LocalTime.parse(timetableDto.getStartTime()).isAfter(timetableinfo.getStartTime()))
+                    &&
+                    (LocalTime.parse(timetableDto.getStartTime()).isBefore(timetableinfo.getEndTIme()))) {
+
+                throw new Exception("Error Occured, Class Room ID : "+timetableDto.getClassRoom().getRoomId() +" Is already Booked at the Moment" );
+            }
+            if ((LocalTime.parse(timetableDto.getEndTIme()).isAfter(timetableinfo.getStartTime()))
+                    &&
+                    (LocalTime.parse(timetableDto.getEndTIme()).isBefore(timetableinfo.getEndTIme()))
+            ){
+                throw new Exception("Error Occured, Class Room ID : "+timetableDto.getClassRoom().getRoomId() +" Is already Booked at the Moment" );
+            }
+
+
+        }
+
+//              Scheduling Validation with Batch list
+        for(Batch batchlistinfor:batchList){
+            final List<Timetable> allByBatchListEqualsAndDateEquals = timetableRepo.getAllByBatchListEqualsAndDateEquals(batchlistinfor, Date.valueOf(timetableDto.getDate()));
+
+            for (Timetable timetableinfo : allByBatchListEqualsAndDateEquals) {
+
+                if((LocalTime.parse((timetableDto.getStartTime())).isBefore(timetableinfo.getStartTime()))
+                        &&
+                        (LocalTime.parse(timetableDto.getEndTIme()).isAfter(timetableinfo.getEndTIme()))){
+                    throw new Exception("Batch :" + batchlistinfor.getBatchCode() +" Is Already Having an Schedule  ");
+
+                }
+                if ((LocalTime.parse(timetableDto.getStartTime()).isAfter(timetableinfo.getStartTime()))
+                        &&
+                        (LocalTime.parse(timetableDto.getStartTime()).isBefore(timetableinfo.getEndTIme()))) {
+
+                    throw new Exception("Batch :" + batchlistinfor.getBatchCode() +"Is Already Having an Schedule");
+                }
+                if ((LocalTime.parse(timetableDto.getEndTIme()).isAfter(timetableinfo.getStartTime()))
+                        &&
+                        (LocalTime.parse(timetableDto.getEndTIme()).isBefore(timetableinfo.getEndTIme()))
+                ){
+                    throw new Exception("Batch :" + batchlistinfor.getBatchCode() +"Is Already Having an Schedule");
+                }
+
+            }
+
+        }
+
         timetables.setDate(Date.valueOf(timetableDto.getDate()));
-        timetables.setStartTime(LocalTime.parse(timetableDto.getStartTime()));
-        timetables.setEndTIme(LocalTime.parse(timetableDto.getEndTIme()));
+        timetables.setStartTime(startTime);
+        timetables.setEndTIme(endTime);
         timetables.setClassRoom(timetableDto.getClassRoom());
         timetables.setRequestReschedule(false);
         return timetableRepo.save(timetables);

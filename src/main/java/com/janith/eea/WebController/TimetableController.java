@@ -239,7 +239,7 @@ public  String setRescheduleTimetable(@ModelAttribute("rescheduleTime") Timetabl
             m.addAttribute("Updated", "Rescheduled Successfully");
             return "rescedule";
         }catch (Exception e){
-            m.addAttribute("error", "  UnSuccessful");
+            m.addAttribute("error", e.getMessage());
         }
         return "rescedule";
     }

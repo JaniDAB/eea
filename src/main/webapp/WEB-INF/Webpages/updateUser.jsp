@@ -50,7 +50,13 @@
             <h3>${userinfo.firstname} ${userinfo.lastname} </h3>
                <c:if test="${userinfo.role.equals('STUDENT')}">
 
-                <p>Batch(If Enrolled): ${userinfo.batch.batchCode} </p>
+                <p>Batch(If Enrolled):
+                   <c:if test="${serinfo.batch.batchCode == null}">
+                       <div class="alert-light" style="border-radius: 10px 10px"> Student is Not Enrolled
+
+                       </div>
+                   </c:if>
+                        ${userinfo.batch.batchCode} </p>
                    
                </c:if>
 <%--            <p>Add Timetable System users here</p>--%>

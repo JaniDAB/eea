@@ -47,6 +47,10 @@ public class BatchValidator implements Validator {
         }
 
 
+        if(batchDto.getDescription().trim().length() < 3 || batchDto.getDescription().trim().length() > 20){
+            errors.rejectValue("description", "Size.module.name");
+        }
+
     }
 }
 

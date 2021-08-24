@@ -9,6 +9,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <title>login page</title>
     <link rel="stylesheet"  href="${pageContext.request.contextPath}/css/login.css">
     <base href="/">
@@ -77,11 +78,17 @@
             <input type="hidden" name="role" value="User"/>
             <button type="submit" value="login" onclick="Validate()"> Login </button>
             <c:if test="${pageContext.request.getParameter('error') != null}">
-                <div>
-                    <h3 class="invalid" style="color: #a7bbc7">
-                        Invalid Credentials.. Please Try again.
-                    </h3>
-                </div>
+
+                        <div class="row">
+                            <div class="col-sm-12">
+
+                                <div class="alert alert-danger" style="text-align: center">
+                                    Invalid Credentials.. Please Try again.
+                                </div>
+                            </div>
+                        </div>
+
+
             </c:if>
         </form>
 

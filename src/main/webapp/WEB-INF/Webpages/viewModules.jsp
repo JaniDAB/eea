@@ -10,7 +10,7 @@
 <html>
 <head>
     <title>View All Modules</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/viewUsers.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/viewUser.css">
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -69,66 +69,161 @@
     </div>
 </c:if>
 
-<table class="content-table">
+<%--<table class="content-table">--%>
 
-    <thead><tr>
-        <th>Module Code </th>
-        <th> Module Name </th>
-        <th>  Batches Enrolled  </th>
-        <th>  Module Lecturer </th>
-        <th>  Update </th>
-        <th>  Lecturer Assign </th>
-        <th>   DeAssign </th>
+<%--    <thead><tr>--%>
+<%--        <th>Module Code </th>--%>
+<%--        <th> Module Name </th>--%>
+<%--        <th>  Batches Enrolled  </th>--%>
+<%--        <th>  Module Lecturer </th>--%>
+<%--        <th>  Update </th>--%>
+<%--        <th>  Lecturer Assign </th>--%>
+<%--        <th>   DeAssign </th>--%>
 
 
 
-    </tr>
-    </thead>
-    <tbody>
+<%--    </tr>--%>
+<%--    </thead>--%>
+<%--    <tbody>--%>
 
-    <c:forEach var="tempModules" items="${modules}">
+<%--    <c:forEach var="tempModules" items="${modules}">--%>
 
-        <tr>
-            <td>${tempModules.moduleCode}</td>
-            <td>${tempModules.moduleName}</td>
-            <td>
-                <c:if test="${tempModules.batchList.size()==0}">
-                    <div class="alert-warning" style="border-radius: 20px 20px 20px 20px"> No Batches Enrolled
-                        <i class="material-icons">&#xe001;</i>
+<%--        <tr>--%>
+<%--            <td>${tempModules.moduleCode}</td>--%>
+<%--            <td>${tempModules.moduleName}</td>--%>
+<%--            <td>--%>
+<%--                <c:if test="${tempModules.batchList.size()==0}">--%>
+<%--                    <div class="alert-warning" style="border-radius: 20px 20px 20px 20px"> No Batches Enrolled--%>
+<%--                        <i class="material-icons">&#xe001;</i>--%>
+<%--                    </div>--%>
+<%--                </c:if>--%>
+<%--                <c:forEach items="${tempModules.batchList}" var="batchlist">--%>
+<%--                    ${batchlist.batchCode} <br>--%>
+<%--                </c:forEach>--%>
+<%--            </td>--%>
+<%--            <td>--%>
+<%--                <c:if test="${tempModules.lecUser.firstname == null}">--%>
+<%--                    <div class="alert-warning" style="border-radius: 20px 20px 20px 20px"> No Lecturer--%>
+<%--                        <i class="material-icons">&#xe001;</i>--%>
+<%--                    </div>--%>
+<%--                </c:if>--%>
+<%--                    ${tempModules.lecUser.firstname}</td>--%>
+<%--            <td>--%>
+<%--         <a href="${pageContext.request.contextPath}/updateModuleForm/${tempModules.module_id}" class="btn btn-danger">--%>
+<%--             <i class="material-icons">&#xe3c9;</i>--%>
+<%--         </a>--%>
+
+<%--            </td>--%>
+<%--            <td>--%>
+<%--               <a href="${pageContext.request.contextPath}/assignModuleForm/${tempModules.module_id}" class="btn btn-success ">--%>
+<%--                   <i class="material-icons">&#xea4d;</i>--%>
+<%--               </a>--%>
+<%--            </td>--%>
+<%--            <td>--%>
+<%--                <a href="${pageContext.request.contextPath}/deAssign/${tempModules.module_id}" class="btn btn-secondary ">--%>
+<%--                    <i class="material-icons">&#xe7ad;</i>--%>
+<%--                </a>--%>
+<%--            </td>--%>
+
+<%--        </tr>--%>
+<%--    </c:forEach>--%>
+<%--    </tbody>--%>
+<%--</table>--%>
+<div class="container">
+    <div class="row">
+        <div class="col-md-offset-1 col-md-10 ss">
+            <div class="panel">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col col-sm-3 col-xs-12">
+                            <h4   class="title">Module <span>List</span></h4>
+                        </div>
+                        <div class="col-sm-9 col-xs-12 text-right">
+                            <div class="btn_group">
+
+                            </div>
+                        </div>
+
+
                     </div>
-                </c:if>
-                <c:forEach items="${tempModules.batchList}" var="batchlist">
-                    ${batchlist.batchCode} <br>
-                </c:forEach>
-            </td>
-            <td>
-                <c:if test="${tempModules.lecUser.firstname == null}">
-                    <div class="alert-warning" style="border-radius: 20px 20px 20px 20px"> No Lecturer
-                        <i class="material-icons">&#xe001;</i>
-                    </div>
-                </c:if>
-                    ${tempModules.lecUser.firstname}</td>
-            <td>
-         <a href="${pageContext.request.contextPath}/updateModuleForm/${tempModules.module_id}" class="btn btn-danger">
-             <i class="material-icons">&#xe3c9;</i>
-         </a>
+                </div>
+                <div class="panel-body table-responsive">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                                    <th>Module Code </th>
+                                    <th> Module Name </th>
+                                    <th>  Batches Enrolled  </th>
+                                    <th>  Module Lecturer </th>
+                                    <th>  Update </th>
+                                    <th>  Lecturer Assign </th>
+                                    <th>   DeAssign </th>
+                        </tr>
+                        </thead>
+                            <tbody>
 
-            </td>
-            <td>
-               <a href="${pageContext.request.contextPath}/assignModuleForm/${tempModules.module_id}" class="btn btn-success ">
-                   <i class="material-icons">&#xea4d;</i>
-               </a>
-            </td>
-            <td>
-                <a href="${pageContext.request.contextPath}/deAssign/${tempModules.module_id}" class="btn btn-secondary ">
-                    <i class="material-icons">&#xe7ad;</i>
-                </a>
-            </td>
+                            <c:forEach var="tempModules" items="${modules}">
 
-        </tr>
-    </c:forEach>
-    </tbody>
-</table>
+                                <tr>
+                                    <td>${tempModules.moduleCode}</td>
+                                    <td>${tempModules.moduleName}</td>
+                                    <td>
+                                        <c:if test="${tempModules.batchList.size()==0}">
+                                            <div class="alert-dark" style="border-radius: 20px 20px 20px 20px"> Not Enrolled
+                                                <i class="material-icons">&#xe001;</i>
+                                                <br>
+                                            </div>
+                                        </c:if>
+                                        <c:forEach items="${tempModules.batchList}" var="batchlist">
+                                            ${batchlist.batchCode}* <br> <br>
+                                        </c:forEach>
+                                    </td>
+                                    <td>
+                                        <c:if test="${tempModules.lecUser.firstname == null}">
+                                            <div class="alert-warning" style="border-radius: 20px 20px 20px 20px"> No Lecturer
+                                                <i class="material-icons">&#xe001;</i>
+                                            </div>
+                                        </c:if>
+                                            ${tempModules.lecUser.firstname}</td>
+                                    <td>
+                                 <a href="${pageContext.request.contextPath}/updateModuleForm/${tempModules.module_id}" class="btn btn-danger">
+                                     <i class="material-icons">&#xe3c9;</i>
+                                 </a>
 
+                                    </td>
+                                    <td>
+                                       <a href="${pageContext.request.contextPath}/assignModuleForm/${tempModules.module_id}" class="btn btn-success ">
+                                           <i class="material-icons">&#xea4d;</i>
+                                       </a>
+                                    </td>
+                                    <td>
+                                        <a href="${pageContext.request.contextPath}/deAssign/${tempModules.module_id}" class="btn btn-secondary ">
+                                            <i class="material-icons">&#xe7ad;</i>
+                                        </a>
+                                    </td>
+
+                                </tr>
+                            </c:forEach>
+                            </tbody>
+                    </table>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<c:if test="${batches.size() == 0 }">
+    <div class="container mt-2">
+        <div class="row">
+            <div class="col-sm-12">
+
+                <div class="alert alert-primary" style="text-align: center">
+                    No Data Found
+                </div>
+            </div>
+        </div>
+    </div>
+</c:if>
 </body>
 </html>

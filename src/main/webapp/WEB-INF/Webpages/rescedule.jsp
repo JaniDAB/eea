@@ -27,10 +27,7 @@
 </ul>
 
 <!------ Include the above in your HEAD tag ---------->
-<div class="row justify-content-center alert-light  successmessage" role="alert" style="color: #1b1e21">
-    ${Updated}
-    ${error}
-</div>
+
 <div class="container register" style="max-width: 100%;">
     <div class="row">
         <div class="col-md-3 register-left">
@@ -50,6 +47,31 @@
                     <form:form  action="${pageContext.request.contextPath}/admin/rescheduleTimetable"  method="POST" modelAttribute="rescheduleTime">
 
                     <div class="row register-form">
+
+                        <c:if test="${error !=  null }">
+                            <div class="container mt-2">
+                                <div class="row">
+                                    <div class="col-sm-12">
+
+                                        <div class="alert alert-danger" style="text-align: center">
+                                                ${error}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </c:if>
+                        <c:if test="${Updated !=  null }">
+                            <div class="container mt-2">
+                                <div class="row">
+                                    <div class="col-sm-12">
+
+                                        <div class="alert alert-success" style="text-align: center">
+                                                ${Updated}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </c:if>
                         <div class="col-md-6">
 
                             <div class="form-group">
@@ -62,7 +84,7 @@
                             <div class="form-group">
                                 <form:label path="startTime">Enter the Start Time:</form:label>
                                 <form:input type="time" path="startTime" cssClass="form-control"
-                                        value="${timetableinfor.startTime}"    required="required"/>
+                                        value="${timetableinfor.startTime}"  min="08:00" max="16:00"  required="required"/>
                             </div>
 
 
@@ -85,7 +107,7 @@
                             <div class="form-group">
                                 <form:label path="endTIme">Enter the End time:</form:label>
                                 <form:input type="time" path="endTIme" cssClass="form-control"
-                                            value="${timetableinfor.endTIme}"       placeholder="End Time *"
+                                            value="${timetableinfor.endTIme}"  min="08:00" max="17:00"     placeholder="End Time *"
                                             required="required"/>
 
                             </div>

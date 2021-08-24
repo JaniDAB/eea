@@ -7,6 +7,7 @@ import com.janith.eea.Service.UserServiceImpl;
 import com.janith.eea.Validation.UserValidation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -29,20 +30,24 @@ public class UserRegistration {
     }
 
     @PostMapping
-    public  String registerUser(@Valid @ModelAttribute("user")UserDto registerdto, BindingResult br) throws Exception {
+    public  String registerUser(@Valid @ModelAttribute("user")UserDto registerdto, BindingResult br, Model a) throws Exception {
 
 userValidation.validate(registerdto ,br );
 
         if (br.hasErrors()) {
             return "addUser";
         } else {
-            final User save = userService.save(registerdto);
-            if (save == null) {
-/// redirect to already registered page
-                return "/alreadyRegistered";
-            }
-            return "adminHome";
 
+            try{
+                final User save = userService.save(registerdto);
+                a.addAttribute("successful", "User: "+registerdto.getUsername()+" Successfully Added");
+
+            }catch (Exception ex){
+                a.addAttribute("fail", ex.getMessage());
+
+            }
+
+            return "addUser";
         }
     }
 

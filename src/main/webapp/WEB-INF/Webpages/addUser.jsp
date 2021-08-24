@@ -1,5 +1,6 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
@@ -80,23 +81,52 @@
 
             <div class="tab-content" id="myTabContent">
                 <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                    <h3 class="register-heading">Register User</h3>
+                    <h3 class="register-heading">Register A Academic User</h3>
 
                     <form:form action="/registration" method="POST"  modelAttribute="user">
 
-
                     <div class="row register-form">
+
+
+                        <c:if test="${successful !=  null }">
+                            <div class="container mt-2">
+                                <div class="row">
+                                    <div class="col-sm-12">
+
+                                        <div class="alert alert-success" style="text-align: center">
+                                                ${successful}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </c:if>
+                        <c:if test="${fail !=  null }">
+                            <div class="container mt-2">
+                                <div class="row">
+                                    <div class="col-sm-12">
+
+                                        <div class="alert alert-danger" style="text-align: center">
+                                                ${fail}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </c:if>
+
                         <div class="col-md-6">
                             <div class="form-group">
+                                <form:label path="firstname" >Enter First Name: </form:label>
                                 <form:input type="text" path="firstname" cssClass="form-control"
                                             placeholder="First Name *" required="required"/>
                             </div>
                             <div class="form-group">
+                                <form:label path="lastname" >Enter Last Name: </form:label>
                                 <form:input type="text" path="lastname" cssClass="form-control"
                                             placeholder="Last Name *" required="required"/>
 
                             </div>
                             <div class="form-group">
+                                <form:label path="mobile" >Enter Mobile Number: </form:label>
                                 <form:input type="tel" maxlength="10" path="mobile" cssClass="form-control"
                                            placeholder="Your Phone  *" required="required"/>
                                 <form:errors path="mobile" cssStyle="color: red"/>
@@ -117,11 +147,13 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
+                                <form:label path="email" >Enter Email Address: </form:label>
                                 <form:input type="email" path="email" cssClass="form-control" placeholder="Email *"
                                             required="required"/>
                                 <form:errors path="email" cssStyle="color: red"/>
                             </div>
                             <div class="form-group">
+                                <form:label path="dateOfBirth" >Enter Date of Birth: </form:label>
                                 <form:input type="date" path="dateOfBirth" cssClass="form-control"
                                             id="txtDate"    placeholder="Date of Birth *" required="required"/>
                                 <form:errors path="dateOfBirth" cssStyle="color: red"/>
@@ -130,6 +162,7 @@
                             <div class="form-group">
 
                                 <form:select path="role" cssClass="form-control" aria-required="true">
+                                    <form:label path="username" >Select User Type: </form:label>
                                     <option class="hidden" selected disabled>User Type</option>
                                     <option value="STUDENT">Student</option>
                                     <option value="LECTURER">Lecturer</option>
@@ -141,7 +174,8 @@
 
                             <div class="form-group">
                                 <spring:bind path="username">
-                                <form:input type="text" path="username" cssClass="form-control"
+                                    <form:label path="username" >Enter User Name: </form:label>
+                                    <form:input type="text" path="username" cssClass="form-control"
                                             placeholder="User Name *" />
                                     <form:errors path="username" cssStyle="color: red"/>
                                 </spring:bind>

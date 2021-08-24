@@ -36,10 +36,17 @@ public class UserValidation implements Validator {
     @Override
     public void validate(Object o, Errors errors) {
  UserDto user= (UserDto) o;
-    String  regexEmail = "^[\\w.+\\-]+@gmail\\.com$";
+//        String patterns = "^(?:7|0|(?:\+94))[0-9]{9,10}$";
+        String regexPhoneNumber = "^(?:0|94|\\+94)?(?:(11|21|23|24|25|26|27|31|32|33|34|35|36|37|38|41|45|47|51|52|54|55|57|63|65|66|67|81|912)(0|2|3|4|5|7|9)|7(0|1|2|5|6|7|8)\\d)\\d{6}$";
+
+//    String  regexEmail = "^[\\w.+\\-]+@gmail\\.com$";
  String emailRegex = "^(([^<>()\\[\\]\\\\.,;:\\s@\"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@\"]+)*)|(\".+\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$";
-        Pattern p = Pattern.compile(regexEmail);
+        Pattern p = Pattern.compile(emailRegex);
         Matcher matcher = p.matcher(user.getEmail());
+
+        Pattern mobp = Pattern.compile(regexPhoneNumber);
+        Matcher matcherM = mobp.matcher(user.getMobile());
+
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "username", "NotEmpty");
 
         if(user.getUsername().trim().length() < 5 || user.getUsername().trim().length() > 15){
@@ -60,8 +67,20 @@ public class UserValidation implements Validator {
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "dateOfBirth", "NotEmpty");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "mobile", "NotEmpty");
 
+        if(!matcherM.matches()){
+            errors.rejectValue("mobile", "regex.mobile.!equals");
+        }
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "firstname", "NotEmpty");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "lastname", "NotEmpty");
+
+
+        if(user.getFirstname().trim().length() < 3 || user.getFirstname().trim().length() > 20){
+            errors.rejectValue("firstname", "Size.module.name");
+        }
+
+        if(user.getLastname().trim().length() < 3 || user.getLastname().trim().length() > 20){
+            errors.rejectValue("lastname", "Size.module.name");
+        }
 
 
     }
