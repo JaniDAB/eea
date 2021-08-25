@@ -63,6 +63,30 @@
         </div>
     </div>
 </c:if>
+<c:if test="${deleted !=  null }">
+    <div class="container mt-2">
+        <div class="row">
+            <div class="col-sm-12">
+
+                <div class="alert alert-danger" style="text-align: center">
+                        ${deleted}
+                </div>
+            </div>
+        </div>
+    </div>
+</c:if>
+<c:if test="${error !=  null }">
+    <div class="container mt-2">
+        <div class="row">
+            <div class="col-sm-12">
+
+                <div class="alert alert-danger" style="text-align: center">
+                        ${error}
+                </div>
+            </div>
+        </div>
+    </div>
+</c:if>
 <c:if test="${errord !=  null }">
     <div class="container mt-2">
         <div class="row">

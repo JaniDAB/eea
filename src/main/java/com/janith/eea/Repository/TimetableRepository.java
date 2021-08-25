@@ -41,4 +41,6 @@ public interface TimetableRepository extends JpaRepository<Timetable,Integer> {
 
 
     List<Timetable> findTimetablesByRequestReschedule(boolean state);
+
+    List<Timetable> findAllByOrderByDateDesc();
 }

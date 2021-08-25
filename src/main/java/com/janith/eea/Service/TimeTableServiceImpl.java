@@ -305,13 +305,13 @@ public class TimeTableServiceImpl implements TimeTableService {
                         &&
                         (LocalTime.parse(timetableDto.getStartTime()).isBefore(timetableinfo.getEndTIme()))) {
 
-                    throw new Exception("Error Occurred,  Lecturer : "+module.getLecUser().getFirstname() +" Is Having a Lecture at the Moment" );
+                    throw new Exception("Lecturer : "+module.getLecUser().getFirstname() +" Is Having a Lecture at the Moment" );
                 }
                 if ((LocalTime.parse(timetableDto.getEndTIme()).isAfter(timetableinfo.getStartTime()))
                         &&
                         (LocalTime.parse(timetableDto.getEndTIme()).isBefore(timetableinfo.getEndTIme()))
                 ){
-                    throw new Exception("Error Occurred,  Lecturer : "+module.getLecUser().getFirstname() +" Is Having a Lecture at the Moment" );
+                    throw new Exception("Lecturer : "+module.getLecUser().getFirstname() +" Is Having a Lecture at the Moment" );
                 }
 
 

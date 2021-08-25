@@ -11,6 +11,8 @@ import com.janith.eea.Service.ModuleService;
 import com.janith.eea.Service.UserServiceImpl;
 import com.janith.eea.Validation.BatchValidator;
 import com.janith.eea.Validation.ModuleValidator;
+import com.janith.eea.Validation.UserValidation;
+import com.janith.eea.Validation.updateUserValidation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -35,7 +37,8 @@ public class AdminController {
 
     @Autowired
     private final BatchServiceImpl batchService;
-
+    @Autowired
+    private updateUserValidation userValidation;
 
     @Autowired
     private final ModuleService moduleService;
@@ -118,9 +121,9 @@ public class AdminController {
 
             String s = this.service.deleteUserByID(ID);
             if (s.equals("deleted")) {
-                rd.addFlashAttribute("deleted", "Record Deleted Successfully");
+                rd.addFlashAttribute("deleted", "Student Record Deleted Successfully");
             }else {
-                rd.addFlashAttribute("error", "Record Deletion UnSuccessful");
+                rd.addFlashAttribute("error", "Student Record Deletion UnSuccessful");
             }
 
         return "redirect:/admin/users/allStudents";
@@ -132,7 +135,7 @@ public class AdminController {
 
         String s = this.service.deAssignBatch(ID);
         if (s.equals("unAssigned")) {
-            rd.addFlashAttribute("deAssigned", " De-Assigned");
+            rd.addFlashAttribute("deAssigned", "Student De-Assigned");
         }else {
             rd.addFlashAttribute("errord", " De-Assign UnSuccessful");
         }
@@ -163,9 +166,17 @@ public class AdminController {
 
 
     @PostMapping("/modifyUser")
-    public String modifyUser(@ModelAttribute("user") UserDto userDto) {
-        final User save = service.editUser(userDto);
-        return "/adminHome";
+    public String modifyUser(@ModelAttribute("user") UserDto userDto ,BindingResult br, Model a) {
+        userValidation.validate(userDto ,br );
+        if(br.hasErrors()){
+            return "/updateUser";
+        }else {
+
+            final User save = service.editUser(userDto);
+            a.addAttribute("successful", "User: " + save.getUsername() + " Successfully Updated");
+
+            return "/updateUser";
+        }
     }
 
 //    @GetMapping("/student/getUpdateForm/{id}")

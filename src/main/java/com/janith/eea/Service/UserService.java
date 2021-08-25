@@ -18,6 +18,7 @@ public interface UserService extends UserDetailsService {
     List<UserDto> getAllStudets();
 
     List<UserDto> getAllStudentToAPI();
+    List<UserDto> getAllStudentToAPIByBatchCode(String batchCode);
 
     List<UserDto> getAllLecturersToAPI();
 

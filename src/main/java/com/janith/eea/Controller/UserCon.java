@@ -46,6 +46,12 @@ public class UserCon {
         return  userService.getAllStudentToAPI();
     }
 
+    @GetMapping("/view_studentsByBatch/{batchCode}")
+    public List<UserDto> viewStudentsByBatch(@PathVariable("batchCode") String batchCode){
+
+        return  userService.getAllStudentToAPIByBatchCode(batchCode);
+    }
+
     @GetMapping("/view_lecturers/")
     public List<UserDto> viewLectures(){
 

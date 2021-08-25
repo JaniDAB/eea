@@ -51,7 +51,7 @@
                <c:if test="${userinfo.role.equals('STUDENT')}">
 
                 <p>Batch(If Enrolled):
-                   <c:if test="${serinfo.batch.batchCode == null}">
+                   <c:if test="${userinfo.batch.batchCode == null}">
                        <div class="alert-light" style="border-radius: 10px 10px"> Student is Not Enrolled
 
                        </div>
@@ -71,16 +71,31 @@
 
 
                     <div class="row register-form">
+                        <c:if test="${successful !=  null }">
+                            <div class="container mt-2">
+                                <div class="row">
+                                    <div class="col-sm-12">
+
+                                        <div class="alert alert-success" style="text-align: center">
+                                                ${successful}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </c:if>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <form:label path="firstname" >First Name: </form:label>
                                 <form:input type="text" path="firstname" cssClass="form-control"
                                           value="${userinfo.firstname}"  placeholder="First Name *" required="required"/>
+                                <form:errors path="firstname" cssStyle="color: red"/>
+
                             </div>
                             <div class="form-group">
                                 <form:label path="lastname" >Last Name: </form:label>
                                 <form:input type="text" path="lastname" cssClass="form-control"
                                           value="${userinfo.lastname}"  placeholder="Last Name *" required="required"/>
+                                <form:errors path="lastname" cssStyle="color: red"/>
 
                             </div>
 <%--                            <div class="form-group">--%>
@@ -102,6 +117,7 @@
                                 <form:label path="email" >Email Address: </form:label>
                                 <form:input value="${userinfo.email}" type="email" path="email" cssClass="form-control" placeholder="Email *"
                                             required="required"/>
+                                <form:errors path="email" cssStyle="color: red"/>
 
                             </div>
                             <div class="form-group">
@@ -114,6 +130,8 @@
                                 <form:label path="mobile" >Contact Number: </form:label>
                                 <form:input type="text" maxlength="10" path="mobile" cssClass="form-control"
                                             value="${userinfo.mobile}"   placeholder="Your Phone  *" required="required"/>
+                                <form:errors path="mobile" cssStyle="color: red"/>
+
                             </div>
 
 
@@ -121,11 +139,12 @@
                             <div class="form-group">
                                 <form:label path="username" >User Name: </form:label>
                                 <form:input type="text" path="username" cssClass="form-control"
-                                            value="${userinfo.username}"     placeholder="User Name *" required="required"/>
+                                            value="${userinfo.username}"    placeholder="User Name *" required="required"/>
+                                <form:errors path="username" cssStyle="color: red"/>
 
                             </div>
 
-                            <input type="submit" class="btnRegister"  value="Register"/>
+                            <input type="submit" class="btnRegister"  value="Update"/>
                         </div>
                     </div>
 

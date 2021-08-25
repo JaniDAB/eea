@@ -18,4 +18,6 @@ public interface UserRepository  extends JpaRepository<User,Integer> {
     public User findUsersByUsername(String username);
 
     List<User> findUsersByBatchBatchID(int batchID);
+
+    List<User> findUsersByBatchBatchCode(String batch_batchCode);
 }

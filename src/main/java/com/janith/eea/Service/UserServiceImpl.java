@@ -146,6 +146,33 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public List<UserDto> getAllStudentToAPIByBatchCode(String batchCode) {
+        List<User> userDomain = userRepository.findUsersByBatchBatchCode(batchCode);
+        List<UserDto> userDtoList = new ArrayList<>();
+
+        if (!userDomain.isEmpty()) {
+            for (User user : userDomain) {
+                if (user.getRole().getRoleName().equals(UserTypeUtil.STUDENT))
+                {
+                    UserDto userDto = new UserDto();
+                    userDto.setUserId(user.getUserId());
+                    userDto.setUsername(user.getUsername());
+                    userDto.setEmail(user.getEmail());
+                    userDto.setFirstname(user.getFirstname());
+                    userDto.setDateOfBirth(user.getDateOfBirth());
+                    userDto.setMobile(user.getMobile());
+                    if(user.getBatch() == null){
+                        userDto.setBatchCode("No Batch Assigned");
+                    }else
+
+                        userDto.setBatchCode(user.getBatch().getBatchCode());
+                    userDtoList.add(userDto);
+                }
+            }
+        }
+        return userDtoList;    }
+
+    @Override
     public List<UserDto> getAllLecturersToAPI() {
         List<User> userDomain = userRepository.findAll();
         List<UserDto> userDtoList = new ArrayList<>();
