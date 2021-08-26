@@ -56,7 +56,7 @@ public class EmailServiceImpl {
 ////                                +  "UserName "+ userInfo.getUsername()
 //                                +"   Password : user123");
                 mimeMessage.setSentDate(new Date());
-                ClassPathResource  resource = new ClassPathResource("static/images/timetable.png");
+                ClassPathResource  resource = new ClassPathResource("static/images/cover.png");
                 helper.addInline("logoImage" , resource);
             }
         };
