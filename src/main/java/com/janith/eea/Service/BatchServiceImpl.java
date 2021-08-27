@@ -27,7 +27,7 @@ public class BatchServiceImpl implements BatchService {
         Batch batchdom = new Batch();
 
         if(batchRepo.findBatchesByBatchCode(batchinfo.getBatchCode())!=null){
-            throw new Exception("Batch :"+batchinfo.getBatchCode()+"Already Added");
+            throw new Exception("Batch :"+batchinfo.getBatchCode()+" Already Added");
         }
         if (batchinfo != null) {
 //            batchdom.setBatchID(batchinfo.getBatchID());
@@ -74,6 +74,7 @@ public class BatchServiceImpl implements BatchService {
                 batchDto.setBatchID(batch.getBatchID());
                 batchDto.setBatchCode(batch.getBatchCode());
                 batchDto.setDescription(batch.getDescription());
+                batchDto.setModuleListSize(batch.getModuleList().size());
                 batchDtoList.add(batchDto);
             }
         }
@@ -126,6 +127,7 @@ public class BatchServiceImpl implements BatchService {
                 ModuleDto moduleDto = new ModuleDto();
                 moduleDto.setModuleName(mudulel.getModuleName());
                 moduleDto.setModule_id(mudulel.getModule_id());
+                moduleDto.setModuleCode(mudulel.getModuleCode());
                 moduleDtoList.add(moduleDto);
             }
         }

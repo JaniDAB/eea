@@ -75,10 +75,15 @@ public class BatchController {
             BatchDto batchInfo =batchService.getBatchById(batchId);
             List<ModuleDto> moduleDtoList;
             moduleDtoList = moduleService.getAllModules();
-
+            List<ModuleDto>  moduleDtoListv = batchService.getModuleList(id);
             b.addAttribute("moduleList",moduleDtoList);
+            b.addAttribute("moduleListInfo",moduleDtoListv);
             b.addAttribute("assignModule", batchDto);
             b.addAttribute("batchinfo", batchInfo);
+
+            b.addAttribute("successful","");
+            b.addAttribute("fail","");
+
 
             return "assignModulesToBatch";
 
@@ -90,9 +95,18 @@ public class BatchController {
     }
 
     @PostMapping("/assignModulesToBatch")
-    public String assignModulesToBatch(@ModelAttribute("assignModule")BatchDto batchDto){
-        batchService.editBatch(batchDto);
-        return "assignModulesToBatch";
+    public String assignModulesToBatch(@ModelAttribute("assignModule")BatchDto batchDto , Model a){
+     try {
+         batchService.editBatch(batchDto);
+         List<BatchDto> batchDtoList;
+         batchDtoList = batchService.getAllBatches();
+         a.addAttribute("batches", batchDtoList);
+         a.addAttribute("successful", "Modules Assigned Successfully. ");
+     }catch (Exception e){
+         a.addAttribute("fail", "Error Occured Please try again later.");
+
+     }
+        return "viewBatches";
 
     }
 

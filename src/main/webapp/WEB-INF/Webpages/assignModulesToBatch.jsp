@@ -15,6 +15,18 @@
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/register.css">
+
+    <!-- JavaScript -->
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
+    <!-- Default theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css"/>
+    <!-- Semantic UI theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.min.css"/>
+    <!-- Bootstrap theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css"/>
 </head>
 <body>
 
@@ -32,9 +44,11 @@
         <div class="col-md-3 register-left">
             <h1> </h1>
             <img src="https://i.ibb.co/6bkWbL7/icons8-business-group-64.png" alt="icons8-business-group-64" border="0">
-            <h3>Assign Modules To a Batch</h3>
+            <h3> Currently Assigned Modules</h3>
 
-            <p> Assigning Modules to a Batch can be done here</p>
+            <c:forEach var="moduelListin" items="${moduleListInfo}" >
+                ${moduelListin.moduleCode} : ${moduelListin.moduleName} <br>
+            </c:forEach>
         </div>
         <div class="col-md-9 register-right">
 
@@ -45,6 +59,16 @@
                     <form:form action="/assignModulesToBatch" method="POST" modelAttribute="assignModule">
 
                     <div class="row register-form">
+
+
+
+                                        <div>
+                                            <p style="display: none" id="success">${successful}</p>
+                                        </div>
+
+                        <div>
+                            <p style="display: none" id="fail">${fail}</p>
+                        </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <form:label path="batchCode"> Batch Code :</form:label>
@@ -62,7 +86,7 @@
 
                             <div class="form-group">
                                 <form:label path="moduleList" > Select the Modules from Below  List: </form:label>
-                                <form:select  multiple="true" path="moduleList" cssClass="form-select"  aria-required="true" >
+                                <form:select  multiple="true" path="moduleList" cssClass="form-select"  required="required" aria-required="true" >
                                     <c:forEach var="moduelList" items="${moduleList}" >
                                         <form:option value="${moduelList.module_id}">
                                             ${moduelList.moduleName}
@@ -85,3 +109,13 @@
 
 </body>
 </html>
+
+<script>
+    window.onload = function (){
+        const success = document.getElementById("success").innerHTML;
+console.log(success);
+        if(success !== ""){
+            alertify.alert('Success', success);
+        }
+    }
+</script>

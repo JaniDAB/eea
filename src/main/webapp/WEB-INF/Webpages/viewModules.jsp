@@ -16,6 +16,18 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
+    <!-- JavaScript -->
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
+    <!-- Default theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css"/>
+    <!-- Semantic UI theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.min.css"/>
+    <!-- Bootstrap theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css"/>
+
 </head>
 <body style="background : -webkit-linear-gradient(right,#c4e5ec, #5484c7);">
 <div class="header">
@@ -68,7 +80,9 @@
         </div>
     </div>
 </c:if>
-
+<div>
+    <p style="display: none" id="success">${successful}</p>
+</div>
 <%--<table class="content-table">--%>
 
 <%--    <thead><tr>--%>
@@ -227,3 +241,12 @@
 </c:if>
 </body>
 </html>
+<script>
+    window.onload = function (){
+        const success = document.getElementById("success").innerHTML;
+        console.log(success);
+        if(success !== ""){
+            alertify.alert('Done', success);
+        }
+    }
+</script>

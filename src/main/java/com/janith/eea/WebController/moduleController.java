@@ -19,6 +19,7 @@ import java.util.List;
 
 /**
  * All the  controllers need in  Modules
+ *
  * @author janith dabare
  */
 @Controller
@@ -52,8 +53,8 @@ public class moduleController {
 
             return "updateModule";
         } catch (Exception ex) {
-            System.out.println("Module not found"+ex);
-            model.addAttribute("module" , new ModuleDto());
+            System.out.println("Module not found" + ex);
+            model.addAttribute("module", new ModuleDto());
             return "updateModule";
         }
 
@@ -61,12 +62,12 @@ public class moduleController {
 
     @PostMapping("/modifyModule")
     public String modifyBatch(@ModelAttribute("moduleupdate") ModuleDto moduleDto) {
-       final Module update = moduleService.editModule(moduleDto);
+        final Module update = moduleService.editModule(moduleDto);
         return "redirect:/admin/listModules";
     }
 
     @GetMapping("/assignModuleForm/{id}")
-    public  String assignModuleForm(@PathVariable(name = "id") int id, Model u){
+    public String assignModuleForm(@PathVariable(name = "id") int id, Model u) {
         try {
             int moduleID = id;
 
@@ -82,32 +83,39 @@ public class moduleController {
 
             u.addAttribute("assignModule", moduleDto);
 
-            u.addAttribute("lecturerList" , lecturerList);
-
+            u.addAttribute("lecturerList", lecturerList);
+            u.addAttribute("successful","");
+            u.addAttribute("fail","");
             return "assignLecturerToModule";
         } catch (Exception ex) {
-            System.out.println("Module not found"+ex);
-            u.addAttribute("assignModule" , new ModuleDto());
+            System.out.println("Module not found" + ex);
+            u.addAttribute("assignModule", new ModuleDto());
             return "assignLecturerToModule";
         }
     }
 
     @PostMapping("/assignLecturer")
-    public String assignModule(@ModelAttribute("assignModule") ModuleDto moduleDto){
+    public String assignModule(@ModelAttribute("assignModule") ModuleDto moduleDto, Model a) {
+        try {
+            final Module assign = moduleService.assignLecturer(moduleDto);
+            List<ModuleDto> moduleDtoList;
+            moduleDtoList = moduleService.getAllModules();
+            a.addAttribute("modules", moduleDtoList);
+            a.addAttribute("successful", "Lecturer: "+assign.getLecUser().getFirstname()+" is Assigned  to "+assign.getModuleCode()+" Successfully. ");
 
-        final  Module assign = moduleService.assignLecturer(moduleDto);
-
-        return "redirect:/admin/listModules";
+        } catch (Exception e) {
+            a.addAttribute("fail", "Error Occurred Please try again later.");
+        }
+        return "viewModules";
 
     }
 
     @GetMapping("/deAssign/{id}")
-    public String deAssignLecturerModule(@PathVariable(value = "id")int ID, Model m, RedirectAttributes rd)
-    {
+    public String deAssignLecturerModule(@PathVariable(value = "id") int ID, Model m, RedirectAttributes rd) {
         String s = this.moduleService.deAssignLecturer(ID);
         if (s.equals("deleted")) {
             rd.addFlashAttribute("deleted", "De-Assign  Successfully");
-        }else  {
+        } else {
             rd.addFlashAttribute("error", "De-Assign UnSuccessful");
         }
 
@@ -132,7 +140,6 @@ public class moduleController {
 //        }
 //
 //    }
-
 
 
 }

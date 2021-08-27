@@ -52,17 +52,17 @@ public class AuthenticationController {
 
             return "redirect:/student";
         }
-        if (user.getRole().getRoleName() == UserTypeUtil.ADMIN){
+       else if (user.getRole().getRoleName() == UserTypeUtil.ADMIN){
 
             return "redirect:/admin";
         }
-        if (user.getRole().getRoleName() == UserTypeUtil.LECTURER){
+        else if (user.getRole().getRoleName() == UserTypeUtil.LECTURER){
             a.addAttribute("lecturer", user);
 
             return "LecturerHome";
         }
-
-        return "/login";
+else
+        return "/login"; // /login
 
     }
 

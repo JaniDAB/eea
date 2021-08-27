@@ -32,10 +32,10 @@ public class addModuleTest  extends Module {
 private ModuleRepository moduleRepository;
 
     @Test
-    @DisplayName("Test SHould pass when module is added successfully")
+    @DisplayName("Test Should pass when module is added successfully")
     public void addModule() throws Exception{
 //        ModuleDto moduleDto =  new ModuleDto("English");
-//
+
 //       Module module =  moduleService.save(moduleDto);
 
         when(moduleRepository.findAll()).thenReturn

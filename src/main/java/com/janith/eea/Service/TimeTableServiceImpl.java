@@ -74,10 +74,6 @@ public class TimeTableServiceImpl implements TimeTableService {
                 throw new Exception("A Class Can be Schedule of Minimum, 30 Minutes & Maximum 2 Hours");
 
             }
-            if(!checkPastTime(startTime,endTime)){
-                throw new Exception(" Cannot Enter Past Time. Please Try again for future Time.");
-
-            }
             for (Batch batchInfor : timetableDto.getBatchList()) {
                 batchList.add(batchRepository.findById(batchInfor.getBatchID()).get());
 
@@ -349,17 +345,7 @@ public class TimeTableServiceImpl implements TimeTableService {
 
     }
 
-    public Boolean checkPastTime(LocalTime startTime, LocalTime endTime ){
 
-        LocalTime currentTime = LocalTime.now();
-
-        if(startTime.isBefore(currentTime)){
-            return  false;
-        }else if(endTime.isBefore(currentTime)){
-            return  false;
-        }
-        else return true;
-    }
 
 
     @Override

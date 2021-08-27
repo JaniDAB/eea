@@ -270,6 +270,10 @@ public class AdminController {
         batchDtoList = batchService.getAllBatches();
         b.addAttribute("batches", batchDtoList);
 
+
+        b.addAttribute("successful","");
+        b.addAttribute("fail","");
+
         return "viewBatches";
 
     }
@@ -334,6 +338,9 @@ public class AdminController {
 
         moduleDtoList = moduleService.getAllModules();
         m.addAttribute("modules", moduleDtoList);
+
+        m.addAttribute("successful","");
+        m.addAttribute("fail","");
 
         return "viewModules";
 

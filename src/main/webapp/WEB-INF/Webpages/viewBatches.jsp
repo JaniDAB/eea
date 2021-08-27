@@ -15,6 +15,17 @@
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- JavaScript -->
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
+    <!-- Default theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css"/>
+    <!-- Semantic UI theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.min.css"/>
+    <!-- Bootstrap theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css"/>
 
 </head>
 <body style="background : -webkit-linear-gradient(right,#c4e5ec, #5484c7);">
@@ -38,54 +49,9 @@
     ${deleted}
     ${error}
 </div>
-<%--<table class="content-table">--%>
-
-<%--    <thead><tr>--%>
-<%--        <th>Batch ID </th>--%>
-<%--        <th> Batch Code </th>--%>
-<%--        <th> Batch Description </th>--%>
-<%--        <th> Edit And Delete Batch </th>--%>
-<%--        <th> Assign Modules to Batch </th>--%>
-<%--        <th> More Info </th>--%>
-
-<%--    </tr>--%>
-<%--    </thead>--%>
-<%--    <tbody>--%>
-
-<%--    <c:forEach var="tempBatch" items="${batches}">--%>
-
-<%--        <tr>--%>
-<%--            <td>${tempBatch.batchID}</td>--%>
-<%--            <td>${tempBatch.batchCode}</td>--%>
-<%--            <td>${tempBatch.description}</td>--%>
-<%--            <td>--%>
-<%--                <span><a href="${pageContext.request.contextPath}/directUpdateMBatchForm/${tempBatch.batchID}" class="btn btn-primary">--%>
-<%--                    <i class="material-icons">&#xe3c9;</i>--%>
-<%--                </a>--%>
-<%--                    <a href="${pageContext.request.contextPath}/deleteBatch/${tempBatch.batchID}" onclick="return confirm('Delete Batch :${tempBatch.batchCode}')" class="btn btn-danger">--%>
-<%--                        <i class="material-icons">&#xe872;</i>--%>
-<%--                    </a>--%>
-<%--                </span>--%>
-<%--            </td>--%>
-<%--            <td>--%>
-<%--                <span><a href="${pageContext.request.contextPath}/assignModule/${tempBatch.batchID}" class="btn btn-success">--%>
-<%--                     <i class="material-icons">&#xea20;</i>--%>
-<%--                </a>--%>
-<%--                </span>--%>
-<%--            </td>--%>
-<%--            <td>--%>
-<%--                <span><a href="${pageContext.request.contextPath}/modulelist/${tempBatch.batchID}" class="btn btn-outline-info">--%>
-<%--                        <i class="material-icons">&#xe88e;</i>--%>
-<%--                </a>--%>
-<%--                </span>--%>
-<%--            </td>--%>
-
-
-<%--        </tr>--%>
-<%--    </c:forEach>--%>
-<%--    </tbody>--%>
-<%--</table>--%>
-
+<div>
+    <p style="display: none" id="success">${successful}</p>
+</div>
 
 <div class="container">
     <div class="row">
@@ -140,10 +106,21 @@
                                                     </span>
                                                 </td>
                                                 <td>
+                                                    <c:if test="${tempBatch.moduleListSize>0 }">
+
                                                     <span><a href="${pageContext.request.contextPath}/modulelist/${tempBatch.batchID}" class="btn btn-outline-info">
                                                             <i class="material-icons">&#xe88e;</i>
                                                     </a>
                                                     </span>
+                                                    </c:if>
+                                                    <c:if test="${tempBatch.moduleListSize==0}">
+                                                    <span >
+<%--                                                        <a onclick="alert('Cannot Schedule For this Module....');" class="btn btn-outline-danger">--%>
+                                                        <a onclick=" alertify.alert('Oops', 'No Modules has been Assigned to Batch : ${tempBatch.batchCode} ..!');" class="btn btn-outline-danger">
+                                                         <i class="material-icons">&#xe88e;</i>
+                                                    </a>
+                                                    </span>
+                                                    </c:if>
                                                 </td>
                             </tr>
                         </c:forEach>
@@ -172,3 +149,13 @@
 
 </body>
 </html>
+
+<script>
+    window.onload = function (){
+        const success = document.getElementById("success").innerHTML;
+        console.log(success);
+        if(success !== ""){
+            alertify.alert('Done', success);
+        }
+    }
+</script>

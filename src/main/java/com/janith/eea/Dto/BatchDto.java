@@ -11,6 +11,8 @@ public class BatchDto {
 
     private String[] moduleList;
 
+    public  int moduleListSize;
+
     public BatchDto(Integer batchID, String batchCode, String description, String[] moduleList) {
         this.batchID = batchID;
         this.batchCode = batchCode;
@@ -51,5 +53,13 @@ public class BatchDto {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public int getModuleListSize() {
+        return moduleListSize;
+    }
+
+    public void setModuleListSize(int moduleListSize) {
+        this.moduleListSize = moduleListSize;
     }
 }

@@ -50,7 +50,7 @@
                             <div class="form-group" >
                                     <%--                                <input   type="text" class="form-control" placeholder="First Name *"  required="required" value="" />--%>
                               <form:label path="batchCode"> Batch Code</form:label>
-                                <form:input   value="${batchInfo.batchCode}" type="text" path="batchCode" cssClass="form-control" placeholder="Batch code *" required="required"/>
+                                <form:input   value="${batchInfo.batchCode}"  readonly="true" type="text" path="batchCode" cssClass="form-control" placeholder="Batch code *" required="required"/>
                             </div>
                             <div class="form-group" >
                                     <%--                                <input   type="text" class="form-control" placeholder="First Name *"  required="required" value="" />--%>
