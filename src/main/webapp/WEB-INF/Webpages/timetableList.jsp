@@ -29,7 +29,14 @@
     <ul>
         <li> <a class="nav-link" href="${pageContext.request.contextPath}/admin">Home</a></li>
 
-<%--        <li style="float:right"><a class="fa fa-sign-out nav-link"  href="${pageContext.request.contextPath}/logout"> Logout</a></li>--%>
+<%--     <li style="float:right"><a class="fa fa-sign-out nav-link"  href="${pageContext.request.contextPath}/logout"> Logout</a></li>--%>
+        <li  style="float:right">  <form action="${pageContext.request.contextPath}/admin/searchTimetable" method="get" class="d-flex">
+            <input class="form-control" style="width: 200px; border-radius: 25px 25px 25px 25px" type="date"  name="date" placeholder="Search..(First Name)" aria-label="Search" required="required">
+            <button class="btn btn-primary" type="submit"><i class="fa fa-search"></i></button>
+
+        <li/>
+
+
         <li  style="float:right"> <form method="post" action="${pageContext.request.contextPath}/logout">
 
             <button type="submit" class="fa fa-sign-out nav-link" > Logout</button></form> </li>
@@ -186,7 +193,18 @@
 
                         </tbody>
                     </table>
+                    <c:if test="${allSchedules.size() == 0 }">
+                        <div class="container mt-2">
+                            <div class="row">
+                                <div class="col-sm-12">
 
+                                    <div class="alert alert-success" style="text-align: center">
+                                        No Schedules for this Day.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </c:if>
                 </div>
 
             </div>

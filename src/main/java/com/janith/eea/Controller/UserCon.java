@@ -125,7 +125,11 @@ try {
 }
         return message;
     }
+    @GetMapping("/admin_search_schedules/{date}")
+    public List<TimetableDto> searchAdminSchedule(@PathVariable("date") String date){
 
+        return  timeTableService.adminSearchTimetables(date);
+    }
 
 
 

@@ -46,5 +46,9 @@ public interface TimeTableService {
 
     List<TimetableDto> lecturerSearchTimetableAPI(int UserID ,String Date );
 
+    List<TimetableDto> adminSearchTimetables(String Date );
+
+    List<TimetableDto> adminSearchTimetablesWEB(String Date );
+
 
 }

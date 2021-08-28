@@ -1033,4 +1033,98 @@ public class TimeTableServiceImpl implements TimeTableService {
         }
 
         return timetableDtoList;    }
+
+    @Override
+    public List<TimetableDto> adminSearchTimetables(String Date) {
+
+        List<Timetable> timetablesDomain = timetableRepo.findTimetablesByDateLike(java.sql.Date.valueOf(Date));
+
+        List<TimetableDto> timetableDtoList = new ArrayList<>();
+
+        if (!timetablesDomain.isEmpty()) {
+            for (Timetable timetable : timetablesDomain) {
+                List<BatchDto> batchDtoList = new ArrayList<>();
+
+                TimetableDto tt = new TimetableDto();
+
+                for(Batch batchob: timetable.getBatchList() ){
+                    BatchDto batch = new BatchDto();
+
+                    batch.setBatchID(batchob.getBatchID());
+                    batch.setBatchCode(batchob.getBatchCode());
+                    batch.setDescription(batchob.getDescription());
+                    batchDtoList.add(batch);
+                }
+                tt.setBatchListDto(batchDtoList);
+
+
+                tt.setModuleDto( moduleService.getModuleByIdAPI(timetable.getModule().getModule_id()));
+
+                tt.setDate(String.valueOf(timetable.getDate()));
+
+
+                //old format
+                SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+                try{
+                    java.util.Date startime = sdf.parse(String.valueOf(timetable.getStartTime()));
+                    java.util.Date endTime = sdf.parse(String.valueOf(timetable.getEndTIme()));
+
+                    //new format
+                    SimpleDateFormat sdf2 = new SimpleDateFormat("hh:mm aa");
+                    //formatting the given time to new format with AM/PM
+
+                    tt.setStartTime(sdf2.format(startime));
+                    tt.setEndTIme(sdf2.format(endTime));
+                }catch(ParseException e){
+                    e.printStackTrace();
+                }
+
+
+                tt.setTimetableID(timetable.getTimetableID());
+                tt.setClassRoomDTO(classRoomService.viewSingleRoom(timetable.getClassRoom().getRoomId()));
+                timetableDtoList.add(tt);
+            }
+        }
+
+        return timetableDtoList;
+    }
+
+    @Override
+    public List<TimetableDto> adminSearchTimetablesWEB(String Date) {
+        List<Timetable> timetablesDomain = timetableRepo.findTimetablesByDateLike(java.sql.Date.valueOf(Date));
+
+        List<TimetableDto> timetableDtoList = new ArrayList<>();
+
+        if (!timetablesDomain.isEmpty()) {
+            for (Timetable timetable : timetablesDomain) {
+                TimetableDto tt = new TimetableDto();
+                tt.setBatchList(timetable.getBatchList());
+                tt.setModule(timetable.getModule());
+                tt.setDate(String.valueOf(timetable.getDate()));
+
+
+                //old format
+                SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+                try{
+                    java.util.Date startime = sdf.parse(String.valueOf(timetable.getStartTime()));
+                    java.util.Date endTime = sdf.parse(String.valueOf(timetable.getEndTIme()));
+
+                    //new format
+                    SimpleDateFormat sdf2 = new SimpleDateFormat("hh:mm aa");
+                    //formatting the given time to new format with AM/PM
+
+                    tt.setStartTime(sdf2.format(startime));
+                    tt.setEndTIme(sdf2.format(endTime));
+                }catch(ParseException e){
+                    e.printStackTrace();
+                }
+
+
+                tt.setTimetableID(timetable.getTimetableID());
+                tt.setClassRoom(timetable.getClassRoom());
+                timetableDtoList.add(tt);
+            }
+        }
+
+        return timetableDtoList;    }
 }

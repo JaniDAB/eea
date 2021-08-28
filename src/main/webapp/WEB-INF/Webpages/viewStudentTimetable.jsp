@@ -17,10 +17,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 </head>
-<body  style="background : -webkit-linear-gradient(right,#c4e5ec, #5484c7);">
+<body style="background : -webkit-linear-gradient(right,#c4e5ec, #5484c7);">
 
 <div class="header">
-    <h1 class="head" >Timetabler 766</h1>
+    <h1 class="head">Timetabler 766</h1>
 </div>
 <%--<ul>--%>
 <%--    <li><a  href="${pageContext.request.contextPath}/admin">home</a></li>--%>
@@ -39,19 +39,26 @@
 <%--</nav>--%>
 <nav class="fill">
     <ul>
-        <li> <a class="nav-link" href="${pageContext.request.contextPath}/student">Home</a></li>
-        <li> <a class="nav-link" href="${pageContext.request.contextPath}/student/TodayTimetable">Today Schedules</a></li>
+        <li><a class="nav-link" href="${pageContext.request.contextPath}/student">Home</a></li>
+        <li><a class="nav-link" href="${pageContext.request.contextPath}/student/TodayTimetable">Today Schedules</a>
+        </li>
 
-        <li  style="float:right">  <form action="${pageContext.request.contextPath}/student/searchUser" method="get" class="d-flex">
-            <input class="form-control" style="width: 200px; border-radius: 25px 25px 25px 25px" type="date"  name="date" placeholder="Search..(First Name)" aria-label="Search" required="required">
-            <button class="btn btn-primary" type="submit"><i class="fa fa-search"></i></button>
+        <li style="float:right">
+            <form action="${pageContext.request.contextPath}/student/searchUser" method="get" class="d-flex">
+                <input class="form-control" style="width: 200px; border-radius: 25px 25px 25px 25px" type="date"
+                       name="date" placeholder="Search..(First Name)" aria-label="Search" required="required">
+                <button class="btn btn-primary" type="submit"><i class="fa fa-search"></i></button>
 
         <li/>
 
-        <li  style="float:right"> <form method="post" action="${pageContext.request.contextPath}/logout"> <button type="submit" class="fa fa-sign-out nav-link" > Logout</button></form> </li>
+        <li style="float:right">
+            <form method="post" action="${pageContext.request.contextPath}/logout">
+                <button type="submit" class="fa fa-sign-out nav-link"> Logout</button>
+            </form>
+        </li>
     </ul>
 </nav>
-<div class="row justify-content-center successmessage" role="alert" >
+<div class="row justify-content-center successmessage" role="alert">
     ${emptys}
 </div>
 <div class="container">
@@ -61,7 +68,7 @@
                 <div class="panel-heading">
                     <div class="row">
                         <div class="col col-sm-3 col-xs-12">
-                            <h4   class="title">My  <span>Schedules</span></h4>
+                            <h4 class="title">My <span>Schedules</span></h4>
                         </div>
                         <div class="col-sm-9 col-xs-12 text-right">
                             <div class="btn_group">
@@ -77,12 +84,12 @@
                         <thead>
                         <tr>
                             <th> Scheduled Date</th>
-                            <th>Start Time </th>
-                            <th> End Time </th>
-                            <th>  Module  </th>
-                            <th>   Room </th>
-                            <th>   Room Type </th>
-                            <th>  Lecturer  </th>
+                            <th>Start Time</th>
+                            <th> End Time</th>
+                            <th> Module</th>
+                            <th> Room</th>
+                            <th> Room Type</th>
+                            <th> Lecturer</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -121,8 +128,6 @@
 </div>
 
 
-
-
 <%--<table class="content-table">--%>
 
 <%--    <thead><tr>--%>
@@ -148,7 +153,6 @@
 <%--            <td>${timetable.classRoom.roomId}</td>--%>
 <%--            <td>${timetable.classRoom.roomType}</td>--%>
 <%--            <td>${timetable.module.lecUser.firstname}</td>--%>
-
 
 
 <%--        </tr>--%>

@@ -3,6 +3,7 @@ package com.janith.eea.WebController;
 import com.janith.eea.Dto.BatchDto;
 import com.janith.eea.Dto.ModuleDto;
 import com.janith.eea.Dto.UserDto;
+import com.janith.eea.Model.Batch;
 import com.janith.eea.Model.User;
 import com.janith.eea.Service.BatchService;
 import com.janith.eea.Service.ModuleServiceImpl;
@@ -97,13 +98,17 @@ public class BatchController {
     @PostMapping("/assignModulesToBatch")
     public String assignModulesToBatch(@ModelAttribute("assignModule")BatchDto batchDto , Model a){
      try {
-         batchService.editBatch(batchDto);
+       Batch d= (Batch) batchService.
+                 editBatch(batchDto);
          List<BatchDto> batchDtoList;
          batchDtoList = batchService.getAllBatches();
          a.addAttribute("batches", batchDtoList);
-         a.addAttribute("successful", "Modules Assigned Successfully. ");
+         a.addAttribute("successful", "Modules Assigned Successfully to "+d.getBatchCode());
      }catch (Exception e){
-         a.addAttribute("fail", "Error Occured Please try again later.");
+         List<BatchDto> batchDtoList;
+         batchDtoList = batchService.getAllBatches();
+         a.addAttribute("batches", batchDtoList);
+         a.addAttribute("fail", e.getMessage());
 
      }
         return "viewBatches";

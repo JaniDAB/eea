@@ -15,6 +15,7 @@
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/timetable.css">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
     <script>
         $(function () {
@@ -111,6 +112,10 @@
                                 </div>
                             </div>
                         </c:if>
+                        <div>
+                            <p style="display: none" id="success">${successful}</p>
+                        </div>
+
                         <div class="col-md-6">
 
                             <div class="form-group">
@@ -200,3 +205,17 @@
 </div>
 </body>
 </html>
+<%--<script>--%>
+<%--    window.onload = function (){--%>
+<%--        const success = document.getElementById("success").innerHTML;--%>
+
+<%--        if(success != null){--%>
+<%--            swal('Successfull', success, "success");--%>
+<%--        }--%>
+
+
+<%--    }--%>
+
+
+
+<%--</script>--%>

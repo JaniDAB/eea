@@ -14,6 +14,7 @@ import com.janith.eea.Validation.ClassRoomValidator;
 import com.janith.eea.Validation.TimetableValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -23,6 +24,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -196,7 +198,14 @@ timetableValidator.validate(timetableDto,br);
 
         return "timetableList";
     }
-
+    @GetMapping("/admin/searchTimetable")
+    public String search(HttpServletRequest req , Model a)
+    {
+        String date = req.getParameter("date");
+        List<TimetableDto> timetableDtoList = timeTableService.adminSearchTimetablesWEB(date);
+        a.addAttribute("allSchedules", timetableDtoList);
+        return "timetableList";
+    }
 
     @GetMapping("/getRequestedTimetables")
     public  String getRequestedReschedules(Model model)

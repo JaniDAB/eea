@@ -82,7 +82,7 @@ public class BatchServiceImpl implements BatchService {
     }
 
     @Override
-    public Batch editBatch(BatchDto batchDto) {
+    public Batch editBatch(BatchDto batchDto) throws Exception {
 
         Optional<Batch> optionalBatch = batchRepo.findById(batchDto.getBatchID());
 
@@ -90,7 +90,9 @@ public class BatchServiceImpl implements BatchService {
         ArrayList<Module> moduleArrayList = new ArrayList<>();
 
         Batch batch = optionalBatch.get();
-
+if (batchDto.getModuleList().length>3){
+    throw new Exception("  Maximum  3 Modules can be Added to Batch " + batch.getBatchCode());
+}
         for (String s : batchDto.getModuleList()) {
             Optional<Module> byId = moduleRepository.findById(Integer.parseInt(s));
 

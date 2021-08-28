@@ -26,6 +26,7 @@
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.min.css"/>
     <!-- Bootstrap theme -->
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css"/>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 </head>
 <body style="background : -webkit-linear-gradient(right,#c4e5ec, #5484c7);">
@@ -45,14 +46,19 @@
 
     </ul>
 </nav>
-<div class="row justify-content-center successmessage" role="alert" >
-    ${deleted}
-    ${error}
+
+<div>
+    <p style="display: none" id="deleted">${deleted}</p>
+</div>
+<div>
+    <p style="display: none" id="error">${error}</p>
 </div>
 <div>
     <p style="display: none" id="success">${successful}</p>
 </div>
-
+<div>
+    <p style="display: none" id="fail">${fail}</p>
+</div>
 <div class="container">
     <div class="row">
         <div class="col-md-offset-1 col-md-10 ss">
@@ -116,7 +122,7 @@
                                                     <c:if test="${tempBatch.moduleListSize==0}">
                                                     <span >
 <%--                                                        <a onclick="alert('Cannot Schedule For this Module....');" class="btn btn-outline-danger">--%>
-                                                        <a onclick=" alertify.alert('Oops', 'No Modules has been Assigned to Batch : ${tempBatch.batchCode} ..!');" class="btn btn-outline-danger">
+                                                        <a onclick=" alertify.alert('Cannot View', 'No Modules has been Assigned to Batch : ${tempBatch.batchCode} ..!');" class="btn btn-outline-danger">
                                                          <i class="material-icons">&#xe88e;</i>
                                                     </a>
                                                     </span>
@@ -153,9 +159,28 @@
 <script>
     window.onload = function (){
         const success = document.getElementById("success").innerHTML;
+        const fail = document.getElementById("fail").innerHTML;
+
         console.log(success);
         if(success !== ""){
-            alertify.alert('Done', success);
+            swal('Done', success, "success");
         }
+        if(fail !== ""){
+            swal("Oops", fail, "error");        }
     }
+    window.onload = function (){
+        const deleted = document.getElementById("deleted").innerHTML;
+        const error = document.getElementById("error").innerHTML;
+
+
+        if(deleted != null){
+            swal('Done', deleted, "success");
+        }
+        if(error != null){
+            swal('Error', error, "error");
+        }
+
+    }
+
+
 </script>

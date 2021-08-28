@@ -13,7 +13,7 @@ public interface BatchService {
 
     List<BatchDto> getAllBatches();
 
-    Object editBatch(BatchDto batchDto);
+    Object editBatch(BatchDto batchDto) throws Exception;
 
     List<ModuleDto> getModuleList(int id);
 
