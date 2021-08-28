@@ -67,4 +67,12 @@ private List<Batch> batchList;
     public Timetable() {
     }
 
+    public Timetable(Date date, LocalTime startTime, LocalTime endTIme, ClassRoom classRoom, List<Batch> batchList, Module module) {
+        this.date = date;
+        this.startTime = startTime;
+        this.endTIme = endTIme;
+        this.classRoom = classRoom;
+        this.batchList = batchList;
+        this.module = module;
+    }
 }
