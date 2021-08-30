@@ -8,6 +8,7 @@ import com.janith.eea.Service.UserServiceImpl;
 import com.janith.eea.Util.UserTypeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.neo4j.Neo4jProperties;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -77,6 +78,7 @@ else
     }
 
     @GetMapping("/admin")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public String adminHome() {
 
         return "adminHome";

@@ -68,7 +68,7 @@ public class UserServiceImpl implements UserService {
                 //Collection <com.janith.eea.Model.UserRole>
             }
             User save = userRepository.save(userdomain);
-            emailService.sendEmail(registerUser); // send the email when saving in the database
+//            emailService.sendEmail(registerUser); // send the email when saving in the database
             return save;
 
         }

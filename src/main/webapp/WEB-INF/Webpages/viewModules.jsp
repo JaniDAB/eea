@@ -27,6 +27,7 @@
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.min.css"/>
     <!-- Bootstrap theme -->
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css"/>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 </head>
 <body style="background : -webkit-linear-gradient(right,#c4e5ec, #5484c7);">
@@ -56,18 +57,6 @@
     </ul>
 </nav>
 
-<c:if test="${deleted !=  null }">
-    <div class="container mt-2">
-        <div class="row">
-            <div class="col-sm-12">
-
-                <div class="alert alert-success" style="text-align: center">
-                        ${deleted}
-                </div>
-            </div>
-        </div>
-    </div>
-</c:if>
 <c:if test="${error !=  null }">
     <div class="container mt-2">
         <div class="row">
@@ -152,6 +141,18 @@
                         <div class="col col-sm-3 col-xs-12">
                             <h4   class="title">Module <span>List</span></h4>
                         </div>
+                        <c:if test="${deleted !=  null }">
+                            <div class="container mt-2">
+                                <div class="row">
+                                    <div class="col-sm-12">
+
+                                        <div class="alert alert-success" style="text-align: center">
+                                                ${deleted}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </c:if>
                         <div class="col-sm-9 col-xs-12 text-right">
                             <div class="btn_group">
 
@@ -246,7 +247,7 @@
         const success = document.getElementById("success").innerHTML;
         console.log(success);
         if(success !== ""){
-            alertify.alert('Done', success);
+            swal('Done', success, "success");
         }
     }
 </script>

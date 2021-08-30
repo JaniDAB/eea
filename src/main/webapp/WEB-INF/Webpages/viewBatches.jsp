@@ -81,11 +81,12 @@
                     <table class="table">
                         <thead>
                         <tr>
-                                    <th>Batch ID </th>
+
                                     <th> Batch Code </th>
                                     <th> Batch Description </th>
                                     <th> Edit And Delete Batch </th>
                                     <th> Assign Modules to Batch </th>
+                            <th>  Modules Assigned </th>
                                     <th> More Info </th>
                         </tr>
                         </thead>
@@ -93,7 +94,7 @@
                             <c:forEach var="tempBatch" items="${batches}">
                             <tr>
 
-                                <td>${tempBatch.batchID}</td>
+
                                                 <td>${tempBatch.batchCode}</td>
                                                 <td>${tempBatch.description}</td>
                                                 <td>
@@ -111,6 +112,9 @@
                                                     </a>
                                                     </span>
                                                 </td>
+                                <td>
+                                        ${tempBatch.moduleListSize }
+                                </td>
                                                 <td>
                                                     <c:if test="${tempBatch.moduleListSize>0 }">
 
@@ -168,19 +172,7 @@
         if(fail !== ""){
             swal("Oops", fail, "error");        }
     }
-    window.onload = function (){
-        const deleted = document.getElementById("deleted").innerHTML;
-        const error = document.getElementById("error").innerHTML;
 
-
-        if(deleted != null){
-            swal('Done', deleted, "success");
-        }
-        if(error != null){
-            swal('Error', error, "error");
-        }
-
-    }
 
 
 </script>

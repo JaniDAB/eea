@@ -20,7 +20,7 @@ Module editModule(ModuleDto moduleDto);
 
 Module assignLecturer(ModuleDto moduleDto);
 
-    String deAssignLecturer(int moduleDto);
+    Module deAssignLecturer(int moduleDto) throws Exception;
 
 List<ModuleDto> viewLecsModules(int userID);
 

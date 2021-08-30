@@ -181,16 +181,14 @@ public class ModuleServiceImpl implements ModuleService {
     }
 
     @Override
-    public String deAssignLecturer(int moduleDto) {
-        try {
-            Module optionalModule = moduleRepository.findById(moduleDto).get();
-            optionalModule.setLecUser(null);
-            moduleRepository.save(optionalModule);
-            return "deleted";
-        } catch (Exception EX) {
-            System.out.println(EX);
-            return "error";
-        }
+    public Module deAssignLecturer(int moduleDto) throws Exception {
+
+            Module optionalModule = moduleRepository.findById(moduleDto).orElseThrow(null);
+
+                optionalModule.setLecUser(null);
+                return moduleRepository.save(optionalModule);
+
+
     }
 
     @Override

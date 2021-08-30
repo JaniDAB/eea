@@ -111,10 +111,10 @@ public class moduleController {
     }
 
     @GetMapping("/deAssign/{id}")
-    public String deAssignLecturerModule(@PathVariable(value = "id") int ID, Model m, RedirectAttributes rd) {
-        String s = this.moduleService.deAssignLecturer(ID);
-        if (s.equals("deleted")) {
-            rd.addFlashAttribute("deleted", "De-Assign  Successfully");
+    public String deAssignLecturerModule(@PathVariable(value = "id") int ID, Model m, RedirectAttributes rd) throws Exception {
+        Module mm = this.moduleService.deAssignLecturer(ID);
+        if (mm != null) {
+            rd.addFlashAttribute("deleted", "Lecturer  is De-Assigned  By "+mm.getModuleCode()+" Successfully. ");
         } else {
             rd.addFlashAttribute("error", "De-Assign UnSuccessful");
         }
