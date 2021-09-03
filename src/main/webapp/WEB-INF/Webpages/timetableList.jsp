@@ -150,11 +150,11 @@
                         <tr>
                                     <th>Batches</th>
                                     <th>Date  Scheduled   </th>
-                                    <th>Start  Time </th>
-                                    <th>Ending   Time  </th>
+                                    <th> **Starting Time </th>
+                                    <th>**Ending   Time  </th>
                                     <th>  Module Name   </th>
                                     <th>   Room ID </th>
-                                    <th>   Type of Room </th>
+                                    <th>   ClassRoom Type </th>
                                     <th>  Lecturer  </th>
                                     <th> Reschedule</th>
                                     <th> Delete</th>

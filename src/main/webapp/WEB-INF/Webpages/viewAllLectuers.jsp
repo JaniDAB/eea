@@ -10,7 +10,7 @@
 <html>
 <head>
     <title>Title</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/viewUser.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/viewSheduleList.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
@@ -64,49 +64,6 @@
     </div>
 </c:if>
 
-<%--<table class="content-table">--%>
-<%--    <thead>--%>
-<%--    <tr>--%>
-<%--        <th> First Name</th>--%>
-<%--        <th> Last Name</th>--%>
-<%--        <th>Email</th>--%>
-<%--        <th>gender</th>--%>
-<%--        <th>Date of Birth</th>--%>
-<%--        <th> User Name</th>--%>
-<%--        <th>phone Number</th>--%>
-<%--        <th>Update</th>--%>
-<%--        <th>Remove</th>--%>
-
-<%--    </tr>--%>
-<%--    </thead>--%>
-<%--    <tbody>--%>
-
-<%--    <c:forEach var="tempUser" items="${users}">--%>
-
-<%--        <tr>--%>
-<%--            <td> ${tempUser.firstname}</td>--%>
-<%--            <td>${tempUser.lastname}</td>--%>
-<%--            <td>${tempUser.email}</td>--%>
-<%--            <td>${tempUser.gender}</td>--%>
-<%--            <td>${tempUser.dateOfBirth}</td>--%>
-<%--            <td>${tempUser.username}</td>--%>
-<%--            <td>${tempUser.mobile}</td>--%>
-
-<%--            <td>--%>
-<%--                <a href="${pageContext.request.contextPath}/showFormUpdate/${tempUser.userId}" class="btn btn-outline-primary">--%>
-<%--                    <i class="material-icons">&#xe3c9;</i>--%>
-<%--                </a>--%>
-
-<%--            </td>--%>
-<%--            <td><a href="${pageContext.request.contextPath}/deleteUserLec/${tempUser.userId}" onclick="return confirm('Remove Lecturer : ${tempUser.firstname}')"  class="btn btn-outline-danger">--%>
-<%--                <i class="material-icons">&#xe872;</i>--%>
-<%--            </a></td>--%>
-
-<%--        </tr>--%>
-
-<%--    </c:forEach>--%>
-<%--    </tbody>--%>
-<%--</table>--%>
 
 <div class="container">
     <div class="row">
@@ -134,7 +91,7 @@
                                     <th> Last Name</th>
                                     <th>Email</th>
                                     <th>gender</th>
-                                    <th>Date of Birth </th>
+                                    <th>***Date*** of Birth </th>
                                     <th> User Name</th>
                                     <th>phone Number</th>
                                     <th>Update</th>

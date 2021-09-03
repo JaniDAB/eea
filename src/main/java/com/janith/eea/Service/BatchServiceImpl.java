@@ -130,6 +130,7 @@ if (batchDto.getModuleList().length>3){
                 moduleDto.setModuleName(mudulel.getModuleName());
                 moduleDto.setModule_id(mudulel.getModule_id());
                 moduleDto.setModuleCode(mudulel.getModuleCode());
+                moduleDto.setLecUser(mudulel.getLecUser());
                 moduleDtoList.add(moduleDto);
             }
         }
@@ -156,15 +157,16 @@ if (batchDto.getModuleList().length>3){
     }
 
     @Override
-    public String deleteBatch(int BatchId) {
+    public String deleteBatch(int BatchId) throws Exception {
         try {
             this.batchRepo.deleteById(BatchId);
             return "deleted";
         }
         catch (Exception EX)
         {
-            System.out.println(EX);
-            return "error";
+            Batch batch =batchRepo.findById(BatchId).get();
+
+            throw  new Exception("Batch ID:" + batch.getBatchCode() +" Cannot Be deleted. Please Try Again");
         }
 
     }

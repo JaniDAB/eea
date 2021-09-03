@@ -288,6 +288,10 @@ public class AdminController {
             batchModel.addAttribute("batchInfo", batchInfo);
             batchModel.addAttribute("batchupdate", batchDto);
 
+
+            batchModel.addAttribute("successful","");
+            batchModel.addAttribute("fail","");
+
             return "updateBatch";
         } catch (Exception ex) {
             System.out.println( "bATCH Update"  +ex);
@@ -299,9 +303,21 @@ public class AdminController {
     }
 
     @PostMapping("/modifyBatch")
-    public String modifyBatch(@ModelAttribute("batchupdate") BatchDto batchDto) {
-       final Batch batch = batchService.editBatchInfo(batchDto);
-        return "adminHome";
+    public String modifyBatch(@ModelAttribute("batchupdate") BatchDto batchDto, Model a) {
+        try {
+            final Batch batch = batchService.editBatchInfo(batchDto);
+            List<BatchDto> batchDtoList;
+            batchDtoList = batchService.getAllBatches();
+            a.addAttribute("batches", batchDtoList);
+            a.addAttribute("successful",  batch.getBatchCode()+" Batch Description Updated to : "+batch.getDescription());
+
+        }catch (Exception e){
+            List<BatchDto> batchDtoList;
+            batchDtoList = batchService.getAllBatches();
+            a.addAttribute("batches", batchDtoList);
+            a.addAttribute("fail", "Error Occurred Please try again later.");
+        }
+        return "viewBatches";
     }
 
     // Module Functionss ------------------------------------------------------------------------
@@ -341,6 +357,7 @@ public class AdminController {
 
         m.addAttribute("successful","");
         m.addAttribute("fail","");
+        m.addAttribute("Msuccessful","");
 
         return "viewModules";
 

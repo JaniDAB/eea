@@ -44,11 +44,20 @@
 
                     <div class="row register-form">
                         <div class="col-md-6">
-                            <ul class="list-group list-group-flush">
+
                                 <c:forEach var="moduelList" items="${moduleList}" >
-                                    <li class="list-group-item">${moduelList.moduleName}</li>
+
+                                    <div class="card text-white bg-info mb-3  text-center" style="max-width: 18rem;">
+                                        <div class="card-header">${moduelList.moduleName}</div>
+                                        <div class="card-body">
+                                            <h5 class="card-title">${moduelList.moduleCode}</h5>
+                                            <p class="card-text"> Lecturer: ${moduelList.lecUser.firstname} ${moduelList.lecUser.lastname} </p>
+
+                                        </div>
+
+                                    </div>
                                 </c:forEach>
-                            </ul>
+
                         </div>
 
                         <div class="col-md-6">

@@ -72,66 +72,10 @@
 <div>
     <p style="display: none" id="success">${successful}</p>
 </div>
-<%--<table class="content-table">--%>
+<div>
+    <p style="display: none" id="fail">${fail}</p>
+</div>
 
-<%--    <thead><tr>--%>
-<%--        <th>Module Code </th>--%>
-<%--        <th> Module Name </th>--%>
-<%--        <th>  Batches Enrolled  </th>--%>
-<%--        <th>  Module Lecturer </th>--%>
-<%--        <th>  Update </th>--%>
-<%--        <th>  Lecturer Assign </th>--%>
-<%--        <th>   DeAssign </th>--%>
-
-
-
-<%--    </tr>--%>
-<%--    </thead>--%>
-<%--    <tbody>--%>
-
-<%--    <c:forEach var="tempModules" items="${modules}">--%>
-
-<%--        <tr>--%>
-<%--            <td>${tempModules.moduleCode}</td>--%>
-<%--            <td>${tempModules.moduleName}</td>--%>
-<%--            <td>--%>
-<%--                <c:if test="${tempModules.batchList.size()==0}">--%>
-<%--                    <div class="alert-warning" style="border-radius: 20px 20px 20px 20px"> No Batches Enrolled--%>
-<%--                        <i class="material-icons">&#xe001;</i>--%>
-<%--                    </div>--%>
-<%--                </c:if>--%>
-<%--                <c:forEach items="${tempModules.batchList}" var="batchlist">--%>
-<%--                    ${batchlist.batchCode} <br>--%>
-<%--                </c:forEach>--%>
-<%--            </td>--%>
-<%--            <td>--%>
-<%--                <c:if test="${tempModules.lecUser.firstname == null}">--%>
-<%--                    <div class="alert-warning" style="border-radius: 20px 20px 20px 20px"> No Lecturer--%>
-<%--                        <i class="material-icons">&#xe001;</i>--%>
-<%--                    </div>--%>
-<%--                </c:if>--%>
-<%--                    ${tempModules.lecUser.firstname}</td>--%>
-<%--            <td>--%>
-<%--         <a href="${pageContext.request.contextPath}/updateModuleForm/${tempModules.module_id}" class="btn btn-danger">--%>
-<%--             <i class="material-icons">&#xe3c9;</i>--%>
-<%--         </a>--%>
-
-<%--            </td>--%>
-<%--            <td>--%>
-<%--               <a href="${pageContext.request.contextPath}/assignModuleForm/${tempModules.module_id}" class="btn btn-success ">--%>
-<%--                   <i class="material-icons">&#xea4d;</i>--%>
-<%--               </a>--%>
-<%--            </td>--%>
-<%--            <td>--%>
-<%--                <a href="${pageContext.request.contextPath}/deAssign/${tempModules.module_id}" class="btn btn-secondary ">--%>
-<%--                    <i class="material-icons">&#xe7ad;</i>--%>
-<%--                </a>--%>
-<%--            </td>--%>
-
-<%--        </tr>--%>
-<%--    </c:forEach>--%>
-<%--    </tbody>--%>
-<%--</table>--%>
 <div class="container">
     <div class="row">
         <div class="col-md-offset-1 col-md-10 ss">
@@ -245,9 +189,13 @@
 <script>
     window.onload = function (){
         const success = document.getElementById("success").innerHTML;
+        const fail = document.getElementById("fail").innerHTML;
         console.log(success);
         if(success !== ""){
             swal('Done', success, "success");
+        }
+        if(fail !== ""){
+            swal('Sorry', fail, "error");
         }
     }
 </script>

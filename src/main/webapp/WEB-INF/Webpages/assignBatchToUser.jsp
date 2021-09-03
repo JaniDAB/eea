@@ -15,6 +15,17 @@
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/register.css">
+    <!-- JavaScript -->
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
+    <!-- Default theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css"/>
+    <!-- Semantic UI theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.min.css"/>
+    <!-- Bootstrap theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css"/>
 </head>
 <body>
 
@@ -35,7 +46,13 @@
             <h3>Assign Batch To a Student</h3>
 
             <p> Assigning a Batch to a User can be done here</p>
+            <div>
+                <p style="display: none" id="success">${successful}</p>
+            </div>
 
+            <div>
+                <p style="display: none" id="fail">${fail}</p>
+            </div>
         </div>
         <div class="col-md-9 register-right">
 
@@ -88,3 +105,12 @@
 </div>
 </body>
 </html>
+<script>
+    window.onload = function (){
+        const success = document.getElementById("success").innerHTML;
+        console.log(success);
+        if(success !== ""){
+            alertify.alert('Success', success);
+        }
+    }
+</script>

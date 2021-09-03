@@ -69,6 +69,8 @@ public class UserDto {
     @Setter
     private Batch batch;
 
+
+
     public UserDto( String username, String firstname, String lastname, @Email String email, String password, String mobile, String role, String dateOfBirth, String gender, Batch batch) {
         this.username = username;
         this.firstname = firstname;

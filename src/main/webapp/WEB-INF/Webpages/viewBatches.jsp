@@ -70,7 +70,30 @@
                         </div>
                         <div class="col-sm-9 col-xs-12 text-right">
                             <div class="btn_group">
+                                <c:if test="${deleted !=  null }">
+                                    <div class="container mt-2">
+                                        <div class="row">
+                                            <div class="col-sm-12">
 
+                                                <div class="alert alert-success" style="text-align: center">
+                                                        ${deleted}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </c:if>
+                                <c:if test="${error !=  null }">
+                                    <div class="container mt-2">
+                                        <div class="row">
+                                            <div class="col-sm-12">
+
+                                                <div class="alert alert-danger" style="text-align: center">
+                                                        ${error}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </c:if>
                             </div>
                         </div>
 

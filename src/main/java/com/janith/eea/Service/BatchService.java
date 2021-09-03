@@ -19,5 +19,5 @@ public interface BatchService {
 
     Batch editBatchInfo(BatchDto batchDto);
 
-    String deleteBatch(int BatchId);
+    String deleteBatch(int BatchId) throws Exception;
 }

@@ -29,6 +29,8 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private EmailServiceImpl emailService;
 
+
+
     public User getUser(String username) {
         return userRepository.findUsersByUsername(username);
     }
@@ -188,6 +190,8 @@ public class UserServiceImpl implements UserService {
                     userDto.setFirstname(user.getFirstname());
                     userDto.setDateOfBirth(user.getDateOfBirth());
                     userDto.setMobile(user.getMobile());
+
+
                     userDtoList.add(userDto);
                 }
             }

@@ -51,6 +51,8 @@ public class moduleController {
 
             model.addAttribute("moduleupdate", moduleDto);
 
+            model.addAttribute("successful","");
+            model.addAttribute("fail","");
             return "updateModule";
         } catch (Exception ex) {
             System.out.println("Module not found" + ex);
@@ -61,9 +63,23 @@ public class moduleController {
     }
 
     @PostMapping("/modifyModule")
-    public String modifyBatch(@ModelAttribute("moduleupdate") ModuleDto moduleDto) {
-        final Module update = moduleService.editModule(moduleDto);
-        return "redirect:/admin/listModules";
+    public String modifyBatch(@ModelAttribute("moduleupdate") ModuleDto moduleDto,Model a) {
+        try {
+            final Module update = moduleService.editModule(moduleDto);
+            a.addAttribute("successful",  update.getModuleCode()+" Module Name Updated to : "+update.getModuleName() +"  Successfully. ");
+            List<ModuleDto> moduleDtoList;
+            moduleDtoList = moduleService.getAllModules();
+            a.addAttribute("modules", moduleDtoList);
+        }
+        catch (Exception e){
+            List<ModuleDto> moduleDtoList;
+            moduleDtoList = moduleService.getAllModules();
+            a.addAttribute("modules", moduleDtoList);
+
+            a.addAttribute("fail", "Error Occurred Please try again later.");
+
+        }
+        return "viewModules";
     }
 
     @GetMapping("/assignModuleForm/{id}")

@@ -38,6 +38,13 @@
         </div>
         <div class="col-md-9 register-right">
 
+            <div>
+                <p style="display: none" id="success">${successful}</p>
+            </div>
+
+            <div>
+                <p style="display: none" id="fail">${fail}</p>
+            </div>
             <div class="tab-content" id="myTabContent">
                 <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                     <h3 class="register-heading">Update Batch</h3>
@@ -81,3 +88,18 @@
 </div>
 </body>
 </html>
+
+<script>
+    window.onload = function (){
+        const success = document.getElementById("success").innerHTML;
+        const fail = document.getElementById("fail").innerHTML;
+
+        console.log(success);
+        if(success !== ""){
+            alertify.alert('Success', success);
+        }
+        if(fail !== ""){
+            swal('Sorry', fail, "error");
+        }
+    }
+</script>

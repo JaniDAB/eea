@@ -52,6 +52,10 @@ public class BatchController {
             m.addAttribute("userinfos", userinfo);
             m.addAttribute("user", userDto);
             m.addAttribute("batchlist", batchDtoList);
+
+            m.addAttribute("successful","");
+            m.addAttribute("fail","");
+
             return "assignBatchToUser";
         } catch (Exception ex) {
 
@@ -62,9 +66,25 @@ public class BatchController {
     }
 
     @PostMapping("/assignStudentBatch")
-    public String modifyUser(@ModelAttribute("user") UserDto userDto) {
-        final User save = service.assignBatch(userDto);
-        return "redirect:/admin/users/allStudents";
+    public String modifyUser(@ModelAttribute("user") UserDto userDto, Model a) {
+        try {
+            final User save = service.assignBatch(userDto);
+            List<UserDto> userList;
+            userList = service.getAllStudets();
+
+            a.addAttribute("users", userList);
+            a.addAttribute("successful", "Student: "+save.getFirstname()+" "+ save.getLastname()+ " Assigned Successfully to Batch  "+save.getBatch().getBatchCode());
+
+        }catch (Exception ex){
+
+            List<UserDto> userList;
+            userList = service.getAllStudets();
+
+            a.addAttribute("users", userList);
+            a.addAttribute("fail", "Error Occured");
+
+        }
+        return "/viewAllStudents";
     }
 
     @GetMapping("/assignModule/{batchId}")
@@ -136,13 +156,17 @@ public class BatchController {
     @GetMapping("/deleteBatch/{id}")
     public String deleteBatch(@PathVariable(value = "id")int batchID, Model mod, RedirectAttributes rd)
     {
-        String s = batchService.deleteBatch(batchID);
-        if (s.equals("deleted")){
-            rd.addFlashAttribute("deleted", "Table Deleted");
+        try {
+            String s = batchService.deleteBatch(batchID);
+            if (s.equals("deleted")) {
+                rd.addFlashAttribute("deleted", "Batch  Deleted Successfully");
 
-        }
-        else {
-            mod.addAttribute("error", "Table Deleted");
+            } else {
+                mod.addAttribute("error", "batch  delete error ");
+
+            }
+        }catch(Exception ex){
+            rd.addFlashAttribute("error", ex.getMessage());
 
         }
         return "redirect:/admin/listBatches";

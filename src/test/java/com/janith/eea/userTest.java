@@ -9,6 +9,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 @SpringBootTest
@@ -21,11 +24,12 @@ public class userTest {
     @Autowired
     private CreatedDTO createdDTO;
 
-    private String studentToBeDeleted, studentWithSameUsername;
+    private  int studentToBeDeleted;
+    private String  studentWithSameUsername;
     @BeforeAll
     public void init() throws Exception {
         userID = createdDTO.studentCreate();
-        studentToBeDeleted = createdDTO.createStudentToBeDeleted(userID);
+        studentToBeDeleted = createdDTO.createStudentToBeDeleted();
         studentWithSameUsername = createdDTO.createStudentWithSameUsername();
     }
 
@@ -74,6 +78,38 @@ public class userTest {
 
         System.out.println("[TEST] Attempt to add student with existing username [PASSED]");
 
+    }
+
+    @Test
+    public void testGetAllStudents() {
+        List<UserDto> results = userService.getAllStudets();
+
+        boolean isTrue = results.size() > 0;
+
+        assertTrue(isTrue);
+
+        System.out.println("[TEST] Get all students [PASSED]");
+
+    }
+
+    @Test
+    public void testDeleteStudent()  {
+        userService.deleteUserByID(studentToBeDeleted);
+
+        List<UserDto> results = userService.getAllStudets();
+
+        boolean isTrue = true;
+
+        for (UserDto dto : results) {
+            if (dto.getUserId() == studentToBeDeleted) {
+                isTrue = false;
+                break;
+            }
+        }
+
+        assertTrue(isTrue);
+
+        System.out.println("[TEST] Delete student [PASSED]");
     }
 
 }

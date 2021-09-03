@@ -14,6 +14,19 @@
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/register.css">
+
+    <!-- JavaScript -->
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
+    <!-- Default theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css"/>
+    <!-- Semantic UI theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.min.css"/>
+    <!-- Bootstrap theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css"/>
+
 </head>
 <body>
 
@@ -42,18 +55,27 @@
 
                     <form:form action="${pageContext.request.contextPath}/modifyModule" method="POST"  modelAttribute="moduleupdate" >
 
+                    <div>
+                        <p style="display: none" id="success">${successful}</p>
+                    </div>
 
+                    <div>
+                        <p style="display: none" id="fail">${fail}</p>
+                    </div>
                     <div class="row register-form">
                         <div class="col-md-6">
                             <div class="form-group" >
-                                    <%--                                <input   type="text" class="form-control" placeholder="First Name *"  required="required" value="" />--%>
-                                <form:input   value="${moduleInfo.module_id}" type="text" path="module_id" cssClass="form-control" placeholder="Module ID  *" readonly="true" required="required"/>
+                                <form:label path="module_id"> Module Code</form:label>
+                            <%--                                <input   type="text" class="form-control" placeholder="First Name *"  required="required" value="" />--%>
+                                <form:input   value="${moduleInfo.moduleCode}" type="text" path="moduleCode" cssClass="form-control" placeholder="Module ID  *" readonly="true" required="required"/>
                             </div>
+                            <form:input   value="${moduleInfo.module_id}" type="hidden" path="module_id"   cssClass="form-control" placeholder="Module ID  *" readonly="true" required="required"/>
 
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                    <%--                                <input type="" class="form-control" placeholder="Your Email *"  required="required" value="" />--%>
+                                <form:label path="moduleName"> Module Name: </form:label>
+                            <%--                                <input type="" class="form-control" placeholder="Your Email *"  required="required" value="" />--%>
                                 <form:input  type="text"   value ="${moduleInfo.moduleName}" path="moduleName" cssClass="form-control" placeholder="Module Name *"   required="required"/>
 
                             </div>
@@ -73,3 +95,17 @@
 
 </body>
 </html>
+<script>
+    window.onload = function (){
+        const success = document.getElementById("success").innerHTML;
+        const fail = document.getElementById("fail").innerHTML;
+
+        console.log(success);
+        if(success !== ""){
+            alertify.alert('Done', success);
+        }
+        if(fail !== ""){
+            swal('Sorry', fail, "error");
+        }
+    }
+</script>
