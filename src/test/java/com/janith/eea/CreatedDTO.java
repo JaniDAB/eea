@@ -1,13 +1,8 @@
 package com.janith.eea;
 
-import com.janith.eea.Dto.BatchDto;
-import com.janith.eea.Dto.ClassRoomDto;
-import com.janith.eea.Dto.ModuleDto;
-import com.janith.eea.Dto.UserDto;
-import com.janith.eea.Model.Batch;
-import com.janith.eea.Model.ClassRoom;
+import com.janith.eea.Dto.*;
+import com.janith.eea.Model.*;
 import com.janith.eea.Model.Module;
-import com.janith.eea.Model.User;
 import com.janith.eea.Service.*;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -114,6 +109,15 @@ return userDto.getUserId();
         Batch b= batchService.save(batchDto);
          return b.getBatchID();
     }
+    public Batch batchcreatet() throws Exception {
+        BatchDto batchDto=   new BatchDto();
+        batchDto.setBatchCode("HF2131SEeng");
+        batchDto.setDescription("Software Engineering");
+
+
+       return batchService.save(batchDto);
+
+    }
 
     public Object setModules() throws Exception {
 
@@ -134,6 +138,12 @@ return userDto.getUserId();
           Module mod = moduleService.save(moduel);
           return mod;
     }
+
+//    public Timetable createTimetable(){
+//        TimetableDto newtime =  new TimetableDto();
+//
+//
+//    }
 
 
 }

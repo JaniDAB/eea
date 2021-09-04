@@ -132,5 +132,33 @@ try {
     }
 
 
+    @DeleteMapping("/admin_delete_schedule/{id}")
+    public HashMap<String, String> deleteTimetable(@PathVariable("id") int id){
+
+        HashMap<String, String> message = new HashMap<>();
+         String response =  timeTableService.deleteTimetableByID(id);
+
+                if(response.equals("deleted")){
+                    message.put("result", "delete");
+                }
+                else if (response.equals("error")){
+                    message.put("result", "error");
+                }
+        return message;
+    }
+
+    @PostMapping("/student_update_password/")
+    public HashMap<String, String> studentUpdatePassword(@RequestBody UserDto userDto) throws Exception {
+        HashMap<String, String> message = new HashMap<>();
+        try {
+            userService.updatePasswordStudent(userDto);
+
+            message.put("result", "updated");
+        } catch (Exception ex) {
+            message.put("result", ex.getMessage());
+            return message;
+        }
+        return message;
+    }
 
 }
