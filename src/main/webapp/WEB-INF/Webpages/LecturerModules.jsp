@@ -33,7 +33,7 @@
             <%--            <img src="https://img.icons8.com/material/100/ffffff/add-list--v1.png"/>--%>
             <%--            <img src="https://i.ibb.co/6bkWbL7/icons8-business-group-64.png" alt="icons8-business-group-64" border="0">--%>
             <h3>Your Current Teaching Modules </h3>
-            <p> And  Number of Batches Enrolled </p>
+            <p> And Number of Batches Enrolled </p>
 
         </div>
         <div class="col-md-9 register-right">
@@ -49,15 +49,33 @@
                             <%--                                    <li class="list-group-item">${moduelList.moduleName}</li>--%>
                             <%--                                </c:forEach>--%>
                             <%--                            </ul>--%>
-                            <ul class="list-group list-group-flush">
-                                <c:forEach var="moduelList" items="${moduleInfoList}" >
+                            <c:forEach var="moduelList" items="${moduleInfoList}">
 
-                                <li class="list-group-item d-flex justify-content-between align-items-center">
-                                ${moduelList.moduleName}
-                                    <span class="badge badge-success badge-pill">${moduelList.batchList.size()} Batches</span>
-                                </li>
-                                </c:forEach>
-                            </ul>
+                                <%--                                <li class="list-group-item d-flex justify-content-between align-items-center">--%>
+                                <%--                                ${moduelList.moduleName}--%>
+                                <%--                                    <span class="badge badge-success badge-pill">${moduelList.batchList.size()} Batches</span>--%>
+                                <%--                                   <br>--%>
+                                <%--                                    <c:forEach var="batches" items="${moduelList.batchList}">--%>
+                                <%--                                        <p>${batches.batchCode}</p>--%>
+                                <%--                                    </c:forEach>--%>
+
+                                <%--                                </li>--%>
+
+                                <div class="card text-white bg-info mb-3  text-center"
+                                     style="max-width: 18rem; max-height: 18rem;">
+                                    <div class="card-header">${moduelList.moduleCode}
+                                        <span class="badge badge-success badge-pill">${moduelList.batchList.size()} Batches</span>
+                                    </div>
+                                    <div class="card-body">
+                                        <h5 class="card-title">${moduelList.moduleName}</h5>
+                                        <c:forEach var="batches" items="${moduelList.batchList}">
+                                           ${batches.batchCode}*
+                                        </c:forEach>
+                                    </div>
+
+                                </div>
+                            </c:forEach>
+
 
                         </div>
 

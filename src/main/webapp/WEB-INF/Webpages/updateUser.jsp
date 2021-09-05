@@ -15,7 +15,7 @@
             var password2 = document.getElementById("pass2");
 
             if (pasword1.value.trim() !== password2.value.trim()) {
-                alert("Please re submit the Password correclty");
+                swal("Password Doesnt Match", "Please Re-Enter the Password!", "error");
                 return false;
             }
             return true
@@ -28,6 +28,8 @@
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
 </head>
 <body style="background-color: #000000">
 <div class="header">

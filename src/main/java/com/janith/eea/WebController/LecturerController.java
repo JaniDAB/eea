@@ -22,8 +22,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+
 /**
  * All the  controllers need to lecturer (User)
+ *
  * @author janith dabare
  */
 @Controller
@@ -47,7 +49,7 @@ public class LecturerController {
 
 
     @Autowired
-    private  final BatchValidator batchValidator;
+    private final BatchValidator batchValidator;
 
     public LecturerController(TimeTableServiceImpl timeTableService, BatchServiceImpl batchService, ModuleService moduleService, UserServiceImpl service, BatchValidator batchValidator) {
         this.timeTableService = timeTableService;
@@ -59,8 +61,7 @@ public class LecturerController {
 
 
     @GetMapping("/lecturer/getUpdateForm/{id}")
-    public  String  getUpdateFormLecturer(@PathVariable(value = "id") int id , Model u)
-    {
+    public String getUpdateFormLecturer(@PathVariable(value = "id") int id, Model u) {
         try {
             UserDto userDto = new UserDto();
             UserDto userinfo = service.getUserById(id);
@@ -73,48 +74,47 @@ public class LecturerController {
             return "lecturerUpdate";
         }
     }
+
     @PostMapping("/lecturer/Updateform")
-    public String updateLecturer(@ModelAttribute("lecturer") UserDto userDto , Model m)
-    {
+    public String updateLecturer(@ModelAttribute("lecturer") UserDto userDto, Model m) {
         try {
             final User update = service.updateStudent(userDto); // change service method
             m.addAttribute("Updated", "Updated Successfully");
             return "lecturerUpdate";
-        }catch (Exception e){
+        } catch (Exception e) {
             m.addAttribute("error", "  UnSuccessful");
             return "lecturerUpdate";
         }
     }
 
     @GetMapping("/lecturer/timetable")
-    public String getLecturerTimetable( Model timetable , Authentication auth)
-    {
+    public String getLecturerTimetable(Model timetable, Authentication auth) {
         User user = service.getUser(auth.getName());
 
         List<TimetableDto> timetableDtoList = timeTableService.getAllTimeTablestoLecturer(user.getUserId());
-        timetable.addAttribute("timetableList" , timetableDtoList);
+        timetable.addAttribute("timetableList", timetableDtoList);
 
         return "viewLecturerTimetable";
 
     }
 
     @GetMapping("/lecturer/timetables")
-    public String getLecturerTimetableToday( Model timetable, Authentication auth)
-    {
+    public String getLecturerTimetableToday(Model timetable, Authentication auth) {
         // take the list from timetable list of current date.
         List<TimetableDto> timetableDtoLists = timeTableService.getTodayTablesByDate(service.getUser(auth.getName()).getUserId());
 
         // binding  the collected list to JSP
-        timetable.addAttribute("timetableList" , timetableDtoLists);
+        timetable.addAttribute("timetableList", timetableDtoLists);
         return "viewLecturerTimetable";
 
     }
-    @GetMapping("/lecturer/search")
-    public String getLecturerTimetable(Authentication auth , Model timetable , HttpServletRequest req)
-    {   String date = req.getParameter("date");
 
-        List<TimetableDto> timetableDtoList = timeTableService.searchLecturerTimetable(service.getUser(auth.getName()).getUserId(),date );
-        timetable.addAttribute("timetableList" , timetableDtoList);
+    @GetMapping("/lecturer/search")
+    public String getLecturerTimetable(Authentication auth, Model timetable, HttpServletRequest req) {
+        String date = req.getParameter("date");
+String date2 = req.getParameter("date2");
+        List<TimetableDto> timetableDtoList = timeTableService.searchLecturerTimetable(service.getUser(auth.getName()).getUserId(), date , date2);
+        timetable.addAttribute("timetableList", timetableDtoList);
 
         return "viewLecturerTimetable";
 
@@ -122,8 +122,7 @@ public class LecturerController {
 
 
     @GetMapping("/getLecturerModuleList/{userID}")
-    public String getModuleListLecturer(@PathVariable( name = "userID") int UserID, Model m)
-    {
+    public String getModuleListLecturer(@PathVariable(name = "userID") int UserID, Model m) {
         try {
             List<ModuleDto> modelInfoList = moduleService.viewLecsModules(UserID);
 
@@ -131,21 +130,20 @@ public class LecturerController {
 
             return "LecturerModules";
         } catch (Exception ex) {
-            System.out.println("Module not found"+ex);
+            System.out.println("Module not found" + ex);
 
             return "LecturerModules";
         }
 
     }
+
     @GetMapping("/requestReschedule/{id}")
-    public String requestReschedule(@PathVariable(value = "id")int tableID, Model mod, RedirectAttributes rd)
-    {
+    public String requestReschedule(@PathVariable(value = "id") int tableID, Model mod, RedirectAttributes rd) {
         String s = timeTableService.lecturerRequestReschedule(tableID);
-        if (s.equals("done")){
+        if (s.equals("done")) {
             rd.addFlashAttribute("rescheduled", " Request for a Reschedule Message Has been Sent to Academic Admin");
 
-        }
-        else {
+        } else {
             mod.addAttribute("error", "Error.....Please try again later.");
 
         }

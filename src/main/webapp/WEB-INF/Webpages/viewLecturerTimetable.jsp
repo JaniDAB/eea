@@ -45,8 +45,10 @@
         <li><a class="nav-link" href="${pageContext.request.contextPath}/lecturer/timetables">Todays Schedule</a></li>
         <li style="float:right">
             <form action="${pageContext.request.contextPath}/lecturer/search" method="get" class="d-flex">
-                <input class="form-control" style="width: 200px; border-radius: 25px 25px 25px 25px" type="date"
+               FROM<input class="form-control" style="width: 200px; border-radius: 25px 25px 25px 25px" type="date"
                        name="date" placeholder="Search.." aria-label="Search" required="required">
+               TO <input class="form-control" style="width: 200px; border-radius: 25px 25px 25px 25px" type="date"
+                       name="date2" placeholder="Search.." aria-label="Search" required="required">
                 <button class="btn btn-primary" type="submit"><i class="fa fa-search"></i></button>
 
         <li/>
@@ -173,7 +175,7 @@
                                 <div class="col-sm-12">
 
                                     <div class="alert alert-success" style="text-align: center">
-                                        No Schedule For today.
+                                        No Timetable Schedules.....
                                     </div>
                                 </div>
                             </div>

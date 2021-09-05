@@ -963,8 +963,9 @@ public class TimeTableServiceImpl implements TimeTableService {
     }
 
     @Override
-    public List<TimetableDto> searchLecturerTimetable(int UserID, String Date) {
-        List<Timetable> timetablesDomain = timetableRepo.findTimetablesByModule_LecUser_UserIdAndDateLike(UserID,java.sql.Date.valueOf(Date) );
+    public List<TimetableDto> searchLecturerTimetable(int UserID, String Date , String Date2) {
+
+        List<Timetable> timetablesDomain = timetableRepo.findTimetablesByModule_LecUser_UserIdAndDateGreaterThanEqualAndDateLessThanEqual(UserID,java.sql.Date.valueOf(Date),java.sql.Date.valueOf(Date2) );
 
         List<TimetableDto> timetableDtoListof = new ArrayList<>();
 

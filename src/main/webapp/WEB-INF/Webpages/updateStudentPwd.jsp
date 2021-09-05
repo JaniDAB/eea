@@ -41,10 +41,6 @@
 </ul>
 
 <!------ Include the above in your HEAD tag ---------->
-<div class="row justify-content-center  successmessage" role="alert" style="color: #55efc4">
-    ${Updated}
-    ${error}
-</div>
 <div class="container register" style="max-width: 100%;">
     <div class="row">
         <div class="col-md-3 register-left">
@@ -71,7 +67,30 @@
 
 
                     <div class="row register-form">
+                        <c:if test="${Updated !=  null }">
+                            <div class="container mt-2">
+                                <div class="row">
+                                    <div class="col-sm-12">
 
+                                        <div class="alert alert-success" style="text-align: center">
+                                                ${Updated}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </c:if>
+                        <c:if test="${error !=  null }">
+                            <div class="container mt-2">
+                                <div class="row">
+                                    <div class="col-sm-12">
+
+                                        <div class="alert alert-danger" style="text-align: center">
+                                                ${error}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </c:if>
 
                         <div class="col-md-6">
 

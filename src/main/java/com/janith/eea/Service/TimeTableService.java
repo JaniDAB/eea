@@ -42,7 +42,7 @@ public interface TimeTableService {
 
     List<TimetableDto> searchbyDateStudentAPI(String Date , String userId);
 
-    List<TimetableDto> searchLecturerTimetable(int UserID ,String Date );
+    List<TimetableDto> searchLecturerTimetable(int UserID ,String Date,String Date2 );
 
     List<TimetableDto> lecturerSearchTimetableAPI(int UserID ,String Date );
 
