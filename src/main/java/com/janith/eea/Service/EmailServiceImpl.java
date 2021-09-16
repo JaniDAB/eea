@@ -44,7 +44,11 @@ public class EmailServiceImpl {
                 mailContent+= "<p><b>You Have Successfully Registered with Timetable System,</b>"+"</p>";
                 mailContent+="<p><b> Following  will be your User Name And Password ,</b>" +"</p>";
                 mailContent+=  "<p><b> UserName: </b>"+ userInfo.getUsername() +"</p>";
-                mailContent+= " <p><b> Password : user123 </b></p>";
+              if(userInfo.getRole().equals("LECTURER")){
+                  mailContent+= " <p><b> Password : lec123 </b></p>";
+              }else {
+                  mailContent += " <p><b> Password : user123 </b></p>";
+              }
                 mailContent+= "<hr><img src='cid:logoImage' />";
 
 
@@ -56,7 +60,7 @@ public class EmailServiceImpl {
 ////                                +  "UserName "+ userInfo.getUsername()
 //                                +"   Password : user123");
                 mimeMessage.setSentDate(new Date());
-                ClassPathResource  resource = new ClassPathResource("static/images/cover.png");
+                ClassPathResource  resource = new ClassPathResource("static/images/timetable.png");
                 helper.addInline("logoImage" , resource);
             }
         };

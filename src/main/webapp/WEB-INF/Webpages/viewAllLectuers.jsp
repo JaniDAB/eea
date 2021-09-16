@@ -39,30 +39,30 @@
 
     </ul>
 </nav>
-<c:if test="${deleted !=  null }">
-    <div class="container mt-2">
-        <div class="row">
-            <div class="col-sm-12">
+<%--<c:if test="${deleted !=  null }">--%>
+<%--    <div class="container mt-2">--%>
+<%--        <div class="row">--%>
+<%--            <div class="col-sm-12">--%>
 
-                <div class="alert alert-secondary" style="text-align: center">
-                        ${deleted}
-                </div>
-            </div>
-        </div>
-    </div>
-</c:if>
-<c:if test="${error !=  null }">
-    <div class="container mt-2">
-        <div class="row">
-            <div class="col-sm-12">
+<%--                <div class="alert alert-secondary" style="text-align: center">--%>
+<%--                        ${deleted}--%>
+<%--                </div>--%>
+<%--            </div>--%>
+<%--        </div>--%>
+<%--    </div>--%>
+<%--</c:if>--%>
+<%--<c:if test="${error !=  null }">--%>
+<%--    <div class="container mt-2">--%>
+<%--        <div class="row">--%>
+<%--            <div class="col-sm-12">--%>
 
-                <div class="alert alert-danger" style="text-align: center">
-                        ${error}
-                </div>
-            </div>
-        </div>
-    </div>
-</c:if>
+<%--                <div class="alert alert-danger" style="text-align: center">--%>
+<%--                        ${error}--%>
+<%--                </div>--%>
+<%--            </div>--%>
+<%--        </div>--%>
+<%--    </div>--%>
+<%--</c:if>--%>
 
 
 <div class="container">
@@ -75,6 +75,31 @@
                             <h4  routerLink="/list-users" class="title">Lecturers <span></span></h4>
                         </div>
                         <div class="col-sm-9 col-xs-12 text-right">
+                            <c:if test="${deleted !=  null }">
+                                <div class="container mt-2">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+
+                                            <div class="alert alert-secondary" style="text-align: center">
+                                                    ${deleted}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </c:if>
+                            <c:if test="${error !=  null }">
+                                <div class="container mt-2">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+
+                                            <div class="alert alert-danger" style="text-align: center">
+                                                    ${error}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </c:if>
+
                             <div class="btn_group">
 
                             </div>

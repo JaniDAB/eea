@@ -50,7 +50,11 @@ public class UserServiceImpl implements UserService {
         if (userRepository.findUsersByUsername(registerUser.getUsername()) != null) {
           // changed done return null;
             throw  new Exception("User : " + registerUser.getUsername() + " is Already in System");
-        } else {
+        }if (userRepository.findUsersByEmail(registerUser.getEmail()) != null) {
+            // changed done return null;
+            throw  new Exception("User Email : " + registerUser.getEmail() + " is Already in System");
+        }
+        else {
             if (registerUser != null) {
                 userdomain.setUsername(registerUser.getUsername().trim());
                 userdomain.setFirstname(registerUser.getFirstname().trim());
@@ -67,10 +71,9 @@ public class UserServiceImpl implements UserService {
                 }
                 userdomain.setDateOfBirth(registerUser.getDateOfBirth());
                 userdomain.setGender(registerUser.getGender());
-                //Collection <com.janith.eea.Model.UserRole>
             }
             User save = userRepository.save(userdomain);
-//            emailService.sendEmail(registerUser); // send the email when saving in the database
+            emailService.sendEmail(registerUser); // send the email when saving in the database
             return save;
 
         }

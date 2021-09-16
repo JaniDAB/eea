@@ -118,11 +118,14 @@
                                 <form:label path="firstname" >Enter First Name: </form:label>
                                 <form:input type="text" path="firstname" cssClass="form-control"
                                             placeholder="First Name *" required="required"/>
+                                <form:errors path="firstname" cssStyle="color: red"/>
+
                             </div>
                             <div class="form-group">
                                 <form:label path="lastname" >Enter Last Name: </form:label>
                                 <form:input type="text" path="lastname" cssClass="form-control"
                                             placeholder="Last Name *" required="required"/>
+                                <form:errors path="lastname" cssStyle="color: red"/>
 
                             </div>
                             <div class="form-group">

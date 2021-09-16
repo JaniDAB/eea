@@ -39,18 +39,7 @@
 <%--    ${errorDelete}--%>
 
 <%--</div>--%>
-<c:if test="${deleted != null}">
-    <div class="container mt-2">
-        <div class="row">
-            <div class="col-sm-12">
 
-                <div class="alert alert-danger" style="text-align: center">
-                        ${deleted}
-                </div>
-            </div>
-        </div>
-    </div>
-</c:if>
 <%--<table class="content-table">--%>
 
 <%--    <thead><tr>--%>
@@ -99,6 +88,18 @@
                             <h4   class="title">Class Room <span>List</span></h4>
                         </div>
                         <div class="col-sm-9 col-xs-12 text-right">
+                            <c:if test="${deleted != null}">
+                                <div class="container mt-2">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+
+                                            <div class="alert alert-danger" style="text-align: center">
+                                                    ${deleted}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </c:if>
                             <div class="btn_group">
 
                             </div>

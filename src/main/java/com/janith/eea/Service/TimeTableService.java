@@ -38,7 +38,7 @@ public interface TimeTableService {
 
     List<TimetableDto> getTodayTablesByDateStduentsApi(String userID);
 
-    List<TimetableDto> searchbyDate(String Date , int batchid);
+    List<TimetableDto> searchbyDate(String Date, String DateTo, int batchid);
 
     List<TimetableDto> searchbyDateStudentAPI(String Date , String userId);
 

@@ -112,7 +112,7 @@ public class LecturerController {
     @GetMapping("/lecturer/search")
     public String getLecturerTimetable(Authentication auth, Model timetable, HttpServletRequest req) {
         String date = req.getParameter("date");
-String date2 = req.getParameter("date2");
+        String date2 = req.getParameter("date2");
         List<TimetableDto> timetableDtoList = timeTableService.searchLecturerTimetable(service.getUser(auth.getName()).getUserId(), date , date2);
         timetable.addAttribute("timetableList", timetableDtoList);
 

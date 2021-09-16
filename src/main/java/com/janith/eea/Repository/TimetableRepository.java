@@ -35,7 +35,9 @@ public interface TimetableRepository extends JpaRepository<Timetable,Integer> {
 
         List<Timetable> findTimetablesByBatchListEqualsAndDateLike(Batch BatchID,Date date);
 
-     List<Timetable> findTimetablesByModule_LecUser_UserIdAndDateLike(int userID , Date date);
+    List<Timetable> findTimetablesByBatchListEqualsAndDateGreaterThanEqualAndDateLessThanEqual(Batch BatchID, Date date, Date date2);
+
+    List<Timetable> findTimetablesByModule_LecUser_UserIdAndDateLike(int userID , Date date);
 
     List<Timetable> findTimetablesByModule_LecUser_UserIdAndDateGreaterThanEqualAndDateLessThanEqual(Integer module_lecUser_userId, Date date, Date date2);
 

@@ -733,10 +733,10 @@ public class TimeTableServiceImpl implements TimeTableService {
 
 
     @Override
-    public List<TimetableDto> searchbyDate(String Date , int batchid) {
+    public List<TimetableDto> searchbyDate( String Date , String DateTo,int batchid) {
         Batch batch = batchRepository.findById(batchid).orElseThrow(RuntimeException::new);
 
-        List<Timetable> timetablesDomain = timetableRepo.findTimetablesByBatchListEqualsAndDateLike(batch, java.sql.Date.valueOf(Date));
+        List<Timetable> timetablesDomain = timetableRepo.findTimetablesByBatchListEqualsAndDateGreaterThanEqualAndDateLessThanEqual(batch, java.sql.Date.valueOf(Date),java.sql.Date.valueOf(DateTo));
 
         List<TimetableDto> timetableDtoList = new ArrayList<>();
 

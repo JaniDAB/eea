@@ -89,7 +89,7 @@
                         <div class="col-md-6">
                             <div class="form-group" >
                                     <%--                                <input   type="text" class="form-control" placeholder="First Name *"  required="required" value="" />--%>
-                                <form:label path="moduleCode" >Enter Module Code: </form:label>
+                                <form:label path="moduleCode" >Enter Module Code: Ex(COSE60636)</form:label>
                                 <form:input   type="text" path="moduleCode" cssClass="form-control" placeholder="For Ex: COSE60636" required="required"/>
                                 <form:errors path="moduleCode" cssClass="align-content-center" cssStyle="color: red"/>
                             </div>

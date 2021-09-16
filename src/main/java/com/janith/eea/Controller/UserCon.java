@@ -25,10 +25,6 @@ public class UserCon {
     public HashMap<String, String> addAUser(@RequestBody UserDto userDto) throws Exception {
         HashMap<String, String> message = new HashMap<>();
 
-//        ClassRoomDto classRoomDto =  new ClassRoomDto();
-//
-//        classRoomDto.setRoomType(request.get("roomType"));
-//        classRoomDto.setRoomCapacity( Integer.parseInt(request.get("capacity")));
         try {
            userService.save(userDto);
 

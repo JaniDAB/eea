@@ -262,7 +262,8 @@ li a {
 }
 
 li a:hover {
-    background-color: #55efc4 ;
+    background-color: #A7CCED ;
+    border-radius: 20px 20px;
 }
 
 .nav_link{

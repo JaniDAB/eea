@@ -55,6 +55,10 @@ public class UserValidation implements Validator {
         if(userRepository.findUsersByUsername(user.getUsername().trim()) != null){
             errors.rejectValue("username", "Duplicate.userForm.username");
         }
+        if (userRepository.findUsersByEmail(user.getEmail()) != null) {
+            // changed done return null;
+            errors.rejectValue("email", "Duplicate.userForm.email");
+        }
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email", "NotEmpty");
 
         if(!matcher.matches()){
@@ -75,11 +79,11 @@ public class UserValidation implements Validator {
 
 
         if(user.getFirstname().trim().length() < 3 || user.getFirstname().trim().length() > 20){
-            errors.rejectValue("firstname", "Size.module.name");
+            errors.rejectValue("firstname", "Size.userForm.firstname");
         }
 
         if(user.getLastname().trim().length() < 3 || user.getLastname().trim().length() > 20){
-            errors.rejectValue("lastname", "Size.module.name");
+            errors.rejectValue("lastname", "Size.userForm.firstname");
         }
 
 

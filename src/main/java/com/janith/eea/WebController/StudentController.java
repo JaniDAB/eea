@@ -134,7 +134,9 @@ public class StudentController {
     public String search(HttpServletRequest req , Model a , Authentication auth)
     {
         String date = req.getParameter("date");
-        List<TimetableDto> timetableDtoList = timeTableService.searchbyDate(date,service.getUser(auth.getName()).getBatch().getBatchID());
+        String date2 = req.getParameter("date2");
+
+        List<TimetableDto> timetableDtoList = timeTableService.searchbyDate(date,date2,service.getUser(auth.getName()).getBatch().getBatchID());
 
         a.addAttribute("timetableList", timetableDtoList);
         return "/viewStudentTimetable";
