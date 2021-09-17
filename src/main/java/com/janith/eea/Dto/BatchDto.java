@@ -1,12 +1,22 @@
 package com.janith.eea.Dto;
 
 
+import org.hibernate.validator.constraints.Length;
+
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+
 public class BatchDto {
 
     private  Integer batchID;
 
+    @NotBlank(message = "This field may not be empty")
+    @Pattern(regexp = "^[a-zA-z]{1,4}[0-9]{1,5}[a-zA-z]{2,5}$",message = " Invalid Batch Code.  Enter as Requested Format")
     private String batchCode;
 
+    @NotBlank(message = "This field may not be empty")
+    @Length(min = 3, max = 50, message = "Batch Should Have minimum 3 & Maximum 50 Characters")
     private  String description;
 
     private String[] moduleList;

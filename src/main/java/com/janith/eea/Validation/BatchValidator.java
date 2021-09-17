@@ -37,19 +37,19 @@ public class BatchValidator implements Validator {
 
         Matcher matcher = batchR.matcher(batchDto.getBatchCode());
 
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "batchCode", "NotEmpty");
+//        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "batchCode", "NotEmpty");
 
-        if(!matcher.matches()){
-            errors.rejectValue("batchCode", "batch.batchCode.!invalid");
-        }
+//        if(!matcher.matches()){
+//            errors.rejectValue("batchCode", "batch.batchCode.!invalid");
+//        }
         if(batchRepository.findBatchesByBatchCode(batchDto.getBatchCode()) != null){
             errors.rejectValue("batchCode", "Duplicate.batchCode");
         }
 
-
-        if(batchDto.getDescription().trim().length() < 3 || batchDto.getDescription().trim().length() > 20){
-            errors.rejectValue("description", "Size.module.name");
-        }
+//
+//        if(batchDto.getDescription().trim().length() < 3 || batchDto.getDescription().trim().length() > 20){
+//            errors.rejectValue("description", "Size.module.name");
+//        }
 
     }
 }

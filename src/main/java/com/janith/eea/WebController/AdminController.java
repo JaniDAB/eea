@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 import java.util.List;
 /**
  * All the  controllers   Admin needs
@@ -247,7 +248,7 @@ public class AdminController {
     }
 
     @PostMapping("/admin/addBatch")
-    public String AddAABath(@ModelAttribute("batch") BatchDto batchDto , Model a, BindingResult br) {
+    public String AddAABath(@ModelAttribute("batch") @Valid BatchDto batchDto , BindingResult br, Model a) {
         batchValidator.validate(batchDto , br);
 
         if(br.hasErrors()){
@@ -328,7 +329,7 @@ public class AdminController {
     }
 
     @PostMapping("/admin/addModule")
-    public String addAModule(@ModelAttribute("module") ModuleDto moduleDto ,BindingResult br,Model a) throws Exception {
+    public String addAModule(@ModelAttribute("module")@Valid ModuleDto moduleDto ,BindingResult br,Model a) throws Exception {
 
         moduleValidator.validate(moduleDto , br);
 

@@ -3,14 +3,21 @@ package com.janith.eea.Dto;
 
 import com.janith.eea.Model.Batch;
 import com.janith.eea.Model.User;
+import org.hibernate.validator.constraints.Length;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
 import java.util.List;
 
 public class ModuleDto {
     private Integer module_id;
 
 
+    @NotEmpty(message = "Module Name Cannot Be Empty")
+    @Length(min = 3, max = 20, message = "Module Should Have minimum 3 & Maximum 50 Characters")
     private  String moduleName;
+
+    @Pattern(regexp = "^[a-zA-z]{4}[0-9]{1,5}$" , message = "Invalid Module Code. Enter as Requested format")
     private  String moduleCode;
 
     private String firstName;

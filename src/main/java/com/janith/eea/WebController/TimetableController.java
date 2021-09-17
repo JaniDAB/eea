@@ -73,8 +73,7 @@ public class TimetableController {
     @PostMapping("/admin/AddRoom")
     public String AddingRoom
             (@ModelAttribute("addRoom")@Valid ClassRoomDto classRoomDto,
-             Model r,
-             BindingResult br) {
+             BindingResult br,Model r) {
 
         classRoomValidator.validate(classRoomDto, br);
 

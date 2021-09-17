@@ -42,17 +42,17 @@ public class ClassRoomValidator implements Validator {
         Matcher matcher = p.matcher(classRoomDto.getRoomId());
 
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "roomId", "NotEmpty");
-        if(!matcher.matches()){
-            errors.rejectValue("roomId", "regex.room.!equals");
-        }
+//        if(!matcher.matches()){
+//            errors.rejectValue("roomId", "regex.room.!equals");
+//        }
         if (classRoomRepository.findById(classRoomDto.getRoomId()).isPresent()){
             errors.rejectValue("roomId", "classroom.exist");
         }
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "roomCapacity", "NotEmpty");
 
-        if(classRoomDto.getRoomCapacity() > 50){
-            ValidationUtils.rejectIfEmptyOrWhitespace(errors, "roomCapacity", "capacity.room.value");
-        }
+//        if(classRoomDto.getRoomCapacity() > 50){
+//            ValidationUtils.rejectIfEmptyOrWhitespace(errors, "roomCapacity", "capacity.room.value");
+//        }
 
     }
 }

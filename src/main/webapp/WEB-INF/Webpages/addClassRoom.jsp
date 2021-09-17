@@ -93,8 +93,8 @@
                             <div class="form-group">
                                          <form:label path="roomCapacity">Enter Room Capacity:</form:label><br>
 <%--                       <input type="" class="form-control" placeholder="Your Email *"  required="required" value="" max="50"  />&ndash;%&gt;--%>
-                                <form:input  type="number"  path="roomCapacity" cssClass="form-control" placeholder="Room Capacity*"  max="50" min="10"   required="required"/>
-<%--<form:errors path="roomCapacity" cssStyle="color: red"/>--%>
+                                <form:input  type="number"  path="roomCapacity" cssClass="form-control" placeholder="Room Capacity*"  min="10"   required="required"/>
+<form:errors path="roomCapacity" cssStyle="color: red"/>
 
                             </div>
 

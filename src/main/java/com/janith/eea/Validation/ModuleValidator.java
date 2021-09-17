@@ -45,15 +45,15 @@ public class ModuleValidator implements Validator {
         Matcher matcher = maduleCo.matcher(moduleDto.getModuleCode());
 
 
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "moduleName", "NotEmpty");
+//        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "moduleName", "NotEmpty");
 
         if(moduleRepository.findByModuleName(moduleDto.getModuleName().trim()) != null)
         {
             errors.rejectValue("moduleName", "Duplicate.module.moduleName");
         }
-        if(!matcher.matches()){
-            errors.rejectValue("moduleCode", "module.moduleCode.invalid");
-        }
+//        if(!matcher.matches()){
+//            errors.rejectValue("moduleCode", "module.moduleCode.invalid");
+//        }
 
         if(moduleRepository.findByModuleCode(moduleDto.getModuleCode()) != null){
             errors.rejectValue("moduleCode", "Duplicate.moduleCode");

@@ -100,7 +100,8 @@
                             <div class="form-group">
                                     <%--                                <input type="" class="form-control" placeholder="Your Email *"  required="required" value="" />--%>
                                         <form:label path="description" >Enter Description:</form:label>
-                                        <form:input  type="text"  path="description" cssClass="form-control" placeholder="Batch Description *"  required="required"/>
+                                        <form:input  type="text"  path="description" cssClass="form-control" placeholder="Batch Description *"  />
+                                        <form:errors path="description" cssClass="align-content-center" cssStyle="color: red"/>
 
                             </div>
 
