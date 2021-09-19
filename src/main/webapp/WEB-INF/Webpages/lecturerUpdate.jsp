@@ -93,10 +93,14 @@
 
                         <div class="col-md-6">
                             <div class="form-group">
+                                <form:label path="email" >Email Address </form:label>
                                 <form:input type="email" path="email" cssClass="form-control"
                                             value="${userinfo.email}" required="required"/>
+                                <form:errors path="email" cssStyle="color: red"/>
+
                             </div>
                             <div class="form-group">
+                                <form:label path="password" >New Password </form:label>
                                 <form:input type="password" path="password" cssClass="form-control"
                                             placeholder="New Password *" id="pass1" required="required"/>
                             </div>
@@ -105,13 +109,16 @@
                         <div class="col-md-6">
 
                             <div class="form-group">
+                                <form:label path="Mobile" >Contact Number </form:label>
                                 <form:input value="${userinfo.mobile}" type="number" path="mobile" cssClass="form-control"
                                             placeholder="Mobile *"
                                             required="required"/>
+                                <form:errors path="mobile" cssStyle="color: red"/>
 
                             </div>
 
                             <div class="form-group">
+                                <label>Confirm Password</label>
                                 <input type="password" class="form-control" placeholder="Confirm Password *" id="pass2"
                                        required="required" value=""/>
                             </div>

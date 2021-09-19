@@ -9,11 +9,14 @@ import com.janith.eea.Service.ModuleService;
 import com.janith.eea.Service.TimeTableServiceImpl;
 import com.janith.eea.Service.UserServiceImpl;
 import com.janith.eea.Validation.BatchValidator;
+import com.janith.eea.Validation.UserValidation;
+import com.janith.eea.Validation.updateLec;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,6 +24,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -31,7 +35,8 @@ import java.util.List;
 @Controller
 @PreAuthorize("hasAuthority('LECTURER')")
 public class LecturerController {
-
+    @Autowired
+    private updateLec userValidation;
 
     @Autowired
     private final TimeTableServiceImpl timeTableService;
@@ -76,7 +81,13 @@ public class LecturerController {
     }
 
     @PostMapping("/lecturer/Updateform")
-    public String updateLecturer(@ModelAttribute("lecturer") UserDto userDto, Model m) {
+    public String updateLecturer(@ModelAttribute("lecturer")@Valid UserDto userDto, BindingResult br, Model m) {
+        userValidation.validate(userDto ,br );
+
+        if (br.hasErrors()) {
+            return "lecturerUpdate";
+        }else
+
         try {
             final User update = service.updateStudent(userDto); // change service method
             m.addAttribute("Updated", "Updated Successfully");

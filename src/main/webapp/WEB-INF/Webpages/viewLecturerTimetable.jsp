@@ -113,7 +113,9 @@
                                     <div class="col-sm-12">
 
                                         <div class="alert alert-success" style="text-align: center">
-                                                ${rescheduled}
+                                                ${rescheduled} <i class="fa fa-paper-plane" aria-hidden="true"></i>
+
+
                                         </div>
                                     </div>
                                 </div>
