@@ -144,7 +144,7 @@ public class TimeTableServiceImpl implements TimeTableService {
                             &&
                             (LocalTime.parse(timetableDto.getStartTime()).isBefore(timetableinfo.getEndTIme()))) {
 
-                        throw new Exception("Batch :" + batchlistinfor.getBatchCode() +"Is Already Having an Schedule");
+                        throw new Exception("Batch :" + batchlistinfor.getBatchCode() +" Is Already Having an Schedule");
                     }
                     if ((LocalTime.parse(timetableDto.getEndTIme()).isAfter(timetableinfo.getStartTime()))
                             &&

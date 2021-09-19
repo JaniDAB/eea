@@ -26,12 +26,12 @@ public class BatchServiceImpl implements BatchService {
     public Batch save(BatchDto batchinfo) throws Exception {
         Batch batchdom = new Batch();
 
-        if(batchRepo.findBatchesByBatchCode(batchinfo.getBatchCode())!=null){
-            throw new Exception("Batch :"+batchinfo.getBatchCode()+" Already Added");
+        if (batchRepo.findBatchesByBatchCode(batchinfo.getBatchCode()) != null) {
+            throw new Exception("Batch :" + batchinfo.getBatchCode() + " Already Added");
         }
         if (batchinfo != null) {
 //            batchdom.setBatchID(batchinfo.getBatchID());
-         
+
             batchdom.setBatchCode(batchinfo.getBatchCode().trim());
             batchdom.setDescription(batchinfo.getDescription().trim());
 
@@ -90,9 +90,12 @@ public class BatchServiceImpl implements BatchService {
         ArrayList<Module> moduleArrayList = new ArrayList<>();
 
         Batch batch = optionalBatch.get();
-if (batchDto.getModuleList().length>3){
-    throw new Exception("  Maximum  3 Modules can be Added to Batch " + batch.getBatchCode());
-}
+        if (batchDto.getModuleList().length > 3) {
+            throw new Exception("  Maximum  3 Modules can be Added to Batch " + batch.getBatchCode());
+        }if(batchDto.getModuleList().length==0){
+            batch.getModuleList().clear();
+            return  batchRepo.save(batch);
+        }else
         for (String s : batchDto.getModuleList()) {
             Optional<Module> byId = moduleRepository.findById(Integer.parseInt(s));
 
@@ -113,7 +116,6 @@ if (batchDto.getModuleList().length>3){
         // a convertion of module list to A dto TYPE
 
         Optional<Batch> optionalBatch = batchRepo.findById(batchID);
-
 
 
         List<ModuleDto> moduleDtoList = new ArrayList<>();
@@ -138,7 +140,6 @@ if (batchDto.getModuleList().length>3){
     }
 
 
-
     @Override
     public Batch editBatchInfo(BatchDto batchDto) {
         Optional<Batch> optionalBatch = batchRepo.findById(batchDto.getBatchID());
@@ -148,8 +149,8 @@ if (batchDto.getModuleList().length>3){
 
         if (batch != null) {
 
-                batch.setBatchCode(batchDto.getBatchCode());
-                batch.setDescription(batchDto.getDescription());
+            batch.setBatchCode(batchDto.getBatchCode());
+            batch.setDescription(batchDto.getDescription());
 
         }
 
@@ -161,12 +162,10 @@ if (batchDto.getModuleList().length>3){
         try {
             this.batchRepo.deleteById(BatchId);
             return "deleted";
-        }
-        catch (Exception EX)
-        {
-            Batch batch =batchRepo.findById(BatchId).get();
+        } catch (Exception EX) {
+            Batch batch = batchRepo.findById(BatchId).get();
 
-            throw  new Exception("Batch ID:" + batch.getBatchCode() +" Cannot Be deleted. Please Try Again");
+            throw new Exception("Batch ID:" + batch.getBatchCode() + " Cannot Be deleted. Please Try Again");
         }
 
     }

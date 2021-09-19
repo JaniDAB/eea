@@ -123,6 +123,10 @@ public class BatchController {
          List<BatchDto> batchDtoList;
          batchDtoList = batchService.getAllBatches();
          a.addAttribute("batches", batchDtoList);
+         if(d.getModuleList().size()==0){
+             a.addAttribute("successful", "All the Modules Removed from Batch : "+d.getBatchCode());
+
+         }else
          a.addAttribute("successful", "Modules Assigned Successfully to "+d.getBatchCode());
      }catch (Exception e){
          List<BatchDto> batchDtoList;

@@ -23,7 +23,6 @@ public class ModuleDto {
     private String firstName;
 
 // to web
-
     private User lecUser;
 // to API
     private UserDto lecUserDTO;

@@ -49,6 +49,8 @@
             <c:forEach var="moduelListin" items="${moduleListInfo}" >
                 ${moduelListin.moduleCode} : ${moduelListin.moduleName} <br>
             </c:forEach>
+
+            <p>To Clear All Modules Click on Assign Button without Selecting Any Modules</p>
         </div>
         <div class="col-md-9 register-right">
 
@@ -86,7 +88,7 @@
 
                             <div class="form-group">
                                 <form:label path="moduleList" > Select the Modules from Below  List: </form:label>
-                                <form:select  multiple="true" path="moduleList" cssClass="form-select"  required="required" aria-required="true" >
+                                <form:select  multiple="true" path="moduleList" cssClass="form-select"   aria-required="true" >
                                     <c:forEach var="moduelList" items="${moduleList}" >
                                         <form:option value="${moduelList.module_id}">
                                             ${moduelList.moduleName}

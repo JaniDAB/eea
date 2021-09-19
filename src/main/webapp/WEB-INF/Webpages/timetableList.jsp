@@ -48,83 +48,30 @@
 <%--        Please Select a Batch to Schedule the  time table--%>
 <%--    </h3>--%>
 <%--</div>--%>
-<c:if test="${deleted !=  null }">
-    <div class="container mt-2">
-        <div class="row">
-            <div class="col-sm-12">
+<%--<c:if test="${deleted !=  null }">--%>
+<%--    <div class="container mt-2">--%>
+<%--        <div class="row">--%>
+<%--            <div class="col-sm-12">--%>
 
-                <div class="alert alert-success" style="text-align: center">
-                        ${deleted}
-                </div>
-            </div>
-        </div>
-    </div>
-</c:if>
-<c:if test="${error !=  null }">
-    <div class="container mt-2">
-        <div class="row">
-            <div class="col-sm-12">
+<%--                <div class="alert alert-success" style="text-align: center">--%>
+<%--                        ${deleted}--%>
+<%--                </div>--%>
+<%--            </div>--%>
+<%--        </div>--%>
+<%--    </div>--%>
+<%--</c:if>--%>
+<%--<c:if test="${error !=  null }">--%>
+<%--    <div class="container mt-2">--%>
+<%--        <div class="row">--%>
+<%--            <div class="col-sm-12">--%>
 
-                <div class="alert alert-danger" style="text-align: center">
-                        ${error}
-                </div>
-            </div>
-        </div>
-    </div>
-</c:if>
-<%--<table class="content-table">--%>
-
-<%--    <thead><tr>--%>
-<%--        <th>Batches</th>--%>
-<%--        <th>Date</th>--%>
-<%--        <th>Start Time </th>--%>
-<%--        <th> End Time </th>--%>
-<%--        <th>  Module  </th>--%>
-<%--        <th>   Room </th>--%>
-<%--        <th>   Room Type </th>--%>
-<%--        <th>  Lecturer  </th>--%>
-<%--        <th> Reschedule</th>--%>
-<%--        <th> Delete</th>--%>
-
-<%--    </tr>--%>
-<%--    </thead>--%>
-<%--    <tbody>--%>
-
-<%--    <c:forEach var="temptimetable" items="${allSchedules}">--%>
-
-<%--        <tr>--%>
-<%--            <td>--%>
-<%--                    <c:forEach items="${temptimetable.batchList}" var="batchlist">--%>
-<%--                     ${batchlist.batchCode} <br>--%>
-<%--                    </c:forEach>--%>
-<%--            </td>--%>
-<%--            <td> ${temptimetable.date} </td>--%>
-<%--            <td>${temptimetable.startTime}</td>--%>
-<%--            <td>${temptimetable.endTIme}</td>--%>
-<%--            <td>${temptimetable.module.moduleName}</td>--%>
-<%--            <td>${temptimetable.classRoom.roomId}</td>--%>
-<%--            <td>${temptimetable.classRoom.roomType}</td>--%>
-<%--            <td>${temptimetable.module.lecUser.firstname}</td>--%>
-<%--            <td>--%>
-<%--                <span><a href="${pageContext.request.contextPath}/admin/rescheduleDirect/${temptimetable.timetableID}" class="btn btn-success">--%>
-<%--                    <i class="material-icons">&#xe923;</i>--%>
-<%--                </a>--%>
-<%--                </span>--%>
-<%--            </td>--%>
-<%--            <td>--%>
-<%--                <span><a href="${pageContext.request.contextPath}/deleteTimetable/${temptimetable.timetableID}" class="btn btn-danger" onclick="return confirm('Delete this Schedule')">--%>
-
-<%--                <i class="material-icons">&#xe872;</i>--%>
-<%--                    </a>--%>
-<%--                </span>--%>
-<%--            </td>--%>
-
-
-
-<%--        </tr>--%>
-<%--    </c:forEach>--%>
-<%--    </tbody>--%>
-<%--</table>--%>
+<%--                <div class="alert alert-danger" style="text-align: center">--%>
+<%--                        ${error}--%>
+<%--                </div>--%>
+<%--            </div>--%>
+<%--        </div>--%>
+<%--    </div>--%>
+<%--</c:if>--%>
 
 <div class="container">
     <div class="row">
@@ -136,6 +83,30 @@
                             <h4   class="title">Schedule <span>List</span></h4>
                         </div>
                         <div class="col-sm-9 col-xs-12 text-right">
+                            <c:if test="${deleted !=  null }">
+                                <div class="container mt-2">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+
+                                            <div class="alert alert-success" style="text-align: center">
+                                                    ${deleted} <i class="fa fa-trash" aria-hidden="true"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </c:if>
+                            <c:if test="${error !=  null }">
+                                <div class="container mt-2">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+
+                                            <div class="alert alert-danger" style="text-align: center">
+                                                    ${error}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </c:if>
                             <div class="btn_group">
 
                             </div>

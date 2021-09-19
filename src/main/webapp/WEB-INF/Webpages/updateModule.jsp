@@ -77,6 +77,7 @@
                                 <form:label path="moduleName"> Module Name: </form:label>
                             <%--                                <input type="" class="form-control" placeholder="Your Email *"  required="required" value="" />--%>
                                 <form:input  type="text"   value ="${moduleInfo.moduleName}" path="moduleName" cssClass="form-control" placeholder="Module Name *"   required="required"/>
+                                <form:errors path="moduleName" cssClass="align-content-center" cssStyle="color: red"/>
 
                             </div>
 

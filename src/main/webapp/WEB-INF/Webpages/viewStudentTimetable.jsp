@@ -86,8 +86,8 @@
                         <thead>
                         <tr>
                             <th> Scheduled Date</th>
-                            <th>Start Time</th>
-                            <th> End Time</th>
+                            <th>Starting Time</th>
+                            <th> Ending Time</th>
                             <th> Module</th>
                             <th> Room</th>
                             <th> Room Type</th>

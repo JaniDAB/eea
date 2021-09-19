@@ -9,12 +9,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -63,7 +65,13 @@ public class moduleController {
     }
 
     @PostMapping("/modifyModule")
-    public String modifyBatch(@ModelAttribute("moduleupdate") ModuleDto moduleDto,Model a) {
+    public String modifyBatch(@ModelAttribute("moduleupdate")@Valid ModuleDto moduleDto, BindingResult br, Model a) {
+
+        if(br.hasErrors())
+        {
+            return "updateModule";
+        }
+
         try {
             final Module update = moduleService.editModule(moduleDto);
             a.addAttribute("successful",  update.getModuleCode()+" Module Name Updated to : "+update.getModuleName() +"  Successfully. ");

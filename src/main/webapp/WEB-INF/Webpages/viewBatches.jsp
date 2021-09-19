@@ -76,7 +76,7 @@
                                             <div class="col-sm-12">
 
                                                 <div class="alert alert-success" style="text-align: center">
-                                                        ${deleted}
+                                                        ${deleted} <i class="fa fa-trash" aria-hidden="true"></i>
                                                 </div>
                                             </div>
                                         </div>
