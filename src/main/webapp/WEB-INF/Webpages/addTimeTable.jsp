@@ -16,6 +16,7 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/timetable.css">
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <script>
         $(function () {
@@ -94,7 +95,8 @@
                                     <div class="col-sm-12">
 
                                         <div class="alert alert-danger" style="text-align: center">
-                                                ${error}
+                                                ${error} <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+
                                         </div>
                                     </div>
                                 </div>
@@ -106,7 +108,8 @@
                                     <div class="col-sm-12">
 
                                         <div class="alert alert-success" style="text-align: center">
-                                                ${successful}
+                                                ${successful} <i class="fa fa-check" aria-hidden="true"></i>
+
                                         </div>
                                     </div>
                                 </div>

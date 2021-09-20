@@ -147,7 +147,7 @@
                                 <td>${tempUser.dateOfBirth}</td>
                                 <td>${tempUser.username}</td>
                                 <td><c:if test="${tempUser.batch.batchCode == null}">
-                                    <div class="alert-warning" style="border-radius: 15px 15px"> Not Enrolled
+                                    <div class="alert-warning" style="border-radius: 15px 15px"> N/A
                                         <i class="material-icons">&#xe001;</i>
                                     </div>
                                 </c:if>

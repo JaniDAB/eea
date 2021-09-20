@@ -69,6 +69,18 @@ public class TimeTableServiceImpl implements TimeTableService {
 
         if (timetableDto != null) {
 
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+            java.util.Date start = sdf.parse(String.format("%s %s", timetableDto.getDate(), timetableDto.getStartTime()));
+            java.util.Date end = sdf.parse(String.format("%s %s", timetableDto.getDate(), timetableDto.getEndTIme()));
+
+            if (start.before(new Date(System.currentTimeMillis()))) {
+                throw new Exception("Entered Start Time is passed..Please Enter a Valid Time period");
+
+            }
+            if (end.before(new Date(System.currentTimeMillis()))) {
+                throw new Exception("Entered End time is before current time..");
+
+            }
 
             if(!checkTime(startTime,endTime)){
                 throw new Exception("A Class Can be Schedule of Minimum, 30 Minutes & Maximum 2 Hours");
