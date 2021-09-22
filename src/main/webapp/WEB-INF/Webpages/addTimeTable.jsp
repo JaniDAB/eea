@@ -128,7 +128,7 @@
                                             required="required"/>
                             </div>
                             <div class="form-group">
-                                <form:label path="startTime">Enter the Start Time: From 8:00 AM To 17:00 PM</form:label>
+                                <form:label path="startTime">Enter the Start Time: From 8:00 AM To 16:00 PM</form:label>
 <%--                                <form:input type="time" path="startTime" cssClass="form-control" min="08:00" max="16:00"--%>
 <%--                                            placeholder="HH:MM" required="required"/>--%>
                                 <form:input type="time" path="startTime" cssClass="form-control" min="08:00" max="16:00"

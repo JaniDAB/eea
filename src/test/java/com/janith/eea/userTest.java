@@ -41,7 +41,7 @@ public class userTest {
         newdto.setUsername("jj");
         newdto.setFirstname("janith");
         newdto.setLastname("Dabare");
-        newdto.setEmail("janithdabare17@gmail.com");
+        newdto.setEmail("janithdabar@gmail.com");
         newdto.setGender("MALE");
         newdto.setRole("STUDENT");
         newdto.setMobile("0716123463");
@@ -112,4 +112,31 @@ public class userTest {
         System.out.println("[TEST] Delete student [PASSED]");
     }
 
+    @Test
+    public void testAddStudentWithExistingEmail() {
+
+        UserDto newdto=   new UserDto();
+
+        newdto.setUsername("janith12343");
+        newdto.setFirstname("janith");
+        newdto.setLastname("Dabare");
+        newdto.setEmail("janithdabare17@gmail.com");
+        newdto.setGender("MALE");
+        newdto.setRole("STUDENT");
+        newdto.setMobile("0716123463");
+        newdto.setDateOfBirth("2001-10-10");
+
+        boolean isTrue = true;
+
+        try {
+            userService.save(newdto);
+        } catch (  Exception e) {
+            if (e.getMessage().equals("User Email : janithdabare17@gmail.com is Already in System")) isTrue = true;
+        }
+
+        assertTrue(isTrue);
+
+        System.out.println("[TEST] Attempt to add student with existing username [PASSED]");
+
+    }
 }
