@@ -39,7 +39,7 @@
 
         var month = dtToday.getMonth() + 1;
         var day = dtToday.getDate();
-        var year = dtToday.getFullYear()-30;
+        var year = dtToday.getFullYear()-50;
         if(month < 10)
             month = '0' + month.toString();
         if(day < 10)

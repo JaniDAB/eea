@@ -8,6 +8,7 @@ import org.springframework.mail.MailException;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.mail.javamail.MimeMessagePreparator;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import javax.mail.Message;
@@ -26,6 +27,7 @@ public class EmailServiceImpl {
         this.javaMailSender = javaMailSender;
     }
 
+    @Async
     public void sendEmail( final UserDto userInfo)
     {
 
@@ -74,7 +76,7 @@ public class EmailServiceImpl {
         }
     }
 
-
+    @Async
     public void emailUserUpdate( final User userInfo)
     {
 
@@ -109,7 +111,7 @@ public class EmailServiceImpl {
         }
     }
 
-
+    @Async
     public void emaiPasswordReset( final User userInfo)
     {
 
@@ -147,6 +149,7 @@ public class EmailServiceImpl {
         }
     }
 
+    @Async
     public void RescheduleRequested( final Timetable timetable)
     {
  String AdminMail="janithdabare17@gmail.com";
