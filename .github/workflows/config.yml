@@ -12,6 +12,6 @@ jobs:
       - uses: actions/setup-java@v2
         with:
           java-version: '8'
-          distibution: 'adopt'
+          distribution: 'adopt'
       - name: EEA
         run: mvn --batch-mode --update-snapshots verify
